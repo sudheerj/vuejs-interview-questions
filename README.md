@@ -12,6 +12,9 @@ List of 300 VueJS Interview Questions
 |3  | [What are the lifecycle methods of VueJS](#what-are-the-lifecycle-methods-of-vuejs)|
 |4  | [What are the conditional directives](#what-are-the-conditional-directives)|
 |5  | [What is the difference between v-show and v-if directives](#what-is-the-difference-between-v-show-and-v-if-directives)|
+|6  | [What is the purpose of v-for directive?](#what-is-the-purpose-of-v-for-directive)|
+|7  | [What is the purpose of v-for directive?](#what-is-the-purpose-of-v-for-directive)|
+|8  | [What is vue instance?](#What is vue instance)|
 
 ### What is VueJS?
 Vue.js is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the view layer only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -59,3 +62,14 @@ Below are some of the main differences between between **v-show** and **v-if** d
 1. v-if only renders the element to the DOM if the expression passes whereas v-show renders all elements to the DOM and then uses the CSS display property to show/hide elements based on expression.
 2. v-if supports v-else and v-else-if directives whereas v-show doesn't support else directives.
 3. v-if has higher toggle costs while v-show has higher initial render costs. i.e, v-show has a performance advantage if the elements are switched on and off frequently, while the v-if has the advantage when it comes to initial render time.
+### What is the purpose of v-for directive?
+The built-in v-for directive allows us to loop through items in an array or object.
+### What is vue instance?
+    Every Vue application works by creating a new Vue instance with the Vue function. Generally the variable vm (short for ViewModel) is used to refer Vue instance. You can create vue instance as below,
+    ```javascript
+    var vm = new Vue({
+      // options
+    })
+    ```
+    As mentioned in the above code snippets, you need to pass options object. You can find the full list of options in the API reference.
+
