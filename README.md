@@ -13,8 +13,10 @@ List of 300 VueJS Interview Questions
 |4  | [What are the conditional directives](#what-are-the-conditional-directives)|
 |5  | [What is the difference between v-show and v-if directives](#what-is-the-difference-between-v-show-and-v-if-directives)|
 |6  | [What is the purpose of v-for directive?](#what-is-the-purpose-of-v-for-directive)|
-|7  | [What is the purpose of v-for directive?](#what-is-the-purpose-of-v-for-directive)|
-|8  | [What is vue instance?](#what-is-vue-instance)|
+|7  | [What is vue instance?](#what-is-vue-instance)|
+|8  | [How do you achieve conditional group of elements?](#how-do-you-achieve-conditional-group-of-elements)|
+|9  | [How do you reuse elements with key attribute?](#how-do-you-reuse-elements-with-key-attribute)|
+|10 | [Why should not use if and for directives together on the same element?](#why-should-not-use-if-and-for-directives-together-on-the-same-element)|
 
 1.  ### What is VueJS?
     Vue.js is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the view layer only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -59,11 +61,48 @@ List of 300 VueJS Interview Questions
     ```
 5.  ### What is the difference between v-show and v-if directives?
     Below are some of the main differences between between **v-show** and **v-if** directives,
-    1. v-if only renders the element to the DOM if the expression passes whereas v-show renders all elements to the DOM and then uses the CSS display property to show/hide elements based on expression.
-    2. v-if supports v-else and v-else-if directives whereas v-show doesn't support else directives.
-    3. v-if has higher toggle costs while v-show has higher initial render costs. i.e, v-show has a performance advantage if the elements are switched on and off frequently, while the v-if has the advantage when it comes to initial render time.
+        1. v-if only renders the element to the DOM if the expression passes whereas v-show renders all elements to the DOM and then uses the CSS display property to show/hide elements based on expression.
+        2. v-if supports v-else and v-else-if directives whereas v-show doesn't support else directives.
+        3. v-if has higher toggle costs while v-show has higher initial render costs. i.e, v-show has a performance advantage if the elements are switched on and off frequently, while the v-if has the advantage when it comes to initial render time.
+        4. v-if supports <template> tab but v-show doesn't support.
 6.  ### What is the purpose of v-for directive?
-    The built-in v-for directive allows us to loop through items in an array or object.
+    The built-in v-for directive allows us to loop through items in an array or object. You can iterate on each element in the array or object.
+    1. Array usage:
+    ```javascript
+    <ul id="list">
+      <li v-for="(item, index) in items">
+        {{ index }} - {{ item.message }}
+      </li>
+    </ul>
+
+    var vm = new Vue({
+      el: '#list',
+      data: {
+        items: [
+          { message: 'John' },
+          { message: 'Locke' }
+        ]
+      }
+    })
+    ```
+    You can also use `of` as the delimiter instead of `in`, similar to javascript iterators.
+    2. Object usage:
+    ```javascript
+    <div id="object" v-for="(value, key, index) in object">
+      {{ index }}. {{ key }}: {{ value }}
+    </div>
+
+    var vm = new Vue({
+      el: '#object',
+      data: {
+        user: {
+          firstName: 'John',
+          lastName: 'Locke',
+          age: 30
+        }
+      }
+    })
+    ```
 7.  ### What is vue instance?
     Every Vue application works by creating a new Vue instance with the Vue function. Generally the variable vm (short for ViewModel) is used to refer Vue instance. You can create vue instance as below,
     ```javascript
@@ -72,4 +111,95 @@ List of 300 VueJS Interview Questions
     })
     ```
     As mentioned in the above code snippets, you need to pass options object. You can find the full list of options in the API reference.
+8.  ### How do you achieve conditional group of elements?
+    You can achieve conditional group of elements(toggle multiple elements at a time) by applying **v-if** directive on `<template>` element which works as invisible wrapper(no rendering) for group of elements. For example, you can conditionally group user details based on valid user condition
+    ```javascript
+    <template v-if="condition">
+      <h1>Name</h1>
+      <p>Address</p>
+      <p>Contact Details</p>
+    </template>
+    ```
+9.  ### How do you reuse elements with key attribute?
+    Vue always try to render elements as efficient as possible. So it tries to reuse the elements instead of building them from scratch. But this behavior may cause problems in few scenarios. For example, if you try to render the same input element in both `v-if` and `v-else` blocks then it holds the previous value as below,
+    ```javascript
+    <template v-if="loginType === 'Admin'">
+      <label>Admin</label>
+      <input placeholder="Enter your ID">
+    </template>
+    <template v-else>
+      <label>Guest</label>
+      <input placeholder="Enter your name">
+    </template>
+    ```
+    In this case, it shouldn't reuse. We can make both input elements as separate by applying **key** attribute as below,
+    ```javascript
+        <template v-if="loginType === 'Admin'">
+          <label>Admin</label>
+          <input placeholder="Enter your ID" key="admin-id">
+        </template>
+        <template v-else>
+          <label>Guest</label>
+          <input placeholder="Enter your name" key="user-name">
+        </template>
+    ```
+    The above code make sure both inputs are independent and doesn't impact each other.
+10. ### Why should not use if and for directives together on the same element?
+    It is recommended not to use v-if on the same element as v-for. Because v-for directive has a higher priority than v-if. There are two cases where developers try to use this combination,
+    1. To filter items in a list
+     For example, if you try to filter the list using v-if tag,
+     ```javascript
+     <ul>
+       <li
+         v-for="user in users"
+         v-if="user.isActive"
+         :key="user.id"
+       >
+         {{ user.name }}
+       <li>
+     </ul>
+     ```
+     This can be avoided by preparing the filtered list using computed property on the initial list
+     ```javascript
+     computed: {
+       activeUsers: function () {
+         return this.users.filter(function (user) {
+           return user.isActive
+         })
+       }
+     }
+     ...... //
+     ...... //
+     <ul>
+       <li
+         v-for="user in activeUsers"
+         :key="user.id">
+         {{ user.name }}
+       <li>
+     </ul>
 
+     ```
+    2. To avoid rendering a list if it should be hidden
+     For example, if you try to conditionally check if the user is to show or hide
+     ```javascript
+     <ul>
+       <li
+         v-for="user in users"
+         v-if="shouldShowUsers"
+         :key="user.id"
+       >
+         {{ user.name }}
+       <li>
+     </ul>
+     ```
+     This can be solved by moving the condition to a parent by avoiding this check for each user
+     ```javascript
+     <ul v-if="shouldShowUsers">
+       <li
+         v-for="user in users"
+         :key="user.id"
+       >
+         {{ user.name }}
+       <li>
+     </ul>
+     ```
