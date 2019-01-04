@@ -17,6 +17,15 @@ List of 300 VueJS Interview Questions
 |8  | [How do you achieve conditional group of elements?](#how-do-you-achieve-conditional-group-of-elements)|
 |9  | [How do you reuse elements with key attribute?](#how-do-you-reuse-elements-with-key-attribute)|
 |10 | [Why should not use if and for directives together on the same element?](#why-should-not-use-if-and-for-directives-together-on-the-same-element)|
+|11 | [Why do you need to use key attribute on for directive?](#why-do-you-need-to-use-key-attribute-on-for-directive)|
+|12 | [What are the array detection mutation methods?](#what-are-the-array-detection-mutation-methods)|
+|13 | [What are the array detection non mutation methods?](#what-are-the-array-detection-non-mutation-methods)|
+|14 | [What are the caveats of array changes detection?](#what-are-the-caveats-of-array-changes-detection)|
+|15 | [What are the caveats of object changes detection?](#what-are-the-caveats-of-object-changes-detection)|
+|16 | [How do you use for directive with a range?](#how-do-you-use-for-directive-with-a-range)|
+|17 | [How do you use for directive on template?](#how-do-you-use-for-directive-on-template)|
+|18 | [](#)|
+
 
 1.  ### What is VueJS?
     Vue.js is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the view layer only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -201,5 +210,104 @@ List of 300 VueJS Interview Questions
        >
          {{ user.name }}
        <li>
+     </ul>
+     ```
+11.  ### Why do you need to use key attribute on for directive?
+     In order to track each node’s identity, and thus reuse and reorder existing elements, you need to provide a unique `key` attribute for each item with in `v-for` iteration. An ideal value for key would be the unique id of each item. Let us take an example usage,
+     ```javascript
+     <div v-for="item in items" :key="item.id">
+       {{item.name}}
+     </div>
+     ```
+     Hence, It is always recommended to provide a key with v-for whenever possible, unless the iterated DOM content is simple.
+     **Note:** You shouldn’t use non-primitive values like objects and arrays as v-for keys. Use string or numeric values instead.
+12.  ### What are the array detection mutation methods?
+     As the name suggests, mutation methods modifies the original array. Below are the list of array mutation methods which trigger view updates.
+     1. push()
+     2. pop()
+     3. shift()
+     4. unshift()
+     5. splice()
+     6. sort()
+     7. reverse()
+     If you perform any of the above mutation method on the list then it triggers view update. For example, push method on array named 'items' trigger a view update,
+     ```javascript
+     vm.todos.push({ message: 'Baz' })
+     ```
+13.  ### What are the array detection non mutation methods?
+     The methods which do not mutate the original array but always return a new array are called non-mutation methods. Below are the list of non-mutation methods,
+     1. filter()
+     2. concat()
+     3. slice()
+     For example, lets take a todo list where it replaces the old array with new one based on status filter,
+     ```javascript
+     vm.todos = vm.todos.filter(function (todo) {
+       return todo.status.match(/Completed/)
+     })
+     ```
+     This approach won't re-render the entire list due to VueJS implementation.
+14.  ### What are the caveats of array changes detection?
+     Vue cannot detect changes for the array in the below two cases,
+
+     1. When you directly set an item with the index,For example,
+        ```javascript
+        vm.tods[indexOfTodo] = newTodo
+        ```
+     2. When you modify the length of the array, For example,
+      ```javascript
+      vm.todos.length = todosLength
+      ```
+     You can overcome both the caveats using `set` and `splice` methods, Let's see the solutions with an examples,
+     **First use case solution**
+     ```javascript
+     // Vue.set
+     Vue.set(vm.todos, indexOfTodo, newTodoValue)
+     (or)
+     // Array.prototype.splice
+     vm.todos.splice(indexOfTodo, 1, newTodoValue)
+     ```
+     **Second use case solution**
+     ```javascript
+     vm.todos.splice(todosLength)
+     ```
+15.  ### What are the caveats of object changes detection?
+     Vue cannot detect changes for the object in property addition or deletion., Lets take an example of user data changes,
+     ```javascript
+     var vm = new Vue({
+       data: {
+         user: {
+           name: 'John'
+         }
+       }
+     })
+
+     // `vm.name` is now reactive
+
+     vm.email = john@email.com // `vm.email` is NOT reactive
+     ```
+     You can overcome this scenario using the Vue.set(object, key, value) method or Object.assign(),
+     ```javascript
+     Vue.set(vm.user, 'email', john@email.com);
+     (or)
+     vm.user = Object.assign({}, vm.user, {
+       email: john@email.com
+     })
+     ```
+16.  ### How do you use for directive with a range?
+     You can also use integer type(say 'n') for v-for directive which repeat the element many times.
+     ```javascript
+     <div>
+       <span v-for="n in 20">{{ n }} </span>
+     </div>
+     ```
+     It displays the number 1 to 20.
+17.  ### How do you use for directive on template?
+     Just similar to v-if directive on template, you can also use a <template> tag with v-for directive to render a block of multiple elements. Let's take a todo example,
+     ```javascript
+     <ul>
+       <template v-for="todo in todos">
+         <li>{{ todo.title }}</li>
+         <li class="divider"></li>
+       </template>
      </ul>
      ```
