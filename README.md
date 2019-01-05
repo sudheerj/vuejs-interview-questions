@@ -33,6 +33,11 @@ List of 300 VueJS Interview Questions
 |24 | [How do you implement two way binding?](#how-do-you-implement-two-way-binding)|
 |25 | [What are the supported modifiers on model?](#what-are-the-supported-modifiers-on-model)|
 |26 | [What are components and give an example?](#what-are-components-and-give-an-example)|
+|27 | [What are props?](#what-are-props)|
+|28 | [When component needs a single root element?](#when-component-needs-a-single-root-element)|
+|29 | [How do you communicate from child to parent using events?](#how-do-you-communicate-from-child-to-parent-using-events)|
+|30 | [How do you implement model on custom input components?](#how-do-you-implement-model-on-custom-input-components)|
+|31 | [What are slots?](#what-are-slots)|
 
 1.  ### What is VueJS?
     Vue.js is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the view layer only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -451,4 +456,89 @@ List of 300 VueJS Interview Questions
 
      var vm = new Vue({ el: '#app' });
      ```
-
+27.  ### What are props?
+     Props are custom attributes you can register on a component. When a value is passed to a prop attribute, it becomes a property on that component instance. You can pass those list of values as props option and use them as similar to data variables in template.
+     ```javascript
+     Vue.component('todo-item', {
+       props: ['title'],
+       template: '<h2>{{ title }}</h2>'
+     })
+     ```
+     Once the props registered, you can pass them as custom atrtributes,
+     ```javascript
+     <todo-item title="Learn Vue conceptsnfirst"></todo-item>
+     ```
+28.  ### When component needs a single root element?
+     Every component must have a single root element when template has more than one element. In this case, you need to wrap a parent element.
+     ```javascript
+     <div class="todo-item">
+       <h2>{{ title }}</h2>
+       <div v-html="content"></div>
+     </div>
+     ```
+     Otherwise there will an error throwing, saying that "wrap those elements with a parent element".
+29.  ### How do you communicate from child to parent using events?
+     If you want child wants to communicate back up to the parent, then emit an event from child using `$event` object to parent,
+     ```javascript
+     Vue.component('todo-tem', {
+       props: ['todo'],
+       template: `
+         <div class="todo-item">
+           <h3>{{ todo.title }}</h3>
+           <button v-on:click="$emit('increment-count', 1)">
+             Add
+           </button>
+           <div v-html="todo.description"></div>
+         </div>
+       `
+     })
+     ```
+     Now you can use this todo-item in parent component to access the count value.
+     ```javascript
+     <ul v-for="todo in todos">
+     <li>
+        <todo-item
+           v-bind:key="todo.id"
+           v-bind:todo="todo" v-on:increment-count="total += 1"></todo-item>
+     </li>
+     </ul>
+     <span> Total todos count is {{total}}</span>
+     ```
+30.  ### How do you implement model on custom input components?
+     The custom events can also be used to create custom inputs that work with v-model. The <input> inside the component must follow below rules,
+     1. Bind the value attribute to a value prop
+     2. On input, emit its own custom input event with the new value.
+     Lets take a custom-input component as an example,
+     ```javascript
+     Vue.component('custom-input', {
+       props: ['value'],
+       template: `
+         <input
+           v-bind:value="value"
+           v-on:input="$emit('input', $event.target.value)"
+         >
+       `
+     })
+     ```
+     Now you can use `v-model` with this component,
+     ```javascript
+     <custom-input v-model="searchInput"></custom-input>
+     ```
+31.  ### What are slots?
+     Vue implements a content distribution API using the <slot> element to serve as distribution outlets for content created after after the current Web Components spec draft. Let's create ann alert component with slots for content insertion,
+     ```javascript
+     Vue.component('alert', {
+       template: `
+         <div class="alert-box">
+           <strong>Error!</strong>
+           <slot></slot>
+         </div>
+       `
+     })
+     ```
+     Now you can insert dynamic content as below,
+     ```javascript
+     <alert>
+       There is an issue with in application.
+     </alert>
+     ```
