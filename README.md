@@ -24,8 +24,14 @@ List of 300 VueJS Interview Questions
 |15 | [What are the caveats of object changes detection?](#what-are-the-caveats-of-object-changes-detection)|
 |16 | [How do you use for directive with a range?](#how-do-you-use-for-directive-with-a-range)|
 |17 | [How do you use for directive on template?](#how-do-you-use-for-directive-on-template)|
-|18 | [](#)|
-
+|18 | [How do you use event handlers?](#how-do-you-use-event-handlers)|
+|19 | [What are the event modifiers provided by vue?](#what-are-the-event-modifiers-provided-by-vue)|
+|20 | [What are key modifiers?](#what-are-key-modifiers)|
+|21 | [How do you define custom key modifier aliases?](#how-do-you-define-custom-key-modifier-aliases)|
+|22 | [What are the supported System Modifier Keys?](#what-are-the-supported-system-modifier-keys)|
+|23 | [What are the supported Mouse Button Modifiers?](#what-are-the-supported-mouse-button-modifiers)|
+|24 | [How do you implement two way binding?](#how-do-you-implement-two-way-binding)|
+|25 | [What are the supported modifiers on model?](#what-are-the-supported-modifiers-on-model)|
 
 1.  ### What is VueJS?
     Vue.js is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the view layer only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -311,3 +317,116 @@ List of 300 VueJS Interview Questions
        </template>
      </ul>
      ```
+18.  ### How do you use event handlers?
+     You can use event handlers in vue similar to plain javascript. The method calls also support the special $event variable.
+     ```javascript
+     <button v-on:click="show('Welcome to VueJS world', $event)">
+       Submit
+     </button>
+
+     \\\\
+     methods: {
+       show: function (message, event) {
+         // now we have access to the native event
+         if (event) event.preventDefault()
+         console.log(message);
+       }
+     }
+     ```
+19.  ### What are the event modifiers provided by vue?
+     Normally, javascript provides event.preventDefault() or event.stopPropagation() inside event handlers. You can use methods provided by vue, but these methods are meant for data logic instead of dealing with DOM events. Vue provides below event modifiers for v-on and these modifiers are directive postfixes denoted by a dot.
+     1. .stop
+     2. .prevent
+     3. .capture
+     4. .self
+     5. .once
+     6. .passive
+     Let's take an example of stop modifier,
+     ```javascript
+     <!-- the click event's propagation will be stopped -->
+     <a v-on:click.stop="methodCall"></a>
+     ```
+     You can also chain modifiers as below,
+     ```javascript
+     <!-- modifiers can be chained -->
+     <a v-on:click.stop.prevent="doThat"></a>
+     ```
+20.  ### What are key modifiers?
+     Vue supports key modifiers on `v-on` for handling keyboard events. Let's take an example of keyup event with enter keycode
+     ```javascript
+     <!-- only call `vm.show()` when the `keyCode` is 13 -->
+     <input v-on:keyup.13="show">
+     ```
+     Remembering all the keycodes is really difficult. It supports the full list of keycode aliases
+     1. .enter
+     2. .tab
+     3. .delete (captures both “Delete” and “Backspace” keys)
+     4. .esc
+     5. .space
+     6. .up
+     7. .down
+     8. .left
+     9. .right
+
+     Now the above keyup code snippet can be written with aliases as follows,
+     ```javascript
+     <input v-on:keyup.enter="submit">
+     (OR)
+     <!-- with shorthand notation-->
+     <input @keyup.enter="submit">
+     ```
+21.  ### How do you define custom key modifier aliases?
+     You can define custom key modifier aliases via the global `config.keyCodes`. There are few guidelines for the properties
+     1. You can't use cameCase, instead you can use kebab-case with double quotation marks
+     2. You can define multiple values in ann array format
+     ```javascript
+     Vue.config.keyCodes = {
+       f1: 112,
+       "media-play-pause": 179,
+       down: [40, 87]
+     }
+     ```
+22.  ### What are the supported System Modifier Keys?
+     Vue supports below modifiers to trigger mouse or keyboard event listeners when the corresponding key is pressed,
+     1. .ctrl
+     2. .alt
+     3. .shift
+     4. .meta
+     Lets take an example of control modifier with click event,
+     ```javascript
+     <!-- Ctrl + Click -->
+     <div @click.ctrl="doSomething">Do something</div>
+     ```
+23.  ### What are the supported Mouse Button Modifiers?
+     Vue supports below mouse button modifiers
+     1. .left
+     2. .right
+     3. .middle
+     For example, the usage of `.right` modifier as below
+     ```javascript
+      <button v-if="button === 'right'"
+                 v-on:mousedown.right="increment" v-on:mousedown.left="decrement" />
+     ```
+24.  ### How do you implement two way binding?
+     You can use the `v-model` directive to create two-way data bindings on form input, textarea, and select elements. Lets take an example of it using input component,
+     ```javascript
+     <input v-model="message" placeholder="Enter innput here">
+     <p>The message is: {{ message }}</p>
+     ```
+     Remember, v-model will ignore the initial value, checked or selected attributes found on any form elements. So it always use the Vue instance data as the source of truth.
+25.  ### What are the supported modifiers on model?
+     There are three modifiers supported for v-model directive.
+     **1. lazy:** By default, v-model syncs the input with the data after each input event. You can add the lazy modifier to instead sync after change events.
+     ```javascript
+     <!-- synced after "change" instead of "input" -->
+     <input v-model.lazy="msg" >
+     ```
+     **2. number:** If you want user input to be automatically typecast as a number, you can add the number modifier to your v-model. Even with type="number", the value of HTML input elements always returns a string. So, this typecast modifier is required.
+     ```javascript
+     <input v-model.number="age" type="number">
+     ```
+     **3. trim:** If you want whitespace from user input to be trimmed automatically, you can add the trim modifier to your v-model.
+     ```javascript
+     <input v-model.trim="msg">
+     ```
+
