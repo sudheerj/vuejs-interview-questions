@@ -32,6 +32,7 @@ List of 300 VueJS Interview Questions
 |23 | [What are the supported Mouse Button Modifiers?](#what-are-the-supported-mouse-button-modifiers)|
 |24 | [How do you implement two way binding?](#how-do-you-implement-two-way-binding)|
 |25 | [What are the supported modifiers on model?](#what-are-the-supported-modifiers-on-model)|
+|26 | [What are components and give an example?](#what-are-components-and-give-an-example)|
 
 1.  ### What is VueJS?
     Vue.js is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the view layer only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -428,5 +429,26 @@ List of 300 VueJS Interview Questions
      **3. trim:** If you want whitespace from user input to be trimmed automatically, you can add the trim modifier to your v-model.
      ```javascript
      <input v-model.trim="msg">
+     ```
+26.  ### What are components and give an example?
+     Components are reusable Vue instances with a name. They accept the same options as new Vue, such as data, computed, watch, methods, and lifecycle hooks(except few root-specific options like el). Lets take an example of counter component,
+     ```javascript
+     // Define a new component called button-counter
+     Vue.component('button-counter', {
+       template: '<button v-on:click="count++">You clicked me {{ count }} times.</button>'
+       data: function () {
+         return {
+           count: 0
+         }
+       },
+     })
+     ```
+     Let's use this component inside a root Vue instance created with new Vue
+     ```javascript
+     <div id="app">
+       <button-counter></button-counter>
+     </div>
+
+     var vm = new Vue({ el: '#app' });
      ```
 
