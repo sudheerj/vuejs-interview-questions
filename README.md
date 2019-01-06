@@ -38,6 +38,9 @@ List of 300 VueJS Interview Questions
 |29 | [How do you communicate from child to parent using events?](#how-do-you-communicate-from-child-to-parent-using-events)|
 |30 | [How do you implement model on custom input components?](#how-do-you-implement-model-on-custom-input-components)|
 |31 | [What are slots?](#what-are-slots)|
+|32 | [What is global registration in components?](#what-is-global-registration-in-components)|
+|33 | [Why do you need local registration?](#why-do-you-need-local-registration)|
+|34 | [What is the difference between local and global registration in module system?](#what-is-the-difference-between-local-and-global-registration-in-module-system)|
 
 1.  ### What is VueJS?
     Vue.js is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the view layer only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -51,7 +54,7 @@ List of 300 VueJS Interview Questions
 3.  ### What are the lifecycle methods of VueJS?
     Lifecycle hooks are a window into how the library you’re using works behind-the-scenes. By using these hooks, you will know when your component is created, added to the DOM, updated, or destroyed. Let's look at lifecycle diagram before going to each lifecycle hook in detail,
 
-    ![ScreenShot](images/vuelifecycle.png)
+    <img src="https://github.com/sudheerj/vuejs-interview-questions/blob/master/images/vuelifecycle.png" width="400" height="800">
 
     1. **Creation(Initialization):**
         Creation Hooks allow you to perform actions before your component has even been added to the DOM. You need to use these hooks if you need to set things up in your component both during client rendering and server rendering. Unlike other hooks, creation hooks are also run during server-side rendering.
@@ -681,4 +684,111 @@ List of 300 VueJS Interview Questions
      <alert>
        There is an issue with in application.
      </alert>
+     ```
+32.  ### What is global registration in components?
+     The components which are globally registered can be used in the template of any root Vue instance (new Vue) created after registration. In the global registration, the components created using Vue.component as below,
+     ```javascript
+     Vue.component('my-component-name', {
+       // ... options ...
+     })
+     ```
+     Let's take multiple components which are globally registered in the vue instance,
+     ```javascript
+     Vue.component('component-a', { /* ... */ })
+     Vue.component('component-b', { /* ... */ })
+     Vue.component('component-c', { /* ... */ })
+
+     new Vue({ el: '#app' })
+     ```
+     The above components can be used in the vue instance,
+     ```javascript
+     <div id="app">
+       <component-a></component-a>
+       <component-b></component-b>
+       <component-c></component-c>
+     </div>
+     ```
+     Remember that the components can be used in subcomponents as well.
+33.  ### Why do you need local registration?
+     Due to global registration, even if you don't use the component it could still be included in your final build. So it will create unnecessary javascript in the application. This can be avoided using local registration with the below steps,
+     1. First you need to define your components as plain JavaScript objects
+     ```javascript
+     var ComponentA = { /* ... */ }
+     var ComponentB = { /* ... */ }
+     var ComponentC = { /* ... */ }
+     ```
+     Locally registered components will not be available in sub components. In this case, you need to add them in components section
+     ```javascript
+     var ComponentA = { /* ... */ }
+
+     var ComponentB = {
+       components: {
+         'component-a': ComponentA
+       },
+       // ...
+     }
+     ```
+     2. You can use the components in the components section of the vue instance,
+     ```javascript
+     new Vue({
+       el: '#app',
+       components: {
+         'component-a': ComponentA,
+         'component-b': ComponentB
+       }
+     })
+     ```
+34.  ### What is the difference between local and global registration in module system?
+     In **local registration**, you need to create each component in components folder(optional but it is recommended) and import them in another component file components section. Let's say you want to register component A and B in component C, the configuration seems as below,
+     ```javascript
+     import ComponentA from './ComponentA'
+     import ComponentB from './ComponentC'
+
+     export default {
+       components: {
+         ComponentA,
+         ComponentB
+       },
+       // ...
+     }
+     ```
+     Now both ComponentA and ComponentB can be used inside ComponentC‘s template.
+
+     In **global registration**, you need to export all common or base components in a separate file. But some of the popular bundlers like `webpack` make this process simpler by using `require.context` to globally register base components in the below entry file(one-time).
+
+     ```javascript
+     import Vue from 'vue'
+     import upperFirst from 'lodash/upperFirst'
+     import camelCase from 'lodash/camelCase'
+
+     const requireComponent = require.context(
+       // The relative path of the components folder
+       './components',
+       // Whether or not to look in subfolders
+       false,
+       // The regular expression used to match base component filenames
+       /Base[A-Z]\w+\.(vue|js)$/
+     )
+
+     requireComponent.keys().forEach(fileName => {
+       // Get component config
+       const componentConfig = requireComponent(fileName)
+
+       // Get PascalCase name of component
+       const componentName = upperFirst(
+         camelCase(
+           // Strip the leading `./` and extension from the filename
+           fileName.replace(/^\.\/(.*)\.\w+$/, '$1')
+         )
+       )
+
+       // Register component globally
+       Vue.component(
+         componentName,
+         // Look for the component options on `.default`, which will
+         // exist if the component was exported with `export default`,
+         // otherwise fall back to module's root.
+         componentConfig.default || componentConfig
+       )
+     })
      ```
