@@ -41,6 +41,11 @@ List of 300 VueJS Interview Questions
 |32 | [What is global registration in components?](#what-is-global-registration-in-components)|
 |33 | [Why do you need local registration?](#why-do-you-need-local-registration)|
 |34 | [What is the difference between local and global registration in module system?](#what-is-the-difference-between-local-and-global-registration-in-module-system)|
+|35 | [What are possible prop types?](#what-are-possible-prop-types)|
+|36 | [What is the data flow followed by props?](#what-is-the-data-flow-followed-by-props)|
+|37 | [What are non prop attributes?](#what-are-non-prop-attributes)|
+|38 | [](#)|
+|39 | [](#)|
 
 1.  ### What is VueJS?
     Vue.js is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the view layer only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -792,3 +797,52 @@ List of 300 VueJS Interview Questions
        )
      })
      ```
+35.  ### What are possible prop types?
+     You can declare props with type or without type. But it is recommended to have prop types because it provides the documentation for the component and warns the developer for any incorrect data type is assigned.
+     ```javascript
+     props: {
+       name: String,
+       age: Number,
+       isAuthenticated: Boolean,
+       phoneNumbers: Array,
+       address: Object
+     }
+     ```
+     As mentioned in the above code snippet, you can list props as an object, where the properties’ names and values contain the prop names and types, respectively.
+36.  ### What is the data flow followed by props?
+     All props follows a one-way-down binding between the child property and the parent one. i.e, When the parent property is updated then that latest prop value will be passed down to the child, but not the otherway(child to parent) around. The child component should not mutate the prop otherwise it throws a warning in the console.
+     The possible mutation cases can be solved as below,
+     1. When you try to use parent prop as initial value for child property:
+     In this case you can define a local property in child component and assign parent value as initial value
+     ```javascript
+     props: ['defaultUser'],
+     data: function () {
+       return {
+         username: this.defaultUser
+       }
+     }
+     ```
+     2. When you try to transform the parent prop:
+     You can define a computed property using the prop’s value,
+     ```javascript
+     props: ['environment'],
+     computed: {
+       environment: function () {
+         return this.environment.trim().toUpperCase()
+       }
+     }
+     ```
+37.  ### What are non prop attributes?
+     A non-prop attribute is an attribute that is passed to a component, but does not have a corresponding prop defined.
+     For example, If you are using a 3rd-party custom-input component that requires a `data-tooltip` attribute on the input then you can add this attribute to component instance,
+     ```javascript
+     <custom-input data-tooltip="Enter your input" />
+     ```
+     If you try to pass the props from parent component the child props with the same names will be overridden. But props like `class` and `style` are exception to this, these values will be merged in the child component.
+     ```javascript
+     //Child component
+     <input type="date" class="date-control">
+     //Parent component
+     <custom-input class="custom-class" />
+     ```
+
