@@ -44,8 +44,8 @@ List of 300 VueJS Interview Questions
 |35 | [What are possible prop types?](#what-are-possible-prop-types)|
 |36 | [What is the data flow followed by props?](#what-is-the-data-flow-followed-by-props)|
 |37 | [What are non prop attributes?](#what-are-non-prop-attributes)|
-|38 | [](#)|
-|39 | [](#)|
+|38 | [Describe about validations available for props?](#describe-about-validations-available-for-props)|
+|39 | [How do you customize model directive for a component?](#how-do-you-customize-model-directive-for-a-component)|
 
 1.  ### What is VueJS?
     Vue.js is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the view layer only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -845,4 +845,68 @@ List of 300 VueJS Interview Questions
      //Parent component
      <custom-input class="custom-class" />
      ```
+38.  ### Describe about validations available for props?
+     Vue provides validations such as type, required fields, default values along with customized validations. You can provide an object with validation requirements to the value of props as below,
+     Let's take an example of user profile Vue component with possible validations,
+     ```javascript
+     Vue.component('user-profile', {
+       props: {
+         // Basic type check (`null` matches any type)
+         age: Number,
+         // Multiple possible types
+         identityNumber: [String, Number],
+         // Required string
+         email: {
+           type: String,
+           required: true
+         },
+         // Number with a default value
+         minBalance: {
+           type: Number,
+           default: 10000
+         },
+         // Object with a default value
+         message: {
+           type: Object,
+           // Object or array defaults must be returned from
+           // a factory function
+           default: function () {
+             return { message: 'Welcome to Vue' }
+           }
+         },
+         // Custom validator function
+         location: {
+           validator: function (value) {
+             // The value must match one of these strings
+             return ['India', 'Singapore', 'Australia'].indexOf(value) !== -1
+           }
+         }
+       }
+     })
+     ```
+39.  ### How do you customize model directive for a component?
+     The v-model directive on a component uses **value** as the prop and **input** as the event, but some input types such as `checkboxes` and `radio buttons` may need to use the value attribute for a server side value. In this case, it is preferred to customize model directive. Let's take an example of checkbox component,
+     ```javascript
+     Vue.component('custom-checkbox', {
+       model: {
+         prop: 'checked',
+         event: 'change'
+       },
+       props: {
+         checked: Boolean
+       },
+       template: `
+         <input
+           type="checkbox"
+           v-bind:checked="checked"
+           v-on:change="$emit('change', $event.target.checked)"
+         >
+       `
+     })
+     ```
+     Now you can use v-model on this customized component as below,
+     ```javascript
+     <custom-checkbox v-model="selectFramework"></custom-checkbox>
+     ```
+     The selectFramework property will be passed to the checked prop and same property will be updated when custom checkbox component emits a change event with a new value.
 
