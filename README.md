@@ -46,6 +46,7 @@ List of 300 VueJS Interview Questions
 |37 | [What are non prop attributes?](#what-are-non-prop-attributes)|
 |38 | [Describe about validations available for props?](#describe-about-validations-available-for-props)|
 |39 | [How do you customize model directive for a component?](#how-do-you-customize-model-directive-for-a-component)|
+|40 | [What are the possible ways to provide transitions?](#What-are-the-possible-ways-to-provide-transitions)|
 
 1.  ### What is VueJS?
     Vue.js is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the view layer only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -909,4 +910,9 @@ List of 300 VueJS Interview Questions
      <custom-checkbox v-model="selectFramework"></custom-checkbox>
      ```
      The selectFramework property will be passed to the checked prop and same property will be updated when custom checkbox component emits a change event with a new value.
-
+40.  ### What are the possible ways to provide transitions?
+     There are many ways Vue provides transition effects when items are inserted, updated, or removed from the DOM. Below are the possible ways,
+     1. Automatically apply classes for CSS transitions and animations
+     2. Integrate 3rd-party CSS animation libraries. For example, Animate.css
+     3. Use JavaScript to directly manipulate the DOM during transition hooks
+     4. Integrate 3rd-party JavaScript animation libraries. For example, Velocity.js
