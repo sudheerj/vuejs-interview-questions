@@ -47,6 +47,12 @@ List of 300 VueJS Interview Questions
 |38 | [Describe about validations available for props?](#describe-about-validations-available-for-props)|
 |39 | [How do you customize model directive for a component?](#how-do-you-customize-model-directive-for-a-component)|
 |40 | [What are the possible ways to provide transitions?](#What-are-the-possible-ways-to-provide-transitions)|
+|41 | [What is vue router and their features?](#what-is-vue-router-and-their-features)|
+|42 | [What are the steps to use vue router and give an example?](#what-are-the-steps-to-use-vue-router-and-give-an-example)|
+|43 | [What is dynamic route matching?](#what-is-dynamic-route-matching)|
+|44 | [How to make router param changes as reactive?](#how-to-make-router-param-changes-as-reactive)|
+|45 | [What is route matching priority?](#what-is-route-matching-priority)|
+|46 | [What are nested routes?](#what-are-nested-routes)|
 
 1.  ### What is VueJS?
     Vue.js is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the view layer only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -916,3 +922,139 @@ List of 300 VueJS Interview Questions
      2. Integrate 3rd-party CSS animation libraries. For example, Animate.css
      3. Use JavaScript to directly manipulate the DOM during transition hooks
      4. Integrate 3rd-party JavaScript animation libraries. For example, Velocity.js
+41.  ### What is vue router and their features?
+     Vue Router is a official routing library for single-page applications designed for use with the Vue.js framework. Below are their features,
+     1. Nested route/view mapping
+     2. Modular, component-based router configuration
+     3. Route params, query, wildcards
+     4. View transition effects powered by Vue.js' transition system
+     5. Fine-grained navigation control
+     6. Links with automatic active CSS classes
+     7. HTML5 history mode or hash mode, with auto-fallback in IE9
+     8. Restore scroll position when going back in history mode
+
+42.  ### What are the steps to use vue router and give an example?
+     It is easy to integrate vue router in the vue application. Let us see the example with step by step instructions.
+     **Step 1:** Configure router link and router view in the template
+     ```javascript
+     <script src="https://unpkg.com/vue/dist/vue.js"></script>
+     <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+
+     <div id="app">
+       <h1>Welcome to Vue routing app!</h1>
+       <p>
+         <!-- use router-link component for navigation using `to` prop. It rendered as an `<a>` tag -->
+         <router-link to="/home">Home</router-link>
+         <router-link to="/services">Services</router-link>
+       </p>
+       <!-- route outlet in which component matched by the route will render here -->
+       <router-view></router-view>
+     </div>
+     ```
+     **Step 2:** Import Vue and VueRouter packages and then apply router
+     ```javascript
+     import Vue from 'vue';
+     import VueRouter from 'vue-router';
+
+     Vue.use(VueRouter)
+     ```
+     **Step 3:** Define or import route components.
+     ```javacript
+     const Home = { template: '<div>Home</div>' }
+     const Services = { template: '<div>Services</div>' }
+     ```
+     **Step 4:** Define your route where each one maps to a component
+     ```javascript
+     const routes = [
+       { path: '/home', component: Home },
+       { path: '/services', component: Services }
+     ]
+     ```
+     **Step 5:** Create the router instance and pass the `routes` option
+     ```javascript
+     const router = new VueRouter({
+       routes // short for `routes: routes`
+     })
+     ```
+     **Step 6:**  Create and mount the root instance.
+     ```javacript
+     const app = new Vue({
+       router
+     }).$mount('#app')
+     ```
+
+     Now you are able to navigate different pages(Home, Services) with in Vue application.
+43.  ### What is dynamic route matching?
+     Sometimes it may be required to map routes to the same component based on a pattern. Let's take a user component with the mapped URLs like `/user/john/post/123` and `/user/jack/post/235` using dynamic segments,
+     ```javascript
+     const User = {
+       template: '<div>User {{ $route.params.name }}, PostId: {{ route.params.postid }}</div>'
+     }
+
+     const router = new VueRouter({
+       routes: [
+         // dynamic segments start with a colon
+         { path: '/user/:name/post/:postid', component: User }
+       ]
+     })
+     ```
+44.  ### How to make router param changes as reactive?
+     When you navigate from one URL to other(mapped with a single component) using routes with params then the same component instance will be reused. Even though it is more efficient than destroying the old instance and then creating a new one, the lifecycle hooks of the component will not be called. This problem can be solved using either of the below approaches,
+     1. Watch the $route object:
+     ```javascript
+     const User = {
+       template: '<div>User {{ $route.params.name }} </div>',
+       watch: {
+         '$route' (to, from) {
+           // react to route changes...
+         }
+       }
+     }
+     ```
+     2. Use beforeRouteUpdate navigation guard: This is only available in 2.2 version.
+     ```javascript
+     const User = {
+       template: '<div>User {{ $route.params.name }} </div>',
+       beforeRouteUpdate (to, from, next) {
+         // react to route changes and then call next()
+       }
+     }
+     ```
+45.  ### What is route matching priority?
+     Sometimes the URL might be matched by multiple routes and the confusion of which route need to be mapped is resolved by route matching priority. The priority is based on order of routes configuration. i.e, The route which declared first has higher priority.
+     ```javascript
+     const router = new VueRouter({
+            routes: [
+              // dynamic segments start with a colon
+              { path: '/user/:name', component: User } // This route gets higher priority
+              { path: '/user/:name', component: Admin }
+              { path: '/user/:name', component: Customer }
+            ]
+          })
+     ```
+46.  ### What are nested routes?
+     Generally, the app is composed of nested components which are nested multiple levels deep. The segments of a URL corresponds to a certain structure of these nested components. To render components into the nested outlet, you need to use the `children` option in `VueRouter` constructor config.
+     Let's take a user app composed of profile and posts nested components with respective routes. You can also define a default route configuration when there is no matching nested route.
+     ```javascript
+     const router = new VueRouter({
+       routes: [
+         { path: '/user/:id', component: User,
+           children: [
+             {
+               // UserProfile will be rendered inside User's <router-view> when /user/:id/profile is matched
+               path: 'profile',
+               component: UserProfile
+             },
+             {
+               // UserPosts will be rendered inside User's <router-view> when /user/:id/posts is matched
+               path: 'posts',
+               component: UserPosts
+             },
+               // UserHome will be rendered inside User's <router-view> when /user/:id is matched
+             {  path: '',
+                component: UserHome },
+           ]
+         }
+       ]
+     })
+     ```
