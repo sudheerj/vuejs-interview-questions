@@ -53,6 +53,13 @@ List of 300 VueJS Interview Questions
 |44 | [How to make router param changes as reactive?](#how-to-make-router-param-changes-as-reactive)|
 |45 | [What is route matching priority?](#what-is-route-matching-priority)|
 |46 | [What are nested routes?](#what-are-nested-routes)|
+|47 | [What are single file components?](#what-are-single-file-components)|
+|48 | [Is Single File Components violating separation of concerns?](#is-single-file-components-violating-separation-of-concerns)|
+|49 | [What are the problems solved by Single File Components?](#what-are-the-problems-solved-by-single-file-components)|
+|50 | [What are filters?](#what-are-filters)|
+
+
+
 
 1.  ### What is VueJS?
     Vue.js is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the view layer only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -1057,4 +1064,70 @@ List of 300 VueJS Interview Questions
          }
        ]
      })
+     ```
+47.  ### What are single file components?
+     Single File Components are an easy concept to understand. Earlier you might heard about all three parts(HTML, JavaScript and CSS) of your application kept in different components. But Single File Components encapsulate the structure, styling and behaviour into one file. In the beginning, it seems strange to have all three parts in one file, but it actually makes a lot more sense.
+     Let's take an example of Singile File Components
+     ```javascript
+     <template>
+         <div>
+             <h1>Welcome {{ name }}!</h1>
+         </div>
+     </template>
+
+     <script>
+         module.exports = {
+            data: function() {
+                return {
+                    name: 'John'
+                }
+            }
+         }
+     </script>
+
+     <style scoped>
+         h1 {
+             color: #34c779;
+             padding: 3px;
+         }
+     </style>
+     ```
+48.  ### Is Single File Components violating separation of concerns?
+     As per the latest modern UI development, separation of concerns is not equal to separation of file types. So it is preferred to divide codebase layers into loosely-coupled components and compose them instead of dividing the codebase into three huge layers that interweave with one another. This way it makes Single File Components more cohesive and maintainable by combining template, logic and styles together inside a component.
+     You can also still maintain javascript and CSS files as separate with hot-reloading and pre-compilation features. For example,
+     ```
+     <template>
+       <div>This section will be pre-compiled and hot reloaded</div>
+     </template>
+     <script src="./my-component.js"></script>
+     <style src="./my-component.css"></style>
+     ```
+49.  ### What are the problems solved by Single File Components?
+     The Single File Components solve the common problems occurred in a javascript driven application with a .vue extension. The list of issues are,
+     1. Global definitions force unique names for every component
+     2. String templates lack syntax highlighting and require ugly slashes for multiline HTML
+     3. No CSS support means that while HTML and JavaScript are modularized into components, CSS is conspicuously left out
+     4. No build step restricts us to HTML and ES5 JavaScript, rather than preprocessors like Pug (formerly Jade) and Babel
+50.  ### What are filters?
+     Filters can be used to apply common text formatting. These Filters should be appended to the end of the JavaScript expression, denoted by the “pipe” symbol. You can use them in two specific cases:
+     1. mustache interpolations
+     2. v-bind expressions
+
+     For example, Let's define local filter named camelcase in a component’s options
+     ```javascript
+     filters: {
+       camelcase: function (value) {
+         if (!value) return ''
+         value = value.toString()
+         return value.charAt(0).toUpperCase() + value.slice(1)
+       }
+     }
+     ```
+     Now you can use the filter in either mustache interpolation or v-bind expression,
+     ```javascript
+     <!-- in mustaches -->
+     {{ username | camelcase }}
+
+     <!-- in v-bind -->
+     <div v-bind:id="username | camelcase"></div>
      ```
