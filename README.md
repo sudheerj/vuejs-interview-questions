@@ -57,9 +57,9 @@ List of 300 VueJS Interview Questions
 |48 | [Is Single File Components violating separation of concerns?](#is-single-file-components-violating-separation-of-concerns)|
 |49 | [What are the problems solved by Single File Components?](#what-are-the-problems-solved-by-single-file-components)|
 |50 | [What are filters?](#what-are-filters)|
-
-
-
+|51 | [What are the different ways to create filters?](#what-are-the-different-ways-to-create-filters)|
+|52 | [How do you chain filters](#how-do-you-chain-filters)|
+|53 | [Is it possible to pass parameters for filters?](#is-it-possible-to-pass-parameters-for-filters)|
 
 1.  ### What is VueJS?
     Vue.js is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the view layer only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -1116,7 +1116,7 @@ List of 300 VueJS Interview Questions
      For example, Let's define local filter named camelcase in a component’s options
      ```javascript
      filters: {
-       camelcase: function (value) {
+       capitalize: function (value) {
          if (!value) return ''
          value = value.toString()
          return value.charAt(0).toUpperCase() + value.slice(1)
@@ -1129,5 +1129,52 @@ List of 300 VueJS Interview Questions
      {{ username | camelcase }}
 
      <!-- in v-bind -->
-     <div v-bind:id="username | camelcase"></div>
+     <div v-bind:id="username | capitalize"></div>
+     ```
+51.  ### What are the different ways to create filters?
+     You can define filters in two ways,
+     1. **Local filters:**
+     You can define local filters in a component’s options. In this case, filter is applicable to that specific component.
+     ```javascript
+     filters: {
+       capitalize: function (value) {
+         if (!value) return ''
+         value = value.toString()
+         return value.charAt(0).toUpperCase() + value.slice(1)
+       }
+     }
+     ```
+     2. **Global filters:**
+     You can also define a filter globally before creating the Vue instance. In this case, filter is applicable to all the components with in the vue instance,
+     ```javascript
+     Vue.filter('capitalize', function (value) {
+       if (!value) return ''
+       value = value.toString()
+       return value.charAt(0).toUpperCase() + value.slice(1)
+     })
+
+     new Vue({
+       // ...
+     })
+     ```
+52.  ### How do you chain filters?
+     You can chain filters one after the other to perform multiple manipulations on the expression. The generic structure of filter chain would be as below,
+     ```javascript
+     {{ message | filterA | filterB | filterB ...}}
+     ```
+     In the above chain stack, you can observe that message expression applied with three filters, each separated by a pipe(|) symbol. The first filter(filterA) takes the expression as a single argument and the result of the expression becomes an argument for second filter(filterB) and the chain continue for remaining filters.
+     For example, if you want to transform date expression with a full date format and uppercase then you can apply dateFormat and uppercase filters as below,
+     ```javascirpt
+     {{ birthday | dateFormat | uppercase}}
+     ```
+
+53.  ### Is it possible to pass parameters for filters?
+     Yes, you can pass arguments for a filter similar to a javascript function. The generic structure of filter parameters would be as follows,
+     ```javascript
+     {{ message | filterA('arg1', arg2) }}
+     ```
+     In this case, filterA takes message expression as first argument and the explicit parameters mentioned in the filter as second and third arguments.
+     For example, you can find the exponential strength of a particular value
+     ```javascript
+     {{ 2 | exponentialStrength(10) }} // prints 2 power 10 = 1024
      ```
