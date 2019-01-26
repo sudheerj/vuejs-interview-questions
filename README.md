@@ -1,7 +1,7 @@
 # vuejs-interview-questions
 List of 300 VueJS Interview Questions
 
-> Click :star:if you like the project. Pull Request are highly appreciated.
+> Click :star:if you like the project. Pull Requests are highly appreciated.
 
 ### Table of Contents
 -------------------------------------------------------------------
@@ -60,9 +60,23 @@ List of 300 VueJS Interview Questions
 |51 | [What are the different ways to create filters?](#what-are-the-different-ways-to-create-filters)|
 |52 | [How do you chain filters](#how-do-you-chain-filters)|
 |53 | [Is it possible to pass parameters for filters?](#is-it-possible-to-pass-parameters-for-filters)|
+|54 | [What are plugins and their various services?](#what-are-plugins-and-their-various-services)|
+|55 | [ How to create a plugin?](#how-to-create-a-plugin)|
+|56 | [How to use a plugin?](#how-to-use-a-plugin)|
+|57 | [What are mixins?](#what-are-mixins)|
+|58 | [What are global mixins?](#what-are-global-mixins)|
+|59 | [How do you use mixins in CLI?](#how-do-you-use-mixins-in-cli)|
+|60 | [What are the merging strategies in mixins?](#what-are-the-merging-strategies-in-mixins)|
+|61 | [What are custom options merging strategies?](#what-are-custom-options-merging-strategies)|
+|62 | [What are custom directives?](#what-are-custom-directives)|
+|63 | [How do you register directives locally?](#how-do-you-register-directives-locally)|
+|64 | [What are the hook functions provided by directives?](#what-are-the-hook-functions-provided-by-directives)|
+|65 | [What are the directive Hook Arguments?](#what-are-the-directive-hook-arguments)|
+|66 | [How do you pass multiple values to a directive?](#how-do-you-pass-multiple-values-to-a-directive)|
+|67 | [What is function shorthand in directive hooks?](#what-is-function-shorthand-in-directive-hooks)|
 
 1.  ### What is VueJS?
-    Vue.js is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the view layer only, and is easy to pick up and integrate with other libraries or existing projects.
+    **Vue.js** is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the `view layer` only, and is easy to pick up and integrate with other libraries or existing projects.
 2.  ### What are the major features of VueJS?
     Below are the some of major features available with VueJS
     1. **Virtual DOM:** It uses virtual DOM similar to other existing frameworks such as ReactJS, Ember etc. Virtual DOM is a light-weight in-memory tree representation of the original HTML DOM and updated without affecting the original DOM.
@@ -123,10 +137,10 @@ List of 300 VueJS Interview Questions
             This is a most used hook and you will have full access to the reactive component, templates, and rendered DOM (via. this.$el).  The most frequently used patterns are fetching data for your component.
         ```javascript
         <div id="app">
-            <p>I'm text inside the component.</p>
+            <p>I’m text inside the component.</p>
         </div>
           new Vue({
-            el: '#app',
+            el: ‘#app’,
             mounted: function() {
               console.log(this.$el.textContent); // I'm text inside the component.
             }
@@ -1177,4 +1191,252 @@ List of 300 VueJS Interview Questions
      For example, you can find the exponential strength of a particular value
      ```javascript
      {{ 2 | exponentialStrength(10) }} // prints 2 power 10 = 1024
+     ```
+54.  ### What are plugins and their various services?
+
+     Plugins provides global-level functionality to Vue application. The plugins provides various services,
+     1. Add some global methods or properties. For example, vue-custom-element
+     2. Add one or more global assets (directives, filters and transitions). For example, vue-touch
+     3. Add some component options by global mixin. For example, vue-router
+     4. Add some Vue instance methods by attaching them to Vue.prototype.
+     5. A library that provides an API of its own, while at the same time injecting some combination of the above. For example, vue-router
+55.  ### How to create a plugin?
+     The Plugin is created by exposing an install method which takes Vue constructor as a first argument along with options. The structure of VueJS plugin with possible functionality would be as follows,
+      ```javascript
+      MyPlugin.install = function (Vue, options) {
+        // 1. add global method or property
+        Vue.myGlobalMethod = function () {
+          // some logic ...
+        }
+
+        // 2. add a global asset
+        Vue.directive('my-directive', {
+          bind (el, binding, vnode, oldVnode) {
+            // some logic ...
+          }
+          ...
+        })
+
+        // 3. inject some component options
+        Vue.mixin({
+          created: function () {
+            // some logic ...
+          }
+          ...
+        })
+
+        // 4. add an instance method
+        Vue.prototype.$myMethod = function (methodOptions) {
+          // some logic ...
+        }
+      }
+      ```
+56.  ### How to use a plugin?
+     You can use plugin by passing your plugin to Vue's **use** global method. You need to apply this method before start your app by calling new Vue().
+     ```javascript
+     // calls `MyPlugin.install(Vue, { someOption: true })`
+     Vue.use(MyPlugin)
+
+     new Vue({
+       //... options
+     })
+     ```
+57.  ### What are mixins?
+     Mixin gives us a way to distribute reusable functionality in Vue components. These reusable functions are merged with existing functions. A mixin object can contain any component options. Let us take an example of mixin with created lifecycle which can be shared across components,
+     ```javascript
+     const myMixin = {
+       created(){
+         console.log("Welcome to Mixins!")
+       }
+     }
+     var app = new Vue({
+       el: '#root',
+       mixins: [myMixin]
+     })
+     ```
+     **Note:**Multiple mixins can be specified in the mixin array of the component.
+58.  ### What are global mixins?
+     Sometimes there is a need to extend the functionality of Vue or apply an option to all Vue components available in our application. In this case, mixins can be applied globally to affect all components in Vue. These mixins are called as global mixins. Let's take an example of global mixin,
+     ```javascript
+     Vue.mixin({
+       created(){
+       console.log("Write global mixins")
+       }
+     })
+
+     new Vue({
+       el: '#app'
+     })
+     ```
+     In the above global mixin, the mixin options spread across all components with the console running during the instance creation. These are useful during test, and debugging or third party libraries. At the same time, You need to use these global mixins sparsely and carefully, because it affects every single Vue instance created, including third party components.
+59.  ### How do you use mixins in CLI?
+     Using Vue CLI, mixins can be specified anywhere in the project folder but preferably within `/src/mixins` for ease of access. Once these mixins are created in a `.js` file and exposed with the `export` keyword, they can be imported in any component with the `import` keyword and its file path.
+60.  ### What are the merging strategies in mixins?
+     When a mixin and the component itself contain overlapping options, the options will be merged based on some strategies.
+     1. The data objects undergo a recursive merge, with the component’s data taking priority over mixins in cases of overlapping or conflicts.
+     ```javascript
+     var mixin = {
+       data: function () {
+         return {
+           message: 'Hello, this is a Mixin'
+         }
+       }
+      }
+     new Vue({
+       mixins: [mixin],
+       data: function () {
+         return {
+           message: 'Hello, this is a Component'
+         }
+       },
+       created: function () {
+         console.log(this.$data); // => { message: "Hello, this is a Component'" }
+       }
+     })
+     ```
+     2. The Hook functions which are overlapping merged into an array so that all of them will be called. Mixin hooks will be called before the component’s own hooks.
+     ```javascript
+     const myMixin = {
+       created(){
+         console.log("Called from Mixin")
+       }
+     }
+
+     new Vue({
+       el: '#root',
+       mixins:[myMixin],
+       created(){
+         console.log("Called from Component")
+       }
+     })
+
+     //Called from Mixin
+     //Called from Component
+     ```
+     3. The options that expect object values(such as methods, components and directives) will be merged into the same object. In this case, the component’s options will take priority when there are conflicting keys in these objects.
+     ```javascript
+     var mixin = {
+       methods: {
+         firstName: function () {
+           console.log('John')
+         },
+         contact: function () {
+           console.log('+65 99898987')
+         }
+       }
+     }
+
+     var vm = new Vue({
+       mixins: [mixin],
+       methods: {
+         lastName: function () {
+           console.log('Murray')
+         },
+         contact: function () {
+           console.log('+91 893839389')
+         }
+       }
+     })
+
+     vm.firstName() // "John"
+     vm.lastName() // "Murray"
+     vm.contact() // "+91 893839389"
+     ```
+61.  ### What are custom options merging strategies?
+     Vue uses the default strategy which overwrites the existing value while custom options are merged. But if you want a custom option merged using custom login then you need to attach a function to `Vue.config.optionMergeStrategies`
+     For the example, the structure of `myOptions` custom option would be as below,
+     ```javascript
+     Vue.config.optionMergeStrategies.myOption = function (toVal, fromVal) {
+       // return mergedVal
+     }
+     ```
+     Let's take below Vuex 1.0 merging strategy as an advanced example,
+     ```javascript
+     const merge = Vue.config.optionMergeStrategies.computed
+     Vue.config.optionMergeStrategies.vuex = function (toVal, fromVal) {
+       if (!toVal) return fromVal
+       if (!fromVal) return toVal
+       return {
+         getters: merge(toVal.getters, fromVal.getters),
+         state: merge(toVal.state, fromVal.state),
+         actions: merge(toVal.actions, fromVal.actions)
+       }
+     }
+     ```
+62.  ### What are custom directives?
+     Custom Directives are tiny commands that you can attach to DOM elements. They are prefixed with v- to let the library know you're using a special bit of markup and to keep syntax consistent. They are typically useful if you need low-level access to an HTML element to control a bit of behavior. Let's create a custom focus directive to provide focus on specific form element during page load time,
+     ```javascript
+     // Register a global custom directive called `v-focus`
+     Vue.directive('focus', {
+       // When the bound element is inserted into the DOM...
+       inserted: function (el) {
+         // Focus the element
+         el.focus()
+       }
+     })
+     ```
+     Now you can use v-focus directive on any element as below,
+     ```html
+     <input v-focus>
+     ```
+63.  ### How do you register directives locally?
+     You can also register directives locally(apart from globally) using directives option with in component as below,
+     ```javascript
+     directives: {
+       focus: {
+         // directive definition
+         inserted: function (el) {
+           el.focus()
+         }
+       }
+     }
+     ```
+     Now you can use v-focus directive on any element as below,
+     ```html
+     <input v-focus>
+     ```
+64.  ### What are the hook functions provided by directives?
+     A directive object can provide several hook functions,
+     1. bind: This occurs once the directive is attached to the element.
+     2. inserted: This hook occurs once the element is inserted into the parent DOM.
+     3. update: This hook is called when the element updates, but children haven't been updated yet.
+     4. componentUpdated: This hook is called once the component and the children have been updated.
+     5. unbind: This hook is called once the directive is removed.
+     **Note:** There are several arguments can be passed to the above hooks.
+65.  ### What are the directive Hook Arguments?
+     All the hooks have **el, binding, and vnode** as arguments. Along with that, **update and componentUpdated** hooks expose oldVnode, to differentiate between the older value passed and the newer value. Below are the arguments passed to the hooks,
+     1. el: The element the directive is bound to and it can be used to directly manipulate the DOM.
+     2. binding: An object containing the following properties.
+        1. name: The name of the directive, without the v- prefix.
+        2. value: The value passed to the directive. For example in v-my-directive="1 + 1", the value would be 2.
+        3. oldValue: The previous value, only available in update and componentUpdated. It is available whether or not the value has changed.
+        4. expression: The expression of the binding as a string. For example in v-my-directive="1 + 1", the expression would be "1 + 1".
+        5. arg: The argument passed to the directive, if any. For example in v-my-directive:foo, the arg would be "foo".
+        6. modifiers: An object containing modifiers, if any. For example in v-my-directive.foo.bar, the modifiers object would be { foo: true, bar: true }.
+     3. vnode: The virtual node produced by Vue’s compiler.
+     4. oldVnode: The previous virtual node, only available in the update and componentUpdated hooks.
+
+     The arguments can be represented diagrammatically across the hooks as below,
+     ![custom-directives](images/custom-directives.svg)
+66.  ### How do you pass multiple values to a directive?
+     A directive can take any valid javascript expression. So if you want to pass multiple values then you can pass in a JavaScript object literal.
+     Let's pass object literal to an avatar directive as below
+     ```html
+     <div v-avatar="{ width: 500, height: 400, url: 'path/logo', text: 'Iron Man' }"></div>
+     ```
+     Now let us configure avatar directive globally,
+     ```javascript
+     Vue.directive('avatar', function (el, binding) {
+       console.log(binding.value.width) // 500
+       console.log(binding.value.height)  // 400
+       console.log(binding.value.url) // path/logo
+       console.log(binding.value.text)  // "Iron Man"
+     })
+     ```
+67.  ### What is function shorthand in directive hooks?
+     In few cases, you may want the same behavior on **bind and update** hooks irrespective of other hooks. In this situation you can use function shorthand,
+     ```javascript
+     Vue.directive('theme-switcher', function (el, binding) {
+       el.style.backgroundColor = binding.value
+     })
      ```
