@@ -74,6 +74,12 @@ List of 300 VueJS Interview Questions
 |65 | [What are the directive Hook Arguments?](#what-are-the-directive-hook-arguments)|
 |66 | [How do you pass multiple values to a directive?](#how-do-you-pass-multiple-values-to-a-directive)|
 |67 | [What is function shorthand in directive hooks?](#what-is-function-shorthand-in-directive-hooks)|
+|68 | [What is the benefit of render functions over templates?](#what-is-the-benefit-of-render-functions-over-templates)|
+|69 | [What is a render function?](#What-is-a-render-function)|
+|70 | [Explain the structure of createElement with arguments](#explain-the-structure-of-createelement-with-arguments)|
+|71 | [How can you write duplicate virtual nodes in a component?](#how-can-you-write-duplicate-virtual-nodes-in-a-component)|
+|72 | [List down the template equivalents in render functions?](#list-down-the-template-equivalents-in-render-functions)|
+|73 | [What are functional components?](#what-are-functional-components)|
 
 1.  ### What is VueJS?
     **Vue.js** is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the `view layer` only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -1440,3 +1446,131 @@ List of 300 VueJS Interview Questions
        el.style.backgroundColor = binding.value
      })
      ```
+68.  ### What is the benefit of render functions over templates?
+     In VueJS, the templates are very powerful and recommended to build HTML part of your application. However, some of the special cases like dynamic component creation based on input or slot value can be achieved through render functions. Also, these functions gives the full programmatic power of javascript eco system.
+69.  ### What is a render function?
+     Render function is a normal function which receives a `createElement` method as it’s first argument used to create virtual nodes. Internally Vue.js' templates actually compile down to render functions at build time. Hence templates are just syntactic sugar of render functions. Let's take an example of simple Div markup and corresponding render function,
+     The HTML markup can be written in template tag as below,
+     ```javascript
+     <template>
+           <div :class="{'is-rounded': isRounded}">
+            <p>Welcome to Vue render functions</p>
+           </div>
+     </template>
+     ```
+     and the compiled down or explicit render function would appear as below,
+     ```javascript
+     render: function (createElement) {
+         return createElement('div',
+           { 'class': {
+                   'is-rounded': this.isRounded
+                 }
+           },[ createElement('p', 'Welcome to Vue render functions')])
+       },
+     ```
+     **Note:** The react components are built with render functions in JSX.
+70.  ### Explain the structure of createElement with arguments?
+     The createElement accepts few arguments to use all the template features. Let us see the basic structure of createElement with possible arguments,
+     ```javascript
+     // @returns {VNode}
+     createElement(
+       // An HTML tag name, component options, or async function resolving to one of these. Required.
+       // Type is {String | Object | Function}
+       'div',
+
+       // A data object corresponding to the attributes you would use in a template. Optional.
+       //Type is {Object}
+       {
+           // Normal HTML attributes
+           attrs: {
+             id: 'someId'
+           },
+           // Component props
+           props: {
+             myProp: 'somePropValue'
+           },
+           // DOM properties
+           domProps: {
+             innerHTML: 'This is some text'
+           },
+           // Event handlers are nested under `on`
+           on: {
+               click: this.clickHandler
+             },
+           // Similar to `v-bind:style`, accepting either a string, object, or array of objects.
+            style: {
+               color: 'red',
+               fontSize: '14px'
+            },
+            //Similar to `v-bind:class`, accepting either a string, object, or array of strings and objects.
+             class: {
+                classsName1: true,
+                classsName2: false
+             },
+             ....
+       },
+
+       // Children VNodes, built using `createElement()`, or using strings to get 'text VNodes'. Optional.
+       // Type is {String | Array}
+       [
+         'Learn about createElement arguments.',
+         createElement('h1', 'Headline as a child virtual node'),
+         createElement(MyComponent, {
+           props: {
+             someProp: 'This is a prop value'
+           }
+         })
+       ]
+     )
+     ```
+71.  ### How can you write duplicate virtual nodes in a component?
+     All virtual nodes(VNodes) in the component tree must be unique.i.e, You can't write duplicated nodes in a straightforward way. If you want to duplicate the same element/component many times then you should use factory function.
+     The below render function is invalid where you are trying to duplicate h1 element 3 times,
+     ```javascript
+     render: function (createElement) {
+       var myHeadingVNode = createElement('h1', 'This is a Virtual Node')
+       return createElement('div', [
+         myHeadingVNode, myHeadingVNode, myHeadingVNode
+       ])
+     }
+     ```
+     You can make duplicates with factory function,
+     ```javascript
+     render: function (createElement) {
+       return createElement('div',
+         Array.apply(null, { length: 3 }).map(function () {
+           return createElement('h1', 'This is a Virtual Node')
+         })
+       )
+     }
+     ```
+72.  ### List down the template equivalents in render functions?
+     VueJS provides proprietary alternatives and plain javascript usage for the template features. Let's list down them in a table for comparision,
+      | Templates | Render function |
+      |---- | --------- | ---- |
+      | Conditional and looping directives: v-if and v-for  | Use JavaScript’s if/else and map concepts|
+      | Two-way binding: v-model  | Apply own JS logic with value binding and event binding |
+      | Capture Event modifiers: .passive, .capture, .once and .capture.once or .once.capture| &, !, ~ and ~! |
+      | Event and key modifiers: .stop, .prevent, .self, keys(.enter, .13) and Modifiers Keys(.ctrl, .alt, .shift, .meta) | Use javascript solutions: event.stopPropagation(), event.preventDefault(), if (event.target !== event.currentTarget) return, if (event.keyCode !== 13) return and if (!event.ctrlKey) return |
+      | Slots: slot attributes | Render functions provide this.$slots and this.$scopedSlots instance properties|
+73.  ### What are functional components?
+     The functional components are just simple functions to create simple components just by passing a context. Every functional component follows two rules,
+      1. **Stateless:** It doesn’t keep any state by itself
+      2. **Instanceless:** Iit has no instance, thus no this
+
+     You need to define `functional: true` to make it functional. Let's take an example of functional components,
+     ```javascript
+     Vue.component('my-component', {
+       functional: true,
+       // Props are optional
+       props: {
+         // ...
+       },
+       // To compensate for the lack of an instance,
+       // we are now provided a 2nd context argument.
+       render: function (createElement, context) {
+         // ...
+       }
+     })
+     ```
+     **Note:** The functional components are quite popular in React community too.
