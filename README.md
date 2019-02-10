@@ -80,6 +80,12 @@ List of 300 VueJS Interview Questions
 |71 | [How can you write duplicate virtual nodes in a component?](#how-can-you-write-duplicate-virtual-nodes-in-a-component)|
 |72 | [List down the template equivalents in render functions?](#list-down-the-template-equivalents-in-render-functions)|
 |73 | [What are functional components?](#what-are-functional-components)|
+|74 | [What are the similarities between VueJS and ReactJS?](#what-are-the-similarities-between-vuejs-and-reactjs)|
+|75 | [What is the difference between VueJS and ReactJS?](#what-is-the-difference-between-vuejs-and-reactjs)|
+|76 | [What are the advantages of VueJS over ReactJS?](#what-are-the-advantages-of-vuejs-over-reactjs)|
+|77 | [What are the advantages of ReactJS over VueJS?](#what-are-the-advantages-of-reactjs-over-vuejs)|
+|78 | [What are the differences between VueJS and AngularJS?](#What-are-the-differences-between-vuejs-and-angularjs)|
+
 
 1.  ### What is VueJS?
     **Vue.js** is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the `view layer` only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -1546,13 +1552,14 @@ List of 300 VueJS Interview Questions
      ```
 72.  ### List down the template equivalents in render functions?
      VueJS provides proprietary alternatives and plain javascript usage for the template features. Let's list down them in a table for comparision,
-      | Templates | Render function |
-      |---- | --------- | ---- |
-      | Conditional and looping directives: v-if and v-for  | Use JavaScript’s if/else and map concepts|
-      | Two-way binding: v-model  | Apply own JS logic with value binding and event binding |
-      | Capture Event modifiers: .passive, .capture, .once and .capture.once or .once.capture| &, !, ~ and ~! |
-      | Event and key modifiers: .stop, .prevent, .self, keys(.enter, .13) and Modifiers Keys(.ctrl, .alt, .shift, .meta) | Use javascript solutions: event.stopPropagation(), event.preventDefault(), if (event.target !== event.currentTarget) return, if (event.keyCode !== 13) return and if (!event.ctrlKey) return |
-      | Slots: slot attributes | Render functions provide this.$slots and this.$scopedSlots instance properties|
+
+        | Templates | Render function |
+        |---- | --------- |
+        | Conditional and looping directives: v-if and v-for  | Use JavaScript’s if/else and map concepts|
+        | Two-way binding: v-model  | Apply own JS logic with value binding and event binding |
+        | Capture Event modifiers: .passive, .capture, .once and .capture.once or .once.capture| &, !, ~ and ~! |
+        | Event and key modifiers: .stop, .prevent, .self, keys(.enter, .13) and Modifiers Keys(.ctrl, .alt, .shift, .meta) | Use javascript solutions: event.stopPropagation(), event.preventDefault(), if (event.target !== event.currentTarget) return, if (event.keyCode !== 13) return and if (!event.ctrlKey) return |
+        | Slots: slot attributes | Render functions provide this.$slots and this.$scopedSlots instance properties|
 73.  ### What are functional components?
      The functional components are just simple functions to create simple components just by passing a context. Every functional component follows two rules,
       1. **Stateless:** It doesn’t keep any state by itself
@@ -1574,3 +1581,41 @@ List of 300 VueJS Interview Questions
      })
      ```
      **Note:** The functional components are quite popular in React community too.
+74.  ### What are the similarities between VueJS and ReactJS?
+     Even though ReactJS and VueJS are two different frameworks there are few similarities(apart from the common goal of utilized in interface design) between them.
+     1. Both frameworks are based on the **Virtual DOM** model
+     2. They provide features such Component-based structure and reactivity
+     3. They are intended for working with the root library, while all the additional tasks are transferred to other libraries(routing, state management etc).
+75.  ### What is the difference between VueJS and ReactJS?
+     Even though VueJS and ReactJS share few common features there are many difference between them. Let's list down them in a table format.
+
+      | Feature | VueJS | ReactJS |
+      |---- | --------- | ---- |
+      | Type |  JavaScript MVC Framework | JavaScript Library |
+      | Platform  | Primarily focused on web development | Both Web and Native |
+      | Learning Curve | A steep learning curve and requires deep knowledge | A steep learning curve and requires deep knowledge |
+      | Simplicity | Vue is simpler than React | React is more complex than Vue |
+      | Bootstrap Application | Vue-cli | CRA (Create React App) |
+76.  ### What are the advantages of VueJS over ReactJS?
+     Vue has the following advantages over React
+     1. Vue is smaller and faster
+     2. The convenient templates ease the process of developing
+     3. It has simpler javascript syntax without learning JSX
+77.  ### What are the advantages of ReactJS over VueJS?
+     React has the following advantages over Vue
+     1. ReactJS gives more flexibility in large apps developing
+     2. Easy to test
+     3. Well-suited for mobile apps creation
+     4. The eco system is quite big and well matured.
+78.  ### What are the differences between VueJS and AngularJS?
+     The  the syntax of Vue and Angular is common at some points because Angular is the basis for VueJS development in the beginning. But there are many differences between VueJS and Angular as listed,
+
+      | Feature | VueJS | AngularJS |
+      |---- | --------- | ---- |
+      | Complexity | Easy to learn, simple API and design | The framework is bit huge and need some learning curve on typescript etc |
+      | Binding of Data  | One-way binding | Two-way binding |
+      | Learning Curve | A steep learning curve and requires deep knowledge | A steep learning curve and requires deep knowledge |
+      | Founders | Created by Former Google Employee | Powered by Google |
+      | Initial Release | February 2014 | September 2016 |
+      | Model | Based on Virtual DOM(Document Object Model) | Based on MVC(Model-View-Controller) |
+      | Written in | JavaScript | TypeScript |
