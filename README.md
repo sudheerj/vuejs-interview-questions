@@ -85,7 +85,10 @@ List of 300 VueJS Interview Questions
 |76 | [What are the advantages of VueJS over ReactJS?](#what-are-the-advantages-of-vuejs-over-reactjs)|
 |77 | [What are the advantages of ReactJS over VueJS?](#what-are-the-advantages-of-reactjs-over-vuejs)|
 |78 | [What are the differences between VueJS and AngularJS?](#What-are-the-differences-between-vuejs-and-angularjs)|
-
+|79 | [What are dynamic components?](#what-are-dynamic-components)|
+|80 | [What is the purpose of keep alive tag?](#what-is-the-purpose-of-keep-alive-tag)|
+|81 | [What are async components?](#what-are-async-components)|
+|82 | [What is the structure of async component factory?](#what-is-the-structure-of-async-component-factory)|
 
 1.  ### What is VueJS?
     **Vue.js** is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the `view layer` only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -1619,3 +1622,81 @@ List of 300 VueJS Interview Questions
       | Initial Release | February 2014 | September 2016 |
       | Model | Based on Virtual DOM(Document Object Model) | Based on MVC(Model-View-Controller) |
       | Written in | JavaScript | TypeScript |
+79.  ### What are dynamic components?
+     The dynamic component is used to dynamically switch beetween multiple components using **<component>** element and pass data to v-bind:is attribute.
+     Let's create a dynamic component to switch between different pages of a website,
+     ```javascript
+     new Vue({
+       el: '#app',
+       data: {
+         currentPage: 'home'
+       },
+       components: {
+         home: {
+           template: "<p>Home</p>"
+         },
+         about: {
+           template: "<p>About</p>"
+         },
+         contact: {
+           template: "<p>Contact</p>"
+         }
+       }
+     })
+     ```
+     Now you can use the dynamic component which holds the current page,
+     ```html
+     <div id="app">
+        <component v-bind:is="currentPage">
+            <!-- component changes when currentPage changes! -->
+            <!-- output: Home -->
+        </component>
+     </div>
+     ```
+80.  ### What is the purpose of keep alive tag?
+     Keep-alive tag is an abstract component used to preserve component state or avoid re-rendering. When you wrapped <keep-alive> tag around a dynamic component,  it caches the inactive component instances without destroying them.
+     Let's see the example usage of it,
+     ```javascript
+     <!-- Inactive components will be cached! -->
+     <keep-alive>
+       <component v-bind:is="currentTabComponent"></component>
+     </keep-alive>
+     ```
+     When there are multiple conditional children, it requires that only one child is rendered at a time.
+
+     ```javascript
+     <!-- multiple conditional children -->
+     <keep-alive>
+       <comp-a v-if="a > 1"></comp-a>
+       <comp-b v-else></comp-b>
+     </keep-alive>
+     ```
+     **Note:** Remember that keep-alive tag doesn’t render a DOM element itself, and doesn’t show up in the component parent chain.
+81.  ### What are async components?
+     In large applications, we may need to divide the app into smaller chunks and only load a component from the server when it’s needed. To make this happen, Vue allows you to define your component as a factory function that asynchronously resolves your component definition. These components are known as async component.
+     Let's see an example of async component using webpack code-splitting feature,
+     ```javascript
+     Vue.component('async-webpack-example', function (resolve, reject) {
+       // Webpack automatically split your built code into bundles which are loaded over Ajax requests.
+       require(['./my-async-component'], resolve)
+     })
+     ```
+     Vue will only trigger the factory function when the component needs to be rendered and will cache the result for future re-renders
+82.  ### What is the structure of async component factory?
+     Async component factory is useful to resolve the component asynchronously. The async component factory can  return an object of the below format.
+     ```javascript
+     const AsyncComponent = () => ({
+       // The component to load (should be a Promise)
+       component: import('./MyComponent.vue'),
+       // A component to use while the async component is loading
+       loading: LoadingComponent,
+       // A component to use if the load fails
+       error: ErrorComponent,
+       // Delay before showing the loading component. Default: 200ms.
+       delay: 200,
+       // The error component will be displayed if a timeout is
+       // provided and exceeded. Default: Infinity.
+       timeout: 3000
+     })
+     ```
+
