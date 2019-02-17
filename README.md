@@ -89,6 +89,24 @@ List of 300 VueJS Interview Questions
 |80 | [What is the purpose of keep alive tag?](#what-is-the-purpose-of-keep-alive-tag)|
 |81 | [What are async components?](#what-are-async-components)|
 |82 | [What is the structure of async component factory?](#what-is-the-structure-of-async-component-factory)|
+|83 | [What are inline templates?](#what-are-inline-templates)|
+|84 | [What are X Templates?](#what-are-x-templates)|
+|85 | [What are recursive components?](#what-are-recursive-components)|
+|86 | [How do you resolve circular dependencies between components?](#how-do-you-resolve-circular-dependencies-between-components)|
+|87 | [How do you make sure vue application is CSP complaint?](#how-do-you-make-sure-vue-application-is-csp-complaint)|
+|88 | [What is the difference between full and runtime only builds?](#what-is-the-difference-between-full-and-runtime-only-builds)|
+|89 | [List down different builds of vuejs?](#list-down-different-builds-of-vuejs)|
+|90 | [How do you configure vuejs in webpack?](#how-do-you-configure-vuejs-in-webpack)|
+|91 | [What is the purpose of vuejs compiler?](#what-is-the-purpose-of-vuejs-compiler)|
+|92 | [What is Dev Tools and its purpose?](#what-is-dev-tools-and-its-purpose)|
+|93 | [What is the browser support of VueJS?](#what-is-the-browser-support-of-vuejs)|
+|94 | [How do you use various CDNs?](#how-do-you-use-various-cdns?)|
+|95 | [How do you force update?](#how-do-you-force-update)|
+|96 | [What is the purpose of vuejs once directive?](#what-is-the-purpose-of-vuejs-once-directive)|
+|97 | [How do you access the root instance?](#how-do-you-access-the-root-instance)|
+|98 | [List out top 10 organizations using Vuejs?](#list-out-top-10-organizations-using-vuejs)|
+|99 | [What is the purpose of renderError?](#what-is-the-purpose-of-rendererror)|
+|100| [How do you access parent instance?](#how-do-you-access-parent-instance)|
 
 1.  ### What is VueJS?
     **Vue.js** is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the `view layer` only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -1699,4 +1717,225 @@ List of 300 VueJS Interview Questions
        timeout: 3000
      })
      ```
+83.  ### What are inline templates?
+     If you keep an `inline-template` on a child component then it will use its inner content as a template instead of treating as reusable independent content.
+     ```javascript
+     <my-component inline-template>
+        <div>
+            <h1>Inline templates</p>
+            <p>Treated as component component owne content</p>
+        </div>
+     </my-component>
+     ```
+     **Note:** Even though this inline-templates gives more flexibility for template authoring, it is recommended to define template using template property or <template> tag inside .vue component.
 
+84.  ### What are X Templates?
+     Apart from regular templates and inline templates, you can also define templates using a script element with the type `text/x-template` and then referencing the template by an id.
+     Let's create a x-template for simple use case as below,
+     ```javascript
+     <script type="text/x-template" id="script-template">
+       <p>Welcome to X-Template feature</p>
+     </script>
+     ```
+     Now you can define the template using reference id,
+     ```javascript
+     Vue.component('x-template-example', {
+       template: '#script-template'
+     })
+     ```
+
+85.  ### What are recursive components?
+     The Components that can recursively invoke themselves in their own template are known as recursive components.
+     ```javascript
+     Vue.component('recursive-component', {
+       template: `<!--Invoking myself!-->
+                  <recursive-component></recursive-component>`
+     });
+     ```
+     Recursive components are useful for displaying comments on a blog, nested menus, or basically anything where the parent and child are the same, eventhough with different content.
+
+     **Note:** Remember that recursive component can lead infinite loops with `max stack size exceeded` error, so make sure recursive invocation is conditional(for example, v-if directive).
+
+86.  ### How do you resolve circular dependencies between components?
+     In complex applications, vue components will actually be each other’s descendent and ancestor in the render tree. Let's say componentA and componentB included in their respective templates which makes circular dependency,
+     ```javascript
+     //ComponentA
+     <div>
+       <component-b >
+     </div>
+     ```
+     ```javascript
+     //ComponentB
+     <div>
+       <component-b >
+     </div>
+     ```
+     This can be solved by either registering(or wait until) the child component in `beforeCreate` hook or using webpack's asynchronous import while registering the component,
+
+     **Solution1:**
+     ```javascript
+     beforeCreate: function () {
+      this.$options.components.componentB = require('./component-b.vue').default
+     }
+     ```
+     **Solution2:**
+     ```javascript
+     components: {
+      componentB: () => import('./component-b.vue')
+     }
+     ```
+87.  ### How do you make sure vue application is CSP complaint?
+
+     Some environments(Google Chrome Apps) prohibits the usage of `new Function()` for evaluating expressions and the full builds of vue applications depends on this feature to compile templates. Due to this reason, the full builds of VueJS application are not CSP complaint. In this case you can use **runtime-only** builds with Webpack + vue-loader or Browserify + vueify technology stack through which templates will be precompiled into render functions. This way you can make sure VueJS applications are 100% CSP complaint.
+
+88.  ### What is the difference between full and runtime only builds?
+
+     There are two types of builds provided by VueJS,
+
+     **1. Full:** These are the builds that contain both the compiler and the runtime.
+
+     **2. Runtime Only:** These builds doesn't include compiler but the code is responsible for creating Vue instances, rendering and patching virtual DOM.
+
+89.  ### List down different builds of vuejs?
+     Below are the list of different builds of VueJS based on type of build,
+
+        | Type | UMD | CommonJS | ES Module (for bundlers) | ES Module (for browsers) |
+        |---- | --------- | ---- | ---- | --- |
+        | Full | vue.js | vue.common.js | vue.esm.js | vue.esm.browser.js |
+        | Runtime only  | vue.runtime.js | vue.runtime.common.js | vue.runtime.esm.js | NA |
+        | Full (production) | vue.min.js | NA | NA | vue.esm.browser.min.js |
+        | Runtime-only (production) | vue.runtime.min.js | NA | NA | NA |
+
+90.  ### How do you configure vuejs in webpack?
+     You can configure vueJS in webpack using alias as below,
+
+        ```javascript
+        module.exports = {
+          // ...
+          resolve: {
+            alias: {
+              'vue$': 'vue/dist/vue.esm.js' // 'vue/dist/vue.common.js' for webpack 1
+            }
+          }
+        }
+        ```
+91.  ### What is the purpose of vuejs compiler?
+     The compiler is  is responsible for compiling template strings into JavaScript render functions. For example, the below code snippet shows the difference of templates which need compiler and not,
+     ```javascript
+     // this requires the compiler
+     new Vue({
+       template: '<div>{{ message }}</div>'
+     })
+
+     // this does not
+     new Vue({
+       render (h) {
+         return h('div', this.message)
+       }
+     })
+     ```
+92.  ### What is Dev Tools and its purpose?
+     DevTools is a browser extension allowing you to inspect and debug your Vue applications in a more user-friendly interface. You can find the below extensions for different browsers or environments,
+     1. Chrome Extension
+     2. Firefox Addon
+     3. Standalone Electron app (works with any environment)
+
+     The DevTools plugins can be used as shown in the below snapshot,
+
+     <img src="https://github.com/sudheerj/vuejs-interview-questions/blob/master/images/DevTools.png" width="700" height="500">
+
+     **Note:**
+     1. If the page uses a production/minified build of Vue.js, devtools inspection is disabled by default so the Vue pane won't show up.
+     2. To make it work for pages opened via `file://` protocol, you need to check "Allow access to file URLs" for this extension in Chrome's extension management panel.
+93.  ### What is the browser support of VueJS?
+     It supports all ECMAScript5 complaint browsers as mentioned in this [url](https://caniuse.com/#feat=es5). VueJS doesn't support IE8 browser and below, because it uses ECMAScript 5 features that are un-shimmable(require support from the underlying JS engine) in IE8.
+94.  ### How do you use various CDNs?
+     VueJS is available in jsdelivr, unpkg and cdnjs etc CDNs. Normally you can use them for prototyping or learning purposes. For example, you can use them using jsdelivr with latest versions as below,
+     ```javascript
+     <script src="https://cdn.jsdelivr.net/npm/vue@2.6.7/dist/vue.js"></script>
+     ```
+     You can use it for native ES modules as below,
+     ```javascript
+     <script type="module">
+       import Vue from 'https://cdn.jsdelivr.net/npm/vue@2.6.7/dist/vue.esm.browser.js'
+     </script>
+     ```
+
+     **Note:** You can remove version number to get latest version.
+95.  ### How do you force update?
+     It is extremely rare situation of having to manually force an update despite the fact that no reactive data has changed. i.e, To force the Vue instance to re-render manually. You can do it force update using **vm.$forceUpdate()** API method.
+
+     **Note:**  It does not affect all child components but only the instance itself and child components with inserted slot content.
+96.  ### What is the purpose of vuejs once directive?
+     If you want to render `a lot of static content` then you need to make sure it only evaluated once and then cached thereafter. In this case, you can use `v-once` directive by wrapping at the root level. The example usage of v-once directive would be as below,
+     ```javascript
+     Vue.component('legal-terms', {
+       template: `
+         <div v-once>
+           <h1>Legal Terms</h1>
+           ... a lot of static content goes here...
+         </div>
+       `
+     })
+     ```
+
+     **Note:** It is recommended not to overuse unless there is slow rendering due to lot of static content.
+97.  ### How do you access the root instance?
+     The root instance(new Vue()) can be accessed with the `$root` property. Let's see the usage of root instance with an example. First let's create a root instance with properties and methods as below,
+     ```javascript
+     // The root Vue instance
+     new Vue({
+       data: {
+         age: 26
+       },
+       computed: {
+         fullName: function () { /* ... */ }
+       },
+       methods: {
+         interest: function () { /* ... */ }
+       }
+     })
+     ```
+     Now you can access root instance data and it's methods with in subcomponents as below,
+     ```javascript
+     // Get root data
+     this.$root.age
+
+     // Set root data
+     this.$root.age = 29
+
+     // Access root computed properties
+     this.$root.fullName
+
+     // Call root methods
+     this.$root.interest()
+     ```
+     It is recommend using Vuex to manage state instead of using root instance as a global store.
+98.  ### List out top 10 organizations using Vuejs?
+     Below are the top 10 organizations using VueJS for their applications or products,
+
+     1. Facebook - Used on marketing side of its Newsfeed
+     2. Netflix - Used in two internal apps for building movie streaming interfaces
+     3. Adobe -  Used for Portfolio, a custom website builder designed to help users showcase their creative work
+     4. Xiaomi - Used for products where it sells from consumer electronics to software
+     5. Alibaba - Provide their apps an excellent experience to its customers
+     6. WizzAir - A budget airline WizzAir used for their customers user interface
+     7. EuroNews
+     8. Laracasts
+     9. GitLab
+     10. Laracasts
+
+99.  ### What is the purpose of renderError?
+     When the default render function encounters an error then you can use rennderError as an alternative render output. The error will be passed to renderError as the second argument. The example usage of renderError is as below,
+     ```javacript
+     new Vue({
+       render (h) {
+         throw new Error('An error')
+       },
+       renderError (h, err) {
+         return h('div', { style: { color: 'red' }}, err.stack)
+       }
+     }).$mount('#app')
+     ```
+100. ### How do you access parent instance?
+     The $parent object refers to the **immediate outer scope**. The parent will be accessible as `this.$parent` for the child, and the child will be pushed into the parent’s $children array. It establishes a parent-child relationship between the two instances(parent and child). You can access parent data and properties similar to $root.
