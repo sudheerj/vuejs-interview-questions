@@ -131,7 +131,7 @@ List of 300 VueJS Interview Questions
               data: {
                count: 10
               },
-              created: function () {
+              beforeCreate: function () {
                 console.log('Nothing gets called at this moment')
                 // `this` points to the view model instance
                 console.log('count is ' + this.count);
@@ -157,7 +157,7 @@ List of 300 VueJS Interview Questions
     2. **Mounting(DOM Insertion):**
         Mounting hooks are often the most-used hooks and they allow you to access your component immediately before and after the first render.
         1. beforeMount:
-            They allow you to access your component immediately before and after the first render.
+            The beforeMount allows you to access your component immediately before and after the first render.
         ```javascript
           new Vue({
             beforeMount: function () {
@@ -259,12 +259,13 @@ List of 300 VueJS Interview Questions
         ```
 
 4.  ### What are the conditional directives?
-    VueJS provides set of directives to show or hide elements based on conditions. The available directives are: ** v-if, v-else, v-else-if and v-show**
+    VueJS provides set of directives to show or hide elements based on conditions. The available directives are: **v-if, v-else, v-else-if and v-show**
+    
     **1. v-if:**  The v-if directive adds or removes DOM elements based on the given expression. For example, the below button will not show if isLoggedIn is set to false.
     ```javascript
     <button v-if="isLoggedIn">Logout</button>
     ```
-    You can also control multiple elements with a single v-if statement by wrapping all the elements in a <template> element with the condition. For example, you can have both label and button together conditionally applied,
+    You can also control multiple elements with a single v-if statement by wrapping all the elements in a `<template>` element with the condition. For example, you can have both label and button together conditionally applied,
     ```javascript
     <template v-if="isLoggedIn">
       <label> Logout </button>
@@ -272,13 +273,13 @@ List of 300 VueJS Interview Questions
     </template>
     ```
     **2. v-else:**  This directive is used to display content only when the expression adjacent v-if resolves to false. This is similar to else block in any programming language to display alternative content and it is preceded by v-if or v-else-if block. You don't need to pass any value to this.
-    For example, v-else is used to display LogIn button if isLoggedIn(not logged in) is set to false.
+    For example, v-else is used to display LogIn button if isLoggedIn is set to false(not logged in).
     ```javascript
     <button v-if="isLoggedIn"> Logout </button>
     <button v-else> Log In </button>
     ```
-    **3. v-else-f:** This directive is used when we need more than two options to be checked.
-    For example, ifLoginDisabled property is disabled then we need to prevent user to login instead just display the label. This can be achieved through v-else statement.
+    **3. v-else-if:** This directive is used when we need more than two options to be checked.
+    For example, we want to display some text instead of LogIn button when ifLoginDisabled property is set to true. This can be achieved through v-else statement.
     ```javascript
     <button v-if="isLoggedIn"> Logout </button>
     <label v-else-if="isLoginDisabled"> User login disabled </label>
@@ -287,14 +288,16 @@ List of 300 VueJS Interview Questions
 
     **4. v-show:** This directive is similar to v-if but it renders all elements to the DOM and then uses the CSS display property to show/hide elements. This directive is recommended if the elements are switched on and off frequently.
     ```javascript
-    <span if-show="user.name">Welcome user,{{user.name}}</span>
+    <span v-show="user.name">Welcome user,{{user.name}}</span>
     ```
 5.  ### What is the difference between v-show and v-if directives?
     Below are some of the main differences between between **v-show** and **v-if** directives,
-        1. v-if only renders the element to the DOM if the expression passes whereas v-show renders all elements to the DOM and then uses the CSS display property to show/hide elements based on expression.
-        2. v-if supports v-else and v-else-if directives whereas v-show doesn't support else directives.
-        3. v-if has higher toggle costs while v-show has higher initial render costs. i.e, v-show has a performance advantage if the elements are switched on and off frequently, while the v-if has the advantage when it comes to initial render time.
-        4. v-if supports <template> tab but v-show doesn't support.
+
+    1. v-if only renders the element to the DOM if the expression passes whereas v-show renders all elements to the DOM and then uses the CSS display property to show/hide elements based on expression.
+    2. v-if supports v-else and v-else-if directives whereas v-show doesn't support else directives.
+    3. v-if has higher toggle costs while v-show has higher initial render costs. i.e, v-show has a performance advantage if the elements are switched on and off frequently, while the v-if has the advantage when it comes to initial render time.
+    4. v-if supports `<template>` tab but v-show doesn't support.
+        
 6.  ### What is the purpose of v-for directive?
     The built-in v-for directive allows us to loop through items in an array or object. You can iterate on each element in the array or object.
     1. Array usage:
@@ -316,10 +319,13 @@ List of 300 VueJS Interview Questions
     })
     ```
     You can also use `of` as the delimiter instead of `in`, similar to javascript iterators.
+
     2. Object usage:
     ```javascript
-    <div id="object" v-for="(value, key, index) in object">
-      {{ index }}. {{ key }}: {{ value }}
+    <div id="object">
+      <div v-for="(value, key, index) in user">
+        {{ index }}. {{ key }}: {{ value }}
+      </div>
     </div>
 
     var vm = new Vue({
@@ -342,7 +348,7 @@ List of 300 VueJS Interview Questions
     ```
     As mentioned in the above code snippets, you need to pass options object. You can find the full list of options in the API reference.
 8.  ### How do you achieve conditional group of elements?
-    You can achieve conditional group of elements(toggle multiple elements at a time) by applying **v-if** directive on `<template>` element which works as invisible wrapper(no rendering) for group of elements. For example, you can conditionally group user details based on valid user condition
+    You can achieve conditional group of elements(toggle multiple elements at a time) by applying **v-if** directive on `<template>` element which works as invisible wrapper(no rendering) for group of elements. For example, you can conditionally group user details based on valid user condition.
     ```javascript
     <template v-if="condition">
       <h1>Name</h1>
@@ -351,7 +357,7 @@ List of 300 VueJS Interview Questions
     </template>
     ```
 9.  ### How do you reuse elements with key attribute?
-    Vue always try to render elements as efficient as possible. So it tries to reuse the elements instead of building them from scratch. But this behavior may cause problems in few scenarios. For example, if you try to render the same input element in both `v-if` and `v-else` blocks then it holds the previous value as below,
+    Vue always tries to render elements as efficient as possible. So it tries to reuse the elements instead of building them from scratch. But this behavior may cause problems in few scenarios. For example, if you try to render the same input element in both `v-if` and `v-else` blocks then it holds the previous value as below,
     ```javascript
     <template v-if="loginType === 'Admin'">
       <label>Admin</label>
@@ -410,7 +416,7 @@ List of 300 VueJS Interview Questions
 
      ```
     2. To avoid rendering a list if it should be hidden
-     For example, if you try to conditionally check if the user is to show or hide
+     For example, if you try to conditionally check if the user is to be shown or hidden
      ```javascript
      <ul>
        <li
