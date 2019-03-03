@@ -457,15 +457,17 @@ List of 300 VueJS Interview Questions
      5. splice()
      6. sort()
      7. reverse()
+     
      If you perform any of the above mutation method on the list then it triggers view update. For example, push method on array named 'items' trigger a view update,
      ```javascript
      vm.todos.push({ message: 'Baz' })
      ```
-13.  ### What are the array detection non mutation methods?
+13.  ### What are the array detection non-mutation methods?
      The methods which do not mutate the original array but always return a new array are called non-mutation methods. Below are the list of non-mutation methods,
      1. filter()
      2. concat()
      3. slice()
+
      For example, lets take a todo list where it replaces the old array with new one based on status filter,
      ```javascript
      vm.todos = vm.todos.filter(function (todo) {
@@ -478,13 +480,14 @@ List of 300 VueJS Interview Questions
 
      1. When you directly set an item with the index,For example,
         ```javascript
-        vm.tods[indexOfTodo] = newTodo
+        vm.todos[indexOfTodo] = newTodo
         ```
      2. When you modify the length of the array, For example,
       ```javascript
       vm.todos.length = todosLength
       ```
      You can overcome both the caveats using `set` and `splice` methods, Let's see the solutions with an examples,
+     
      **First use case solution**
      ```javascript
      // Vue.set
@@ -520,16 +523,16 @@ List of 300 VueJS Interview Questions
        email: john@email.com
      })
      ```
-16.  ### How do you use for directive with a range?
-     You can also use integer type(say 'n') for v-for directive which repeat the element many times.
+16.  ### How do you use v-for directive with a range?
+     You can also use integer type(say 'n') for v-for directive which repeats the element many times.
      ```javascript
      <div>
        <span v-for="n in 20">{{ n }} </span>
      </div>
      ```
      It displays the number 1 to 20.
-17.  ### How do you use for directive on template?
-     Just similar to v-if directive on template, you can also use a <template> tag with v-for directive to render a block of multiple elements. Let's take a todo example,
+17.  ### How do you use v-for directive on template?
+     Just similar to v-if directive on template, you can also use a `<template>` tag with v-for directive to render a block of multiple elements. Let's take a todo example,
      ```javascript
      <ul>
        <template v-for="todo in todos">
@@ -545,7 +548,6 @@ List of 300 VueJS Interview Questions
        Submit
      </button>
 
-     \\\\
      methods: {
        show: function (message, event) {
          // now we have access to the native event
@@ -562,23 +564,24 @@ List of 300 VueJS Interview Questions
      4. .self
      5. .once
      6. .passive
+     
      Let's take an example of stop modifier,
-     ```javascript
+     ```html
      <!-- the click event's propagation will be stopped -->
      <a v-on:click.stop="methodCall"></a>
      ```
      You can also chain modifiers as below,
-     ```javascript
+     ```html
      <!-- modifiers can be chained -->
      <a v-on:click.stop.prevent="doThat"></a>
      ```
 20.  ### What are key modifiers?
-     Vue supports key modifiers on `v-on` for handling keyboard events. Let's take an example of keyup event with enter keycode
-     ```javascript
+     Vue supports key modifiers on `v-on` for handling keyboard events. Let's take an example of keyup event with enter keycode.
+     ```html
      <!-- only call `vm.show()` when the `keyCode` is 13 -->
      <input v-on:keyup.13="show">
      ```
-     Remembering all the keycodes is really difficult. It supports the full list of keycode aliases
+     Remembering all the key codes is really difficult. It supports the full list of key codes aliases
      1. .enter
      2. .tab
      3. .delete (captures both “Delete” and “Backspace” keys)
@@ -592,14 +595,15 @@ List of 300 VueJS Interview Questions
      Now the above keyup code snippet can be written with aliases as follows,
      ```javascript
      <input v-on:keyup.enter="submit">
-     (OR)
+     // (OR)
      <!-- with shorthand notation-->
      <input @keyup.enter="submit">
      ```
+     **The use of keyCode events is deprecated and may not be supported in new browsers.**
 21.  ### How do you define custom key modifier aliases?
      You can define custom key modifier aliases via the global `config.keyCodes`. There are few guidelines for the properties
-     1. You can't use cameCase, instead you can use kebab-case with double quotation marks
-     2. You can define multiple values in ann array format
+     1. You can't use camelCase. Instead you can use kebab-case with double quotation marks
+     2. You can define multiple values in an array format
      ```javascript
      Vue.config.keyCodes = {
        f1: 112,
@@ -613,6 +617,7 @@ List of 300 VueJS Interview Questions
      2. .alt
      3. .shift
      4. .meta
+
      Lets take an example of control modifier with click event,
      ```javascript
      <!-- Ctrl + Click -->
@@ -623,20 +628,25 @@ List of 300 VueJS Interview Questions
      1. .left
      2. .right
      3. .middle
+
      For example, the usage of `.right` modifier as below
      ```javascript
-      <button v-if="button === 'right'"
-                 v-on:mousedown.right="increment" v-on:mousedown.left="decrement" />
+      <button
+        v-if="button === 'right'"
+        v-on:mousedown.right="increment"
+        v-on:mousedown.left="decrement"
+      />
      ```
-24.  ### How do you implement two way binding?
+24.  ### How do you implement two-way binding?
      You can use the `v-model` directive to create two-way data bindings on form input, textarea, and select elements. Lets take an example of it using input component,
      ```javascript
-     <input v-model="message" placeholder="Enter innput here">
+     <input v-model="message" placeholder="Enter input here">
      <p>The message is: {{ message }}</p>
      ```
-     Remember, v-model will ignore the initial value, checked or selected attributes found on any form elements. So it always use the Vue instance data as the source of truth.
+     Remember, v-model will ignore the initial `value`, `checked` or `selected` attributes found on any form elements. So it always use the Vue instance data as the source of truth.
 25.  ### What are the supported modifiers on model?
      There are three modifiers supported for v-model directive.
+
      **1. lazy:** By default, v-model syncs the input with the data after each input event. You can add the lazy modifier to instead sync after change events.
      ```javascript
      <!-- synced after "change" instead of "input" -->
@@ -679,19 +689,19 @@ List of 300 VueJS Interview Questions
        template: '<h2>{{ title }}</h2>'
      })
      ```
-     Once the props registered, you can pass them as custom atrtributes,
+     Once the props are registered, you can pass them as custom atrtributes.
      ```javascript
      <todo-item title="Learn Vue conceptsnfirst"></todo-item>
      ```
 28.  ### When component needs a single root element?
-     Every component must have a single root element when template has more than one element. In this case, you need to wrap a parent element.
+     Every component must have a single root element **when template has more than one element**. In this case, you need to wrap the elements with a parent element.
      ```javascript
      <div class="todo-item">
        <h2>{{ title }}</h2>
        <div v-html="content"></div>
      </div>
      ```
-     Otherwise there will an error throwing, saying that "wrap those elements with a parent element".
+     Otherwise there will an error throwing, saying that "Component template should contain exactly one root element...".
 29.  ### How do you communicate from child to parent using events?
      If you want child wants to communicate back up to the parent, then emit an event from child using `$event` object to parent,
      ```javascript
@@ -723,7 +733,7 @@ List of 300 VueJS Interview Questions
      The custom events can also be used to create custom inputs that work with v-model. The <input> inside the component must follow below rules,
      1. Bind the value attribute to a value prop
      2. On input, emit its own custom input event with the new value.
-     Lets take a custom-input component as an example,
+     Let's take a custom-input component as an example,
      ```javascript
      Vue.component('custom-input', {
        props: ['value'],
