@@ -750,7 +750,7 @@ List of 300 VueJS Interview Questions
      <custom-input v-model="searchInput"></custom-input>
      ```
 31.  ### What are slots?
-     Vue implements a content distribution API using the <slot> element to serve as distribution outlets for content created after after the current Web Components spec draft. Let's create ann alert component with slots for content insertion,
+     Vue implements a content distribution API using the <slot> element to serve as distribution outlets for content created after after the current Web Components spec draft. Let's create an alert component with slots for content insertion,
      ```javascript
      Vue.component('alert', {
        template: `
@@ -875,7 +875,7 @@ List of 300 VueJS Interview Questions
      })
      ```
 35.  ### What are possible prop types?
-     You can declare props with type or without type. But it is recommended to have prop types because it provides the documentation for the component and warns the developer for any incorrect data type is assigned.
+     You can declare props with type or without type. But it is recommended to have prop types because it provides the documentation for the component and warns the developer for any incorrect data type being assigned.
      ```javascript
      props: {
        name: String,
@@ -890,6 +890,7 @@ List of 300 VueJS Interview Questions
      All props follows a one-way-down binding between the child property and the parent one. i.e, When the parent property is updated then that latest prop value will be passed down to the child, but not the otherway(child to parent) around. The child component should not mutate the prop otherwise it throws a warning in the console.
      The possible mutation cases can be solved as below,
      1. When you try to use parent prop as initial value for child property:
+
      In this case you can define a local property in child component and assign parent value as initial value
      ```javascript
      props: ['defaultUser'],
@@ -900,11 +901,12 @@ List of 300 VueJS Interview Questions
      }
      ```
      2. When you try to transform the parent prop:
+     
      You can define a computed property using the prop’s value,
      ```javascript
      props: ['environment'],
      computed: {
-       environment: function () {
+       localEnvironment: function () {
          return this.environment.trim().toUpperCase()
        }
      }
@@ -923,7 +925,7 @@ List of 300 VueJS Interview Questions
      <custom-input class="custom-class" />
      ```
 38.  ### Describe about validations available for props?
-     Vue provides validations such as type, required fields, default values along with customized validations. You can provide an object with validation requirements to the value of props as below,
+     Vue provides validations such as types, required fields, default values along with customized validations. You can provide an object with validation requirements to the value of props as below,
      Let's take an example of user profile Vue component with possible validations,
      ```javascript
      Vue.component('user-profile', {
@@ -1005,6 +1007,7 @@ List of 300 VueJS Interview Questions
 
 42.  ### What are the steps to use vue router and give an example?
      It is easy to integrate vue router in the vue application. Let us see the example with step by step instructions.
+
      **Step 1:** Configure router link and router view in the template
      ```javascript
      <script src="https://unpkg.com/vue/dist/vue.js"></script>
@@ -1081,7 +1084,7 @@ List of 300 VueJS Interview Questions
        }
      }
      ```
-     2. Use beforeRouteUpdate navigation guard: This is only available in 2.2 version.
+     2. Use beforeRouteUpdate navigation guard: This is only available since 2.2 version.
      ```javascript
      const User = {
        template: '<div>User {{ $route.params.name }} </div>',
@@ -1090,6 +1093,7 @@ List of 300 VueJS Interview Questions
        }
      }
      ```
+     Note that the beforeRouteEnter guard does NOT have access to `this`. Instead you can pass a callback to `next` to access the vm instance.
 45.  ### What is route matching priority?
      Sometimes the URL might be matched by multiple routes and the confusion of which route need to be mapped is resolved by route matching priority. The priority is based on order of routes configuration. i.e, The route which declared first has higher priority.
      ```javascript
