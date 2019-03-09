@@ -107,6 +107,9 @@ List of 300 VueJS Interview Questions
 |98 | [List out top 10 organizations using Vuejs?](#list-out-top-10-organizations-using-vuejs)|
 |99 | [What is the purpose of renderError?](#what-is-the-purpose-of-rendererror)|
 |100| [How do you access parent instance?](#how-do-you-access-parent-instance)|
+|101| [What is vuex?](#what-is-vuex)|
+|102| [What are the major components of State Management Pattern?](#what-are-the-major-components-of-state-management-pattern)|
+|103| [How do you represent one way data flow in vuex?](#how-do-you-represent-one-way-data-flow-in-vuex)|
 
 1.  ### What is VueJS?
     **Vue.js** is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the `view layer` only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -1939,3 +1942,35 @@ List of 300 VueJS Interview Questions
      ```
 100. ### How do you access parent instance?
      The $parent object refers to the **immediate outer scope**. The parent will be accessible as `this.$parent` for the child, and the child will be pushed into the parent’s $children array. It establishes a parent-child relationship between the two instances(parent and child). You can access parent data and properties similar to $root.
+101. ### What is vuex?
+     Vuex is a state management pattern + library (Flux-inspired Application Architecture) for Vue.js applications. It serves as a centralized store for all the components in an application, with rules ensuring that the state can only be mutated in a predictable fashion.
+102. ### What are the major components of State Management Pattern?
+     The state management has state, view and actions as major components. The pattern followed by these components in a application is known as State Management Pattern. Below are the components in a detail,
+     1. The **state**, which is the source of truth that drives our app
+     2. The **view**, which is just a declarative mapping of the state
+     3. The **actions**, which are the possible ways the state could change in reaction to user inputs from the view.
+     Let us take a counter example which follows state management pattern with the above 3 components,
+     ```javascript
+     new Vue({
+       // state
+       data () {
+         return {
+           count: 0
+         }
+       },
+       // view
+       template: `
+         <div>{{ count }}</div>
+       `,
+       // actions
+       methods: {
+         increment () {
+           this.count++
+         }
+       }
+     })
+     ```
+103. ### How do you represent one way data flow in vuex?
+     Vue.js has a one-way data flow model, through the props property. The same concept can be represented in vuex has below,
+     <img src="https://github.com/sudheerj/vuejs-interview-questions/blob/master/images/flow.png" width="400" height="800">
+
