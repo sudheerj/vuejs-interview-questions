@@ -1160,8 +1160,8 @@ List of 300 VueJS Interview Questions
      </style>
      ```
 48.  ### Is Single File Components violating separation of concerns?
-     As per the latest modern UI development, separation of concerns is not equal to separation of file types. So it is preferred to divide codebase layers into loosely-coupled components and compose them instead of dividing the codebase into three huge layers that interweave with one another. This way it makes Single File Components more cohesive and maintainable by combining template, logic and styles together inside a component.
-     You can also still maintain javascript and CSS files as separate with hot-reloading and pre-compilation features. For example,
+     As for the latest modern UI development, separation of concerns is not equal to separation of file types. So it is preferred to divide codebase layers into loosely-coupled components and compose them instead of dividing the codebase into three huge layers that interweave with one another. This way makes Single File Components more cohesive and maintainable by combining template, logic and styles together inside a component.
+     You can also still maintain javascript and CSS files separately with hot-reloading and pre-compilation features. For example,
      ```
      <template>
        <div>This section will be pre-compiled and hot reloaded</div>
@@ -1180,7 +1180,7 @@ List of 300 VueJS Interview Questions
      1. mustache interpolations
      2. v-bind expressions
 
-     For example, Let's define local filter named camelcase in a component’s options
+     For example, Let's define a local filter named capitalize in a component’s options
      ```javascript
      filters: {
        capitalize: function (value) {
@@ -1193,7 +1193,7 @@ List of 300 VueJS Interview Questions
      Now you can use the filter in either mustache interpolation or v-bind expression,
      ```javascript
      <!-- in mustaches -->
-     {{ username | camelcase }}
+     {{ username | capitalize }}
 
      <!-- in v-bind -->
      <div v-bind:id="username | capitalize"></div>
@@ -1227,12 +1227,12 @@ List of 300 VueJS Interview Questions
 52.  ### How do you chain filters?
      You can chain filters one after the other to perform multiple manipulations on the expression. The generic structure of filter chain would be as below,
      ```javascript
-     {{ message | filterA | filterB | filterB ...}}
+     {{ message | filterA | filterB | filterB ... }}
      ```
      In the above chain stack, you can observe that message expression applied with three filters, each separated by a pipe(|) symbol. The first filter(filterA) takes the expression as a single argument and the result of the expression becomes an argument for second filter(filterB) and the chain continue for remaining filters.
      For example, if you want to transform date expression with a full date format and uppercase then you can apply dateFormat and uppercase filters as below,
-     ```javascirpt
-     {{ birthday | dateFormat | uppercase}}
+     ```javascript
+     {{ birthday | dateFormat | uppercase }}
      ```
 
 53.  ### Is it possible to pass parameters for filters?
@@ -1247,14 +1247,14 @@ List of 300 VueJS Interview Questions
      ```
 54.  ### What are plugins and their various services?
 
-     Plugins provides global-level functionality to Vue application. The plugins provides various services,
+     Plugins provides global-level functionality to Vue application. The plugins provide various services,
      1. Add some global methods or properties. For example, vue-custom-element
      2. Add one or more global assets (directives, filters and transitions). For example, vue-touch
      3. Add some component options by global mixin. For example, vue-router
      4. Add some Vue instance methods by attaching them to Vue.prototype.
      5. A library that provides an API of its own, while at the same time injecting some combination of the above. For example, vue-router
 55.  ### How to create a plugin?
-     The Plugin is created by exposing an install method which takes Vue constructor as a first argument along with options. The structure of VueJS plugin with possible functionality would be as follows,
+     The Plugin is created by exposing an `install` method which takes Vue constructor as a first argument along with options. The structure of VueJS plugin with possible functionality would be as follows,
       ```javascript
       MyPlugin.install = function (Vue, options) {
         // 1. add global method or property
@@ -1295,7 +1295,7 @@ List of 300 VueJS Interview Questions
      })
      ```
 57.  ### What are mixins?
-     Mixin gives us a way to distribute reusable functionality in Vue components. These reusable functions are merged with existing functions. A mixin object can contain any component options. Let us take an example of mixin with created lifecycle which can be shared across components,
+     Mixin gives us a way to distribute reusable functionalities in Vue components. These reusable functions are merged with existing functions. A mixin object can contain any component options. Let us take an example of mixin with `created` lifecycle which can be shared across components,
      ```javascript
      const myMixin = {
        created(){
@@ -1307,7 +1307,7 @@ List of 300 VueJS Interview Questions
        mixins: [myMixin]
      })
      ```
-     **Note:**Multiple mixins can be specified in the mixin array of the component.
+     **Note:** Multiple mixins can be specified in the mixin array of the component.
 58.  ### What are global mixins?
      Sometimes there is a need to extend the functionality of Vue or apply an option to all Vue components available in our application. In this case, mixins can be applied globally to affect all components in Vue. These mixins are called as global mixins. Let's take an example of global mixin,
      ```javascript
@@ -1323,7 +1323,7 @@ List of 300 VueJS Interview Questions
      ```
      In the above global mixin, the mixin options spread across all components with the console running during the instance creation. These are useful during test, and debugging or third party libraries. At the same time, You need to use these global mixins sparsely and carefully, because it affects every single Vue instance created, including third party components.
 59.  ### How do you use mixins in CLI?
-     Using Vue CLI, mixins can be specified anywhere in the project folder but preferably within `/src/mixins` for ease of access. Once these mixins are created in a `.js` file and exposed with the `export` keyword, they can be imported in any component with the `import` keyword and its file path.
+     Using Vue CLI, mixins can be specified anywhere in the project folder but preferably within `/src/mixins` for ease of access. Once these mixins are created in a `.js` file and exposed with the `export` keyword, they can be imported in any component with the `import` keyword and their file paths.
 60.  ### What are the merging strategies in mixins?
      When a mixin and the component itself contain overlapping options, the options will be merged based on some strategies.
      1. The data objects undergo a recursive merge, with the component’s data taking priority over mixins in cases of overlapping or conflicts.
@@ -1433,7 +1433,7 @@ List of 300 VueJS Interview Questions
      <input v-focus>
      ```
 63.  ### How do you register directives locally?
-     You can also register directives locally(apart from globally) using directives option with in component as below,
+     You can also register directives locally(apart from globally) using directives option in component as below,
      ```javascript
      directives: {
        focus: {
@@ -1454,20 +1454,21 @@ List of 300 VueJS Interview Questions
      2. inserted: This hook occurs once the element is inserted into the parent DOM.
      3. update: This hook is called when the element updates, but children haven't been updated yet.
      4. componentUpdated: This hook is called once the component and the children have been updated.
-     5. unbind: This hook is called once the directive is removed.
-     **Note:** There are several arguments can be passed to the above hooks.
+     5. unbind: This hook is called only once when the directive is removed.
+
+     **Note:** There are several arguments that can be passed to the above hooks.
 65.  ### What are the directive Hook Arguments?
-     All the hooks have **el, binding, and vnode** as arguments. Along with that, **update and componentUpdated** hooks expose oldVnode, to differentiate between the older value passed and the newer value. Below are the arguments passed to the hooks,
-     1. el: The element the directive is bound to and it can be used to directly manipulate the DOM.
-     2. binding: An object containing the following properties.
-        1. name: The name of the directive, without the v- prefix.
-        2. value: The value passed to the directive. For example in v-my-directive="1 + 1", the value would be 2.
-        3. oldValue: The previous value, only available in update and componentUpdated. It is available whether or not the value has changed.
-        4. expression: The expression of the binding as a string. For example in v-my-directive="1 + 1", the expression would be "1 + 1".
-        5. arg: The argument passed to the directive, if any. For example in v-my-directive:foo, the arg would be "foo".
-        6. modifiers: An object containing modifiers, if any. For example in v-my-directive.foo.bar, the modifiers object would be { foo: true, bar: true }.
-     3. vnode: The virtual node produced by Vue’s compiler.
-     4. oldVnode: The previous virtual node, only available in the update and componentUpdated hooks.
+     All the hooks have `el`, `binding`, and `vnode` as arguments. Along with that, **update** and **componentUpdated** hooks expose `oldVnode`, to differentiate between the older value passed and the newer value. Below are the arguments passed to the hooks,
+     1. `el`: The element the directive is bound to and it can be used to directly manipulate the DOM.
+     2. `binding`: An object containing the following properties.
+        1. `name`: The name of the directive, without the `v-` prefix.
+        2. `value`: The value passed to the directive. For example in `v-my-directive="1 + 1"`, the value would be 2.
+        3. `oldValue`: The previous value, only available in update and componentUpdated. It is available whether or not the value has changed.
+        4. `expression`: The expression of the binding as a string. For example in `v-my-directive="1 + 1"`, the expression would be "1 + 1".
+        5. `arg`: The argument passed to the directive, if any. For example in v-my-directive:foo, the arg would be "foo".
+        6. `modifiers`: An object containing modifiers, if any. For example in v-my-directive.foo.bar, the modifiers object would be `{ foo: true, bar: true }`.
+     3. `vnode`: The virtual node produced by Vue’s compiler.
+     4. `oldVnode`: The previous virtual node, only available in the update and componentUpdated hooks.
 
      The arguments can be represented diagrammatically across the hooks as below,
      ![custom-directives](images/custom-directives.svg)
@@ -1487,14 +1488,14 @@ List of 300 VueJS Interview Questions
      })
      ```
 67.  ### What is function shorthand in directive hooks?
-     In few cases, you may want the same behavior on **bind and update** hooks irrespective of other hooks. In this situation you can use function shorthand,
+     In few cases, you may want the same behavior on `bind` and `update` hooks irrespective of other hooks. In this situation you can use function shorthand,
      ```javascript
      Vue.directive('theme-switcher', function (el, binding) {
        el.style.backgroundColor = binding.value
      })
      ```
 68.  ### What is the benefit of render functions over templates?
-     In VueJS, the templates are very powerful and recommended to build HTML part of your application. However, some of the special cases like dynamic component creation based on input or slot value can be achieved through render functions. Also, these functions gives the full programmatic power of javascript eco system.
+     In VueJS, the templates are very powerful and recommended to build HTML as part of your application. However, some of the special cases like dynamic component creation based on input or slot value can be achieved through render functions. Also, these functions gives the full programmatic power of javascript eco system.
 69.  ### What is a render function?
      Render function is a normal function which receives a `createElement` method as it’s first argument used to create virtual nodes. Internally Vue.js' templates actually compile down to render functions at build time. Hence templates are just syntactic sugar of render functions. Let's take an example of simple Div markup and corresponding render function,
      The HTML markup can be written in template tag as below,
@@ -1508,11 +1509,13 @@ List of 300 VueJS Interview Questions
      and the compiled down or explicit render function would appear as below,
      ```javascript
      render: function (createElement) {
-         return createElement('div',
-           { 'class': {
-                   'is-rounded': this.isRounded
-                 }
-           },[ createElement('p', 'Welcome to Vue render functions')])
+        return createElement('div', {
+          'class': {
+              'is-rounded': this.isRounded
+          }
+        }, [
+          createElement('p', 'Welcome to Vue render functions')
+        ]);
        },
      ```
      **Note:** The react components are built with render functions in JSX.
@@ -1521,12 +1524,14 @@ List of 300 VueJS Interview Questions
      ```javascript
      // @returns {VNode}
      createElement(
-       // An HTML tag name, component options, or async function resolving to one of these. Required.
+       // An HTML tag name, component options, or async function resolving to one of these.
        // Type is {String | Object | Function}
+       // Required.
        'div',
 
-       // A data object corresponding to the attributes you would use in a template. Optional.
+       // A data object corresponding to the attributes you would use in a template.
        //Type is {Object}
+       // Optional.
        {
            // Normal HTML attributes
            attrs: {
@@ -1557,8 +1562,9 @@ List of 300 VueJS Interview Questions
              ....
        },
 
-       // Children VNodes, built using `createElement()`, or using strings to get 'text VNodes'. Optional.
+       // Children VNodes, built using `createElement()`, or using strings to get 'text VNodes'.
        // Type is {String | Array}
+       // Optional.
        [
          'Learn about createElement arguments.',
          createElement('h1', 'Headline as a child virtual node'),
@@ -1570,6 +1576,7 @@ List of 300 VueJS Interview Questions
        ]
      )
      ```
+     see details of the date object in official [doc](https://vuejs.org/v2/guide/render-function.html#The-Data-Object-In-Depth).
 71.  ### How can you write duplicate virtual nodes in a component?
      All virtual nodes(VNodes) in the component tree must be unique.i.e, You can't write duplicated nodes in a straightforward way. If you want to duplicate the same element/component many times then you should use factory function.
      The below render function is invalid where you are trying to duplicate h1 element 3 times,
