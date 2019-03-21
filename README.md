@@ -110,6 +110,7 @@ List of 300 VueJS Interview Questions
 |101| [What is vuex?](#what-is-vuex)|
 |102| [What are the major components of State Management Pattern?](#what-are-the-major-components-of-state-management-pattern)|
 |103| [How do you represent one way data flow in vuex?](#how-do-you-represent-one-way-data-flow-in-vuex)|
+|104| [What is a vuejs loader?](#what-is-a-vuejs-loader)|
 
 1.  ### What is VueJS?
     **Vue.js** is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the `view layer` only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -2000,4 +2001,27 @@ List of 300 VueJS Interview Questions
 103. ### How do you represent one way data flow in vuex?
      Vue.js has a one-way data flow model, through the props property. The same concept can be represented in vuex has below,
      <img src="https://github.com/sudheerj/vuejs-interview-questions/blob/master/images/flow.png" width="400" height="500">
+104. ### What is a vuejs loader?
+     Vue loader is a loader for webpack that allows you to author Vue components in a format called Single-File Components (SFCs). For example, it authors HelloWorld component in a SFC,
+     ```javascript
+     <template>
+       <div class="greeting">{{ message }}</div>
+     </template>
 
+     <script>
+     export default {
+       data () {
+         return {
+           message: 'Hello world for vueloader!'
+         }
+       }
+     }
+     </script>
+
+     <style>
+     .greeting {
+       color: blue;
+     }
+     </style>
+     ```
+105. ### ?
