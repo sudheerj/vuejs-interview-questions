@@ -110,6 +110,19 @@ List of 300 VueJS Interview Questions
 |101| [What is vuex?](#what-is-vuex)|
 |102| [What are the major components of State Management Pattern?](#what-are-the-major-components-of-state-management-pattern)|
 |103| [How do you represent one way data flow in vuex?](#how-do-you-represent-one-way-data-flow-in-vuex)|
+|104| [What is a vuejs loader?](#what-is-a-vuejs-loader)|
+|105| [How do you configure vue loader in webpack?](#how-do-you-configure-vue-loader-in-webpack)|
+|106| [What are asset url transform rules?](#what-are-asset-url-transform-rules)|
+|107| [How do you work with preprocessors using vue loader?](#how-do-you-work-with-preprocessors-using-vue-loader)|
+|108| [What is scoped CSS?](#What-is-scoped-CSS)|
+|109| [Is it possible to mix both local and global styles?](#is-it-possible-to-mix-both-local-and-global-styles)|
+|110| [How do you use deep selectors?](#how-do-you-use-deepselectors)|
+|111| [Is parent styles leaked into child components in scoped css?](#is-parent-styles-leaked-into-child-components-in-scoped-css)|
+|112| [How do you style dynamic generated content using scoped css?](#how-do-you-style-dynamic-generated-content-using-scoped-css)|
+|113| [Is CSS modules supported in Vuejs?](#is-css-modules-supported-in-vuejs)|
+|114| [Can I use runtime builds for all templates?](#can-i-use-runtime-builds-for-all-templates)|
+|115| [How to use CSS modules in vuejs?](#how-to-use-css-modules-in-vuejs)|
+|116| [Can I use CSS modules for preprocessors?](#can-i-use-css-modules-for-preprocessors)|
 
 1.  ### What is VueJS?
     **Vue.js** is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the `view layer` only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -1824,7 +1837,7 @@ List of 300 VueJS Interview Questions
 
      **1. Full:** These are the builds that contain both the compiler and the runtime.
 
-     **2. Runtime Only:** These builds doesn't include compiler but the code is responsible for creating Vue instances, rendering and patching virtual DOM.
+     **2. Runtime Only:** These builds doesn't include compiler but the code is responsible for creating Vue instances, rendering and patching virtual DOM. These are about 6KB lighter min+gzip.
 
 89.  ### List down different builds of vuejs?
      Below are the list of different builds of VueJS based on type of build,
@@ -2000,4 +2013,234 @@ List of 300 VueJS Interview Questions
 103. ### How do you represent one way data flow in vuex?
      Vue.js has a one-way data flow model, through the props property. The same concept can be represented in vuex has below,
      <img src="https://github.com/sudheerj/vuejs-interview-questions/blob/master/images/flow.png" width="400" height="500">
+104. ### What is a vuejs loader?
+     Vue loader is a loader for webpack that allows you to author Vue components in a format called Single-File Components (SFCs). For example, it authors HelloWorld component in a SFC,
+     ```javascript
+     <template>
+       <div class="greeting">{{ message }}</div>
+     </template>
 
+     <script>
+     export default {
+       data () {
+         return {
+           message: 'Hello world for vueloader!'
+         }
+       }
+     }
+     </script>
+
+     <style>
+     .greeting {
+       color: blue;
+     }
+     </style>
+     ```
+105. ### How do you configure vue loader in webpack?
+     Vue Loader's configuration is a bit different from other loaders by adding Vue Loader's plugin to your webpack config. The vue loader plugin is required for cloning any other rules(js and css rules) defined and applying them to the corresponding language blocks(<script> and <style>) in .vue files.
+     For example, the simple demonistration of webpack configuration for vue loader would be as below,
+     ```javascript
+     // webpack.config.js
+     const VueLoaderPlugin = require('vue-loader/lib/plugin')
+
+     module.exports = {
+       mode: 'development',
+       module: {
+         rules: [
+           {
+             test: /\.vue$/,
+             loader: 'vue-loader'
+           },
+           // this will apply to both plain `.js` files and `<script>` blocks in `.vue` files
+           {
+             test: /\.js$/,
+             loader: 'babel-loader'
+           },
+           // this will apply to both plain `.css` files and `<style>` blocks in `.vue` files
+           {
+             test: /\.css$/,
+             use: [
+               'vue-style-loader',
+               'css-loader'
+             ]
+           }
+         ]
+       },
+       plugins: [
+         // make sure to include the plugin for cloning and mapping them to respective language blocks
+         new VueLoaderPlugin()
+       ]
+     }
+     ```
+106. ### What are asset url transform rules?
+     Below are the list of Asset URL transform rules
+     1. ** Absolute path**: If the URL is an absolute path (for example, /images/loader.png)then it will be preserved as-is.
+     2. ** Relative path**: If the URL starts with `.` (for example, ./images/loader.png) then it will be interpreted as a relative module request and resolved based on the folder structure on your file system.
+     3. ** URLs starts with ~ symbol **: If the URL starts with `~` symbol(for example, ./some-node-package/loader.png) then it is interpreted as a module request. This way it can reference assets inside node modules too.
+     4. ** URLs starts with @ symbol**: If the URL starts with `@` symbol then it is interpreted as a module request. This is useful if your webpack config has an alias for @, which by default points to `/src` path.
+107. ### How do you work with preprocessors using vue loader?
+     `Vue-loader` will automatically infer the proper loaders to use based on the `lang` attribute of a language block and the rules defined in webpack config. You can use pre-processors such as SASS,LESS, Stylus and PostCSS using vuejs loader.
+108. ### What is scoped CSS?
+     Scoped CSS is a mechanism in VueJS Single File Components(SFC) that prevents styles from leaking out of the current component and affecting other unintended components on your page. i.e, When a <style> tag has the scoped attribute, its CSS will apply to elements of the current component only. It uses PostCSS to transform scoped css to plain CSS.
+     Let's take an example usage of scoped css,
+     ```javascript
+     <style scoped>
+     .greeting {
+       color: green;
+     }
+     </style>
+
+     <template>
+       <div class="greeting">Let's start Scoped CSS</div>
+     </template>
+     ```
+     The above code will be converted to plain CSS,
+     ```javascript
+       <style scoped>
+      .greeting[data-v-f3f3eg9] {
+        color: green;
+      }
+      </style>
+
+      <template>
+        <div class="greeting" data-v-f3f3eg9>Let's start Scoped CSS</div>
+      </template>
+     ```
+109. ### Is it possible to mix both local and global styles?
+     Yes, You can include both scoped and non-scoped styles in the same component. If you don't mention scoped attribute then it will become global style.
+     ```javascript
+     <style>
+     /* global styles */
+     </style>
+
+     <style scoped>
+     /* local styles */
+     </style>
+     ```
+110. ### How do you use deep selectors?
+     In scoped css, if you need to modify the styles of a child component using deep selectors(i,e from parent scoped css) then you need to use **>>>** combinator. For example, the scoped deep selector on parent scoped css would be as below,
+     ```javascript
+     <style scoped>
+     .class1 >>> .class2 { /* ... */ }
+     </style>
+     ```
+     It will be converted as,
+     ```javascript
+     .class1[data-v-f3f3eg9] .class2 { /* ... */ }
+     ```
+     **Note:** If you preprocessors such as SASS then it may not be able to processs >>> properly. In such cases use the /deep/ or ::v-deep combinator instead >>> combinator.
+111. ### Is parent styles leaked into child components in scoped css?
+     The parent component's styles will not leak into child components. But a child component's root node will be affected by both the parent's scoped CSS and the child's scoped CSS. i.e, your child component's root element has a class that also exists in the parent component, the parent component's styles will leak to the child. Anyway this is by design so that the parent can style the child root element for layout purposes.
+     For example, the background color property of parent component leaked into child component as below,
+     //parent.vue
+     ```javascript
+     <template>
+       <div class="wrapper">
+         <p>parent</p>
+         <ChildMessageComponent/>
+       </div>
+     </template>
+
+     <script>
+     import ChildMessageComponent from "./components/child";
+
+     export default {
+       name: "App",
+       components: {
+         ChildMessageComponent
+       }
+     };
+     </script>
+     <style scoped>
+     .wrapper {
+       background: blue;
+     }
+     </style>
+     ```
+     //child.vue
+     ```javascript
+     <template>
+       <div class="wrapper">
+         <p>child</p>
+       </div>
+     </template>
+
+     <script>
+     export default {
+       name: "Hello, Scoped CSS",
+     };
+     </script>
+     <style scoped>
+     .wrapper {
+       background: red;
+     }
+     </style>
+     ```
+     Now the background color of child wrapper is going to be blue instead red.
+112. ### How do you style dynamic generated content using scoped css?
+     The scoped css style doesn't impact v-html directive's dynamically generated content. In this case, you can use deep selectors to solve this styling issue.
+113. ### Is CSS modules supported in Vuejs?
+     Yes, vue-loader provides first-class integration with CSS Modules as an alternative for simulated scoped CSS.
+114. ### Can I use runtime builds for all templates?
+     No, templates (or any Vue-specific HTML) are ONLY allowed in .vue files and render functions are required in other cases.
+115. ### How to use CSS modules in vuejs?
+     Below are the steps to use css modules in VueJS,
+     1. ** Enable CSS modules:**  CSS Modules must be enabled by passing modules: true option to css-loader
+     ```javascript
+     // webpack.config.js
+     {
+       module: {
+         rules: [
+           // ... other rules omitted
+           {
+             test: /\.css$/,
+             use: [
+               'vue-style-loader',
+               {
+                 loader: 'css-loader',
+                 options: {
+                   // enable CSS Modules
+                   modules: true,
+                   // customize generated class names
+                   localIdentName: '[local]_[hash:base64:8]'
+                 }
+               }
+             ]
+           }
+         ]
+       }
+     }
+     ```
+     2. ** Add module attribute:** Add the module attribute to your `<style>`
+     ```javascript
+     <style module>
+     .customStyle {
+       background: blue;
+     }
+     </style>
+     ```
+     3. ** Inject CSS modules:** You can inject CSS modules object with computed property $style
+     ```javascript
+     <template>
+       <div :class="$style.blue">
+         Background color should be in blue
+       </p>
+     </template>
+     ```
+     It can work with object/array syntax of :class binding.
+116. ### Can I use CSS modules for preprocessors?
+     Yes,You can use preprocessors with CSS Modules. For example, sass-loader can configured in webpack file for sass preprocessor.
+     ```javascript
+     // webpack.config.js -> module.rules
+     {
+       test: /\.scss$/,
+       use: [
+         'vue-style-loader',
+         {
+           loader: 'css-loader',
+           options: { modules: true }
+         },
+         'sass-loader'
+       ]
+     }
+     ```
