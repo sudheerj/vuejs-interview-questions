@@ -517,7 +517,7 @@ List of 300 VueJS Interview Questions
 
      // `vm.user.name` is now reactive
 
-     vm.user.email = john@email.com // `vm.email` is NOT reactive
+     vm.user.email = john@email.com // `vm.user.email` is NOT reactive
      ```
      You can overcome this scenario using the Vue.set(object, key, value) method or Object.assign(),
      ```javascript
