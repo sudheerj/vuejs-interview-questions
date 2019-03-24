@@ -135,6 +135,9 @@ List of 300 VueJS Interview Questions
 |126| [How do you apply linting for css?](#how-do-you-apply-linting-for-css)|
 |127| [How do you use eslint plugin?](#how-do-you-use-eslint-plugin)|
 |128| [What is the purpose of eslint loader?](#what-is-the-purpose-of-eslint-loader)|
+|129| [What is CSS extraction?](#what-is-css-extraction)|
+|130| [What are custom blocks?](#what-are-custom-blocks)|
+|131| [What are the features of stylelint?](#what-are-the-features-of-stylelint?)|
 
 1.  ### What is VueJS?
     **Vue.js** is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the `view layer` only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -2372,3 +2375,58 @@ List of 300 VueJS Interview Questions
        }
      }
      ```
+129. ### What is CSS extraction?
+     CSS Extraction is used to extract all the processed CSS in all Vue components into a single CSS file. For webpack4, you need to install below npm command,
+     ```javascript
+     npm install -D mini-css-extract-plugin
+     ```
+     You can configure this plugin in webpack as below,
+     ```javascript
+     // webpack.config.js
+     var MiniCssExtractPlugin = require('mini-css-extract-plugin')
+
+     module.exports = {
+       // other options...
+       module: {
+         rules: [
+           // ... other rules omitted
+           {
+             test: /\.css$/,
+             use: [
+               process.env.NODE_ENV !== 'production'
+                 ? 'vue-style-loader'
+                 : MiniCssExtractPlugin.loader,
+               'css-loader'
+             ]
+           }
+         ]
+       },
+       plugins: [
+         // ... Vue Loader plugin omitted
+         new MiniCssExtractPlugin({
+           filename: 'style.css'
+         })
+       ]
+     }
+     ```
+130. ### What are custom blocks?
+     You can define custom language blocks inside *.vue files based on the `lang` attribute of the block, the block's tag name, and the rules in your webpack config. You can also use `resourceQuery` to match a rule against a custom block with no lang. For example, to match against <message> custom blocks.
+     ```javascript
+     {
+       module: {
+         rules: [
+           {
+             resourceQuery: /blockType=message/,
+             loader: 'loader-to-use'
+           }
+         ]
+       }
+     }
+     ```
+131. ### What are the features of stylelint?
+     Below are the list of major stylelint features
+     1. It has more than **160 built-in rules** to catch errors, apply limits and enforce stylistic conventions
+     2. Understands **latest CSS syntax** including custom properties and level 4 selectors
+     3. It **extracts embedded styles** from HTML, markdown and CSS-in-JS object & template literals
+     4. Parses **CSS-like syntaxes** like SCSS, Sass, Less and SugarSS
+     5. Supports **Plugins** for reusing community plugins and creating own plugins
