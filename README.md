@@ -123,6 +123,15 @@ List of 300 VueJS Interview Questions
 |114| [Can I use runtime builds for all templates?](#can-i-use-runtime-builds-for-all-templates)|
 |115| [How to use CSS modules in vuejs?](#how-to-use-css-modules-in-vuejs)|
 |116| [Can I use CSS modules for preprocessors?](#can-i-use-css-modules-for-preprocessors)|
+|117| [Is it possible to use custom inject name for CSS modules?](#is-it-possible-to-use-custom-inject-name-for-css-modules)|
+|118| [What is hot reloading in vue loader?](#what-is-hot-reloading-in-vue-loader)|
+|119| [What is the default behavior of hot reloading?](#what-is-the-default-behavior-of-hot-reloading)|
+|120| [How do you disable hot reloading explicitly?](#how-do-you-disable-hot-reloading-explicitly)|
+|121| [How do you use hot reloading?](#how-do-you-use-hot-reloading)|
+|122| [What are state preservation rules in hot reloading?](#what-are-state-preservation-rules-in-hot-reloading)|
+|123| [How to create functional components using vue loader?](#how-to-create-functional-components-using-vue-loader)|
+|124| [How do you access global properties of functional components?](#how-do-you-access-global-properties-of-functional-components)|
+|125| [How do you perform testing in vuejs?](#how-do-you-perform-testing-in-vuejs)|
 
 1.  ### What is VueJS?
     **Vue.js** is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the `view layer` only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -1627,7 +1636,7 @@ List of 300 VueJS Interview Questions
 73.  ### What are functional components?
      The functional components are just simple functions to create simple components just by passing a context. Every functional component follows two rules,
       1. **Stateless:** It doesn’t keep any state by itself
-      2. **Instanceless:** Iit has no instance, thus no this
+      2. **Instanceless:** It has no instance, thus no this
 
      You need to define `functional: true` to make it functional. Let's take an example of functional components,
      ```javascript
@@ -2244,3 +2253,65 @@ List of 300 VueJS Interview Questions
        ]
      }
      ```
+117. ### Is it possible to use custom inject name for CSS modules?
+     You can customize the name of the injected computed property by giving the module attribute a value. This will be helpful to avoid overwriting injected styled if you have more than one <style> tags in a single *.vue component. For example, you can use module attribute as below,
+     ```javascript
+     <style module="a">
+       /* identifiers injected as a */
+     </style>
+
+     <style module="b">
+       /* identifiers injected as b */
+     </style>
+     ```
+118. ### What is hot reloading in vue loader?
+     Hot reloading is not about reloading the page when you edit any .vue file. Instead, when you edit a *.vue file, all instances of that component will be swapped in without reloading the page. It improves the development experience when you are tweaking the templates or styling of your components.
+119. ### What is the default behavior of hot reloading?
+     Hot Reload is always enabled except below situations:
+
+     1. webpack target is node (SSR)
+     2. webpack minifies the code
+     3. process.env.NODE_ENV === 'production'
+120. ### How do you disable hot reloading explicitly?
+     You can use `hotReload: false` option to disable the Hot Reload explicitly. It can be configured as below,
+     ```javascript
+     module: {
+       rules: [
+         {
+           test: /\.vue$/,
+           loader: 'vue-loader',
+           options: {
+             hotReload: false // disables Hot Reload
+           }
+         }
+       ]
+     }
+     ```
+121. ### How do you use hot reloading?
+     The vue loader plugin internally uses hot reloading. If you are scaffolding project with `vue-cli`, hot reloading comes out of the box but if you are manually setting up the project then hot reloading is enabled by default with `webpack-dev-server --hot` command.
+122. ### What are state preservation rules in hot reloading?
+     Below are the state preservation rules in hot reloading,
+     1.When editing the `<template>` of a component, instances of the edited component will re-render in place, preserving all current private state.
+     2.When editing the `<script>` part of a component, instances of the edited component will be destroyed and re-created in place.
+     3.When editing the `<style>` hot reload operates on its own via vue-style-loader without affecting application state.
+123. ### How to create functional components using vue loader?
+     You can create functional components by adding functional attribute to template block,
+
+     ```javascript
+     <template functional>
+       <div>{{ props.msg }}</div>
+     </template>
+     ```
+
+124. ### How do you access global properties of functional components?
+     If you need to access properties defined globally on `Vue.prototype` then you can access them on parent,
+
+     ```javascript
+     <template functional>
+       <div>{{ parent.$someProperty }}</div>
+     </template>
+     ```
+125. ### How do you perform testing in vuejs?
+     You can perform testing in two ways,
+     1. ** Using vue-cli:** It offers pre-configured unit testing and e2e testing setups
+     2. ** Manual setup:** You can manually setting up unit tests for *.vue files using either mocha-webpack or jest
