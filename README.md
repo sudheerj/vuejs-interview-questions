@@ -132,6 +132,9 @@ List of 300 VueJS Interview Questions
 |123| [How to create functional components using vue loader?](#how-to-create-functional-components-using-vue-loader)|
 |124| [How do you access global properties of functional components?](#how-do-you-access-global-properties-of-functional-components)|
 |125| [How do you perform testing in vuejs?](#how-do-you-perform-testing-in-vuejs)|
+|126| [How do you apply linting for css?](#how-do-you-apply-linting-for-css)|
+|127| [How do you use eslint plugin?](#how-do-you-use-eslint-plugin)|
+|128| [What is the purpose of eslint loader?](#what-is-the-purpose-of-eslint-loader)|
 
 1.  ### What is VueJS?
     **Vue.js** is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the `view layer` only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -2315,3 +2318,57 @@ List of 300 VueJS Interview Questions
      You can perform testing in two ways,
      1. ** Using vue-cli:** It offers pre-configured unit testing and e2e testing setups
      2. ** Manual setup:** You can manually setting up unit tests for *.vue files using either mocha-webpack or jest
+126. ### How do you apply linting for css?
+     The stylelint linter supports linting style parts of Vue single file components. You can run linter on particular vue file as below
+     ```javascript
+     stylelint MyComponent.vue
+     ```
+     Other option is configuring stylelint-webpack-plugin in webpack. It can be configured as a dev dependency.
+     ```javascript
+     // webpack.config.js
+     const StyleLintPlugin = require('stylelint-webpack-plugin');
+     module.exports = {
+       // ... other options
+       plugins: [
+         new StyleLintPlugin({
+           files: ['**/*.{vue,htm,html,css,sss,less,scss,sass}'],
+         })
+       ]
+     }
+     ```
+127. ### How do you use eslint plugin?
+     The official `eslint-plugin-vue` supports linting both the template and script parts of Vue single file components. You can configure plugin in your ESLint config,
+     ```javascript
+     // .eslintrc.js
+     module.exports = {
+       extends: [
+         "plugin:vue/essential"
+       ]
+     }
+     ```
+     You can run linter on particular component as below,
+     ```javascript
+     eslint --ext js,vue MyComponent.vue
+     ```
+128. ### What is the purpose of eslint loader?
+     You can use `eslint-loader` for *.vue files in order to automatically linted on save during development. It can be installed as npm module,
+     ```javascript
+     npm install -D eslint eslint-loader
+     ```
+     After that you need to add it as pre-loader,
+     ```javascript
+     // webpack.config.js
+     module.exports = {
+       // ... other options
+       module: {
+         rules: [
+           {
+             enforce: 'pre',
+             test: /\.(js|vue)$/,
+             loader: 'eslint-loader',
+             exclude: /node_modules/
+           }
+         ]
+       }
+     }
+     ```
