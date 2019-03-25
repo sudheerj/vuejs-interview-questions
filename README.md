@@ -138,6 +138,9 @@ List of 300 VueJS Interview Questions
 |129| [What is CSS extraction?](#what-is-css-extraction)|
 |130| [What are custom blocks?](#what-are-custom-blocks)|
 |131| [What are the features of stylelint?](#what-are-the-features-of-stylelint?)|
+|132| [What are the principles for vuex application structure?](#what-are-the-principles-for-vuex-application-structure)|
+|133| [Is Vuex supports hot reloading?](#is-vuex-supports-hot-reloading)|
+|134| [What is the purpose of hotUpdate API of vuex store?](#what-is-the-purpose-of-hotupdate-api-of-vuex-store)|
 
 1.  ### What is VueJS?
     **Vue.js** is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the `view layer` only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -2430,3 +2433,49 @@ List of 300 VueJS Interview Questions
      3. It **extracts embedded styles** from HTML, markdown and CSS-in-JS object & template literals
      4. Parses **CSS-like syntaxes** like SCSS, Sass, Less and SugarSS
      5. Supports **Plugins** for reusing community plugins and creating own plugins
+132. ### What are the principles for vuex application structure?
+     Vuex enforces below rules to structure any application.
+     1. Application-level state is centralized in the store.
+     2. The only way to mutate the state is by committing mutations, which are synchronous transactions.
+     3. Asynchronous logic should be encapsulated in, and can be composed with actions.
+     The project structure for any non-trivial application would be as below,
+     <img src="https://github.com/sudheerj/vuejs-interview-questions/blob/master/images/vuex-app-structure.png" width="700" height="500">
+133. ### Is Vuex supports hot reloading?
+     Yes, Vuex supports hot-reloading for mutations, modules, actions and getters during development. You need to use either webpack's hot module replacement API or browserify's hot module replacement plugin.
+134. ### What is the purpose of hotUpdate API of vuex store?
+     The store.hotUpdate() API method is used for mutations and modules. For example, you need to configure vuex store as below,
+     ```javascript
+     // store.js
+     import Vue from 'vue'
+     import Vuex from 'vuex'
+     import mutations from './mutations'
+     import myModule from './modules/myModule'
+
+     Vue.use(Vuex)
+
+     const state = { message: "Welcome to hot reloading" }
+
+     const store = new Vuex.Store({
+       state,
+       mutations,
+       modules: {
+         moduleA: myModule
+       }
+     })
+
+     if (module.hot) {
+       // accept actions and mutations as hot modules
+       module.hot.accept(['./mutations', './modules/a'], () => {
+         // Get the updated modules
+         const newMutations = require('./mutations').default
+         const newMyModule = require('./modules/myModule').default
+         //swap in the new modules and mutations
+         store.hotUpdate({
+           mutations: newMutations,
+           modules: {
+             moduleA: newMyModule
+           }
+         })
+       })
+     }
+     ```
