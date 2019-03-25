@@ -141,6 +141,11 @@ List of 300 VueJS Interview Questions
 |132| [What are the principles for vuex application structure?](#what-are-the-principles-for-vuex-application-structure)|
 |133| [Is Vuex supports hot reloading?](#is-vuex-supports-hot-reloading)|
 |134| [What is the purpose of hotUpdate API of vuex store?](#what-is-the-purpose-of-hotupdate-api-of-vuex-store)|
+|135| [How do you test mutations?](#how-do-you-test-mutations)|
+|136| [How do you test your getters?](#how-do-you-test-your-getters)|
+|137| [What is the procedure to run tests in node?](#what-is-the-procedure-to-run-tests-in-node)|
+|138| [What is the procedure to run tests in browser?](#what-is-the-procedure-to-run-tests-in-browser)|
+|139|
 
 1.  ### What is VueJS?
     **Vue.js** is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the `view layer` only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -2465,7 +2470,7 @@ List of 300 VueJS Interview Questions
 
      if (module.hot) {
        // accept actions and mutations as hot modules
-       module.hot.accept(['./mutations', './modules/a'], () => {
+       module.hot.accept(['./mutations', './modules/newMyModule'], () => {
          // Get the updated modules
          const newMutations = require('./mutations').default
          const newMyModule = require('./modules/myModule').default
@@ -2479,3 +2484,108 @@ List of 300 VueJS Interview Questions
        })
      }
      ```
+135. ### How do you test mutations?
+     Since mutations are just functions that completely rely on their arguments it will be easier to test. You need to keep mutations inside your store.js file and should also export the mutations as a named export apart from default export.
+     Let's take an example of increment mutations,
+     ```javascript
+     // mutations.js
+     export const mutations = {
+       increment: state => state.counter++
+     }
+     ```
+     And test them using mocha and chai as below,
+     ```javascript
+     // mutations.spec.js
+     import { expect } from 'chai'
+     import { mutations } from './store'
+
+     // destructure assign `mutations`
+     const { increment } = mutations
+
+     describe('mutations', () => {
+       it('INCREMENT', () => {
+         // mock state
+         const state = { counter: 10 }
+         // apply mutation
+         increment(state)
+         // assert result
+         expect(state.counter).to.equal(11)
+       })
+     })
+     ```
+136. ### How do you test your getters?
+     It is easier to test getters similar to mutations. It is recommended to test these getters if they have complicated computation.
+     Let's take a simple todo filter as a getter
+     ```javascript
+     // getters.js
+     export const getters = {
+       filterTodos (state, status) {
+         return state.todos.filter(todo => {
+           return todo.status === status
+         })
+       }
+     }
+     ```
+     And the test case for above getter as follows,
+     ```javascript
+     // getters.spec.js
+     import { expect } from 'chai'
+     import { getters } from './getters'
+
+     describe('getters', () => {
+       it('filteredTodos', () => {
+         // mock state
+         const state = {
+           todos: [
+             { id: 1, title: 'design', status: 'Completed' },
+             { id: 2, title: 'testing', status: 'InProgress' },
+             { id: 3, title: 'development', status: 'Completed' }
+           ]
+         }
+         // mock getter
+         const filterStatus = 'Completed'
+
+         // get the result from the getter
+         const result = getters.filterTodos(state, filterStatus)
+
+         // assert the result
+         expect(result).to.deep.equal([
+           { id: 1, title: 'design', status: 'Completed' },
+           { id: 2, title: 'development', status: 'Completed' }
+         ])
+       })
+     })
+     ```
+137. ### What is the procedure to run tests in node?
+     By proper mocking, you can bundle tests with webpack and run them on node without having depenceny on Browser API.  It involves 2 steps,
+     1. **Create webpack config:** Create webpack config with proper .babelrc
+     ```javscript
+     // webpack.config.js
+     module.exports = {
+       entry: './test.js',
+       output: {
+         path: __dirname,
+         filename: 'test-bundle.js'
+       },
+       module: {
+         loaders: [
+           {
+             test: /\.js$/,
+             loader: 'babel-loader',
+             exclude: /node_modules/
+           }
+         ]
+       }
+     }
+     ```
+     2. ** Run testcases:** First you need to bundle and then run them using mocha as below,
+     ```javascript
+     webpack
+     mocha test-bundle.js
+     ```
+138. ### What is the procedure to run tests in browser?
+     Below are the steps to run tests in real browser,
+     1. Install `mocha-loader`.
+     2. Configure webpack config entry point to 'mocha-loader!babel-loader!./test.js'.
+     3. Start webpack-dev-server using the config.
+     4. Go to localhost:8080/webpack-dev-server/test-bundle to see the test result
