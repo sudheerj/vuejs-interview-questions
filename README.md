@@ -145,7 +145,10 @@ List of 300 VueJS Interview Questions
 |136| [How do you test your getters?](#how-do-you-test-your-getters)|
 |137| [What is the procedure to run tests in node?](#what-is-the-procedure-to-run-tests-in-node)|
 |138| [What is the procedure to run tests in browser?](#what-is-the-procedure-to-run-tests-in-browser)|
-|139|
+|139| [What is the purpose of strict mode in vuex?](#what-is-the-purpose-of-strict-mode-in-vuex)|
+|140| [Can I use strict mode in production environment?](#can-i-use-strict-mode-in-production-environment)|
+|141| [What is vuex plugin?](#what-is-vuex-plugin)|
+|142| [How do you mutate state in plugins?](#how-do-you-mutate-state-in-plugins)|
 
 1.  ### What is VueJS?
     **Vue.js** is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the `view layer` only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -2589,3 +2592,66 @@ List of 300 VueJS Interview Questions
      2. Configure webpack config entry point to 'mocha-loader!babel-loader!./test.js'.
      3. Start webpack-dev-server using the config.
      4. Go to localhost:8080/webpack-dev-server/test-bundle to see the test result
+139. ### What is the purpose of strict mode in vuex?
+     In strict mode, whenever Vuex state is mutated outside of mutation handlers, an error will be thrown. It make sure that all state mutations can be explicitly tracked by debugging tools. You can just enable this by passing `strict: true` while creating the vuex store.
+     ```javascript
+     const store = new Vuex.Store({
+       // ...
+       strict: true
+     })
+     ```
+140. ### Can I use strict mode in production environment?
+     No, it is not recommended to use strict mode in production environment. Strict mode runs a synchronous deep watcher on the state tree for detecting inappropriate mutations and it can be quite expensive when you perform large amount of mutations. i.e, It can impact performance if you enable in production mode.
+     Hence it should be handled through build tools,
+     ```javascript
+     const store = new Vuex.Store({
+       // ...
+       strict: process.env.NODE_ENV !== 'production'
+     })
+     ```
+141. ### What is vuex plugin?
+     The vuex plugin is an option hat exposes hooks for each mutation. It is a normal function that receives the store as the only argument. You can create your own plugin or use built-in plugins.
+     The plugin skeleton would be as below,
+     ```javascript
+     const myPlugin = store => {
+       // called when the store is initialized
+       store.subscribe((mutation, state) => {
+         // called after every mutation.
+         // The mutation comes in the format of `{ type, payload }`.
+       })
+     }
+     ```
+     After that plugin can be configured for plugins options as below,
+     ```javascript
+     const store = new Vuex.Store({
+       // ...
+       plugins: [myPlugin]
+     })
+     ```
+142. ### How do you mutate state in plugins?
+     Similar to components you can't mutate state directly but they can trigger changes by by committing mutations. This way a plugin can be used to sync a data source to the store.
+     For example, createWebSocketPlugin plugin is used to sync a websocket data source to the store.
+     ```javascript
+     export default function createWebSocketPlugin (socket) {
+       return store => {
+         socket.on('data', data => {
+           store.commit('receiveData', data)
+         })
+         store.subscribe(mutation => {
+           if (mutation.type === 'UPDATE_DATA') {
+             socket.emit('update', mutation.payload)
+           }
+         })
+       }
+     }
+     ```
+     And then configure plugin in vuex store as below
+     ```javascript
+     const plugin = createWebSocketPlugin(socket)
+
+     const store = new Vuex.Store({
+       state,
+       mutations,
+       plugins: [plugin]
+     })
+     ```
