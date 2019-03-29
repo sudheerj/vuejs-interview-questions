@@ -149,6 +149,13 @@ List of 300 VueJS Interview Questions
 |140| [Can I use strict mode in production environment?](#can-i-use-strict-mode-in-production-environment)|
 |141| [What is vuex plugin?](#what-is-vuex-plugin)|
 |142| [How do you mutate state in plugins?](#how-do-you-mutate-state-in-plugins)|
+|143| [What is vuex store?](#what-is-vuex-store)|
+|144| [What are the differences of vuex store and plain global object?](#what-are-the-differences-of-vuex-store-and-plain-global-object)|
+|145| [What is the reason not to update the state directly?](#what-is-the-reason-not-to-update-the-state-directly)|
+|146| [What is Single state tree?](#what-is-single-state-tree)|
+|147| [How do you install vuex?](#how-do-you-install-vuex)|
+|148| [Do I need promise for vuex?](#do-i-need-promise-for-vuex)|
+|149| [How do you display store state in vue components?](#how-do-you-display-store-state-in-vue-components)|
 
 1.  ### What is VueJS?
     **Vue.js** is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the `view layer` only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -2654,4 +2661,86 @@ List of 300 VueJS Interview Questions
        mutations,
        plugins: [plugin]
      })
+     ```
+143. ### What is vuex store?
+     A Vuex "store" is basically a container that holds your application state. The store creation is pretty straightforward.
+     Below are the list of instructions to use vuex in an increment application,
+     1. Configure vuex in vuejs ecosystem
+     ```javascript
+     import Vuex from "vuex";
+     Vue.use(Vuex)
+     ```
+     2. Provide an initial state object and some mutations
+     ```javascript
+     // Make sure to call Vue.use(Vuex) first if using a module system
+
+     const store = new Vuex.Store({
+       state: {
+         count: 0
+       },
+       mutations: {
+         increment (state) {
+           state.count++
+         }
+       }
+     })
+     ```
+     3. Trigger state change with commit and access state variables,
+     ```javascript
+     store.commit('increment')
+
+     console.log(store.state.count) // -> 1
+     ```
+144. ### What are the differences of vuex store and plain global object?
+     Below are the two major differences between vuex store and plain global object
+     1. **Vuex stores are reactive:** If the store's state changes then vue components will reactively and efficiently get updated
+     2. **Cannot directly mutate the store's state:** The store's state is changed by explicitly committing mutations to ensure that every state change leaves a track-able record for tooling purpose
+145. ### What is the reason not to update the state directly?
+     We want to explicitly track application state in order to implement tools that can log every mutation, take state snapshots, or even perform time travel debugging. So we need to commit a mutation instead of changing store's state directly.
+146. ### What is Single state tree?
+     Vuex's single state tree is single object contains all your application level state and serves as the "single source of truth". It  does not conflict with modularity when you split state and mutations into sub modules.
+147. ### How do you install vuex?
+     You can install vuex using npm or yarn as below,
+     ```javascript
+     npm install vuex --save
+     (or)
+     yarn add vuex
+     ```
+     In a module system, you must explicitly install Vuex via Vue.use()
+     ```javascript
+     import Vue from 'vue'
+     import Vuex from 'vuex'
+
+     Vue.use(Vuex)
+     ```
+     (OR)
+     You can also install it using CDN links such as unpkg.cpm which provides NPM-based CDN links. Just include vuex after Vue and it will install itself automatically.
+     ```javascript
+     <script src="https://unpkg.com/vue.js"></script>
+     <script src="https://unpkg.com/vuex.js"></script>
+     ```
+     **Note:** You can  use a specific version/tag via URLs like https://unpkg.com/vuex@2.0.0. If you don't mention any version then it will point to latest version.
+148. ### Do I need promise for vuex?
+     Yes, Vuex requires Promise. If your supporting browsers do not implement Promise (e.g. IE), you can use a polyfill library, such as es6-promise using npm or yarn.
+     ```javascript
+     npm install es6-promise --save # NPM
+     yarn add es6-promise # Yarn
+     ```
+     After that import into anywhere in your application,
+     ```javascript
+     import 'es6-promise/auto'
+     ```
+149. ### How do you display store state in vue components?
+     Since Vuex stores are reactive, you can retrieve" state from store by simply returning store's state from within a computed property. i.e, Whenever store state changes, it will cause the computed property to re-evaluate, and trigger associated DOM updates.
+     Let's take a hello word component which display store's state in the template,
+     ```javascript
+     // let's create a hello world component
+     const Greeting = {
+       template: `<div>{{ greet }}</div>`,
+       computed: {
+         greet () {
+           return store.state.msg
+         }
+       }
+     }
      ```
