@@ -156,6 +156,10 @@ List of 300 VueJS Interview Questions
 |147| [How do you install vuex?](#how-do-you-install-vuex)|
 |148| [Do I need promise for vuex?](#do-i-need-promise-for-vuex)|
 |149| [How do you display store state in vue components?](#how-do-you-display-store-state-in-vue-components)|
+|150| [How do you inject store into child components?](#how-do-you-inject-store-into-child-components)|
+|151| [What is mapState helper?](#what-is-mapstate-helper)|
+|152| [How do you combine local computed properties with mapState helper?](#how-do-you-combine-local-computed-properties-with-mapstate-helper)|
+|153| [Do you need to replace entire local state with vuex?](#do-you-need-to-replace-entire-local-state-with-vuex)|
 
 1.  ### What is VueJS?
     **Vue.js** is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the `view layer` only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -2744,3 +2748,75 @@ List of 300 VueJS Interview Questions
        }
      }
      ```
+150. ### How do you inject store into child components?
+     Vuex provides a mechanism to "inject" the store into all child components from the root component with the store option. It will be enabled by vue.use(vuex).
+     For example, let's inject into our app component as below,
+     ```javascript
+     const app = new Vue({
+       el: '#app',
+       // provide the store using the "store" option.
+       // this will inject the store instance to all child components.
+       store,
+       components: { Greeting },
+       template: `
+         <div class="app">
+           <greeting></greeting>
+         </div>
+       `
+     })
+     ```
+     Now the store will be injected into all child components of the root and will be available on them as **this.$store**
+     ```javascript
+      // let's create a hello world component
+          const Greeting = {
+            template: `<div>{{ greet }}</div>`,
+            computed: {
+              greet () {
+                return this.$store.state.msg
+              }
+            }
+          }
+     ```
+151. ### What is mapState helper?
+     In Vuex application, creating a computed property every time whenever we want to access the store's state property or getter is going to be repetitive and verbose, especially if a component needs more than one state property. In this case, we can make use of the mapState helper of vuex which generates computed getter functions for us.
+     Let's take an increment example to demonstrate mapState helper,
+     ```javascript
+     // in full builds helpers are exposed as Vuex.mapState
+     import { mapState } from 'vuex'
+
+     export default {
+       // ...
+       computed: mapState({
+         // arrow functions can make the code very succinct!
+         username: state => state.username,
+
+         // passing the string value 'username' is same as `state => state.username`
+         usernameAlias: 'username',
+
+         // to access local state with `this`, a normal function must be used
+          greeting (state) {
+           return this.localTitle + state.username
+         }
+       })
+     }
+     ```
+     We can also pass a string array to mapState when the name of a mapped computed property is the same as a state sub tree name
+     ```javascript
+     computed: mapState([
+       // map this.username to store.state.username
+       'username'
+     ])
+     ```
+152. ### How do you combine local computed properties with mapState helper?
+     You can use object spread operator syntax in order to combine mapState helper(which returns an object) with other local computed properties. This way it simplify merging techniques using utilities.
+     ```javascript
+     computed: {
+       localComputed () { /* ... */ },
+       // mix this into the outer object with the object spread operator
+       ...mapState({
+         // ...
+       })
+     }
+     ```
+153. ### Do you need to replace entire local state with vuex?
+     No, if a piece of state strictly belongs to a single component, it could be just fine leaving it as local state. i.e, Eventhough vuex used in the application, it doesn't mean that you need to keep all the local state in vuex store. Other the code becomes more verbose and indirect although it makes your state mutations more explicit and debuggable.
