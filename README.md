@@ -160,6 +160,19 @@ List of 300 VueJS Interview Questions
 |151| [What is mapState helper?](#what-is-mapstate-helper)|
 |152| [How do you combine local computed properties with mapState helper?](#how-do-you-combine-local-computed-properties-with-mapstate-helper)|
 |153| [Do you need to replace entire local state with vuex?](#do-you-need-to-replace-entire-local-state-with-vuex)|
+|154| [What are vuex getters?](#what-are-vuex-getters?)|
+|155| [What is a property style access?](#what-is-a-property-style-access)|
+|156| [What is a method style access?](#what-is-a-method-style-access)|
+|157| [What is mapGetter helper?](#what-is-mapgetter-helper)|
+|158| [What are mutations?](#what-are-mutations)|
+|159| [How do you commit with payload?](#how-do-you-commit-with-payload)|
+|160| [What is object style commit?](#what-is-object-style-commit)|
+|161| [What are the caveats with vuex mutations?](#what-are-the-caveats-with-vuex-mutations)|
+|162| [Why mutations should be synchronous?](#why-mutations-should-be-synchronous)|
+|163| [How do you perform mutations in components?](#how-do-you-perform-mutations-in-components)|
+|164| [Is it mandatory to use constants for mutation types?](#is-it-mandatory-to-use-constants-for-mutation-types)|
+|165| [How do you perform asynchronous operations?](#how-do-you-perform-asynchronous-operations)|
+|166| [What are differences between mutations and actions?](#what-are-differences-between-mutations-and-actions)|
 
 1.  ### What is VueJS?
     **Vue.js** is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the `view layer` only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -2820,3 +2833,190 @@ List of 300 VueJS Interview Questions
      ```
 153. ### Do you need to replace entire local state with vuex?
      No, if a piece of state strictly belongs to a single component, it could be just fine leaving it as local state. i.e, Eventhough vuex used in the application, it doesn't mean that you need to keep all the local state in vuex store. Other the code becomes more verbose and indirect although it makes your state mutations more explicit and debuggable.
+154. ### What are vuex getters??
+     Vuex getters acts as computed properties for stores to compute derived state based on store state. Similar to computed properties, a getter's result is cached based on its dependencies, and will only re-evaluate when some of its dependencies have changed.
+     Let's take a todo example which as completedTodos getter to find all completed todos,
+     ```javascript
+     const store = new Vuex.Store({
+       state: {
+         todos: [
+           { id: 1, text: 'Vue course', completed: true },
+           { id: 2, text: 'Vuex course', completed: false },
+           { id: 2, text: 'Vue Router course', completed: true }
+         ]
+       },
+       getters: {
+         completedTodos: state => {
+           return state.todos.filter(todo => todo.completed)
+         }
+       }
+     })
+     ```
+     **Note:**Getters receive state as first argument.
+155. ### What is a property style access?
+     You can access values of store's getter object(store.getters) as properties. This is known as property style access.
+     For example, you can access todo's status as a property,
+     ```javascript
+     store.getters.todosStatus
+     ```
+     The getters can be passed as 2nd argument for other getters. For example, you can derive completed todo's count based on their status as below,
+     ```javascript
+     getters: {
+       completedTodosCount: (state, getters) => {
+         return getters.todosStatus === 'completed'
+       }
+     }
+     ```
+     **Note:** The getters accessed as properties are cached as part of Vue's reactivity system.
+156. ### What is a method style access?
+     You can access store's state in a method style by passing arguments. For example, you can pass user id to find user profile information as below,
+     ```javascript
+     getters: {
+       getUserProfileById: (state) => (id) => {
+         return state.users.find(user => user.id === id)
+       }
+     }
+     ```
+     After that you can access it as a method call,
+     ```javascript
+     store.getters.getUserProfileById(111); {id: '111', name: 'John', age: 33}
+     ```
+157. ### What is mapGetter helper??
+     The mapGetters is a helper that simply maps store getters to local computed properties. For example, the usage of getters for todo app would be as below,
+     ```javascript
+     import { mapGetters } from 'vuex'
+
+     export default {
+       computed: {
+         // mix the getters into computed with object spread operator
+         ...mapGetters([
+           'completedTodos',
+           'todosCount',
+           // ...
+         ])
+       }
+     }
+     ```
+158. ### What are mutations?
+     Vuex mutations are similar to any events with a string `type` and a `handler`. The handler function is where we perform actual state modifications, and it will receive the state as the first argument.
+     For example, the counter example with increment mutation would be as below,
+     ```javascript
+     const store = new Vuex.Store({
+       state: {
+         count: 0
+       },
+       mutations: {
+         increment (state) {
+           // mutate state
+           state.count++
+         }
+       }
+     })
+     ```
+     You can't directly invoke mutation instead you need to call `store.commit` with its type. The above mutation would be triggered as folows
+     ```javascript
+     store.commit('increment')
+     ```
+159. ### How do you commit with payload?
+     You can also pass **payload** for the mutation as an additional argument to `store.commit`. For example, the counter mutation with payload object would be as below,
+     ```javascript
+     mutations: {
+       increment (state, payload) {
+         state.count += payload.increment
+       }
+     }
+     ```
+     And then you can trigger increment commit
+     ```javascript
+     store.commit('increment', {
+       increment: 20
+     })
+     ```
+     **Note:** You can also pass primitives as payload.
+160. ### What is object style commit?
+     You can also commit a mutation is by directly using an object that has a **type** property.
+     ```javascript
+     store.commit({
+       type: 'increment',
+       value: 20
+     })
+     ```
+     Now the entire object will be passed as the payload to mutation handlers(i.e, without any changes to handler signature).
+     ```javascript
+     mutations: {
+       increment (state, payload) {
+         state.count += payload.value
+       }
+     }
+     ```
+161. ### What are the caveats with vuex mutations?
+     Since a Vuex store's state is made reactive by Vue, the same reactivity caveats of vue will apply to vuex mutations. These are the rules should be followed for vuex mutations,
+     1. It is recommended to initialize store's initial state with all desired fields upfront
+     2. Add new properties to state Object either by set method or object spread syntax
+     ```javascript
+     Vue.set(stateObject, 'newProperty', 'John')
+     ```
+     (OR)
+     ```javascript
+     state.stateObject = { ...state.stateObject, newProperty: 'John' }
+     ```
+162. ### Why mutations should be synchronous?
+     You need to remember that mutation handler functions must be synchronous. This is why because any state mutation performed in the callback is essentially un-trackable. It is going to be problematic when the devtool will need to capture a "before" and "after" snapshots of the state during the mutations.
+     ```javascript
+     mutations: {
+       someMutation (state) {
+         api.callAsyncMethod(() => {
+           state.count++
+         })
+       }
+     }
+     ```
+163. ### How do you perform mutations in components?
+     You can commit mutations in components with  either **this.$store.commit('mutation name')** or mapMutations helper to map component methods to **store.commit** calls.
+     For example, the usage of mapMutations helper on counter example would be as below,
+     ```javascript
+     import { mapMutations } from 'vuex'
+
+     export default {
+       methods: {
+         ...mapMutations([
+           'increment', // map `this.increment()` to `this.$store.commit('increment')`
+
+           // `mapMutations` also supports payloads:
+           'incrementBy' // map `this.incrementBy(amount)` to `this.$store.commit('incrementBy', amount)`
+         ]),
+         ...mapMutations({
+           add: 'increment' // map `this.add()` to `this.$store.commit('increment')`
+         })
+       }
+     }
+     ```
+164. ### Is it mandatory to use constants for mutation types?
+     No, it is not mandatory. But you might observed that State management implementations such Flux and Redux use constants for mutation types. This convention is just a preference and useful to take advantage of tooling like linters, and putting all constants in a single file allows your collaborators to get an at-a-glance view of what mutations are possible in the entire application.
+     For example, the mutations can be declared as below,
+     ```javascript
+     // mutation-types.js
+     export const SOME_MUTATION = 'SOME_MUTATION'
+     ```
+     And you can configure them in store as follows,
+     ```javascript
+     // store.js
+     import Vuex from 'vuex'
+     import { SOME_MUTATION } from './mutation-types'
+
+     const store = new Vuex.Store({
+       state: { ... },
+       mutations: {
+         // ES2015 computed property name feature to use a constant as the function name
+         [SOME_MUTATION] (state) {
+           // mutate state
+         }
+       }
+     })
+     ```
+165. ### How do you perform asynchronous operations?
+     In Vuex, mutations are synchronous transactions. But if you want to handle asynchronous operations then you should use **actions**.
+166. ### What are differences between mutations and actions?
+     Actions are similar to mutations, but there are two main differences,
+     1. Mutations perform mutations on the state, actions commit mutations.
+     2. Actions can contain arbitrary asynchronous operations unlike mutations.
