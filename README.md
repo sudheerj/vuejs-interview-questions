@@ -173,6 +173,7 @@ List of 300 VueJS Interview Questions
 |164| [Is it mandatory to use constants for mutation types?](#is-it-mandatory-to-use-constants-for-mutation-types)|
 |165| [How do you perform asynchronous operations?](#how-do-you-perform-asynchronous-operations)|
 |166| [What are differences between mutations and actions?](#what-are-differences-between-mutations-and-actions)|
+|167| [Give an example usage of actions?](#give-an-example-usage-of-actions?)|
 
 1.  ### What is VueJS?
     **Vue.js** is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the `view layer` only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -3020,3 +3021,23 @@ List of 300 VueJS Interview Questions
      Actions are similar to mutations, but there are two main differences,
      1. Mutations perform mutations on the state, actions commit mutations.
      2. Actions can contain arbitrary asynchronous operations unlike mutations.
+167. ### Give an example usage of actions?
+     Vuex provides actions property similar mutations property in order to define action handlers. These action handlers receive context object as an argument which has same properties and methods of store instance.
+     Let's see counter example to demonstrate increment action which commits respective mutation,
+     ```javascript
+     const store = new Vuex.Store({
+       state: {
+         count: 0
+       },
+       mutations: {
+         increment (state) {
+           state.count++
+         }
+       },
+       actions: {
+         increment (context) {
+           context.commit('increment')
+         }
+       }
+     })
+     ```
