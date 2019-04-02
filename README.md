@@ -174,6 +174,9 @@ List of 300 VueJS Interview Questions
 |165| [How do you perform asynchronous operations?](#how-do-you-perform-asynchronous-operations)|
 |166| [What are differences between mutations and actions?](#what-are-differences-between-mutations-and-actions)|
 |167| [Give an example usage of actions?](#give-an-example-usage-of-actions?)|
+|168| [How do you dispatch actions?](#how-do-you-dispatch-actions)|
+|169| [Can you dispatch an action using payload or object?](#can-you-dispatch-an-action-using-payload-or-object)|
+|170| [Can I use styled components in vuejs?](#can-i-use-styled-components-in-vuejs)|
 
 1.  ### What is VueJS?
     **Vue.js** is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the `view layer` only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -3041,3 +3044,24 @@ List of 300 VueJS Interview Questions
        }
      })
      ```
+168. ### How do you dispatch actions?
+     Actions are simply triggered with the store.dispatch method as below,
+     ```javascript
+     store.dispatch('increment')
+     ```
+169. ### Can you dispatch an action using payload or object style?
+     Yes, actions support both payload and object style format similar to mutations.
+     ```javascript
+     // dispatch with a payload
+     store.dispatch('incrementAsync', {
+       amount: 10
+     })
+
+     // dispatch with an object
+     store.dispatch({
+       type: 'incrementAsync',
+       amount: 10
+     })
+     ```
+170. ### Can I use styled components in vuejs?
+     Styled components is basically used for ReactJS applications. If you want to use for VueJS applications, there is vuejs styled components library available under styled component library. VueJS Styled component is a javascript library for stying vuejs applications.
