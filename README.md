@@ -177,6 +177,8 @@ List of 300 VueJS Interview Questions
 |168| [How do you dispatch actions?](#how-do-you-dispatch-actions)|
 |169| [Can you dispatch an action using payload or object?](#can-you-dispatch-an-action-using-payload-or-object)|
 |170| [Can I use styled components in vuejs?](#can-i-use-styled-components-in-vuejs)|
+|171| [How do you dispatch actions in components?](#how-do-you-dispatch-actions-in-components)|
+|172| [How do you compose actions?](#how-do-you-compose-actions)|
 
 1.  ### What is VueJS?
     **Vue.js** is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the `view layer` only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -3065,3 +3067,56 @@ List of 300 VueJS Interview Questions
      ```
 170. ### Can I use styled components in vuejs?
      Styled components is basically used for ReactJS applications. If you want to use for VueJS applications, there is vuejs styled components library available under styled component library. VueJS Styled component is a javascript library for stying vuejs applications.
+171. ### How do you dispatch actions in components?
+     You can dispatch actions in components with **this.$store.dispatch('action name')**, or use the **mapActions** helper which maps component methods to store.dispatch calls.
+     For example, you can dispatch increment actions in counter component as below,
+     ```javascript
+     import { mapActions } from 'vuex'
+
+     export default {
+       // ...
+       methods: {
+         ...mapActions([
+           'increment', // map `this.increment()` to `this.$store.dispatch('increment')`
+
+           // `mapActions` also supports payloads:
+           'incrementBy' // map `this.incrementBy(amount)` to `this.$store.dispatch('incrementBy', amount)`
+         ]),
+         ...mapActions({
+           add: 'increment' // map `this.add()` to `this.$store.dispatch('increment')`
+         })
+       }
+     }
+     ```
+172. ### How do you compose actions?
+     You can write multiple actions together to handle more complex async flows either by chaining promises or async/await. i.e, `store.dispatch` can handle Promise returned by the triggered action handler and it also returns Promise.
+     Let's take two actions to see how they are combined and handled async flows,
+     ```javascript
+     actions: {
+       actionOne ({ commit }) {
+         return new Promise((resolve, reject) => {
+           setTimeout(() => {
+             commit('first mutation')
+             resolve()
+           }, 1000)
+         })
+       },
+        actionTwo ({ dispatch, commit }) {
+           return dispatch('actionA').then(() => {
+             commit('second mutation')
+           })
+         }
+     }
+     ```
+     As per the above example, When you try to dispatch actionTwo it dispatchs actionOne first and then commits respective mutation. You can still simplify with async/await as below,
+     ```javascript
+     actions: {
+       async actionOne ({ commit }) {
+         commit('first mutation', await getDataAsPromise())
+       },
+       async actionTwo ({ dispatch, commit }) {
+         await dispatch('actionOne') // wait for `actionA` to finish
+         commit('second mutation', await getSomeDataAsPromise())
+       }
+     }
+     ```
