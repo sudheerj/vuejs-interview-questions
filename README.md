@@ -179,6 +179,9 @@ List of 300 VueJS Interview Questions
 |170| [Can I use styled components in vuejs?](#can-i-use-styled-components-in-vuejs)|
 |171| [How do you dispatch actions in components?](#how-do-you-dispatch-actions-in-components)|
 |172| [How do you compose actions?](#how-do-you-compose-actions)|
+|173| [What are modules in vuex?](#what-are-modules-in-vuex)|
+|174| [What is module local state?](#what-is-module-local-state)|
+|175| [What is namespacing in vuex](#what-is-namespacing-in-vuex)|
 
 1.  ### What is VueJS?
     **Vue.js** is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the `view layer` only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -3120,3 +3123,63 @@ List of 300 VueJS Interview Questions
        }
      }
      ```
+173. ### What are modules in vuex?
+     If you keep all state of our application in a single big state, the store can get really bloated. To solve this problem, Vuex allows us to divide our store into modules. Here, each module can contain its own state, mutations, actions, getters, and even nested modules.
+     Let's take an example with multiple modules, configuring them in vuex and accessing different modules,
+     ```javascript
+     const moduleA = {
+       state: { ... },
+       mutations: { ... },
+       actions: { ... },
+       getters: { ... }
+     }
+
+     const moduleB = {
+       state: { ... },
+       mutations: { ... },
+       actions: { ... },
+       getters: { ... }
+     }
+
+     const store = new Vuex.Store({
+       modules: {
+         a: moduleA,
+         b: moduleB
+       }
+     })
+
+     store.state.a // -> `moduleA`'s state
+     store.state.b // -> `moduleB`'s state
+     ```
+174. ### What is module local state?
+     When you use modules the local state will be available to mutations, getters and actions in different ways.
+     1. Both mutations and getters will receive module local state as first argument.
+     ```javascript
+     const moduleOne = {
+       state: { count: 0 },
+       mutations: {
+         increment (state) {
+           state.count++; // Here state refers local module state
+         }
+       },
+
+       getters: {
+         average (state) {
+           return state.count / 2
+         }
+       }
+     }
+     ```
+     2. In actions, local state will be available as first argument.
+     ```javascript
+     const moduleOne = {
+       actions: {
+         incrementConditional ({ state, commit, rootState }) {
+           if (state.count < rootState.count) {
+             commit('increment')
+           }
+         }
+       }
+     }
+     ```
+175. ### What is namespacing in vuex?
