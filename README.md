@@ -182,6 +182,8 @@ List of 300 VueJS Interview Questions
 |173| [What are modules in vuex?](#what-are-modules-in-vuex)|
 |174| [What is module local state?](#what-is-module-local-state)|
 |175| [What is namespacing in vuex](#what-is-namespacing-in-vuex)|
+|176| [What is the default namespace behavior in vuex?](#what-is-the-default-namespace-behavior-in-vuex)|
+|177| [When do you reuse modules?](#when-do-you-reuse-modules)|
 
 1.  ### What is VueJS?
     **Vue.js** is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the `view layer` only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -3127,14 +3129,14 @@ List of 300 VueJS Interview Questions
      If you keep all state of our application in a single big state, the store can get really bloated. To solve this problem, Vuex allows us to divide our store into modules. Here, each module can contain its own state, mutations, actions, getters, and even nested modules.
      Let's take an example with multiple modules, configuring them in vuex and accessing different modules,
      ```javascript
-     const moduleA = {
+     const moduleOne = {
        state: { ... },
        mutations: { ... },
        actions: { ... },
        getters: { ... }
      }
 
-     const moduleB = {
+     const moduleTwo = {
        state: { ... },
        mutations: { ... },
        actions: { ... },
@@ -3143,13 +3145,13 @@ List of 300 VueJS Interview Questions
 
      const store = new Vuex.Store({
        modules: {
-         a: moduleA,
-         b: moduleB
+         one: moduleOne,
+         two: moduleTwo
        }
      })
 
-     store.state.a // -> `moduleA`'s state
-     store.state.b // -> `moduleB`'s state
+     store.state.one // -> `moduleOne's state
+     store.state.one // -> `moduleTwo's state
      ```
 174. ### What is module local state?
      When you use modules the local state will be available to mutations, getters and actions in different ways.
@@ -3183,3 +3185,17 @@ List of 300 VueJS Interview Questions
      }
      ```
 175. ### What is namespacing in vuex?
+176. ### What is the default namespace behavior in vuex?
+     By default, actions, mutations and getters inside modules are still registered under the global namespace. Because of that multiple modules react to the same mutation/action type.
+177. ### When do you reuse modules?
+     Sometime you may need to create multiple instances of a module. For example, it is needed in the below cases,
+     1. If multiple stores that use the same module
+     2. Register the same module multiple times in the same store.
+     In those cases, you need to assign to a variable and export it for reusability,
+     ```javascript
+     const MyReusableModule = {
+       // state
+       // mutations, actions, getters...
+     }
+     ```
+
