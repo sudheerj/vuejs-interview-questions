@@ -3106,11 +3106,11 @@ List of 300 VueJS Interview Questions
            }, 1000)
          })
        },
-        actionTwo ({ dispatch, commit }) {
-           return dispatch('actionA').then(() => {
-             commit('second mutation')
-           })
-         }
+       actionTwo ({ dispatch, commit }) {
+         return dispatch('actionA').then(() => {
+           commit('second mutation')
+         })
+       }
      }
      ```
      As per the above example, When you try to dispatch actionTwo it dispatchs actionOne first and then commits respective mutation. You can still simplify with async/await as below,
