@@ -184,6 +184,7 @@ List of 300 VueJS Interview Questions
 |175| [What is namespacing in vuex](#what-is-namespacing-in-vuex)|
 |176| [What is the default namespace behavior in vuex?](#what-is-the-default-namespace-behavior-in-vuex)|
 |177| [When do you reuse modules?](#when-do-you-reuse-modules)|
+|178| [What are the principles enforced by vuex?](#what-are-the-principles-enforced-by-vuex)|
 
 1.  ### What is VueJS?
     **Vue.js** is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the `view layer` only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -3198,4 +3199,11 @@ List of 300 VueJS Interview Questions
        // mutations, actions, getters...
      }
      ```
+178. ### What are the principles enforced by vuex?
+     Vuex enforces below high-level principles,
+     1. The Application-level state need to be centralized in the store
+     2. The state should be mutated by committing mutations only(i.e, for synchronous transactions)
+     3. The actions should be used for asynchronous transactions
+179. ### ?
+180. ### ?
 
