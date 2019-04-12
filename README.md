@@ -185,6 +185,8 @@ List of 300 VueJS Interview Questions
 |176| [What is the default namespace behavior in vuex?](#what-is-the-default-namespace-behavior-in-vuex)|
 |177| [When do you reuse modules?](#when-do-you-reuse-modules)|
 |178| [What are the principles enforced by vuex?](#what-are-the-principles-enforced-by-vuex)|
+|179| [Can I perform mutations directly in strict mode?](#can-i-perform-mutations-directly-in-strict-mode)|
+|180| [How to use model directive with two way computed property?](#how-to-use-model-directive-with-two-way-computed-property)|
 
 1.  ### What is VueJS?
     **Vue.js** is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the `view layer` only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -3107,11 +3109,11 @@ List of 300 VueJS Interview Questions
            }, 1000)
          })
        },
-        actionTwo ({ dispatch, commit }) {
-           return dispatch('actionA').then(() => {
-             commit('second mutation')
-           })
-         }
+       actionTwo ({ dispatch, commit }) {
+         return dispatch('actionA').then(() => {
+           commit('second mutation')
+         })
+       }
      }
      ```
      As per the above example, When you try to dispatch actionTwo it dispatchs actionOne first and then commits respective mutation. You can still simplify with async/await as below,
@@ -3204,6 +3206,50 @@ List of 300 VueJS Interview Questions
      1. The Application-level state need to be centralized in the store
      2. The state should be mutated by committing mutations only(i.e, for synchronous transactions)
      3. The actions should be used for asynchronous transactions
-179. ### ?
-180. ### ?
+179. ### Can I perform mutations directly in strict mode?
+     In strict mode, you can't mutate state directly using `v-model` attribute. If you use v-model it throws an error because mutation is not performed inside an explicit Vuex mutation handler.
+     For example, the below input throws an error due to v-model usage
+     ```javascript
+     <input v-model="stateObject.message">
+     ```
+     In this case, you need to bind the <input>'s value. It can be resolved using value attribute as below,
+     ```javascript
+     <input :value="username" @input="updateProfile">
+
+     computed: {
+       ...mapState({
+         message: state => state.user.username
+       })
+     },
+     methods: {
+       updateProfile (e) {
+         this.$store.commit('updateProfile', e.target.value)
+       }
+     },
+     mutations: {
+       updateProfile (state, username) {
+         state.user.username = username
+       }
+     }
+     ```
+180. ### How to use model directive with two way computed property?
+     You can still use model directive using two-way computed property with a setter.
+     ```javascript
+      <input v-model="username">
+      computed: {
+       message: {
+         get () {
+           return this.$store.state.user.username
+         },
+         set (value) {
+           this.$store.commit('updateProfile', value)
+         }
+       }
+      }
+      mutations: {
+            updateProfile (state, username) {
+              state.user.username = username
+            }
+      }
+     ```
 
