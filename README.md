@@ -187,6 +187,12 @@ List of 300 VueJS Interview Questions
 |178| [What are the principles enforced by vuex?](#what-are-the-principles-enforced-by-vuex)|
 |179| [Can I perform mutations directly in strict mode?](#can-i-perform-mutations-directly-in-strict-mode)|
 |180| [How to use model directive with two way computed property?](#how-to-use-model-directive-with-two-way-computed-property)|
+|181| [What is Vue CLI?](#what-is-vue-cli)|
+|182| [What are the features provided by Vue CLI?](#what-are-the-features-provided-by-vue-cli)|
+|183| [What is instant prototyping?](#what-is-instant-prototyping)|
+|184| [How do you create project using Vue CLI?](#how-do-you-create-project-using-vue-cli)|
+|185| [How do you create project using GUI?](#how-do-you-create-project-using-gui)|
+|186| [What are plugins in vue CLI?](#what-are-plugins-in-vue-cli)|
 
 1.  ### What is VueJS?
     **Vue.js** is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the `view layer` only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -3252,4 +3258,63 @@ List of 300 VueJS Interview Questions
             }
       }
      ```
+181. ### What is Vue CLI?
+     Vue CLI is a simple command line interface for scaffolding Vue.js projects. It will be helpful for rapid Vue.js development. You can install the npm package globally as below,
+     ```javascript
+     npm install -g @vue/cli
+     # OR
+     yarn global add @vue/cli
+     ```
+     You can find the install version using `vue --version` command.
+     **Note:** Vue CLI requires Node.js version 8.9 or above (8.11.0+ recommended).
+182. ### What are the features provided by Vue CLI?
+     VueCLI provides below major features,
+     1. Interactive project scaffolding via @vue/cli
+     2. A rich collection of official plugins integrating the best tools in the frontend ecosystem.
+     3. A full graphical user interface to create and manage Vue.js projects.
+     4. Zero config rapid prototyping via combination of @vue/cli and @vue/cli-service-global
+     5. A runtime dependency (@vue/cli-service) built on top of webpack and extensible via plugins
+183. ### What is instant prototyping?
+     In Vue CLI, Instant prototyping is known as rapid prototyping with just a single *.vue file with the `vue serve`(similar to vue create) and `vue build` commands. But you need to install below global addon for this.
+     ```javascript
+     npm install -g @vue/cli-service-global
+     # or
+     yarn global add @vue/cli-service-global
+     ```
+     You can also provide entry component for `vue serve` and target file for `vue build` using below commands
+     ```javascript
+     vue serve MyComponent.vue
+     vue build MyComponent.vue
+     ```
+184. ### How do you create project using vue cli?
+     You can create project using `vue create` command
+     ```javascript
+     vue create my-app
+     ```
+     You can either choose the default preset or select "Manually select features" to pick the features you need.
+     The default preset prompt would be as below,
+     <img src="https://github.com/sudheerj/vuejs-interview-questions/blob/master/images/cli-default-presets.png" width="400" height="500">
+     and the manual select features would be as below,
+     <img src="https://github.com/sudheerj/vuejs-interview-questions/blob/master/images/cli-manual-features.png" width="400" height="500">
+
+185. ### How do you create project using GUI?
+     You can also create and manage projects using a graphical interface with the `vue ui` command. Once you apply this command, it opens a browser window with a GUI that guides you through the project creation process.
+     <img src="https://github.com/sudheerj/vuejs-interview-questions/blob/master/images/cli-gui.png" width="400" height="500">
+186. ### What are plugins in vue CLI?
+     Vue CLI uses a plugin-based architecture where each plugin can modify the internal webpack configuration and inject commands to `vue-cli-service`. i.e, Each feature is implemented as a plugin. This architecture makes Vue CLI flexible and extensible.
+187. ### ?
+188. ### ?
+189. ### ?
+190. ### ?
+191. ### ?
+192. ### ?
+193. ### ?
+194. ### ?
+195. ### ?
+196. ### ?
+197. ### ?
+198. ### ?
+199. ### ?
+200. ### ?
+201. ### ?
 
