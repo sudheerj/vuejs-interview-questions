@@ -193,6 +193,20 @@ List of 300 VueJS Interview Questions
 |184| [How do you create project using Vue CLI?](#how-do-you-create-project-using-vue-cli)|
 |185| [How do you create project using GUI?](#how-do-you-create-project-using-gui)|
 |186| [What are plugins in vue CLI?](#what-are-plugins-in-vue-cli)|
+|187| [How do you install plugins in an existing Vue CLI project?](#how-do-you-install-plugins-in-an-existing-vue-cli-project)|
+|188| [How to access local plugins in a project?](#how-to-access-local-plugins-in-a-project)|
+|189| [How do you create UI plugins kind of behavior?](#how-do-you-create-ui-plugins-kind-of-behavior)|
+|190| [What are presets?](#what-are-presets)|
+|191| [What is the versioning behavior in preset plugins?](#what-is-the-versioning-behavior-in-preset-plugins)|
+|192| [How do you allow plugin prompts?](#how-do-you-allow-plugin-prompts)|
+|193| [What are remote presets?](#what-are-remote-presets)|
+|194| [](#)|
+|195| [](#)|
+|196| [](#)|
+|197| [](#)|
+|198| [](#)|
+|199| [](#)|
+|200| [](#)|
 
 1.  ### What is VueJS?
     **Vue.js** is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the `view layer` only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -3286,7 +3300,7 @@ List of 300 VueJS Interview Questions
      vue serve MyComponent.vue
      vue build MyComponent.vue
      ```
-184. ### How do you create project using vue cli?
+184. ### How do you create project using vue CLI?
      You can create project using `vue create` command
      ```javascript
      vue create my-app
@@ -3302,13 +3316,91 @@ List of 300 VueJS Interview Questions
      <img src="https://github.com/sudheerj/vuejs-interview-questions/blob/master/images/cli-gui.png" width="400" height="500">
 186. ### What are plugins in vue CLI?
      Vue CLI uses a plugin-based architecture where each plugin can modify the internal webpack configuration and inject commands to `vue-cli-service`. i.e, Each feature is implemented as a plugin. This architecture makes Vue CLI flexible and extensible.
-187. ### ?
-188. ### ?
-189. ### ?
-190. ### ?
-191. ### ?
-192. ### ?
-193. ### ?
+187. ### How do you install plugins in an existing Vue CLI project?
+     You can install a plugin into an already created project with the `vue add` command.
+     ```javascript
+     vue add @vue/eslint
+     (OR)
+     vue add @vue/cli-plugin-eslint
+     ```
+     You can also add options for plugin
+     ```javascript
+     vue add @vue/eslint --config airbnb --lintOn save
+     ```
+     If a plugin is already installed, you can skip the installation and only invoke its generator with the `vue invoke` command.
+188. ### How to access local plugins in a project?
+     If you need access to the plugin API in your project without creating a full plugin, you can use the `vuePlugins.service` option in your package.json file
+     ```javascript
+     {
+       "vuePlugins": {
+         "service": ["my-service.js"]
+       }
+     }
+     ```
+189. ### How do you create UI plugins kind of behavior?
+     You can also add files that will behave like UI plugins with the `vuePlugins.ui` option
+     ```javascript
+     {
+       "vuePlugins": {
+         "ui": ["my-ui.js"]
+       }
+     }
+     ```
+190. ### What are presets?
+     A Vue CLI preset is a JSON object that contains pre-defined options and plugins for creating a new project without interactive prompts to select them. During project creation(using vue create), the presets will be saved in a `~/.vuerc` which can modified at any time.
+     For example, the generated JSON object(or preset) would be as below
+     ```javascript
+     {
+       "useConfigFiles": true,
+       "router": true,
+       "vuex": true,
+       "cssPreprocessor": "sass",
+       "plugins": {
+         "@vue/cli-plugin-babel": {},
+         "@vue/cli-plugin-eslint": {
+           "config": "airbnb",
+           "lintOn": ["save", "commit"]
+         }
+       }
+     }
+     ```
+191. ### What is the versioning behavior in preset plugins?
+     You can explicitly specify versions of the plugins being used.
+     ```javascript
+     {
+       "plugins": {
+         "@vue/cli-plugin-eslint": {
+           "version": "^3.0.0",
+           // ... other options for this plugin
+         }
+       }
+     }
+     ```
+     For official plugins, the CLI will automatically use the latest version available in the registry
+192. ### How do you allow plugin prompts?
+     Each plugin can inject its own prompts during the project creation process irrespective of preset declarations using **prompts: true** setting
+     For example, user can pick their own ESLint config using the below configuration
+     ```javascript
+     {
+       "plugins": {
+         "@vue/cli-plugin-eslint": {
+           // let the users pick their own ESLint config
+           "prompts": true
+         }
+       }
+     }
+     ```
+193. ### What are remote presets?
+     You can share a preset with other developers by publishing it in a git repo. The repo can be published in either github, GitLab or BitBucket.
+     The repo will contain below files,
+     1. **preset.json:** The main file containing the preset data and it is required.
+     2. **generator.js:** A generator that can inject or modify files in the project.
+     3. **prompts.js:** A prompts file that can collect options for the generator.
+     You can apply `--preset` option to use remote presets while creating the project
+     ```javascript
+     # use preset from GitHub repo
+     vue create --preset username/repo my-project
+     ```
 194. ### ?
 195. ### ?
 196. ### ?
