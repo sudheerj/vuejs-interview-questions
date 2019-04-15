@@ -200,13 +200,13 @@ List of 300 VueJS Interview Questions
 |191| [What is the versioning behavior in preset plugins?](#what-is-the-versioning-behavior-in-preset-plugins)|
 |192| [How do you allow plugin prompts?](#how-do-you-allow-plugin-prompts)|
 |193| [What are remote presets?](#what-are-remote-presets)|
-|194| [](#)|
-|195| [](#)|
-|196| [](#)|
-|197| [](#)|
-|198| [](#)|
-|199| [](#)|
-|200| [](#)|
+|194| [Can I use local presets?](#can-i-use-local-presets)|
+|195| [What is the purpose of browserslist option?](#what-is-the-purpose-of-browserslist-option)|
+|196| [How do you find VueJS version using API?](#how-do-you-find-vuejs-version-using-api)|
+|197| [How do you create reactive objects](#how-do-you-create-reactive-objects)|
+|198| [What is the purpose new slot directive?](#what-is-the-purpose-new-slot-directive)|
+|199| [What is the use of compile method?](#what-is-the-use-of-compile-method)|
+|200| [What does nextTick do in VueJS?](#what-does-nexttick-do-in-vuejs)|
 
 1.  ### What is VueJS?
     **Vue.js** is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the `view layer` only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -3401,12 +3401,103 @@ List of 300 VueJS Interview Questions
      # use preset from GitHub repo
      vue create --preset username/repo my-project
      ```
-194. ### ?
-195. ### ?
-196. ### ?
-197. ### ?
-198. ### ?
-199. ### ?
-200. ### ?
+194. ### Can I use local presets?
+     Yes, Vue CLI will load local presets if the value for the --preset option is a relative or absolute file path, or ends with .json. i.e, You can work with local presets directly. These local presets avoids repeatedly pushing the preset to a remote repo to test.
+     ```javascript
+     // Directory contains preset.json file
+     vue create --preset ./my-preset my-project
+     (OR)
+     vue create --preset my-preset.json my-project
+     ```
+195. ### What is the purpose of browserslist option?
+     The browserslist option is available in package.json file in order to specify a range of browsers the project is supported. This value is going to be used by babel and autoprefixer to transpile javascript features and applying vendor prefixes.
+     For example, you can declare it as follows,
+     ```javascript
+     "browserslist": [
+         "last 1 version",
+         "> 1%",
+         "IE 10"
+       ]
+     ```
+196. ### How do you find VueJS version using API?
+     The community plugins and components might need different strategies for different versions. In this case, you can use **Vue.version** which provides installed version of Vue as a string.
+     For example, you can implement different logic based on different versions
+     ```javascript
+     let version = Number(Vue.version.split('.')[0])
+
+     if (version === 2) {
+       // Vue v2.x.x
+     } else if (version === 1) {
+       // Vue v1.x.x
+     } else {
+       // Unsupported versions of Vue
+     }
+     ```
+197. ### How do you create reactive objects?
+     From 2.6 version onwards, you can create reactive objects with Vue.observable() global API.
+     ```javascript
+     const reactiveState = Vue.observable({
+       count: 0
+     })
+     ```
+     These observable objects can be used directly in computed properties and render functions.
+     ```javascript
+     const Demo = {
+       render(h) {
+         return h('button', {
+           on: { click: () => { reactiveState.count++ }}
+         }, `count is: ${state.count}`)
+       }
+     }
+     ```
+198. ### What is the purpose new slot directive?
+     In Vue 2.6 version, the new slot syntax is provided using v-slot directive which aligns syntax with Vue 3.0. This is going to be replacement for old slot syntax.
+     The comparison for old and new slot syntax:
+     ```javascript
+     <!-- old -->
+     <user>
+       <template slot="header" slot-scope="{ msg }">
+         text slot: {{ msg }}
+       </template>
+     </user>
+
+     <!-- new -->
+     <user>
+       <template v-slot:header="{ msg }">
+         text slot: {{ msg }}
+       </template>
+     </user>
+     ```
+199. ### What is the use of compile method?
+     VueJS provides compile method which is used to compile a template string into a render function. This method is only available in the full build.
+     For example, you can compile template message:
+     ```javascript
+     var result = Vue.compile('<div><span>{{ msg }}</span></div>')
+
+     new Vue({
+       data: {
+         msg: 'Welcome to Vue world'
+       },
+       render: result.render,
+       staticRenderFns: result.staticRenderFns
+     })
+     ```
+200. ### What does nextTick do in VueJS?
+     The nextTick method is just a comfortable way to execute a function after the data has been set, and the DOM has been updated. As an example, the usage is going to be similar to setTimeout:
+     ```javascript
+     // modify data
+     vm.msg = 'Welcome to Vue'
+     // DOM not updated yet
+     Vue.nextTick(function () {
+       // DOM updated
+     })
+
+     // usage as a promise (2.1.0+)
+     Vue.nextTick()
+       .then(function () {
+         // DOM updated
+       })
+     ```
+
 201. ### ?
 
