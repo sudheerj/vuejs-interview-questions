@@ -207,6 +207,11 @@ List of 300 VueJS Interview Questions
 |198| [What is the purpose new slot directive?](#what-is-the-purpose-new-slot-directive)|
 |199| [What is the use of compile method?](#what-is-the-use-of-compile-method)|
 |200| [What does nextTick do in VueJS?](#what-does-nexttick-do-in-vuejs)|
+|201| [What is async error handling?](#what-is-async-error-handling)|
+|202| [What are Dynamic Directive Arguments?](#what-are-dynamic-directive-arguments)|
+|203| [What are the drawbacks of dynamic directive arguments?](#what-are-the-drawbacks-of-dynamic-directive-arguments)|
+|204| [What is the special handling for null values in dynamic directive arguments?](#what-is-the-special-handling-for-null-values-in-dynamic-directive-arguments)|
+|205| [Can I use dynamic directive null value for slots?](#can-i-use-dynamic-directive-null-value-for-slots)|
 
 1.  ### What is VueJS?
     **Vue.js** is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the `view layer` only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -3499,5 +3504,38 @@ List of 300 VueJS Interview Questions
        })
      ```
 
-201. ### ?
-
+201. ### What is async error handling?
+     From 2.6 version onwards, Vue's built-in error handling mechanism can capture errors inside v-on handlers. Also,if any of your lifecycle hooks or event handlers performs asynchronous operations, you can now return a Promise from the function so that any uncaught errors from that Promise chain are also sent to your error handlers.
+     Let's take an example of mounted lifecycle hook,
+     ```javascript
+     export default {
+       async mounted() {
+         // if an async error is thrown here, it now will get
+         // caught by errorCaptured and Vue.config.errorHandler
+         this.todos = await api.getTodos()
+       }
+     }
+     ```
+202. ### What are Dynamic Directive Arguments?
+     In Vue 2.6 release onwards, Directive arguments can now accept dynamic JavaScript expressions. i.e, the specific argument that we want to use is only known at runtime.
+     Let's assign dynamic key and event directives for a div element,
+     ```javascript
+     <div v-bind:[key]="value"></div>
+     <div v-on:[event]="handler"></div>
+     ```
+203. ### What are the drawbacks of dynamic directive arguments?
+     Apart from the benefits of dynamic directives arguments, it brings two drawbacks or considerations on the usage
+     1. **Constraints on expressions:** When you perform complex JavaScript expressions, make sure that html attribute names cannot contain spaces and quotes.
+        The below expression doesn't work as expected
+        ```javascript
+        <div :[key + 'unique']="value"></div>
+        ```
+        Instead you may need to use string template syntax
+        ```javascript
+        <div :[`${key}unique`]="value"></div>
+        ```
+     2. ** Custom Directives:** The custom directive implementations need to have potential argument changes in addition to value changes.
+204. ### What is the special handling for null values in dynamic directive arguments?
+     Dynamic argument values are expected to be strings but it allows `null` as a special value that explicitly indicates that the binding should be removed. Other types will be treated as  mistakes and will trigger a warning. So null value can be applied for v-bind and v-on.
+205. ### Can I use dynamic directive null value for slots?
+     No. It can be applied only for v-bind and v-on but not v-slot. This is because v-slot is not a binding and cannot be removed.
