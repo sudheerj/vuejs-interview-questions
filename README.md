@@ -1,7 +1,7 @@
 # vuejs-interview-questions
 List of 300 VueJS Interview Questions
 
-> Click :star:if you like the project. Pull Requests are highly appreciated.
+> Click :star:if you like the project. Pull Requests are highly appreciated. Follow me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
 
 ### Table of Contents
 -------------------------------------------------------------------
