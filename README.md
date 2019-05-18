@@ -212,6 +212,7 @@ List of 300 VueJS Interview Questions
 |203| [What are the drawbacks of dynamic directive arguments?](#what-are-the-drawbacks-of-dynamic-directive-arguments)|
 |204| [What is the special handling for null values in dynamic directive arguments?](#what-is-the-special-handling-for-null-values-in-dynamic-directive-arguments)|
 |205| [Can I use dynamic directive null value for slots?](#can-i-use-dynamic-directive-null-value-for-slots)|
+|206| [What is Vue I18n plugin?](#what-is-vue-i-8n--plugin)|
 
 1.  ### What is VueJS?
     **Vue.js** is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the `view layer` only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -3539,3 +3540,40 @@ List of 300 VueJS Interview Questions
      Dynamic argument values are expected to be strings but it allows `null` as a special value that explicitly indicates that the binding should be removed. Other types will be treated as  mistakes and will trigger a warning. So null value can be applied for v-bind and v-on.
 205. ### Can I use dynamic directive null value for slots?
      No. It can be applied only for v-bind and v-on but not v-slot. This is because v-slot is not a binding and cannot be removed.
+206. ### What is Vue I18n plugin?
+     Vue I18n is an internationalization plugin of Vue.js. It easily integrates some localization features to your Vue.js Application. The simple usage with in html would be as below,
+     ```javascript
+     <script src="https://unpkg.com/vue/dist/vue.js"></script>
+     <script src="https://unpkg.com/vue-i18n/dist/vue-i18n.js"></script>
+
+     <div id="app">
+       <p>{{ $t("user.message") }}</p>
+     </div>
+     ```
+     and after that configure them in javascript
+     ```javascript
+     // Ready translated locale messages
+     const messages = {
+       en: {
+         user: {
+           message: 'Good morning'
+         }
+       },
+       de: {
+         user: {
+           message: 'Guten Morgen'
+         }
+       }
+     }
+
+     // Create VueI18n instance with options
+     const i18n = new VueI18n({
+       locale: 'de', // set locale
+       messages, // set locale messages
+     })
+
+
+     // Create a Vue instance with `i18n` option
+     new Vue({ i18n }).$mount('#app')
+
+     ```
