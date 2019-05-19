@@ -213,6 +213,8 @@ List of 300 VueJS Interview Questions
 |204| [What is the special handling for null values in dynamic directive arguments?](#what-is-the-special-handling-for-null-values-in-dynamic-directive-arguments)|
 |205| [Can I use dynamic directive null value for slots?](#can-i-use-dynamic-directive-null-value-for-slots)|
 |206| [What is Vue I18n plugin?](#what-is-vue-i-8n--plugin)|
+|207| [#What are the types of formatting?](#what-are-the-types-of-formatting)|
+|208| [What is custom formatting?](#what-is-custom-formatting)|
 
 1.  ### What is VueJS?
     **Vue.js** is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the `view layer` only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -3576,4 +3578,117 @@ List of 300 VueJS Interview Questions
      // Create a Vue instance with `i18n` option
      new Vue({ i18n }).$mount('#app')
 
+     ```
+     The output is going to be like this,
+     <div id="#app">
+       <p>Guten Morgen</p>
+     </div>
+207. ### What are the types of formatting?
+     Basically there are 4 types of formatting available in i18n plugin,
+     1. **Named formatting:** First You need to define the message keys in curly braces({})
+     ```javascript
+     const messages = {
+       en: {
+         message: {
+           greeting: '{msg} Morning'
+         }
+       }
+     }
+     ```
+     After that pass argument value along with key in the template
+     ```javascript
+     <p>{{ $t('message.greeting', { msg: 'Good' }) }}</p>
+     ```
+     It outputs the result as below,
+     ```javascript
+     <p>Good Morning</p>
+     ```
+     2. **List formatting:** First you need to define zero index based keys in the messages,
+     ```javascript
+     const messages = {
+       en: {
+         message: {
+           greeting: '{0} Morning'
+         }
+       }
+     }
+     ```
+     After that pass argument value with in an array
+     ```javascript
+     <p>{{ $t('message.greeting', ['Good']) }}</p>
+     ```
+     Finally it outputs the result as below,
+     ```javascript
+     <p>Good morning</p>
+     ```
+     **Note:** It also accepts array-like object
+     ```javascript
+     <p>{{ $t('message.greeting', {'0': 'Good'}) }}</p>
+     ```
+     3. **HTML formatting:** This formatting is required when want to render your translation as an HTML message and not a static string.
+     ```javascript
+     const messages = {
+       en: {
+         message: {
+           greeting: 'Good <br> Morning'
+         }
+       }
+     }
+     ```
+     After that use it in the html directive template as below
+     ```javascript
+     <p v-html="$t('message.greeting')"></p>
+     ```
+     Finally it outputs the result as below
+     ```javascript
+     <p>Good
+     <!--<br> exists but is rendered as html and not a string-->
+     Morning</p>
+     ```
+     4. **Ruby on rails format:** First you need to define with percentile and curly braces as below,
+     ```javascript
+     const messages = {
+       en: {
+         message: {
+           greeting: '%{msg} Morning'
+         }
+       }
+     }
+     ```
+     After that pass argument with key similar to named formatting
+     ```javascript
+     <p>{{ $t('message.greeting', { msg: 'Good' }) }}</p>
+     ```
+     Finally it renders the output as below,
+     ```javascript
+     <p>Good Morning</p>
+     ```
+208. ### What is custom formatting?
+     You can use custom formatting for some of the formatting cases such as ICU formatting syntax (message "pattern" strings with variable-element placeholders enclosed in {curly braces}). It implement Formatter Interface.
+     ```javascript
+     // Custom Formatter implementation
+     class CustomFormatter {
+          constructor (options) {
+            // ...
+          }
+     interpolate (message, values) {
+            // return the interpolated array
+            return ['resolved message string']
+          }
+     }
+
+     // register with `formatter` option
+     const i18n = new VueI18n({
+       locale: 'en-US',
+       formatter: new CustomFormatter(/* here the constructor options */),
+       messages: {
+         'en-US': {
+           // ...
+         },
+         // ...
+       }
+     })
+
+     // Run!
+     new Vue({ i18n }).$mount('#app')
      ```
