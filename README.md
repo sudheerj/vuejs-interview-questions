@@ -216,6 +216,7 @@ List of 300 VueJS Interview Questions
 |207| [#What are the types of formatting?](#what-are-the-types-of-formatting)|
 |208| [What is custom formatting?](#what-is-custom-formatting)|
 |209| [How do you handle Pluralization?](#how-do-you-handle-pluralization)|
+|210| [How to implement DateTime localization?](#how-to-implement-date-time-localization)|
 
 1.  ### What is VueJS?
     **Vue.js** is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the `view layer` only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -3722,5 +3723,57 @@ List of 300 VueJS Interview Questions
      <p>one friend</p>
      <p>10 friends</p>
      ```
+210. ### How to implement DateTime localization?
+     You can localize the datetime with definition formats(e.g. short, long, etc).
+     Lets follow below steps to localize date and time
+     1. For example, you can define definition formats for English and Jappan locale as below
+     ```javascript
+     const dateTimeFormats = {
+       'en-US': {
+         short: {
+           year: 'numeric', month: 'short', day: 'numeric'
+         },
+         long: {
+           year: 'numeric', month: 'short', day: 'numeric',
+           weekday: 'short', hour: 'numeric', minute: 'numeric'
+         }
+       },
+       'ja-JP': {
+         short: {
+           year: 'numeric', month: 'short', day: 'numeric'
+         },
+         long: {
+           year: 'numeric', month: 'short', day: 'numeric',
+           weekday: 'short', hour: 'numeric', minute: 'numeric', hour12: true
+         }
+       }
+     }
+     ```
+     2. After that You need to specify the dateTimeFormats option of VueI18n constructor
+     ```javascript
+     const i18n = new VueI18n({
+       dateTimeFormats
+     })
+
+     new Vue({
+       i18n
+     }).$mount('#app')
+     ```
+     3. And then add them to the template
+     ```javascript
+     <div id="app">
+       <p>{{ $d(new Date(), 'short') }}</p>
+       <p>{{ $d(new Date(), 'long', 'ja-JP') }}</p>
+     </div>
+     ```
+     4. Finally it outputs the result
+     ```javascript
+     <div id="app">
+       <p>May 20, 2019</p>
+       <p>2019年5月20日</p>
+     </div>
+     ```
+
+
 
 
