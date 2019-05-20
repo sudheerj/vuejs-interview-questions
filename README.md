@@ -215,6 +215,7 @@ List of 300 VueJS Interview Questions
 |206| [What is Vue I18n plugin?](#what-is-vue-i-8n--plugin)|
 |207| [#What are the types of formatting?](#what-are-the-types-of-formatting)|
 |208| [What is custom formatting?](#what-is-custom-formatting)|
+|209| [How do you handle Pluralization?](#how-do-you-handle-pluralization)|
 
 1.  ### What is VueJS?
     **Vue.js** is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the `view layer` only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -3692,3 +3693,34 @@ List of 300 VueJS Interview Questions
      // Run!
      new Vue({ i18n }).$mount('#app')
      ```
+209. ### How do you handle Pluralization?
+     You can translate with pluralization by defining the locale that have a pipe | separator, and define plurals in pipe separator. Remember that template should use $tc() instead of $t().
+     First you need to difine the messages,
+     ```javascript
+     const messages = {
+       en: {
+         user: 'user | users',
+         friend: 'no friend | one friend | {count} friends'
+       }
+     }
+     ```
+     And the template can configure the messages with values
+     ```javascript
+     <p>{{ $tc('user', 1) }}</p>
+     <p>{{ $tc('user', 10) }}</p>
+
+     <p>{{ $tc('friend', 0) }}</p>
+     <p>{{ $tc('friend', 1) }}</p>
+     <p>{{ $tc('friend', 10, { count: 10 }) }}</p>
+     ```
+     Finally it outputs the result as below
+     ```javascript
+     <p>user</p>
+     <p>users</p>
+
+     <p>no friend</p>
+     <p>one friend</p>
+     <p>10 friends</p>
+     ```
+
+
