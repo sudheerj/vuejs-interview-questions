@@ -217,6 +217,7 @@ List of 300 VueJS Interview Questions
 |208| [What is custom formatting?](#what-is-custom-formatting)|
 |209| [How do you handle Pluralization?](#how-do-you-handle-pluralization)|
 |210| [How to implement DateTime localization?](#how-to-implement-date-time-localization)|
+|211| [How do you implement Number localization?](#how-do-you-implement-number-localization)|
 
 1.  ### What is VueJS?
     **Vue.js** is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the `view layer` only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -3726,7 +3727,7 @@ List of 300 VueJS Interview Questions
 210. ### How to implement DateTime localization?
      You can localize the datetime with definition formats(e.g. short, long, etc).
      Lets follow below steps to localize date and time
-     1. For example, you can define definition formats for English and Jappan locale as below
+     1. For example, you can add definition formats for English and Jappan locale as below
      ```javascript
      const dateTimeFormats = {
        'en-US': {
@@ -3773,7 +3774,47 @@ List of 300 VueJS Interview Questions
        <p>2019年5月20日</p>
      </div>
      ```
+211. ### How do you implement Number localization?
+     You can localize the number with definition formats(e.g. currency, etc)
+     Lets follow below steps to localize numbers
+     1. You need to add definition formats. For example, lets add it for English and Japanese locales
+     ```javascrippt
+     const numberFormats = {
+       'en-US': {
+         currency: {
+           style: 'currency', currency: 'USD'
+         }
+       },
+       'ja-JP': {
+         currency: {
+           style: 'currency', currency: 'JPY', currencyDisplay: 'symbol'
+         }
+       }
+     }
+     ```
+     2. After that specify the numberFormats option of VueI18n constructor
+     ```javascript
+     const i18n = new VueI18n({
+       numberFormats
+     })
 
-
+     new Vue({
+       i18n
+     }).$mount('#app')
+     ```
+     3. Now let's configure them in template
+     ```javascript
+     <div id="app">
+       <p>{{ $n(10, 'currency') }}</p>
+       <p>{{ $n(50, 'currency', 'ja-JP') }}</p>
+     </div>
+     ```
+     4. Finally it outputs the result
+     ```javascript
+     <div id="app">
+       <p>$10.00</p>
+       <p>￥50</p>
+     </div>
+     ```
 
 
