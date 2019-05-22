@@ -219,6 +219,7 @@ List of 300 VueJS Interview Questions
 |210| [How to implement DateTime localization?](#how-to-implement-date-time-localization)|
 |211| [How do you implement Number localization?](#how-do-you-implement-number-localization)|
 |212| [How do you perform locale changing](#how-do-you-perform-locale-changin)|
+|213| [What is Lazy loading translations?](#what-is-lazy-loading-translations)|
 
 1.  ### What is VueJS?
     **Vue.js** is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the `view layer` only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -3852,6 +3853,53 @@ List of 300 VueJS Interview Questions
        }
      }
      </script>
+     ```
+213. ### What is Lazy loading translations?
+     The loading of all translation files at once is unnecessary and it may impact the performance too. It will be easy for lazy loading or asynchronously loading the translation files when you use webpack. i.e, You can dynamically load or import language translations using webpack as below,
+     ```javascript
+     //i18n-setup.js
+     import Vue from 'vue'
+     import VueI18n from 'vue-i18n'
+     import messages from '@/lang/en'
+     import axios from 'axios'
+
+     Vue.use(VueI18n)
+
+     export const i18n = new VueI18n({
+       locale: 'en', // set locale
+       fallbackLocale: 'en',
+       messages // set locale messages
+     })
+
+     const loadedLanguages = ['en'] // our default language that is preloaded
+
+     function setI18nLanguage (lang) {
+       i18n.locale = lang
+       axios.defaults.headers.common['Accept-Language'] = lang
+       document.querySelector('html').setAttribute('lang', lang)
+       return lang
+     }
+
+     export function loadLanguageAsync (lang) {
+       if (i18n.locale !== lang) {
+         if (!loadedLanguages.includes(lang)) {
+           return import(/* webpackChunkName: "lang-[request]" */ `@/lang/${lang}`).then(msgs => {
+             i18n.setLocaleMessage(lang, msgs.default)
+             loadedLanguages.push(lang)
+             return setI18nLanguage(lang)
+           })
+         }
+         return Promise.resolve(setI18nLanguage(lang))
+       }
+       return Promise.resolve(lang)
+     }
+     ```
+     After that loadLanguageAsync function can be used inside a vue-router beforeEach hook.
+     ```javascript
+     router.beforeEach((to, from, next) => {
+       const lang = to.params.lang
+       loadLanguageAsync(lang).then(() => next())
+     })
      ```
 
 
