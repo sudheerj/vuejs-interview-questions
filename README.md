@@ -218,6 +218,7 @@ List of 300 VueJS Interview Questions
 |209| [How do you handle Pluralization?](#how-do-you-handle-pluralization)|
 |210| [How to implement DateTime localization?](#how-to-implement-date-time-localization)|
 |211| [How do you implement Number localization?](#how-do-you-implement-number-localization)|
+|212| [How do you perform locale changing](#how-do-you-perform-locale-changin)|
 
 1.  ### What is VueJS?
     **Vue.js** is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the `view layer` only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -3815,6 +3816,42 @@ List of 300 VueJS Interview Questions
        <p>$10.00</p>
        <p>￥50</p>
      </div>
+     ```
+212. ### How do you perform locale changing?
+     All child components of a root instance are localized using the locale property of the VueI18n class. You can change the value of the locale property of the VueI18n instance as below.
+     ```javascript
+     const i18n = new VueI18n({
+       locale: 'de', // set locale
+       ...
+     })
+
+     // create root Vue instance
+     new Vue({
+       i18n,
+       ...
+     }).$mount('#app')
+
+     // change other locale
+     i18n.locale = 'en'
+     ```
+     You can also use component's VueI18n instance referenced as the $i18n property which will be used to change the locale.
+     ```javascript
+     <template>
+       <div class="locale-changer">
+         <select v-model="$i18n.locale">
+           <option v-for="(lang, i) in langs" :key="`Lang${i}`" :value="lang">{{ lang }}</option>
+         </select>
+       </div>
+     </template>
+
+     <script>
+     export default {
+       name: 'locale-changer',
+       data () {
+         return { langs: ['de', 'en'] }
+       }
+     }
+     </script>
      ```
 
 
