@@ -220,6 +220,7 @@ List of 300 VueJS Interview Questions
 |211| [How do you implement Number localization?](#how-do-you-implement-number-localization)|
 |212| [How do you perform locale changing](#how-do-you-perform-locale-changin)|
 |213| [What is Lazy loading translations?](#what-is-lazy-loading-translations)|
+|214| [What is the main difference between method and computed property?](#what-is-the-main-difference-between-method-and-computed-property)|
 
 1.  ### What is VueJS?
     **Vue.js** is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the `view layer` only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -3901,5 +3902,7 @@ List of 300 VueJS Interview Questions
        loadLanguageAsync(lang).then(() => next())
      })
      ```
+214. ### What is the main difference between method and computed property?
+     The main difference between a computed property and a method is that computed properties are cached and invoke/change only when their dependencies change. Whereas a method will evaluate every time it's called.
 
 
