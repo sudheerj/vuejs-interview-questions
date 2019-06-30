@@ -222,6 +222,8 @@ List of 300 VueJS Interview Questions
 |213| [What is Lazy loading translations?](#what-is-lazy-loading-translations)|
 |214| [What is the main difference between method and computed property?](#what-is-the-main-difference-between-method-and-computed-property)|
 |215| [What is vuetify?](#what-is-vuetify)|
+|216| [How do you watch for nested data changes?](#how-do-you-watch-for-nested-data-changes)|
+|217| [How to trigger watchers on initialization?](#how-to-trigger-watchers-on-initialization)|
 
 1.  ### What is VueJS?
     **Vue.js** is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the `view layer` only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -3916,5 +3918,27 @@ List of 300 VueJS Interview Questions
 
      Vue.use(Vuetify) // Add Vuetify as a plugin
      ```
+216. ### How do you watch for nested data changes?
+     You can use deep watcher by setting `deep: true` in the options object. This option enables us to detect nested value changes inside Objects.
+     ```javascript
+     vm.$watch('someObject', callback, {
+       deep: true
+     })
+     vm.someObject.nestedValue = 123
+     // callback is fired
+     ```
+     **Note:** This is not required to listen for Array mutations.
 
+217. ### How to trigger watchers on initialization?
+     You can use `immediate: true` option in order to trigger watchers when the vue instance (or component) is being created. i.e This option will trigger the callback immediately with the current value of the expression.
+     ```javascript
+     watch: {
+       test: {
+         immediate: true,
+         handler(newVal, oldVal) {
+           console.log(newVal, oldVal)
+         },
+       },
+     },
+     ```
 
