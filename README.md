@@ -224,6 +224,7 @@ List of 300 VueJS Interview Questions
 |215| [What is vuetify?](#what-is-vuetify)|
 |216| [How do you watch for nested data changes?](#how-do-you-watch-for-nested-data-changes)|
 |217| [How to trigger watchers on initialization?](#how-to-trigger-watchers-on-initialization)|
+|218| [What is the purpose of comments option?](#what-is-the-purpose-of-comments-option)|
 
 1.  ### What is VueJS?
     **Vue.js** is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the `view layer` only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -3941,4 +3942,25 @@ List of 300 VueJS Interview Questions
        },
      },
      ```
+218. ### What is the purpose of comments option?
+     When `comments` option enabled, it will preserve and render HTML comments found in templates. By default, it's value is false. Let's see the action in an example,
+     ```javascript
+     <template>
+       <div class="greeting">
+         <!--greeting-->
+         <h1>{{ msg }}</h1>
+       </div>
+     </template>
 
+     <script>
+     export default {
+       comments: true,
+       data () {
+         return {
+           msg: 'Good morning'
+         }
+       }
+     }
+     </script>
+     ```
+     **Note:** This option is only available in the full build, with in-browser compilation. i.e, It won't work with Single File Components(SFC)
