@@ -226,6 +226,7 @@ List of 300 VueJS Interview Questions
 |217| [How to trigger watchers on initialization?](#how-to-trigger-watchers-on-initialization)|
 |218| [What is the purpose of comments option?](#what-is-the-purpose-of-comments-option)|
 |219| [How to identify whether code is running on client or server?](#how-to-identify-whether-code-is-running-on-client-or-server)|
+|220| [How do you watch route object changes?](#how-do-you-watch-route-object-changes)|
 
 1.  ### What is VueJS?
     **Vue.js** is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the `view layer` only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -3973,4 +3974,13 @@ List of 300 VueJS Interview Questions
      Vue.prototype.$isServer
      (OR)
      this.$isServer // With in component
+     ```
+220. ### How do you watch route object changes?
+     You can setup a watcher on the `$route` in your component. It observes for route changes and when changed ,sets the message property.
+     ```javascript
+     watch:{
+         $route (to, from){
+             this.message = 'Welcome';
+         }
+     }
      ```
