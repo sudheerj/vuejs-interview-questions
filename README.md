@@ -227,6 +227,8 @@ List of 300 VueJS Interview Questions
 |218| [What is the purpose of comments option?](#what-is-the-purpose-of-comments-option)|
 |219| [How to identify whether code is running on client or server?](#how-to-identify-whether-code-is-running-on-client-or-server)|
 |220| [How do you watch route object changes?](#how-do-you-watch-route-object-changes)|
+|221| [How do you sync current route in vuex store?](#how-do-you-sync-current-route-in-vuex-store)|
+|222| [What are navigation guards in vue router?](#what-are-navigation-guards-in-vue-router)|
 
 1.  ### What is VueJS?
     **Vue.js** is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the `view layer` only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -3984,3 +3986,23 @@ List of 300 VueJS Interview Questions
          }
      }
      ```
+221. ### How do you sync current route in vuex store?
+     You can use `vue-router-sync` library to sync current $route object in vuex store's state. The usage is quite straight forward with two steps
+     1. **Installation:**
+     ```bash
+     npm install vuex-router-sync
+     ```
+     2. **Sync router and store:**
+     ```javascript
+     import { sync } from 'vuex-router-sync'
+     import store from './vuex/store' // vuex store instance
+     import router from './router' // vue-router instance
+
+     const unsync = sync(store, router) // Returns an unsync callback function
+     unsync() // Unsyncs store from router
+     ```
+222. ### What are navigation guards in vue router?
+     The navigation guards of vue-router are used to protect navigations either by redirecting it or canceling it. Below are the 3 different ways to hook into router navigations
+     1. Global:
+     2. Per-route:
+     3. In-component:
