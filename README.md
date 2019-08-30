@@ -1871,7 +1871,7 @@ List of 300 VueJS Interview Questions
      ```javascript
      <my-component inline-template>
         <div>
-            <h1>Inline templates</p>
+            <h1>Inline templates</h1>
             <p>Treated as component component owne content</p>
         </div>
      </my-component>
