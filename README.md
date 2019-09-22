@@ -445,7 +445,7 @@ List of 300 VueJS Interview Questions
     2. Object usage:
     ```javascript
     <div id="object">
-      <div v-for="(value, key, index) in user">
+      <div v-for="(value, key, index) of user">
         {{ index }}. {{ key }}: {{ value }}
       </div>
     </div>
