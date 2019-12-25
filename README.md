@@ -229,6 +229,7 @@ List of 300 VueJS Interview Questions
 |220| [How do you watch route object changes?](#how-do-you-watch-route-object-changes)|
 |221| [How do you sync current route in vuex store?](#how-do-you-sync-current-route-in-vuex-store)|
 |222| [What are navigation guards in vue router?](#what-are-navigation-guards-in-vue-router)|
+|223| [Can I use computed property in another computed property?](#can-i-use-computed-property-in-another-computed-property)|
 
 1.  ### What is VueJS?
     **Vue.js** is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the `view layer` only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -4652,3 +4653,24 @@ List of 300 VueJS Interview Questions
      3. In-component:
 
      **[⬆ Back to Top](#table-of-contents)**
+
+223. ### Can I use computed property in another computed property?
+     Yes, you can access it directly as you would data props. For example, the comboTwo computed property uses comboOne computed property as below,
+     ```javascript
+     data() {
+         return {
+             propOne: 'prop1',
+             propTwo: 'prop2'
+         }
+     },
+
+     computed: {
+          comboOne() {
+              return this.propOne + ',' + this.propTwo;
+          },
+
+          comboTwo() {
+             return this.comboOne.split(',').join('-');
+         }
+     }
+     ```
