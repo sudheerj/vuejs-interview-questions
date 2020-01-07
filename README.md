@@ -230,6 +230,13 @@ List of 300 VueJS Interview Questions
 |221| [How do you sync current route in vuex store?](#how-do-you-sync-current-route-in-vuex-store)|
 |222| [What are navigation guards in vue router?](#what-are-navigation-guards-in-vue-router)|
 |223| [Can I use computed property in another computed property?](#can-i-use-computed-property-in-another-computed-property)|
+|224| [How can I use imported constant in template section?](#How-can-i-use-imported-constant-in-template-section)|
+|225| [](#)|
+|226| [](#)|
+|227| [](#)|
+|228| [](#)|
+|229| [](#)|
+|230| [](#)|
 
 1.  ### What is VueJS?
     **Vue.js** is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the `view layer` only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -4674,3 +4681,53 @@ List of 300 VueJS Interview Questions
          }
      }
      ```
+
+     **[⬆ Back to Top](#table-of-contents)**
+
+224. ### How can I use imported constant in template section?
+     The variables need to be exposed on your data in order to use them in template section. i.e, You can't use them directly on template.
+     ```javascript
+     <span>
+        CREATE: {{CREATE_PROP}}
+        UPDATE: {{UPDATE_PROP}}
+        DELETE: {{DELETE_PROP}}
+     </span>
+     <script>
+     import {CREATE_DATA, UPDATE_DATA, DELETE_DATA} from 'constants';
+     new Vue({
+         ...
+         data:{
+             CREATE_PROP: CREATE_DATA,
+             UPDATE_PROP: UPDATE_DATA,
+             DELETE_PROP: DELETE_DATA
+         }
+         ...
+     })
+     </script>
+     ```
+
+     **[⬆ Back to Top](#table-of-contents)**
+
+225. ### ?
+
+     **[⬆ Back to Top](#table-of-contents)**
+
+226. ### ?
+
+     **[⬆ Back to Top](#table-of-contents)**
+
+227. ### ?
+
+     **[⬆ Back to Top](#table-of-contents)**
+
+228. ### ?
+
+     **[⬆ Back to Top](#table-of-contents)**
+
+229. ### ?
+
+     **[⬆ Back to Top](#table-of-contents)**
+
+230. ### ?
+
+     **[⬆ Back to Top](#table-of-contents)**
