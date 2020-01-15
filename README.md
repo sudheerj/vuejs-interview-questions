@@ -231,7 +231,7 @@ List of 300 VueJS Interview Questions
 |222| [What are navigation guards in vue router?](#what-are-navigation-guards-in-vue-router)|
 |223| [Can I use computed property in another computed property?](#can-i-use-computed-property-in-another-computed-property)|
 |224| [How can I use imported constant in template section?](#How-can-i-use-imported-constant-in-template-section)|
-|225| [](#)|
+|225| [Is recommended to use async for computed properties?](#is-recommended-to-use-async-for-computed-properties)|
 |226| [](#)|
 |227| [](#)|
 |228| [](#)|
@@ -4708,11 +4708,18 @@ List of 300 VueJS Interview Questions
 
      **[⬆ Back to Top](#table-of-contents)**
 
-225. ### ?
+225. ### Is recommended to use async for computed properties?
+     No, it is not recommended. Computed properties should be synchronous. But if you still use asynchronous actions inside them, they may not work as expected and can lead to an unexpected behaviour. For example, the below usage of async/await is not recommended,
+     ```javascript
+      async someComputedProperty () {
+           return await someFunction()
+         },
+     ```
+     **Note:** If you still prefer to use async computed properties for some reason then you can consider using additional plugin such as `vue-async-computed`.
 
      **[⬆ Back to Top](#table-of-contents)**
 
-226. ### ?
+226. ### What happens if you use duplicate field names?
 
      **[⬆ Back to Top](#table-of-contents)**
 
