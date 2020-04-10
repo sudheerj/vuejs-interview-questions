@@ -1989,7 +1989,7 @@ List of 300 VueJS Interview Questions
       |---- | --------- | ---- |
       | Type |  JavaScript MVC Framework | JavaScript Library |
       | Platform  | Primarily focused on web development | Both Web and Native |
-      | Learning Curve | A steep learning curve and requires deep knowledge | A steep learning curve and requires deep knowledge |
+      | Learning Curve | Easy to learn the framework  | A steep learning curve and requires deep knowledge |
       | Simplicity | Vue is simpler than React | React is more complex than Vue |
       | Bootstrap Application | Vue-cli | CRA (Create React App) |
 
@@ -2019,7 +2019,7 @@ List of 300 VueJS Interview Questions
       |---- | --------- | ---- |
       | Complexity | Easy to learn, simple API and design | The framework is bit huge and need some learning curve on typescript etc |
       | Binding of Data  | One-way binding | Two-way binding |
-      | Learning Curve | A steep learning curve and requires deep knowledge | A steep learning curve and requires deep knowledge |
+      | Learning Curve | Easy to learn the framework | A steep learning curve and requires deep knowledge |
       | Founders | Created by Former Google Employee | Powered by Google |
       | Initial Release | February 2014 | September 2016 |
       | Model | Based on Virtual DOM(Document Object Model) | Based on MVC(Model-View-Controller) |
