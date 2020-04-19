@@ -232,9 +232,9 @@ List of 300 VueJS Interview Questions
 |223| [Can I use computed property in another computed property?](#can-i-use-computed-property-in-another-computed-property)|
 |224| [How can I use imported constant in template section?](#How-can-i-use-imported-constant-in-template-section)|
 |225| [Is recommended to use async for computed properties?](#is-recommended-to-use-async-for-computed-properties)|
-|226| [](#)|
-|227| [](#)|
-|228| [](#)|
+|226| [What happens if you use duplicate field names?](#what-happens-if-you-use-duplicate-field-names)|
+|227| [Why the component data must be a function?](#why-the-component-data-must-be-a-function)|
+|228| [What is the reason for recommendation for multi-word component names?](#what-is-the-reason-for-recommendation-for-multi-word-component-names)|
 |229| [](#)|
 |230| [](#)|
 
@@ -4723,11 +4723,32 @@ List of 300 VueJS Interview Questions
 
      **[⬆ Back to Top](#table-of-contents)**
 
-227. ### ?
+227. ### Why the component data must be a function?
+     The component data must be a function instead directly providing the object. This is because each instance needs to maintain an independent copy of the returned data object. Otherwise one component instance data changes will impact the data of all other instances.
+     For example, the below code snippets gives an idea on correct approach,
+     ```js
+     data: { // Bad
+       message: 'Hello'
+    }
+     data: function () { //Good
+       return {
+         message: 'Hello'
+       }
+     }
+     ```
 
      **[⬆ Back to Top](#table-of-contents)**
 
-228. ### ?
+228. ### What is the reason for recommendation for multi-word component names?
+     Component names should always be multi-word, except for root level or built-in vue components(such as <transition> or <component> etc). This recommendation is  to prevents conflicts with existing and future HTML elements, since all HTML elements are a single word.
+     ```js
+     Vue.component('user', { //bad approach
+       // ...
+     })
+     Vue.component('user-profile', { //good approach
+            // ...
+          })
+     ```
 
      **[⬆ Back to Top](#table-of-contents)**
 
