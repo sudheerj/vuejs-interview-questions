@@ -443,7 +443,7 @@ List of 300 VueJS Interview Questions
 
 6.  ### What is the purpose of v-for directive?
     The built-in v-for directive allows us to loop through items in an array or object. You can iterate on each element in the array or object.
-    1. Array usage:
+    1. **Array usage:**
     ```javascript
     <ul id="list">
       <li v-for="(item, index) in items">
@@ -463,7 +463,7 @@ List of 300 VueJS Interview Questions
     ```
     You can also use `of` as the delimiter instead of `in`, similar to javascript iterators.
 
-    2. Object usage:
+    2. **Object usage:**
     ```javascript
     <div id="object">
       <div v-for="(value, key, index) of user">
@@ -497,7 +497,9 @@ List of 300 VueJS Interview Questions
     **[⬆ Back to Top](#table-of-contents)**
 
 8.  ### How do you achieve conditional group of elements?
-    You can achieve conditional group of elements(toggle multiple elements at a time) by applying **v-if** directive on `<template>` element which works as invisible wrapper(no rendering) for group of elements. For example, you can conditionally group user details based on valid user condition.
+    You can achieve conditional group of elements(toggle multiple elements at a time) by applying **v-if** directive on `<template>` element which works as invisible wrapper(no rendering) for group of elements.
+
+    For example, you can conditionally group user details based on valid user condition.
     ```javascript
     <template v-if="condition">
       <h1>Name</h1>
@@ -509,7 +511,9 @@ List of 300 VueJS Interview Questions
     **[⬆ Back to Top](#table-of-contents)**
 
 9.  ### How do you reuse elements with key attribute?
-    Vue always tries to render elements as efficient as possible. So it tries to reuse the elements instead of building them from scratch. But this behavior may cause problems in few scenarios. For example, if you try to render the same input element in both `v-if` and `v-else` blocks then it holds the previous value as below,
+    Vue always tries to render elements as efficient as possible. So it tries to reuse the elements instead of building them from scratch. But this behavior may cause problems in few scenarios.
+
+    For example, if you try to render the same input element in both `v-if` and `v-else` blocks then it holds the previous value as below,
     ```javascript
     <template v-if="loginType === 'Admin'">
       <label>Admin</label>
@@ -536,81 +540,92 @@ List of 300 VueJS Interview Questions
     **[⬆ Back to Top](#table-of-contents)**
 
 10. ### Why should not use if and for directives together on the same element?
-    It is recommended not to use v-if on the same element as v-for. Because v-for directive has a higher priority than v-if. There are two cases where developers try to use this combination,
-    1. To filter items in a list
-     For example, if you try to filter the list using v-if tag,
-     ```javascript
-     <ul>
-       <li
-         v-for="user in users"
-         v-if="user.isActive"
-         :key="user.id"
-       >
-         {{ user.name }}
-       <li>
-     </ul>
-     ```
-     This can be avoided by preparing the filtered list using computed property on the initial list
-     ```javascript
-     computed: {
-       activeUsers: function () {
-         return this.users.filter(function (user) {
-           return user.isActive
-         })
-       }
-     }
-     ...... //
-     ...... //
-     <ul>
-       <li
-         v-for="user in activeUsers"
-         :key="user.id">
-         {{ user.name }}
-       <li>
-     </ul>
+    It is recommended not to use v-if on the same element as v-for. Because v-for directive has a higher priority than v-if.
 
-     ```
-    2. To avoid rendering a list if it should be hidden
-     For example, if you try to conditionally check if the user is to be shown or hidden
-     ```javascript
-     <ul>
-       <li
-         v-for="user in users"
-         v-if="shouldShowUsers"
-         :key="user.id"
-       >
-         {{ user.name }}
-       <li>
-     </ul>
-     ```
-     This can be solved by moving the condition to a parent by avoiding this check for each user
-     ```javascript
-     <ul v-if="shouldShowUsers">
-       <li
-         v-for="user in users"
-         :key="user.id"
-       >
-         {{ user.name }}
-       <li>
-     </ul>
-     ```
+    There are two cases where developers try to use this combination,
+
+     1. To filter items in a list
+
+       For example, if you try to filter the list using v-if tag,
+
+       ```javascript
+         <ul>
+           <li
+             v-for="user in users"
+             v-if="user.isActive"
+             :key="user.id"
+           >
+             {{ user.name }}
+           <li>
+         </ul>
+       ```
+       This can be avoided by preparing the filtered list using computed property on the initial list
+       ```javascript
+         computed: {
+           activeUsers: function () {
+             return this.users.filter(function (user) {
+               return user.isActive
+             })
+           }
+         }
+         ...... //
+         ...... //
+         <ul>
+           <li
+             v-for="user in activeUsers"
+             :key="user.id">
+             {{ user.name }}
+           <li>
+         </ul>
+       ```
+     2. To avoid rendering a list if it should be hidden
+
+       For example, if you try to conditionally check if the user is to be shown or hidden
+
+       ```javascript
+         <ul>
+           <li
+             v-for="user in users"
+             v-if="shouldShowUsers"
+             :key="user.id"
+           >
+             {{ user.name }}
+           <li>
+         </ul>
+       ```
+       This can be solved by moving the condition to a parent by avoiding this check for each user
+       ```javascript
+         <ul v-if="shouldShowUsers">
+           <li
+             v-for="user in users"
+             :key="user.id"
+           >
+             {{ user.name }}
+           <li>
+         </ul>
+       ```
 
      **[⬆ Back to Top](#table-of-contents)**
 
 11.  ### Why do you need to use key attribute on for directive?
-     In order to track each node’s identity, and thus reuse and reorder existing elements, you need to provide a unique `key` attribute for each item with in `v-for` iteration. An ideal value for key would be the unique id of each item. Let us take an example usage,
+     In order to track each node’s identity, and thus reuse and reorder existing elements, you need to provide a unique `key` attribute for each item with in `v-for` iteration. An ideal value for key would be the unique id of each item.
+
+     Let us take an example usage,
      ```javascript
      <div v-for="item in items" :key="item.id">
        {{item.name}}
      </div>
      ```
      Hence, It is always recommended to provide a key with v-for whenever possible, unless the iterated DOM content is simple.
+
      **Note:** You shouldn’t use non-primitive values like objects and arrays as v-for keys. Use string or numeric values instead.
 
      **[⬆ Back to Top](#table-of-contents)**
 
 12.  ### What are the array detection mutation methods?
-     As the name suggests, mutation methods modifies the original array. Below are the list of array mutation methods which trigger view updates.
+     As the name suggests, mutation methods modifies the original array.
+
+     Below are the list of array mutation methods which trigger view updates.
      1. push()
      2. pop()
      3. shift()
@@ -627,7 +642,9 @@ List of 300 VueJS Interview Questions
      **[⬆ Back to Top](#table-of-contents)**
 
 13.  ### What are the array detection non-mutation methods?
-     The methods which do not mutate the original array but always return a new array are called non-mutation methods. Below are the list of non-mutation methods,
+     The methods which do not mutate the original array but always return a new array are called non-mutation methods.
+
+     Below are the list of non-mutation methods,
      1. filter()
      2. concat()
      3. slice()
@@ -650,9 +667,10 @@ List of 300 VueJS Interview Questions
         vm.todos[indexOfTodo] = newTodo
         ```
      2. When you modify the length of the array, For example,
-      ```javascript
-      vm.todos.length = todosLength
-      ```
+          ```javascript
+          vm.todos.length = todosLength
+          ```
+
      You can overcome both the caveats using `set` and `splice` methods, Let's see the solutions with an examples,
      
      **First use case solution**
@@ -671,7 +689,9 @@ List of 300 VueJS Interview Questions
      **[⬆ Back to Top](#table-of-contents)**
 
 15.  ### What are the caveats of object changes detection?
-     Vue cannot detect changes for the object in property addition or deletion., Lets take an example of user data changes,
+     Vue cannot detect changes for the object in property addition or deletion.
+
+     Lets take an example of user data changes,
      ```javascript
      var vm = new Vue({
        data: {
@@ -697,7 +717,7 @@ List of 300 VueJS Interview Questions
      **[⬆ Back to Top](#table-of-contents)**
 
 16.  ### How do you use v-for directive with a range?
-     You can also use integer type(say 'n') for v-for directive which repeats the element many times.
+     You can also use integer type(say 'n') for `v-for` directive which repeats the element many times.
      ```javascript
      <div>
        <span v-for="n in 20">{{ n }} </span>
@@ -708,7 +728,9 @@ List of 300 VueJS Interview Questions
      **[⬆ Back to Top](#table-of-contents)**
 
 17.  ### How do you use v-for directive on template?
-     Just similar to v-if directive on template, you can also use a `<template>` tag with v-for directive to render a block of multiple elements. Let's take a todo example,
+     Just similar to v-if directive on template, you can also use a `<template>` tag with v-for directive to render a block of multiple elements.
+
+     Let's take a todo example,
      ```javascript
      <ul>
        <template v-for="todo in todos">
@@ -739,7 +761,7 @@ List of 300 VueJS Interview Questions
      **[⬆ Back to Top](#table-of-contents)**
 
 19.  ### What are the event modifiers provided by vue?
-     Normally, javascript provides event.preventDefault() or event.stopPropagation() inside event handlers. You can use methods provided by vue, but these methods are meant for data logic instead of dealing with DOM events. Vue provides below event modifiers for v-on and these modifiers are directive postfixes denoted by a dot.
+     Normally, javascript provides `event.preventDefault() or event.stopPropagation()` inside event handlers. You can use methods provided by vue, but these methods are meant for data logic instead of dealing with DOM events. Vue provides below event modifiers for v-on and these modifiers are directive postfixes denoted by a dot.
      1. .stop
      2. .prevent
      3. .capture
@@ -784,7 +806,8 @@ List of 300 VueJS Interview Questions
      <!-- with shorthand notation-->
      <input @keyup.enter="submit">
      ```
-     **The use of keyCode events is deprecated and may not be supported in new browsers.**
+
+     **Note:** The use of keyCode events is deprecated and may not be supported in new browsers.
 
      **[⬆ Back to Top](#table-of-contents)**
 
@@ -835,7 +858,9 @@ List of 300 VueJS Interview Questions
      **[⬆ Back to Top](#table-of-contents)**
 
 24.  ### How do you implement two-way binding?
-     You can use the `v-model` directive to create two-way data bindings on form input, textarea, and select elements. Lets take an example of it using input component,
+     You can use the `v-model` directive to create two-way data bindings on form input, textarea, and select elements.
+
+     Lets take an example of it using input component,
      ```javascript
      <input v-model="message" placeholder="Enter input here">
      <p>The message is: {{ message }}</p>
@@ -864,7 +889,9 @@ List of 300 VueJS Interview Questions
      **[⬆ Back to Top](#table-of-contents)**
 
 26.  ### What are components and give an example?
-     Components are reusable Vue instances with a name. They accept the same options as new Vue, such as data, computed, watch, methods, and lifecycle hooks(except few root-specific options like el). Lets take an example of counter component,
+     Components are reusable Vue instances with a name. They accept the same options as new Vue, such as data, computed, watch, methods, and lifecycle hooks(except few root-specific options like el).
+
+     Lets take an example of counter component,
      ```javascript
      // Define a new component called button-counter
      Vue.component('button-counter', {
@@ -945,30 +972,34 @@ List of 300 VueJS Interview Questions
      **[⬆ Back to Top](#table-of-contents)**
 
 30.  ### How do you implement model on custom input components?
-     The custom events can also be used to create custom inputs that work with v-model. The <input> inside the component must follow below rules,
+     The custom events can also be used to create custom inputs that work with v-model. The `<input>` inside the component must follow below rules,
+
      1. Bind the value attribute to a value prop
      2. On input, emit its own custom input event with the new value.
+
      Let's take a custom-input component as an example,
-     ```javascript
-     Vue.component('custom-input', {
-       props: ['value'],
-       template: `
-         <input
-           v-bind:value="value"
-           v-on:input="$emit('input', $event.target.value)"
-         >
-       `
-     })
-     ```
+        ```javascript
+         Vue.component('custom-input', {
+           props: ['value'],
+           template: `
+             <input
+               v-bind:value="value"
+               v-on:input="$emit('input', $event.target.value)"
+             >
+           `
+         })
+        ```
      Now you can use `v-model` with this component,
-     ```javascript
-     <custom-input v-model="searchInput"></custom-input>
-     ```
+      ```javascript
+        <custom-input v-model="searchInput"></custom-input>
+      ```
 
      **[⬆ Back to Top](#table-of-contents)**
 
 31.  ### What are slots?
-     Vue implements a content distribution API using the <slot> element to serve as distribution outlets for content created after after the current Web Components spec draft. Let's create an alert component with slots for content insertion,
+     Vue implements a content distribution API using the <slot> element to serve as distribution outlets for content created after after the current Web Components spec draft.
+
+     Let's create an alert component with slots for content insertion,
      ```javascript
      Vue.component('alert', {
        template: `
@@ -989,7 +1020,9 @@ List of 300 VueJS Interview Questions
      **[⬆ Back to Top](#table-of-contents)**
 
 32.  ### What is global registration in components?
-     The components which are globally registered can be used in the template of any root Vue instance (new Vue) created after registration. In the global registration, the components created using Vue.component as below,
+     The components which are globally registered can be used in the template of any root Vue instance (new Vue) created after registration.
+
+     In the global registration, the components created using Vue.component as below,
      ```javascript
      Vue.component('my-component-name', {
        // ... options ...
@@ -1018,37 +1051,39 @@ List of 300 VueJS Interview Questions
 33.  ### Why do you need local registration?
      Due to global registration, even if you don't use the component it could still be included in your final build. So it will create unnecessary javascript in the application. This can be avoided using local registration with the below steps,
      1. First you need to define your components as plain JavaScript objects
-     ```javascript
-     var ComponentA = { /* ... */ }
-     var ComponentB = { /* ... */ }
-     var ComponentC = { /* ... */ }
-     ```
-     Locally registered components will not be available in sub components. In this case, you need to add them in components section
-     ```javascript
-     var ComponentA = { /* ... */ }
+         ```javascript
+         var ComponentA = { /* ... */ }
+         var ComponentB = { /* ... */ }
+         var ComponentC = { /* ... */ }
+         ```
+         Locally registered components will not be available in sub components. In this case, you need to add them in components section
+         ```javascript
+         var ComponentA = { /* ... */ }
 
-     var ComponentB = {
-       components: {
-         'component-a': ComponentA
-       },
-       // ...
-     }
-     ```
+         var ComponentB = {
+           components: {
+             'component-a': ComponentA
+           },
+           // ...
+         }
+         ```
      2. You can use the components in the components section of the vue instance,
-     ```javascript
-     new Vue({
-       el: '#app',
-       components: {
-         'component-a': ComponentA,
-         'component-b': ComponentB
-       }
-     })
-     ```
+         ```javascript
+         new Vue({
+           el: '#app',
+           components: {
+             'component-a': ComponentA,
+             'component-b': ComponentB
+           }
+         })
+         ```
 
      **[⬆ Back to Top](#table-of-contents)**
 
 34.  ### What is the difference between local and global registration in module system?
-     In **local registration**, you need to create each component in components folder(optional but it is recommended) and import them in another component file components section. Let's say you want to register component A and B in component C, the configuration seems as below,
+     In **local registration**, you need to create each component in components folder(optional but it is recommended) and import them in another component file components section.
+
+     Let's say you want to register component A and B in component C, the configuration seems as below,
      ```javascript
      import ComponentA from './ComponentA'
      import ComponentB from './ComponentC'
@@ -1124,31 +1159,32 @@ List of 300 VueJS Interview Questions
      The possible mutation cases can be solved as below,
      1. When you try to use parent prop as initial value for child property:
 
-     In this case you can define a local property in child component and assign parent value as initial value
-     ```javascript
-     props: ['defaultUser'],
-     data: function () {
-       return {
-         username: this.defaultUser
-       }
-     }
-     ```
+         In this case you can define a local property in child component and assign parent value as initial value
+         ```javascript
+         props: ['defaultUser'],
+         data: function () {
+           return {
+             username: this.defaultUser
+           }
+         }
+         ```
      2. When you try to transform the parent prop:
      
-     You can define a computed property using the prop’s value,
-     ```javascript
-     props: ['environment'],
-     computed: {
-       localEnvironment: function () {
-         return this.environment.trim().toUpperCase()
-       }
-     }
-     ```
+         You can define a computed property using the prop’s value,
+         ```javascript
+         props: ['environment'],
+         computed: {
+           localEnvironment: function () {
+             return this.environment.trim().toUpperCase()
+           }
+         }
+         ```
 
      **[⬆ Back to Top](#table-of-contents)**
 
 37.  ### What are non prop attributes?
      A non-prop attribute is an attribute that is passed to a component, but does not have a corresponding prop defined.
+
      For example, If you are using a 3rd-party custom-input component that requires a `data-tooltip` attribute on the input then you can add this attribute to component instance,
      ```javascript
      <custom-input data-tooltip="Enter your input" />
@@ -1165,6 +1201,7 @@ List of 300 VueJS Interview Questions
 
 38.  ### Describe about validations available for props?
      Vue provides validations such as types, required fields, default values along with customized validations. You can provide an object with validation requirements to the value of props as below,
+
      Let's take an example of user profile Vue component with possible validations,
      ```javascript
      Vue.component('user-profile', {
@@ -1206,7 +1243,9 @@ List of 300 VueJS Interview Questions
      **[⬆ Back to Top](#table-of-contents)**
 
 39.  ### How do you customize model directive for a component?
-     The v-model directive on a component uses **value** as the prop and **input** as the event, but some input types such as `checkboxes` and `radio buttons` may need to use the value attribute for a server side value. In this case, it is preferred to customize model directive. Let's take an example of checkbox component,
+     The v-model directive on a component uses **value** as the prop and **input** as the event, but some input types such as `checkboxes` and `radio buttons` may need to use the value attribute for a server side value. In this case, it is preferred to customize model directive.
+
+     Let's take an example of checkbox component,
      ```javascript
      Vue.component('custom-checkbox', {
        model: {
@@ -1234,7 +1273,9 @@ List of 300 VueJS Interview Questions
      **[⬆ Back to Top](#table-of-contents)**
 
 40.  ### What are the possible ways to provide transitions?
-     There are many ways Vue provides transition effects when items are inserted, updated, or removed from the DOM. Below are the possible ways,
+     There are many ways Vue provides transition effects when items are inserted, updated, or removed from the DOM.
+
+     Below are the possible ways,
      1. Automatically apply classes for CSS transitions and animations
      2. Integrate 3rd-party CSS animation libraries. For example, Animate.css
      3. Use JavaScript to directly manipulate the DOM during transition hooks
@@ -1243,7 +1284,9 @@ List of 300 VueJS Interview Questions
      **[⬆ Back to Top](#table-of-contents)**
 
 41.  ### What is vue router and their features?
-     Vue Router is a official routing library for single-page applications designed for use with the Vue.js framework. Below are their features,
+     Vue Router is a official routing library for single-page applications designed for use with the Vue.js framework.
+
+     Below are their features,
      1. Nested route/view mapping
      2. Modular, component-based router configuration
      3. Route params, query, wildcards
@@ -1256,62 +1299,68 @@ List of 300 VueJS Interview Questions
      **[⬆ Back to Top](#table-of-contents)**
 
 42.  ### What are the steps to use vue router and give an example?
-     It is easy to integrate vue router in the vue application. Let us see the example with step by step instructions.
+     It is easy to integrate vue router in the vue application.
+
+     Let us see the example with step by step instructions.
 
      **Step 1:** Configure router link and router view in the template
-     ```javascript
-     <script src="https://unpkg.com/vue/dist/vue.js"></script>
-     <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+        ```javascript
+         <script src="https://unpkg.com/vue/dist/vue.js"></script>
+         <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
 
-     <div id="app">
-       <h1>Welcome to Vue routing app!</h1>
-       <p>
-         <!-- use router-link component for navigation using `to` prop. It rendered as an `<a>` tag -->
-         <router-link to="/home">Home</router-link>
-         <router-link to="/services">Services</router-link>
-       </p>
-       <!-- route outlet in which component matched by the route will render here -->
-       <router-view></router-view>
-     </div>
-     ```
+         <div id="app">
+           <h1>Welcome to Vue routing app!</h1>
+           <p>
+             <!-- use router-link component for navigation using `to` prop. It rendered as an `<a>` tag -->
+             <router-link to="/home">Home</router-link>
+             <router-link to="/services">Services</router-link>
+           </p>
+           <!-- route outlet in which component matched by the route will render here -->
+           <router-view></router-view>
+         </div>
+        ```
+
      **Step 2:** Import Vue and VueRouter packages and then apply router
-     ```javascript
-     import Vue from 'vue';
-     import VueRouter from 'vue-router';
 
-     Vue.use(VueRouter)
-     ```
+        ```javascript
+         import Vue from 'vue';
+         import VueRouter from 'vue-router';
+
+         Vue.use(VueRouter)
+        ```
      **Step 3:** Define or import route components.
-     ```javacript
-     const Home = { template: '<div>Home</div>' }
-     const Services = { template: '<div>Services</div>' }
-     ```
+        ```javacript
+         const Home = { template: '<div>Home</div>' }
+         const Services = { template: '<div>Services</div>' }
+        ```
      **Step 4:** Define your route where each one maps to a component
-     ```javascript
-     const routes = [
-       { path: '/home', component: Home },
-       { path: '/services', component: Services }
-     ]
-     ```
+        ```javascript
+         const routes = [
+           { path: '/home', component: Home },
+           { path: '/services', component: Services }
+         ]
+        ```
      **Step 5:** Create the router instance and pass the `routes` option
-     ```javascript
-     const router = new VueRouter({
-       routes // short for `routes: routes`
-     })
-     ```
+        ```javascript
+         const router = new VueRouter({
+           routes // short for `routes: routes`
+         })
+        ```
      **Step 6:**  Create and mount the root instance.
-     ```javacript
-     const app = new Vue({
-       router
-     }).$mount('#app')
-     ```
+        ```javacript
+         const app = new Vue({
+           router
+         }).$mount('#app')
+        ```
 
      Now you are able to navigate different pages(Home, Services) with in Vue application.
 
      **[⬆ Back to Top](#table-of-contents)**
 
 43.  ### What is dynamic route matching?
-     Sometimes it may be required to map routes to the same component based on a pattern. Let's take a user component with the mapped URLs like `/user/john/post/123` and `/user/jack/post/235` using dynamic segments,
+     Sometimes it may be required to map routes to the same component based on a pattern.
+
+     Let's take a user component with the mapped URLs like `/user/john/post/123` and `/user/jack/post/235` using dynamic segments,
      ```javascript
      const User = {
        template: '<div>User {{ $route.params.name }}, PostId: {{ route.params.postid }}</div>'
@@ -1328,27 +1377,30 @@ List of 300 VueJS Interview Questions
      **[⬆ Back to Top](#table-of-contents)**
 
 44.  ### How to make router param changes as reactive?
-     When you navigate from one URL to other(mapped with a single component) using routes with params then the same component instance will be reused. Even though it is more efficient than destroying the old instance and then creating a new one, the lifecycle hooks of the component will not be called. This problem can be solved using either of the below approaches,
-     1. Watch the $route object:
-     ```javascript
-     const User = {
-       template: '<div>User {{ $route.params.name }} </div>',
-       watch: {
-         '$route' (to, from) {
-           // react to route changes...
+     When you navigate from one URL to other(mapped with a single component) using routes with params then the same component instance will be reused. Even though it is more efficient than destroying the old instance and then creating a new one, the lifecycle hooks of the component will not be called.
+
+     This problem can be solved using either of the below approaches,
+
+     1. **Watch the $route object:**
+         ```javascript
+         const User = {
+           template: '<div>User {{ $route.params.name }} </div>',
+           watch: {
+             '$route' (to, from) {
+               // react to route changes...
+             }
+           }
          }
-       }
-     }
-     ```
-     2. Use beforeRouteUpdate navigation guard: This is only available since 2.2 version.
-     ```javascript
-     const User = {
-       template: '<div>User {{ $route.params.name }} </div>',
-       beforeRouteUpdate (to, from, next) {
-         // react to route changes and then call next()
-       }
-     }
-     ```
+         ```
+     2. **Use beforeRouteUpdate navigation guard:** This is only available since 2.2 version.
+         ```javascript
+         const User = {
+           template: '<div>User {{ $route.params.name }} </div>',
+           beforeRouteUpdate (to, from, next) {
+             // react to route changes and then call next()
+           }
+         }
+         ```
      Note that the beforeRouteEnter guard does NOT have access to `this`. Instead you can pass a callback to `next` to access the vm instance.
 
      **[⬆ Back to Top](#table-of-contents)**
@@ -1370,6 +1422,7 @@ List of 300 VueJS Interview Questions
 
 46.  ### What are nested routes?
      Generally, the app is composed of nested components which are nested multiple levels deep. The segments of a URL corresponds to a certain structure of these nested components. To render components into the nested outlet, you need to use the `children` option in `VueRouter` constructor config.
+
      Let's take a user app composed of profile and posts nested components with respective routes. You can also define a default route configuration when there is no matching nested route.
      ```javascript
      const router = new VueRouter({
@@ -1399,6 +1452,7 @@ List of 300 VueJS Interview Questions
 
 47.  ### What are single file components?
      Single File Components are an easy concept to understand. Earlier you might heard about all three parts(HTML, JavaScript and CSS) of your application kept in different components. But Single File Components encapsulate the structure, styling and behaviour into one file. In the beginning, it seems strange to have all three parts in one file, but it actually makes a lot more sense.
+
      Let's take an example of Singile File Components
      ```javascript
      <template>
@@ -1429,7 +1483,9 @@ List of 300 VueJS Interview Questions
 
 48.  ### Is Single File Components violating separation of concerns?
      As for the latest modern UI development, separation of concerns is not equal to separation of file types. So it is preferred to divide codebase layers into loosely-coupled components and compose them instead of dividing the codebase into three huge layers that interweave with one another. This way makes Single File Components more cohesive and maintainable by combining template, logic and styles together inside a component.
-     You can also still maintain javascript and CSS files separately with hot-reloading and pre-compilation features. For example,
+     You can also still maintain javascript and CSS files separately with hot-reloading and pre-compilation features.
+
+     For example,
      ```
      <template>
        <div>This section will be pre-compiled and hot reloaded</div>
@@ -1510,6 +1566,7 @@ List of 300 VueJS Interview Questions
      {{ message | filterA | filterB | filterB ... }}
      ```
      In the above chain stack, you can observe that message expression applied with three filters, each separated by a pipe(|) symbol. The first filter(filterA) takes the expression as a single argument and the result of the expression becomes an argument for second filter(filterB) and the chain continue for remaining filters.
+
      For example, if you want to transform date expression with a full date format and uppercase then you can apply dateFormat and uppercase filters as below,
      ```javascript
      {{ birthday | dateFormat | uppercase }}
@@ -1523,6 +1580,7 @@ List of 300 VueJS Interview Questions
      {{ message | filterA('arg1', arg2) }}
      ```
      In this case, filterA takes message expression as first argument and the explicit parameters mentioned in the filter as second and third arguments.
+
      For example, you can find the exponential strength of a particular value
      ```javascript
      {{ 2 | exponentialStrength(10) }} // prints 2 power 10 = 1024
@@ -1606,7 +1664,9 @@ List of 300 VueJS Interview Questions
      **[⬆ Back to Top](#table-of-contents)**
 
 58.  ### What are global mixins?
-     Sometimes there is a need to extend the functionality of Vue or apply an option to all Vue components available in our application. In this case, mixins can be applied globally to affect all components in Vue. These mixins are called as global mixins. Let's take an example of global mixin,
+     Sometimes there is a need to extend the functionality of Vue or apply an option to all Vue components available in our application. In this case, mixins can be applied globally to affect all components in Vue. These mixins are called as global mixins.
+
+     Let's take an example of global mixin,
      ```javascript
      Vue.mixin({
        created(){
@@ -1630,79 +1690,80 @@ List of 300 VueJS Interview Questions
 60.  ### What are the merging strategies in mixins?
      When a mixin and the component itself contain overlapping options, the options will be merged based on some strategies.
      1. The data objects undergo a recursive merge, with the component’s data taking priority over mixins in cases of overlapping or conflicts.
-     ```javascript
-     var mixin = {
-       data: function () {
-         return {
-           message: 'Hello, this is a Mixin'
-         }
-       }
-      }
-     new Vue({
-       mixins: [mixin],
-       data: function () {
-         return {
-           message: 'Hello, this is a Component'
-         }
-       },
-       created: function () {
-         console.log(this.$data); // => { message: "Hello, this is a Component'" }
-       }
-     })
-     ```
+         ```javascript
+         var mixin = {
+           data: function () {
+             return {
+               message: 'Hello, this is a Mixin'
+             }
+           }
+          }
+         new Vue({
+           mixins: [mixin],
+           data: function () {
+             return {
+               message: 'Hello, this is a Component'
+             }
+           },
+           created: function () {
+             console.log(this.$data); // => { message: "Hello, this is a Component'" }
+           }
+         })
+         ```
      2. The Hook functions which are overlapping merged into an array so that all of them will be called. Mixin hooks will be called before the component’s own hooks.
-     ```javascript
-     const myMixin = {
-       created(){
-         console.log("Called from Mixin")
-       }
-     }
+         ```javascript
+         const myMixin = {
+           created(){
+             console.log("Called from Mixin")
+           }
+         }
 
-     new Vue({
-       el: '#root',
-       mixins:[myMixin],
-       created(){
-         console.log("Called from Component")
-       }
-     })
+         new Vue({
+           el: '#root',
+           mixins:[myMixin],
+           created(){
+             console.log("Called from Component")
+           }
+         })
 
-     //Called from Mixin
-     //Called from Component
-     ```
+         //Called from Mixin
+         //Called from Component
+         ```
      3. The options that expect object values(such as methods, components and directives) will be merged into the same object. In this case, the component’s options will take priority when there are conflicting keys in these objects.
-     ```javascript
-     var mixin = {
-       methods: {
-         firstName: function () {
-           console.log('John')
-         },
-         contact: function () {
-           console.log('+65 99898987')
+         ```javascript
+         var mixin = {
+           methods: {
+             firstName: function () {
+               console.log('John')
+             },
+             contact: function () {
+               console.log('+65 99898987')
+             }
+           }
          }
-       }
-     }
 
-     var vm = new Vue({
-       mixins: [mixin],
-       methods: {
-         lastName: function () {
-           console.log('Murray')
-         },
-         contact: function () {
-           console.log('+91 893839389')
-         }
-       }
-     })
+         var vm = new Vue({
+           mixins: [mixin],
+           methods: {
+             lastName: function () {
+               console.log('Murray')
+             },
+             contact: function () {
+               console.log('+91 893839389')
+             }
+           }
+         })
 
-     vm.firstName() // "John"
-     vm.lastName() // "Murray"
-     vm.contact() // "+91 893839389"
-     ```
+         vm.firstName() // "John"
+         vm.lastName() // "Murray"
+         vm.contact() // "+91 893839389"
+         ```
 
      **[⬆ Back to Top](#table-of-contents)**
 
 61.  ### What are custom options merging strategies?
      Vue uses the default strategy which overwrites the existing value while custom options are merged. But if you want a custom option merged using custom login then you need to attach a function to `Vue.config.optionMergeStrategies`
+
      For the example, the structure of `myOptions` custom option would be as below,
      ```javascript
      Vue.config.optionMergeStrategies.myOption = function (toVal, fromVal) {
@@ -1726,7 +1787,9 @@ List of 300 VueJS Interview Questions
      **[⬆ Back to Top](#table-of-contents)**
 
 62.  ### What are custom directives?
-     Custom Directives are tiny commands that you can attach to DOM elements. They are prefixed with v- to let the library know you're using a special bit of markup and to keep syntax consistent. They are typically useful if you need low-level access to an HTML element to control a bit of behavior. Let's create a custom focus directive to provide focus on specific form element during page load time,
+     Custom Directives are tiny commands that you can attach to DOM elements. They are prefixed with v- to let the library know you're using a special bit of markup and to keep syntax consistent. They are typically useful if you need low-level access to an HTML element to control a bit of behavior.
+
+     Let's create a custom focus directive to provide focus on specific form element during page load time,
      ```javascript
      // Register a global custom directive called `v-focus`
      Vue.directive('focus', {
@@ -1789,12 +1852,14 @@ List of 300 VueJS Interview Questions
      4. `oldVnode`: The previous virtual node, only available in the update and componentUpdated hooks.
 
      The arguments can be represented diagrammatically across the hooks as below,
-     ![custom-directives](images/custom-directives.svg)
+
+        ![custom-directives](images/custom-directives.svg)
 
      **[⬆ Back to Top](#table-of-contents)**
 
 66.  ### How do you pass multiple values to a directive?
      A directive can take any valid javascript expression. So if you want to pass multiple values then you can pass in a JavaScript object literal.
+
      Let's pass object literal to an avatar directive as below
      ```html
      <div v-avatar="{ width: 500, height: 400, url: 'path/logo', text: 'Iron Man' }"></div>
@@ -1827,7 +1892,9 @@ List of 300 VueJS Interview Questions
      **[⬆ Back to Top](#table-of-contents)**
 
 69.  ### What is a render function?
-     Render function is a normal function which receives a `createElement` method as it’s first argument used to create virtual nodes. Internally Vue.js' templates actually compile down to render functions at build time. Hence templates are just syntactic sugar of render functions. Let's take an example of simple Div markup and corresponding render function,
+     Render function is a normal function which receives a `createElement` method as it’s first argument used to create virtual nodes. Internally Vue.js' templates actually compile down to render functions at build time. Hence templates are just syntactic sugar of render functions.
+
+     Let's take an example of simple Div markup and corresponding render function.
      The HTML markup can be written in template tag as below,
      ```javascript
      <template>
@@ -1853,7 +1920,9 @@ List of 300 VueJS Interview Questions
      **[⬆ Back to Top](#table-of-contents)**
 
 70.  ### Explain the structure of createElement with arguments?
-     The createElement accepts few arguments to use all the template features. Let us see the basic structure of createElement with possible arguments,
+     The createElement accepts few arguments to use all the template features.
+
+     Let us see the basic structure of createElement with possible arguments,
      ```javascript
      // @returns {VNode}
      createElement(
@@ -1915,6 +1984,7 @@ List of 300 VueJS Interview Questions
 
 71.  ### How can you write duplicate virtual nodes in a component?
      All virtual nodes(VNodes) in the component tree must be unique.i.e, You can't write duplicated nodes in a straightforward way. If you want to duplicate the same element/component many times then you should use factory function.
+
      The below render function is invalid where you are trying to duplicate h1 element 3 times,
      ```javascript
      render: function (createElement) {
@@ -1938,7 +2008,9 @@ List of 300 VueJS Interview Questions
      **[⬆ Back to Top](#table-of-contents)**
 
 72.  ### List down the template equivalents in render functions?
-     VueJS provides proprietary alternatives and plain javascript usage for the template features. Let's list down them in a table for comparision,
+     VueJS provides proprietary alternatives and plain javascript usage for the template features.
+
+     Let's list down them in a table for comparision,
 
         | Templates | Render function |
         |---- | --------- |
@@ -1983,7 +2055,9 @@ List of 300 VueJS Interview Questions
      **[⬆ Back to Top](#table-of-contents)**
 
 75.  ### What is the difference between VueJS and ReactJS?
-     Even though VueJS and ReactJS share few common features there are many difference between them. Let's list down them in a table format.
+     Even though VueJS and ReactJS share few common features there are many difference between them.
+
+     Let's list down them in a table format.
 
       | Feature | VueJS | ReactJS |
       |---- | --------- | ---- |
@@ -2013,7 +2087,9 @@ List of 300 VueJS Interview Questions
      **[⬆ Back to Top](#table-of-contents)**
 
 78.  ### What are the differences between VueJS and AngularJS?
-     The  the syntax of Vue and Angular is common at some points because Angular is the basis for VueJS development in the beginning. But there are many differences between VueJS and Angular as listed,
+     The  the syntax of Vue and Angular is common at some points because Angular is the basis for VueJS development in the beginning.
+
+     But there are many differences between VueJS and Angular as listed,
 
       | Feature | VueJS | AngularJS |
       |---- | --------- | ---- |
@@ -2029,6 +2105,7 @@ List of 300 VueJS Interview Questions
 
 79.  ### What are dynamic components?
      The dynamic component is used to dynamically switch beetween multiple components using **<component>** element and pass data to v-bind:is attribute.
+
      Let's create a dynamic component to switch between different pages of a website,
      ```javascript
      new Vue({
@@ -2063,6 +2140,7 @@ List of 300 VueJS Interview Questions
 
 80.  ### What is the purpose of keep alive tag?
      Keep-alive tag is an abstract component used to preserve component state or avoid re-rendering. When you wrapped <keep-alive> tag around a dynamic component,  it caches the inactive component instances without destroying them.
+
      Let's see the example usage of it,
      ```javascript
      <!-- Inactive components will be cached! -->
@@ -2085,6 +2163,7 @@ List of 300 VueJS Interview Questions
 
 81.  ### What are async components?
      In large applications, we may need to divide the app into smaller chunks and only load a component from the server when it’s needed. To make this happen, Vue allows you to define your component as a factory function that asynchronously resolves your component definition. These components are known as async component.
+
      Let's see an example of async component using webpack code-splitting feature,
      ```javascript
      Vue.component('async-webpack-example', function (resolve, reject) {
@@ -2132,6 +2211,7 @@ List of 300 VueJS Interview Questions
 
 84.  ### What are X Templates?
      Apart from regular templates and inline templates, you can also define templates using a script element with the type `text/x-template` and then referencing the template by an id.
+
      Let's create a x-template for simple use case as below,
      ```javascript
      <script type="text/x-template" id="script-template">
@@ -2162,7 +2242,9 @@ List of 300 VueJS Interview Questions
      **[⬆ Back to Top](#table-of-contents)**
 
 86.  ### How do you resolve circular dependencies between components?
-     In complex applications, vue components will actually be each other’s descendent and ancestor in the render tree. Let's say componentA and componentB included in their respective templates which makes circular dependency,
+     In complex applications, vue components will actually be each other’s descendent and ancestor in the render tree.
+
+     Let's say componentA and componentB included in their respective templates which makes circular dependency,
      ```javascript
      //ComponentA
      <div>
@@ -2194,7 +2276,9 @@ List of 300 VueJS Interview Questions
 
 87.  ### How do you make sure vue application is CSP complaint?
 
-     Some environments(Google Chrome Apps) prohibits the usage of `new Function()` for evaluating expressions and the full builds of vue applications depends on this feature to compile templates. Due to this reason, the full builds of VueJS application are not CSP complaint. In this case you can use **runtime-only** builds with Webpack + vue-loader or Browserify + vueify technology stack through which templates will be precompiled into render functions. This way you can make sure VueJS applications are 100% CSP complaint.
+     Some environments(Google Chrome Apps) prohibits the usage of `new Function()` for evaluating expressions and the full builds of vue applications depends on this feature to compile templates. Due to this reason, the full builds of VueJS application are not CSP complaint.
+
+     In this case you can use **runtime-only** builds with Webpack + vue-loader or Browserify + vueify technology stack through which templates will be precompiled into render functions. This way you can make sure VueJS applications are 100% CSP complaint.
 
      **[⬆ Back to Top](#table-of-contents)**
 
@@ -2237,7 +2321,9 @@ List of 300 VueJS Interview Questions
      **[⬆ Back to Top](#table-of-contents)**
 
 91.  ### What is the purpose of vuejs compiler?
-     The compiler is  is responsible for compiling template strings into JavaScript render functions. For example, the below code snippet shows the difference of templates which need compiler and not,
+     The compiler is  is responsible for compiling template strings into JavaScript render functions.
+
+     For example, the below code snippet shows the difference of templates which need compiler and not,
      ```javascript
      // this requires the compiler
      new Vue({
@@ -2276,7 +2362,9 @@ List of 300 VueJS Interview Questions
      **[⬆ Back to Top](#table-of-contents)**
 
 94.  ### How do you use various CDNs?
-     VueJS is available in jsdelivr, unpkg and cdnjs etc CDNs. Normally you can use them for prototyping or learning purposes. For example, you can use them using jsdelivr with latest versions as below,
+     VueJS is available in jsdelivr, unpkg and cdnjs etc CDNs. Normally you can use them for prototyping or learning purposes.
+
+     For example, you can use them using jsdelivr with latest versions as below,
      ```javascript
      <script src="https://cdn.jsdelivr.net/npm/vue@2.6.7/dist/vue.js"></script>
      ```
@@ -2299,7 +2387,9 @@ List of 300 VueJS Interview Questions
      **[⬆ Back to Top](#table-of-contents)**
 
 96.  ### What is the purpose of vuejs once directive?
-     If you want to render `a lot of static content` then you need to make sure it only evaluated once and then cached thereafter. In this case, you can use `v-once` directive by wrapping at the root level. The example usage of v-once directive would be as below,
+     If you want to render `a lot of static content` then you need to make sure it only evaluated once and then cached thereafter. In this case, you can use `v-once` directive by wrapping at the root level.
+
+     The example usage of v-once directive would be as below,
      ```javascript
      Vue.component('legal-terms', {
        template: `
@@ -2316,7 +2406,11 @@ List of 300 VueJS Interview Questions
      **[⬆ Back to Top](#table-of-contents)**
 
 97.  ### How do you access the root instance?
-     The root instance(new Vue()) can be accessed with the `$root` property. Let's see the usage of root instance with an example. First let's create a root instance with properties and methods as below,
+     The root instance(new Vue()) can be accessed with the `$root` property.
+
+     Let's see the usage of root instance with an example.
+
+     First let's create a root instance with properties and methods as below,
      ```javascript
      // The root Vue instance
      new Vue({
@@ -2366,7 +2460,9 @@ List of 300 VueJS Interview Questions
      **[⬆ Back to Top](#table-of-contents)**
 
 99.  ### What is the purpose of renderError?
-     When the default render function encounters an error then you can use rennderError as an alternative render output. The error will be passed to renderError as the second argument. The example usage of renderError is as below,
+     When the default render function encounters an error then you can use rennderError as an alternative render output. The error will be passed to renderError as the second argument.
+
+     The example usage of renderError is as below,
      ```javacript
      new Vue({
        render (h) {
@@ -2395,38 +2491,42 @@ List of 300 VueJS Interview Questions
      1. The **state**, which is the source of truth that drives our app
      2. The **view**, which is just a declarative mapping of the state
      3. The **actions**, which are the possible ways the state could change in reaction to user inputs from the view.
+
      Let us take a counter example which follows state management pattern with the above 3 components,
-     ```javascript
-     new Vue({
-       // state
-       data () {
-         return {
-           count: 0
-         }
-       },
-       // view
-       template: `
-         <div>{{ count }}</div>
-       `,
-       // actions
-       methods: {
-         increment () {
-           this.count++
-         }
-       }
-     })
-     ```
+        ```javascript
+         new Vue({
+           // state
+           data () {
+             return {
+               count: 0
+             }
+           },
+           // view
+           template: `
+             <div>{{ count }}</div>
+           `,
+           // actions
+           methods: {
+             increment () {
+               this.count++
+             }
+           }
+         })
+        ```
 
      **[⬆ Back to Top](#table-of-contents)**
 
 103. ### How do you represent one way data flow in vuex?
      Vue.js has a one-way data flow model, through the props property. The same concept can be represented in vuex has below,
+
      <img src="https://github.com/sudheerj/vuejs-interview-questions/blob/master/images/flow.png" width="400" height="500">
 
      **[⬆ Back to Top](#table-of-contents)**
 
 104. ### What is a vuejs loader?
-     Vue loader is a loader for webpack that allows you to author Vue components in a format called Single-File Components (SFCs). For example, it authors HelloWorld component in a SFC,
+     Vue loader is a loader for webpack that allows you to author Vue components in a format called Single-File Components (SFCs).
+
+     For example, it authors HelloWorld component in a SFC,
      ```javascript
      <template>
        <div class="greeting">{{ message }}</div>
@@ -2453,6 +2553,7 @@ List of 300 VueJS Interview Questions
 
 105. ### How do you configure vue loader in webpack?
      Vue Loader's configuration is a bit different from other loaders by adding Vue Loader's plugin to your webpack config. The vue loader plugin is required for cloning any other rules(js and css rules) defined and applying them to the corresponding language blocks(<script> and <style>) in .vue files.
+
      For example, the simple demonistration of webpack configuration for vue loader would be as below,
      ```javascript
      // webpack.config.js
@@ -2492,20 +2593,21 @@ List of 300 VueJS Interview Questions
 
 106. ### What are asset url transform rules?
      Below are the list of Asset URL transform rules
-     1. ** Absolute path**: If the URL is an absolute path (for example, /images/loader.png)then it will be preserved as-is.
-     2. ** Relative path**: If the URL starts with `.` (for example, ./images/loader.png) then it will be interpreted as a relative module request and resolved based on the folder structure on your file system.
-     3. ** URLs starts with ~ symbol **: If the URL starts with `~` symbol(for example, ./some-node-package/loader.png) then it is interpreted as a module request. This way it can reference assets inside node modules too.
-     4. ** URLs starts with @ symbol**: If the URL starts with `@` symbol then it is interpreted as a module request. This is useful if your webpack config has an alias for @, which by default points to `/src` path.
+     1. **Absolute path**: If the URL is an absolute path (for example, /images/loader.png)then it will be preserved as-is.
+     2. **Relative path**: If the URL starts with `.` (for example, ./images/loader.png) then it will be interpreted as a relative module request and resolved based on the folder structure on your file system.
+     3. **URLs starts with ~ symbol**: If the URL starts with `~` symbol(for example, ./some-node-package/loader.png) then it is interpreted as a module request. This way it can reference assets inside node modules too.
+     4. **URLs starts with @ symbol**: If the URL starts with `@` symbol then it is interpreted as a module request. This is useful if your webpack config has an alias for @, which by default points to `/src` path.
 
      **[⬆ Back to Top](#table-of-contents)**
 
 107. ### How do you work with preprocessors using vue loader?
-     `Vue-loader` will automatically infer the proper loaders to use based on the `lang` attribute of a language block and the rules defined in webpack config. You can use pre-processors such as SASS,LESS, Stylus and PostCSS using vuejs loader.
+     `Vue-loader` will automatically infer the proper loaders to use based on the `lang` attribute of a language block and the rules defined in webpack config. You can use pre-processors such as `SASS,LESS, Stylus and PostCSS` using vuejs loader.
 
      **[⬆ Back to Top](#table-of-contents)**
 
 108. ### What is scoped CSS?
      Scoped CSS is a mechanism in VueJS Single File Components(SFC) that prevents styles from leaking out of the current component and affecting other unintended components on your page. i.e, When a <style> tag has the scoped attribute, its CSS will apply to elements of the current component only. It uses PostCSS to transform scoped css to plain CSS.
+
      Let's take an example usage of scoped css,
      ```javascript
      <style scoped>
@@ -2534,7 +2636,7 @@ List of 300 VueJS Interview Questions
      **[⬆ Back to Top](#table-of-contents)**
 
 109. ### Is it possible to mix both local and global styles?
-     Yes, You can include both scoped and non-scoped styles in the same component. If you don't mention scoped attribute then it will become global style.
+     Yes, you can include both scoped and non-scoped styles in the same component. If you don't mention scoped attribute then it will become global style.
      ```javascript
      <style>
      /* global styles */
@@ -2548,7 +2650,9 @@ List of 300 VueJS Interview Questions
      **[⬆ Back to Top](#table-of-contents)**
 
 110. ### How do you use deep selectors?
-     In scoped css, if you need to modify the styles of a child component using deep selectors(i,e from parent scoped css) then you need to use **>>>** combinator. For example, the scoped deep selector on parent scoped css would be as below,
+     In scoped css, if you need to modify the styles of a child component using deep selectors(i,e from parent scoped css) then you need to use **>>>** combinator.
+
+     For example, the scoped deep selector on parent scoped css would be as below,
      ```javascript
      <style scoped>
      .class1 >>> .class2 { /* ... */ }
@@ -2564,7 +2668,9 @@ List of 300 VueJS Interview Questions
 
 111. ### Is parent styles leaked into child components in scoped css?
      The parent component's styles will not leak into child components. But a child component's root node will be affected by both the parent's scoped CSS and the child's scoped CSS. i.e, your child component's root element has a class that also exists in the parent component, the parent component's styles will leak to the child. Anyway this is by design so that the parent can style the child root element for layout purposes.
+
      For example, the background color property of parent component leaked into child component as below,
+
      //parent.vue
      ```javascript
      <template>
@@ -2590,6 +2696,7 @@ List of 300 VueJS Interview Questions
      }
      </style>
      ```
+
      //child.vue
      ```javascript
      <template>
@@ -2630,54 +2737,58 @@ List of 300 VueJS Interview Questions
 
 115. ### How to use CSS modules in vuejs?
      Below are the steps to use css modules in VueJS,
-     1. ** Enable CSS modules:**  CSS Modules must be enabled by passing modules: true option to css-loader
-     ```javascript
-     // webpack.config.js
-     {
-       module: {
-         rules: [
-           // ... other rules omitted
-           {
-             test: /\.css$/,
-             use: [
-               'vue-style-loader',
+     1. **Enable CSS modules:**  CSS Modules must be enabled by passing modules: true option to css-loader
+         ```javascript
+         // webpack.config.js
+         {
+           module: {
+             rules: [
+               // ... other rules omitted
                {
-                 loader: 'css-loader',
-                 options: {
-                   // enable CSS Modules
-                   modules: true,
-                   // customize generated class names
-                   localIdentName: '[local]_[hash:base64:8]'
-                 }
+                 test: /\.css$/,
+                 use: [
+                   'vue-style-loader',
+                   {
+                     loader: 'css-loader',
+                     options: {
+                       // enable CSS Modules
+                       modules: true,
+                       // customize generated class names
+                       localIdentName: '[local]_[hash:base64:8]'
+                     }
+                   }
+                 ]
                }
              ]
            }
-         ]
-       }
-     }
-     ```
-     2. ** Add module attribute:** Add the module attribute to your `<style>`
-     ```javascript
-     <style module>
-     .customStyle {
-       background: blue;
-     }
-     </style>
-     ```
-     3. ** Inject CSS modules:** You can inject CSS modules object with computed property $style
-     ```javascript
-     <template>
-       <div :class="$style.blue">
-         Background color should be in blue
-       </p>
-     </template>
-     ```
+         }
+         ```
+     2. **Add module attribute:** Add the module attribute to your `<style>`
+         ```javascript
+         <style module>
+         .customStyle {
+           background: blue;
+         }
+         </style>
+         ```
+     3. **Inject CSS modules:** You can inject CSS modules object with computed property $style
+         ```javascript
+         <template>
+           <div :class="$style.blue">
+             Background color should be in blue
+           </p>
+         </template>
+         ```
+
      It can work with object/array syntax of :class binding.
 
      **[⬆ Back to Top](#table-of-contents)**
 
 116. ### Can I use CSS modules for preprocessors?
-     Yes,You can use preprocessors with CSS Modules. For example, sass-loader can configured in webpack file for sass preprocessor.
+     Yes, you can use preprocessors with CSS Modules.
+
+     For example, sass-loader can configured in webpack file for sass preprocessor.
+
      ```javascript
      // webpack.config.js -> module.rules
      {
@@ -2696,7 +2807,10 @@ List of 300 VueJS Interview Questions
      **[⬆ Back to Top](#table-of-contents)**
 
 117. ### Is it possible to use custom inject name for CSS modules?
-     You can customize the name of the injected computed property by giving the module attribute a value. This will be helpful to avoid overwriting injected styled if you have more than one <style> tags in a single *.vue component. For example, you can use module attribute as below,
+     You can customize the name of the injected computed property by giving the module attribute a value. This will be helpful to avoid overwriting injected styled if you have more than one <style> tags in a single *.vue component.
+
+     For example, you can use module attribute as below,
+
      ```javascript
      <style module="a">
        /* identifiers injected as a */
@@ -2724,7 +2838,9 @@ List of 300 VueJS Interview Questions
      **[⬆ Back to Top](#table-of-contents)**
 
 120. ### How do you disable hot reloading explicitly?
-     You can use `hotReload: false` option to disable the Hot Reload explicitly. It can be configured as below,
+     You can use `hotReload: false` option to disable the Hot Reload explicitly.
+
+     It can be configured as below,
      ```javascript
      module: {
        rules: [
@@ -2748,9 +2864,10 @@ List of 300 VueJS Interview Questions
 
 122. ### What are state preservation rules in hot reloading?
      Below are the state preservation rules in hot reloading,
-     1.When editing the `<template>` of a component, instances of the edited component will re-render in place, preserving all current private state.
-     2.When editing the `<script>` part of a component, instances of the edited component will be destroyed and re-created in place.
-     3.When editing the `<style>` hot reload operates on its own via vue-style-loader without affecting application state.
+
+     1. When editing the `<template>` of a component, instances of the edited component will re-render in place, preserving all current private state.
+     2. When editing the `<script>` part of a component, instances of the edited component will be destroyed and re-created in place.
+     3. When editing the `<style>` hot reload operates on its own via vue-style-loader without affecting application state.
 
      **[⬆ Back to Top](#table-of-contents)**
 
@@ -2778,13 +2895,14 @@ List of 300 VueJS Interview Questions
 
 125. ### How do you perform testing in vuejs?
      You can perform testing in two ways,
-     1. ** Using vue-cli:** It offers pre-configured unit testing and e2e testing setups
-     2. ** Manual setup:** You can manually setting up unit tests for *.vue files using either mocha-webpack or jest
+
+     1. **Using vue-cli:** It offers pre-configured unit testing and e2e testing setups
+     2. **Manual setup:** You can manually setting up unit tests for *.vue files using either mocha-webpack or jest
 
      **[⬆ Back to Top](#table-of-contents)**
 
 126. ### How do you apply linting for css?
-     The stylelint linter supports linting style parts of Vue single file components. You can run linter on particular vue file as below
+     The stylelint linter supports linting style parts of Vue single file components. You can run linter on particular vue file as below,
      ```javascript
      stylelint MyComponent.vue
      ```
@@ -2806,6 +2924,7 @@ List of 300 VueJS Interview Questions
 
 127. ### How do you use eslint plugin?
      The official `eslint-plugin-vue` supports linting both the template and script parts of Vue single file components. You can configure plugin in your ESLint config,
+
      ```javascript
      // .eslintrc.js
      module.exports = {
@@ -2815,6 +2934,7 @@ List of 300 VueJS Interview Questions
      }
      ```
      You can run linter on particular component as below,
+
      ```javascript
      eslint --ext js,vue MyComponent.vue
      ```
@@ -2847,7 +2967,7 @@ List of 300 VueJS Interview Questions
      **[⬆ Back to Top](#table-of-contents)**
 
 129. ### What is CSS extraction?
-     CSS Extraction is used to extract all the processed CSS in all Vue components into a single CSS file. For webpack4, you need to install below npm command,
+     `CSS Extraction` is used to extract all the processed CSS in all Vue components into a single CSS file. For webpack4, you need to install below npm command,
      ```javascript
      npm install -D mini-css-extract-plugin
      ```
@@ -2884,7 +3004,9 @@ List of 300 VueJS Interview Questions
      **[⬆ Back to Top](#table-of-contents)**
 
 130. ### What are custom blocks?
-     You can define custom language blocks inside *.vue files based on the `lang` attribute of the block, the block's tag name, and the rules in your webpack config. You can also use `resourceQuery` to match a rule against a custom block with no lang. For example, to match against <message> custom blocks.
+     You can define custom language blocks inside *.vue files based on the `lang` attribute of the block, the block's tag name, and the rules in your webpack config. You can also use `resourceQuery` to match a rule against a custom block with no lang.
+
+     For example, to match against `<message>` custom blocks.
      ```javascript
      {
        module: {
@@ -2915,18 +3037,21 @@ List of 300 VueJS Interview Questions
      1. Application-level state is centralized in the store.
      2. The only way to mutate the state is by committing mutations, which are synchronous transactions.
      3. Asynchronous logic should be encapsulated in, and can be composed with actions.
+
      The project structure for any non-trivial application would be as below,
      <img src="https://github.com/sudheerj/vuejs-interview-questions/blob/master/images/vuex-app-structure.png" width="700" height="500">
 
      **[⬆ Back to Top](#table-of-contents)**
 
 133. ### Is Vuex supports hot reloading?
-     Yes, Vuex supports hot-reloading for mutations, modules, actions and getters during development. You need to use either webpack's hot module replacement API or browserify's hot module replacement plugin.
+     Yes, vuex supports hot-reloading for mutations, modules, actions and getters during development. You need to use either webpack's hot module replacement API or browserify's hot module replacement plugin.
 
      **[⬆ Back to Top](#table-of-contents)**
 
 134. ### What is the purpose of hotUpdate API of vuex store?
-     The store.hotUpdate() API method is used for mutations and modules. For example, you need to configure vuex store as below,
+     The store.hotUpdate() API method is used for mutations and modules.
+
+     For example, you need to configure vuex store as below,
      ```javascript
      // store.js
      import Vue from 'vue'
@@ -2967,6 +3092,7 @@ List of 300 VueJS Interview Questions
 
 135. ### How do you test mutations?
      Since mutations are just functions that completely rely on their arguments it will be easier to test. You need to keep mutations inside your store.js file and should also export the mutations as a named export apart from default export.
+
      Let's take an example of increment mutations,
      ```javascript
      // mutations.js
@@ -2999,6 +3125,7 @@ List of 300 VueJS Interview Questions
 
 136. ### How do you test your getters?
      It is easier to test getters similar to mutations. It is recommended to test these getters if they have complicated computation.
+
      Let's take a simple todo filter as a getter
      ```javascript
      // getters.js
@@ -3046,30 +3173,30 @@ List of 300 VueJS Interview Questions
 137. ### What is the procedure to run tests in node?
      By proper mocking, you can bundle tests with webpack and run them on node without having depenceny on Browser API.  It involves 2 steps,
      1. **Create webpack config:** Create webpack config with proper .babelrc
-     ```javscript
-     // webpack.config.js
-     module.exports = {
-       entry: './test.js',
-       output: {
-         path: __dirname,
-         filename: 'test-bundle.js'
-       },
-       module: {
-         loaders: [
-           {
-             test: /\.js$/,
-             loader: 'babel-loader',
-             exclude: /node_modules/
+         ```javscript
+         // webpack.config.js
+         module.exports = {
+           entry: './test.js',
+           output: {
+             path: __dirname,
+             filename: 'test-bundle.js'
+           },
+           module: {
+             loaders: [
+               {
+                 test: /\.js$/,
+                 loader: 'babel-loader',
+                 exclude: /node_modules/
+               }
+             ]
            }
-         ]
-       }
-     }
-     ```
-     2. ** Run testcases:** First you need to bundle and then run them using mocha as below,
-     ```javascript
-     webpack
-     mocha test-bundle.js
-     ```
+         }
+         ```
+     2. **Run testcases:** First you need to bundle and then run them using mocha as below,
+         ```javascript
+         webpack
+         mocha test-bundle.js
+         ```
 
      **[⬆ Back to Top](#table-of-contents)**
 
@@ -3078,7 +3205,7 @@ List of 300 VueJS Interview Questions
      1. Install `mocha-loader`.
      2. Configure webpack config entry point to 'mocha-loader!babel-loader!./test.js'.
      3. Start webpack-dev-server using the config.
-     4. Go to localhost:8080/webpack-dev-server/test-bundle to see the test result
+     4. Go to `localhost:8080/webpack-dev-server/test-bundle` to see the test result
 
      **[⬆ Back to Top](#table-of-contents)**
 
@@ -3129,6 +3256,7 @@ List of 300 VueJS Interview Questions
 
 142. ### How do you mutate state in plugins?
      Similar to components you can't mutate state directly but they can trigger changes by by committing mutations. This way a plugin can be used to sync a data source to the store.
+
      For example, createWebSocketPlugin plugin is used to sync a websocket data source to the store.
      ```javascript
      export default function createWebSocketPlugin (socket) {
@@ -3159,38 +3287,40 @@ List of 300 VueJS Interview Questions
 
 143. ### What is vuex store?
      A Vuex "store" is basically a container that holds your application state. The store creation is pretty straightforward.
+
      Below are the list of instructions to use vuex in an increment application,
      1. Configure vuex in vuejs ecosystem
-     ```javascript
-     import Vuex from "vuex";
-     Vue.use(Vuex)
-     ```
+         ```javascript
+         import Vuex from "vuex";
+         Vue.use(Vuex)
+         ```
      2. Provide an initial state object and some mutations
-     ```javascript
-     // Make sure to call Vue.use(Vuex) first if using a module system
+         ```javascript
+         // Make sure to call Vue.use(Vuex) first if using a module system
 
-     const store = new Vuex.Store({
-       state: {
-         count: 0
-       },
-       mutations: {
-         increment (state) {
-           state.count++
-         }
-       }
-     })
-     ```
+         const store = new Vuex.Store({
+           state: {
+             count: 0
+           },
+           mutations: {
+             increment (state) {
+               state.count++
+             }
+           }
+         })
+         ```
      3. Trigger state change with commit and access state variables,
-     ```javascript
-     store.commit('increment')
+         ```javascript
+         store.commit('increment')
 
-     console.log(store.state.count) // -> 1
-     ```
+         console.log(store.state.count) // -> 1
+         ```
 
      **[⬆ Back to Top](#table-of-contents)**
 
 144. ### What are the differences of vuex store and plain global object?
-     Below are the two major differences between vuex store and plain global object
+     Below are the two major differences between vuex store and plain global object,
+
      1. **Vuex stores are reactive:** If the store's state changes then vue components will reactively and efficiently get updated
      2. **Cannot directly mutate the store's state:** The store's state is changed by explicitly committing mutations to ensure that every state change leaves a track-able record for tooling purpose
 
@@ -3221,6 +3351,7 @@ List of 300 VueJS Interview Questions
      Vue.use(Vuex)
      ```
      (OR)
+
      You can also install it using CDN links such as unpkg.cpm which provides NPM-based CDN links. Just include vuex after Vue and it will install itself automatically.
      ```javascript
      <script src="https://unpkg.com/vue.js"></script>
@@ -3231,7 +3362,7 @@ List of 300 VueJS Interview Questions
      **[⬆ Back to Top](#table-of-contents)**
 
 148. ### Do I need promise for vuex?
-     Yes, Vuex requires Promise. If your supporting browsers do not implement Promise (e.g. IE), you can use a polyfill library, such as es6-promise using npm or yarn.
+     Yes, vuex requires Promise. If your supporting browsers do not implement Promise (e.g. IE), you can use a polyfill library, such as es6-promise using npm or yarn.
      ```javascript
      npm install es6-promise --save # NPM
      yarn add es6-promise # Yarn
@@ -3245,6 +3376,7 @@ List of 300 VueJS Interview Questions
 
 149. ### How do you display store state in vue components?
      Since Vuex stores are reactive, you can retrieve" state from store by simply returning store's state from within a computed property. i.e, Whenever store state changes, it will cause the computed property to re-evaluate, and trigger associated DOM updates.
+
      Let's take a hello word component which display store's state in the template,
      ```javascript
      // let's create a hello world component
@@ -3262,6 +3394,7 @@ List of 300 VueJS Interview Questions
 
 150. ### How do you inject store into child components?
      Vuex provides a mechanism to "inject" the store into all child components from the root component with the store option. It will be enabled by vue.use(vuex).
+
      For example, let's inject into our app component as below,
      ```javascript
      const app = new Vue({
@@ -3294,6 +3427,7 @@ List of 300 VueJS Interview Questions
 
 151. ### What is mapState helper?
      In Vuex application, creating a computed property every time whenever we want to access the store's state property or getter is going to be repetitive and verbose, especially if a component needs more than one state property. In this case, we can make use of the mapState helper of vuex which generates computed getter functions for us.
+
      Let's take an increment example to demonstrate mapState helper,
      ```javascript
      // in full builds helpers are exposed as Vuex.mapState
@@ -3340,12 +3474,13 @@ List of 300 VueJS Interview Questions
      **[⬆ Back to Top](#table-of-contents)**
 
 153. ### Do you need to replace entire local state with vuex?
-     No, if a piece of state strictly belongs to a single component, it could be just fine leaving it as local state. i.e, Even though vuex used in the application, it doesn't mean that you need to keep all the local state in vuex store. Other the code becomes more verbose and indirect although it makes your state mutations more explicit and debuggable.
+     No, if a piece of state strictly belongs to a single component, it could be just fine leaving it as local state. i.e, Even though vuex used in the application, it doesn't mean that you need to keep all the local state in vuex store. Other than that the code becomes more verbose and indirect although it makes your state mutations more explicit and debuggable.
 
      **[⬆ Back to Top](#table-of-contents)**
 
 154. ### What are vuex getters??
      Vuex getters acts as computed properties for stores to compute derived state based on store state. Similar to computed properties, a getter's result is cached based on its dependencies, and will only re-evaluate when some of its dependencies have changed.
+
      Let's take a todo example which as completedTodos getter to find all completed todos,
      ```javascript
      const store = new Vuex.Store({
@@ -3363,12 +3498,14 @@ List of 300 VueJS Interview Questions
        }
      })
      ```
-     **Note:**Getters receive state as first argument.
+
+     **Note:** Getters receive state as first argument.
 
      **[⬆ Back to Top](#table-of-contents)**
 
 155. ### What is a property style access?
      You can access values of store's getter object(store.getters) as properties. This is known as property style access.
+
      For example, you can access todo's status as a property,
      ```javascript
      store.getters.todosStatus
@@ -3386,7 +3523,9 @@ List of 300 VueJS Interview Questions
      **[⬆ Back to Top](#table-of-contents)**
 
 156. ### What is a method style access?
-     You can access store's state in a method style by passing arguments. For example, you can pass user id to find user profile information as below,
+     You can access store's state in a method style by passing arguments.
+
+     For example, you can pass user id to find user profile information as below,
      ```javascript
      getters: {
        getUserProfileById: (state) => (id) => {
@@ -3402,7 +3541,9 @@ List of 300 VueJS Interview Questions
      **[⬆ Back to Top](#table-of-contents)**
 
 157. ### What is mapGetter helper??
-     The mapGetters is a helper that simply maps store getters to local computed properties. For example, the usage of getters for todo app would be as below,
+     The mapGetters is a helper that simply maps store getters to local computed properties.
+
+     For example, the usage of getters for todo app would be as below,
      ```javascript
      import { mapGetters } from 'vuex'
 
@@ -3422,6 +3563,7 @@ List of 300 VueJS Interview Questions
 
 158. ### What are mutations?
      Vuex mutations are similar to any events with a string `type` and a `handler`. The handler function is where we perform actual state modifications, and it will receive the state as the first argument.
+
      For example, the counter example with increment mutation would be as below,
      ```javascript
      const store = new Vuex.Store({
@@ -3444,7 +3586,9 @@ List of 300 VueJS Interview Questions
      **[⬆ Back to Top](#table-of-contents)**
 
 159. ### How do you commit with payload?
-     You can also pass **payload** for the mutation as an additional argument to `store.commit`. For example, the counter mutation with payload object would be as below,
+     You can also pass **payload** for the mutation as an additional argument to `store.commit`.
+
+     For example, the counter mutation with payload object would be as below,
      ```javascript
      mutations: {
        increment (state, payload) {
@@ -3485,13 +3629,13 @@ List of 300 VueJS Interview Questions
      Since a Vuex store's state is made reactive by Vue, the same reactivity caveats of vue will apply to vuex mutations. These are the rules should be followed for vuex mutations,
      1. It is recommended to initialize store's initial state with all desired fields upfront
      2. Add new properties to state Object either by set method or object spread syntax
-     ```javascript
-     Vue.set(stateObject, 'newProperty', 'John')
-     ```
-     (OR)
-     ```javascript
-     state.stateObject = { ...state.stateObject, newProperty: 'John' }
-     ```
+         ```javascript
+         Vue.set(stateObject, 'newProperty', 'John')
+         ```
+        (OR)
+         ```javascript
+         state.stateObject = { ...state.stateObject, newProperty: 'John' }
+         ```
 
      **[⬆ Back to Top](#table-of-contents)**
 
@@ -3511,6 +3655,7 @@ List of 300 VueJS Interview Questions
 
 163. ### How do you perform mutations in components?
      You can commit mutations in components with  either **this.$store.commit('mutation name')** or mapMutations helper to map component methods to **store.commit** calls.
+
      For example, the usage of mapMutations helper on counter example would be as below,
      ```javascript
      import { mapMutations } from 'vuex'
@@ -3534,6 +3679,7 @@ List of 300 VueJS Interview Questions
 
 164. ### Is it mandatory to use constants for mutation types?
      No, it is not mandatory. But you might observed that State management implementations such Flux and Redux use constants for mutation types. This convention is just a preference and useful to take advantage of tooling like linters, and putting all constants in a single file allows your collaborators to get an at-a-glance view of what mutations are possible in the entire application.
+
      For example, the mutations can be declared as below,
      ```javascript
      // mutation-types.js
@@ -3572,6 +3718,7 @@ List of 300 VueJS Interview Questions
 
 167. ### Give an example usage of actions?
      Vuex provides actions property similar mutations property in order to define action handlers. These action handlers receive context object as an argument which has same properties and methods of store instance.
+
      Let's see counter example to demonstrate increment action which commits respective mutation,
      ```javascript
      const store = new Vuex.Store({
@@ -3595,6 +3742,7 @@ List of 300 VueJS Interview Questions
 
 168. ### How do you dispatch actions?
      Actions are simply triggered with the store.dispatch method as below,
+
      ```javascript
      store.dispatch('increment')
      ```
@@ -3625,6 +3773,7 @@ List of 300 VueJS Interview Questions
 
 171. ### How do you dispatch actions in components?
      You can dispatch actions in components with **this.$store.dispatch('action name')**, or use the **mapActions** helper which maps component methods to store.dispatch calls.
+
      For example, you can dispatch increment actions in counter component as below,
      ```javascript
      import { mapActions } from 'vuex'
@@ -3649,6 +3798,7 @@ List of 300 VueJS Interview Questions
 
 172. ### How do you compose actions?
      You can write multiple actions together to handle more complex async flows either by chaining promises or async/await. i.e, `store.dispatch` can handle Promise returned by the triggered action handler and it also returns Promise.
+
      Let's take two actions to see how they are combined and handled async flows,
      ```javascript
      actions: {
@@ -3684,6 +3834,7 @@ List of 300 VueJS Interview Questions
 
 173. ### What are modules in vuex?
      If you keep all state of our application in a single big state, the store can get really bloated. To solve this problem, Vuex allows us to divide our store into modules. Here, each module can contain its own state, mutations, actions, getters, and even nested modules.
+
      Let's take an example with multiple modules, configuring them in vuex and accessing different modules,
      ```javascript
      const moduleOne = {
@@ -3716,34 +3867,34 @@ List of 300 VueJS Interview Questions
 174. ### What is module local state?
      When you use modules the local state will be available to mutations, getters and actions in different ways.
      1. Both mutations and getters will receive module local state as first argument.
-     ```javascript
-     const moduleOne = {
-       state: { count: 0 },
-       mutations: {
-         increment (state) {
-           state.count++; // Here state refers local module state
-         }
-       },
+         ```javascript
+         const moduleOne = {
+           state: { count: 0 },
+           mutations: {
+             increment (state) {
+               state.count++; // Here state refers local module state
+             }
+           },
 
-       getters: {
-         average (state) {
-           return state.count / 2
-         }
-       }
-     }
-     ```
-     2. In actions, local state will be available as first argument.
-     ```javascript
-     const moduleOne = {
-       actions: {
-         incrementConditional ({ state, commit, rootState }) {
-           if (state.count < rootState.count) {
-             commit('increment')
+           getters: {
+             average (state) {
+               return state.count / 2
+             }
            }
          }
-       }
-     }
-     ```
+         ```
+     2. In actions, local state will be available as first argument.
+         ```javascript
+         const moduleOne = {
+           actions: {
+             incrementConditional ({ state, commit, rootState }) {
+               if (state.count < rootState.count) {
+                 commit('increment')
+               }
+             }
+           }
+         }
+         ```
 
      **[⬆ Back to Top](#table-of-contents)**
 
@@ -3757,16 +3908,19 @@ List of 300 VueJS Interview Questions
      **[⬆ Back to Top](#table-of-contents)**
 
 177. ### When do you reuse modules?
-     Sometime you may need to create multiple instances of a module. For example, it is needed in the below cases,
+     Sometime you may need to create multiple instances of a module.
+
+     For example, it is needed in the below cases,
      1. If multiple stores that use the same module
      2. Register the same module multiple times in the same store.
+
      In those cases, you need to assign to a variable and export it for reusability,
-     ```javascript
-     const MyReusableModule = {
-       // state
-       // mutations, actions, getters...
-     }
-     ```
+         ```javascript
+         const MyReusableModule = {
+           // state
+           // mutations, actions, getters...
+         }
+         ```
 
      **[⬆ Back to Top](#table-of-contents)**
 
@@ -3780,6 +3934,7 @@ List of 300 VueJS Interview Questions
 
 179. ### Can I perform mutations directly in strict mode?
      In strict mode, you can't mutate state directly using `v-model` attribute. If you use v-model it throws an error because mutation is not performed inside an explicit Vuex mutation handler.
+
      For example, the below input throws an error due to v-model usage
      ```javascript
      <input v-model="stateObject.message">
@@ -3870,16 +4025,21 @@ List of 300 VueJS Interview Questions
      vue create my-app
      ```
      You can either choose the default preset or select "Manually select features" to pick the features you need.
+
      The default preset prompt would be as below,
-     <img src="https://github.com/sudheerj/vuejs-interview-questions/blob/master/images/cli-default-presets.png" width="400" height="500">
+
+        <img src="https://github.com/sudheerj/vuejs-interview-questions/blob/master/images/cli-default-presets.png" width="400" height="500">
+
      and the manual select features would be as below,
-     <img src="https://github.com/sudheerj/vuejs-interview-questions/blob/master/images/cli-manual-features.png" width="400" height="500">
+
+        <img src="https://github.com/sudheerj/vuejs-interview-questions/blob/master/images/cli-manual-features.png" width="400" height="500">
 
      **[⬆ Back to Top](#table-of-contents)**
 
 185. ### How do you create project using GUI?
      You can also create and manage projects using a graphical interface with the `vue ui` command. Once you apply this command, it opens a browser window with a GUI that guides you through the project creation process.
-     <img src="https://github.com/sudheerj/vuejs-interview-questions/blob/master/images/cli-gui.png" width="400" height="500">
+
+        <img src="https://github.com/sudheerj/vuejs-interview-questions/blob/master/images/cli-gui.png" width="400" height="500">
 
      **[⬆ Back to Top](#table-of-contents)**
 
@@ -3929,6 +4089,7 @@ List of 300 VueJS Interview Questions
 
 190. ### What are presets?
      A Vue CLI preset is a JSON object that contains pre-defined options and plugins for creating a new project without interactive prompts to select them. During project creation(using vue create), the presets will be saved in a `~/.vuerc` which can modified at any time.
+
      For example, the generated JSON object(or preset) would be as below
      ```javascript
      {
@@ -3966,6 +4127,7 @@ List of 300 VueJS Interview Questions
 
 192. ### How do you allow plugin prompts?
      Each plugin can inject its own prompts during the project creation process irrespective of preset declarations using **prompts: true** setting
+
      For example, user can pick their own ESLint config using the below configuration
      ```javascript
      {
@@ -3987,10 +4149,10 @@ List of 300 VueJS Interview Questions
      2. **generator.js:** A generator that can inject or modify files in the project.
      3. **prompts.js:** A prompts file that can collect options for the generator.
      You can apply `--preset` option to use remote presets while creating the project
-     ```javascript
-     # use preset from GitHub repo
-     vue create --preset username/repo my-project
-     ```
+         ```javascript
+         # use preset from GitHub repo
+         vue create --preset username/repo my-project
+         ```
 
      **[⬆ Back to Top](#table-of-contents)**
 
@@ -4006,7 +4168,8 @@ List of 300 VueJS Interview Questions
      **[⬆ Back to Top](#table-of-contents)**
 
 195. ### What is the purpose of browserslist option?
-     The 'browserslist' option is available in package.json file in order to specify a range of browsers the project is supported. This value is going to be used by babel and autoprefixer to transpile javascript features and applying vendor prefixes.
+     The `browserslist` option is available in package.json file in order to specify a range of browsers the project is supported. This value is going to be used by babel and autoprefixer to transpile javascript features and applying vendor prefixes.
+
      For example, you can declare it as follows,
      ```javascript
      "browserslist": [
@@ -4020,6 +4183,7 @@ List of 300 VueJS Interview Questions
 
 196. ### How do you find VueJS version using API?
      The community plugins and components might need different strategies for different versions. In this case, you can use **Vue.version** which provides installed version of Vue as a string.
+
      For example, you can implement different logic based on different versions
      ```javascript
      let version = Number(Vue.version.split('.')[0])
@@ -4057,6 +4221,7 @@ List of 300 VueJS Interview Questions
 
 198. ### What is the purpose new slot directive?
      In Vue 2.6 version, the new slot syntax is provided using v-slot directive which aligns syntax with Vue 3.0. This is going to be replacement for old slot syntax.
+
      The comparison for old and new slot syntax:
      ```javascript
      <!-- old -->
@@ -4078,6 +4243,7 @@ List of 300 VueJS Interview Questions
 
 199. ### What is the use of compile method?
      VueJS provides compile method which is used to compile a template string into a render function. This method is only available in the full build.
+
      For example, you can compile template message:
      ```javascript
      var result = Vue.compile('<div><span>{{ msg }}</span></div>')
@@ -4114,6 +4280,7 @@ List of 300 VueJS Interview Questions
 
 201. ### What is async error handling?
      From 2.6 version onwards, Vue's built-in error handling mechanism can capture errors inside v-on handlers. Also,if any of your lifecycle hooks or event handlers performs asynchronous operations, you can now return a Promise from the function so that any uncaught errors from that Promise chain are also sent to your error handlers.
+
      Let's take an example of mounted lifecycle hook,
      ```javascript
      export default {
@@ -4129,6 +4296,7 @@ List of 300 VueJS Interview Questions
 
 202. ### What are Dynamic Directive Arguments?
      In Vue 2.6 release onwards, Directive arguments can now accept dynamic JavaScript expressions. i.e, the specific argument that we want to use is only known at runtime.
+
      Let's assign dynamic key and event directives for a div element,
      ```javascript
      <div v-bind:[key]="value"></div>
@@ -4148,7 +4316,7 @@ List of 300 VueJS Interview Questions
         ```javascript
         <div :[`${key}unique`]="value"></div>
         ```
-     2. ** Custom Directives:** The custom directive implementations need to have potential argument changes in addition to value changes.
+     2. **Custom Directives:** The custom directive implementations need to have potential argument changes in addition to value changes.
 
      **[⬆ Back to Top](#table-of-contents)**
 
@@ -4163,7 +4331,9 @@ List of 300 VueJS Interview Questions
      **[⬆ Back to Top](#table-of-contents)**
 
 206. ### What is Vue I18n plugin?
-     Vue I18n is an internationalization plugin of Vue.js. It easily integrates some localization features to your Vue.js Application. The simple usage with in html would be as below,
+     Vue I18n is an internationalization plugin of Vue.js. It easily integrates some localization features to your Vue.js Application.
+
+     The simple usage with in html would be as below,
      ```javascript
      <script src="https://unpkg.com/vue/dist/vue.js"></script>
      <script src="https://unpkg.com/vue-i18n/dist/vue-i18n.js"></script>
@@ -4209,83 +4379,83 @@ List of 300 VueJS Interview Questions
 207. ### What are the types of formatting?
      Basically there are 4 types of formatting available in i18n plugin,
      1. **Named formatting:** First You need to define the message keys in curly braces({})
-     ```javascript
-     const messages = {
-       en: {
-         message: {
-           greeting: '{msg} Morning'
+         ```javascript
+         const messages = {
+           en: {
+             message: {
+               greeting: '{msg} Morning'
+             }
+           }
          }
-       }
-     }
-     ```
-     After that pass argument value along with key in the template
-     ```javascript
-     <p>{{ $t('message.greeting', { msg: 'Good' }) }}</p>
-     ```
-     It outputs the result as below,
-     ```javascript
-     <p>Good Morning</p>
-     ```
+         ```
+         After that pass argument value along with key in the template
+         ```javascript
+         <p>{{ $t('message.greeting', { msg: 'Good' }) }}</p>
+         ```
+         It outputs the result as below,
+         ```javascript
+         <p>Good Morning</p>
+         ```
      2. **List formatting:** First you need to define zero index based keys in the messages,
-     ```javascript
-     const messages = {
-       en: {
-         message: {
-           greeting: '{0} Morning'
+         ```javascript
+         const messages = {
+           en: {
+             message: {
+               greeting: '{0} Morning'
+             }
+           }
          }
-       }
-     }
-     ```
-     After that pass argument value with in an array
-     ```javascript
-     <p>{{ $t('message.greeting', ['Good']) }}</p>
-     ```
-     Finally it outputs the result as below,
-     ```javascript
-     <p>Good morning</p>
-     ```
-     **Note:** It also accepts array-like object
-     ```javascript
-     <p>{{ $t('message.greeting', {'0': 'Good'}) }}</p>
-     ```
+         ```
+         After that pass argument value with in an array
+         ```javascript
+         <p>{{ $t('message.greeting', ['Good']) }}</p>
+         ```
+         Finally it outputs the result as below,
+         ```javascript
+         <p>Good morning</p>
+         ```
+         **Note:** It also accepts array-like object
+         ```javascript
+         <p>{{ $t('message.greeting', {'0': 'Good'}) }}</p>
+         ```
      3. **HTML formatting:** This formatting is required when want to render your translation as an HTML message and not a static string.
-     ```javascript
-     const messages = {
-       en: {
-         message: {
-           greeting: 'Good <br> Morning'
+         ```javascript
+         const messages = {
+           en: {
+             message: {
+               greeting: 'Good <br> Morning'
+             }
+           }
          }
-       }
-     }
-     ```
-     After that use it in the html directive template as below
-     ```javascript
-     <p v-html="$t('message.greeting')"></p>
-     ```
-     Finally it outputs the result as below
-     ```javascript
-     <p>Good
-     <!--<br> exists but is rendered as html and not a string-->
-     Morning</p>
-     ```
+         ```
+         After that use it in the html directive template as below
+         ```javascript
+         <p v-html="$t('message.greeting')"></p>
+         ```
+         Finally it outputs the result as below
+         ```javascript
+         <p>Good
+         <!--<br> exists but is rendered as html and not a string-->
+         Morning</p>
+         ```
      4. **Ruby on rails format:** First you need to define with percentile and curly braces as below,
-     ```javascript
-     const messages = {
-       en: {
-         message: {
-           greeting: '%{msg} Morning'
+         ```javascript
+         const messages = {
+           en: {
+             message: {
+               greeting: '%{msg} Morning'
+             }
+           }
          }
-       }
-     }
-     ```
-     After that pass argument with key similar to named formatting
-     ```javascript
-     <p>{{ $t('message.greeting', { msg: 'Good' }) }}</p>
-     ```
-     Finally it renders the output as below,
-     ```javascript
-     <p>Good Morning</p>
-     ```
+         ```
+         After that pass argument with key similar to named formatting
+         ```javascript
+         <p>{{ $t('message.greeting', { msg: 'Good' }) }}</p>
+         ```
+         Finally it renders the output as below,
+         ```javascript
+         <p>Good Morning</p>
+         ```
 
      **[⬆ Back to Top](#table-of-contents)**
 
@@ -4323,7 +4493,8 @@ List of 300 VueJS Interview Questions
 
 209. ### How do you handle Pluralization?
      You can translate with pluralization by defining the locale that have a pipe | separator, and define plurals in pipe separator. Remember that template should use $tc() instead of $t().
-     First you need to difine the messages,
+
+     First you need to define the messages,
      ```javascript
      const messages = {
        en: {
@@ -4355,99 +4526,103 @@ List of 300 VueJS Interview Questions
 
 210. ### How to implement DateTime localization?
      You can localize the datetime with definition formats(e.g. short, long, etc).
-     Lets follow below steps to localize date and time
-     1. For example, you can add definition formats for English and Jappan locale as below
-     ```javascript
-     const dateTimeFormats = {
-       'en-US': {
-         short: {
-           year: 'numeric', month: 'short', day: 'numeric'
-         },
-         long: {
-           year: 'numeric', month: 'short', day: 'numeric',
-           weekday: 'short', hour: 'numeric', minute: 'numeric'
-         }
-       },
-       'ja-JP': {
-         short: {
-           year: 'numeric', month: 'short', day: 'numeric'
-         },
-         long: {
-           year: 'numeric', month: 'short', day: 'numeric',
-           weekday: 'short', hour: 'numeric', minute: 'numeric', hour12: true
-         }
-       }
-     }
-     ```
-     2. After that You need to specify the dateTimeFormats option of VueI18n constructor
-     ```javascript
-     const i18n = new VueI18n({
-       dateTimeFormats
-     })
 
-     new Vue({
-       i18n
-     }).$mount('#app')
-     ```
+     Lets follow below steps to localize date and time,
+
+     1. For example, you can add definition formats for English and Jappan locale as below
+         ```javascript
+         const dateTimeFormats = {
+           'en-US': {
+             short: {
+               year: 'numeric', month: 'short', day: 'numeric'
+             },
+             long: {
+               year: 'numeric', month: 'short', day: 'numeric',
+               weekday: 'short', hour: 'numeric', minute: 'numeric'
+             }
+           },
+           'ja-JP': {
+             short: {
+               year: 'numeric', month: 'short', day: 'numeric'
+             },
+             long: {
+               year: 'numeric', month: 'short', day: 'numeric',
+               weekday: 'short', hour: 'numeric', minute: 'numeric', hour12: true
+             }
+           }
+         }
+         ```
+     2. After that You need to specify the dateTimeFormats option of VueI18n constructor
+         ```javascript
+         const i18n = new VueI18n({
+           dateTimeFormats
+         })
+
+         new Vue({
+           i18n
+         }).$mount('#app')
+         ```
      3. And then add them to the template
-     ```javascript
-     <div id="app">
-       <p>{{ $d(new Date(), 'short') }}</p>
-       <p>{{ $d(new Date(), 'long', 'ja-JP') }}</p>
-     </div>
-     ```
+         ```javascript
+         <div id="app">
+           <p>{{ $d(new Date(), 'short') }}</p>
+           <p>{{ $d(new Date(), 'long', 'ja-JP') }}</p>
+         </div>
+         ```
      4. Finally it outputs the result
-     ```javascript
-     <div id="app">
-       <p>May 20, 2019</p>
-       <p>2019年5月20日</p>
-     </div>
-     ```
+         ```javascript
+         <div id="app">
+           <p>May 20, 2019</p>
+           <p>2019年5月20日</p>
+         </div>
+         ```
 
      **[⬆ Back to Top](#table-of-contents)**
 
 211. ### How do you implement Number localization?
      You can localize the number with definition formats(e.g. currency, etc)
-     Lets follow below steps to localize numbers
-     1. You need to add definition formats. For example, lets add it for English and Japanese locales
-     ```javascrippt
-     const numberFormats = {
-       'en-US': {
-         currency: {
-           style: 'currency', currency: 'USD'
-         }
-       },
-       'ja-JP': {
-         currency: {
-           style: 'currency', currency: 'JPY', currencyDisplay: 'symbol'
-         }
-       }
-     }
-     ```
-     2. After that specify the numberFormats option of VueI18n constructor
-     ```javascript
-     const i18n = new VueI18n({
-       numberFormats
-     })
 
-     new Vue({
-       i18n
-     }).$mount('#app')
-     ```
+     Lets follow below steps to localize numbers,
+
+     1. You need to add definition formats. For example, lets add it for English and Japanese locales
+         ```javascrippt
+         const numberFormats = {
+           'en-US': {
+             currency: {
+               style: 'currency', currency: 'USD'
+             }
+           },
+           'ja-JP': {
+             currency: {
+               style: 'currency', currency: 'JPY', currencyDisplay: 'symbol'
+             }
+           }
+         }
+         ```
+     2. After that specify the numberFormats option of VueI18n constructor
+         ```javascript
+         const i18n = new VueI18n({
+           numberFormats
+         })
+
+         new Vue({
+           i18n
+         }).$mount('#app')
+         ```
      3. Now let's configure them in template
-     ```javascript
-     <div id="app">
-       <p>{{ $n(10, 'currency') }}</p>
-       <p>{{ $n(50, 'currency', 'ja-JP') }}</p>
-     </div>
-     ```
+         ```javascript
+         <div id="app">
+           <p>{{ $n(10, 'currency') }}</p>
+           <p>{{ $n(50, 'currency', 'ja-JP') }}</p>
+         </div>
+         ```
      4. Finally it outputs the result
-     ```javascript
-     <div id="app">
-       <p>$10.00</p>
-       <p>￥50</p>
-     </div>
-     ```
+         ```javascript
+         <div id="app">
+           <p>$10.00</p>
+           <p>￥50</p>
+         </div>
+         ```
 
      **[⬆ Back to Top](#table-of-contents)**
 
@@ -4613,7 +4788,9 @@ List of 300 VueJS Interview Questions
      **[⬆ Back to Top](#table-of-contents)**
 
 219. ### How to identify whether code is running on client or server?
-     You can use `vm.$isServer` method to know whether the current Vue instance is running on the server or client. The usage would be as below,
+     You can use `vm.$isServer` method to know whether the current Vue instance is running on the server or client.
+
+     The usage would be as below,
      ```javascript
      const Vue = require('vue');
      Vue.prototype.$isServer
@@ -4636,25 +4813,29 @@ List of 300 VueJS Interview Questions
      **[⬆ Back to Top](#table-of-contents)**
 
 221. ### How do you sync current route in vuex store?
-     You can use `vue-router-sync` library to sync current $route object in vuex store's state. The usage is quite straight forward with two steps
-     1. **Installation:**
-     ```bash
-     npm install vuex-router-sync
-     ```
-     2. **Sync router and store:**
-     ```javascript
-     import { sync } from 'vuex-router-sync'
-     import store from './vuex/store' // vuex store instance
-     import router from './router' // vue-router instance
+     You can use `vue-router-sync` library to sync current $route object in vuex store's state.
 
-     const unsync = sync(store, router) // Returns an unsync callback function
-     unsync() // Unsyncs store from router
-     ```
+     The usage is quite straight forward with two steps
+     1. **Installation:**
+         ```bash
+         npm install vuex-router-sync
+         ```
+     2. **Sync router and store:**
+         ```javascript
+         import { sync } from 'vuex-router-sync'
+         import store from './vuex/store' // vuex store instance
+         import router from './router' // vue-router instance
+
+         const unsync = sync(store, router) // Returns an unsync callback function
+         unsync() // Unsyncs store from router
+         ```
 
      **[⬆ Back to Top](#table-of-contents)**
 
 222. ### What are navigation guards in vue router?
-     The navigation guards of vue-router are used to protect navigations either by redirecting it or canceling it. Below are the 3 different ways to hook into router navigations
+     The navigation guards of vue-router are used to protect navigations either by redirecting it or canceling it.
+
+     Below are the 3 different ways to hook into router navigations
      1. Global:
      2. Per-route:
      3. In-component:
@@ -4662,7 +4843,9 @@ List of 300 VueJS Interview Questions
      **[⬆ Back to Top](#table-of-contents)**
 
 223. ### Can I use computed property in another computed property?
-     Yes, you can access it directly as you would data props. For example, the comboTwo computed property uses comboOne computed property as below,
+     Yes, you can access it directly as you would data props.
+
+     For example, the comboTwo computed property uses comboOne computed property as below,
      ```javascript
      data() {
          return {
@@ -4709,12 +4892,15 @@ List of 300 VueJS Interview Questions
      **[⬆ Back to Top](#table-of-contents)**
 
 225. ### Is recommended to use async for computed properties?
-     No, it is not recommended. Computed properties should be synchronous. But if you still use asynchronous actions inside them, they may not work as expected and can lead to an unexpected behaviour. For example, the below usage of async/await is not recommended,
+     No, it is not recommended. Computed properties should be synchronous. But if you still use asynchronous actions inside them, they may not work as expected and can lead to an unexpected behaviour.
+
+     For example, the below usage of async/await is not recommended,
      ```javascript
       async someComputedProperty () {
            return await someFunction()
          },
      ```
+
      **Note:** If you still prefer to use async computed properties for some reason then you can consider using additional plugin such as `vue-async-computed`.
 
      **[⬆ Back to Top](#table-of-contents)**
@@ -4725,22 +4911,23 @@ List of 300 VueJS Interview Questions
 
 227. ### Why the component data must be a function?
      The component data must be a function instead directly providing the object. This is because each instance needs to maintain an independent copy of the returned data object. Otherwise one component instance data changes will impact the data of all other instances.
+
      For example, the below code snippets gives an idea on correct approach,
      ```js
-     data: { // Bad
-       message: 'Hello'
-    }
-     data: function () { //Good
-       return {
-         message: 'Hello'
-       }
-     }
+         data: { // Bad
+           message: 'Hello'
+         }
+         data: function () { //Good
+           return {
+             message: 'Hello'
+           }
+         }
      ```
 
      **[⬆ Back to Top](#table-of-contents)**
 
 228. ### What is the reason for recommendation for multi-word component names?
-     Component names should always be multi-word, except for root level or built-in vue components(such as <transition> or <component> etc). This recommendation is  to prevents conflicts with existing and future HTML elements, since all HTML elements are a single word.
+     Component names should always be multi-word, except for root level or built-in vue components(such as `<transition>` or `<component>` etc). This recommendation is  to prevents conflicts with existing and future HTML elements, since all HTML elements are a single word.
      ```js
      Vue.component('user', { //bad approach
        // ...
