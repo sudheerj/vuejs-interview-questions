@@ -1803,7 +1803,7 @@ List of 300 VueJS Interview Questions
      })
      ```
      Now you can use v-focus directive on any element as below,
-     ```html
+     ```vue
      <input v-focus>
      ```
 
