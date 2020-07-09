@@ -1012,7 +1012,7 @@ List of 300 VueJS Interview Questions
      })
      ```
      Now you can insert dynamic content as below,
-     ```javascript
+     ```vue
      <alert>
        There is an issue with in application.
      </alert>
