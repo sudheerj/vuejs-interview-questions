@@ -980,19 +980,19 @@ List of 300 VueJS Interview Questions
 
      Let's take a custom-input component as an example,
         ```javascript
-         Vue.component('custom-input', {
-           props: ['value'],
-           template: `
-             <input
-               v-bind:value="value"
-               v-on:input="$emit('input', $event.target.value)"
-             >
-           `
-         })
+        Vue.component('custom-input', {
+          props: ['value'],
+          template: `
+            <input
+              v-bind:value="value"
+              v-on:input="$emit('input', $event.target.value)"
+            />
+          `
+        })
         ```
      Now you can use `v-model` with this component,
-      ```javascript
-        <custom-input v-model="searchInput"></custom-input>
+      ```vue
+      <custom-input v-model="searchInput"></custom-input>
       ```
 
      **[⬆ Back to Top](#table-of-contents)**
