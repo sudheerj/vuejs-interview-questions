@@ -707,8 +707,8 @@ List of 300 VueJS Interview Questions
      ```
      You can overcome this scenario using the Vue.set(object, key, value) method or Object.assign(),
      ```javascript
-     Vue.set(vm.user, 'email', john@email.com);
-     (or)
+     Vue.set(vm.user, 'email', 'john@email.com');
+     // (or)
      vm.user = Object.assign({}, vm.user, {
        email: john@email.com
      })
