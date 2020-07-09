@@ -846,7 +846,7 @@ List of 300 VueJS Interview Questions
      3. .middle
 
      For example, the usage of `.right` modifier as below
-     ```javascript
+     ```vue
       <button
         v-if="button === 'right'"
         v-on:mousedown.right="increment"
@@ -860,7 +860,7 @@ List of 300 VueJS Interview Questions
      You can use the `v-model` directive to create two-way data bindings on form input, textarea, and select elements.
 
      Lets take an example of it using input component,
-     ```javascript
+     ```vue
      <input v-model="message" placeholder="Enter input here">
      <p>The message is: {{ message }}</p>
      ```
@@ -872,16 +872,16 @@ List of 300 VueJS Interview Questions
      There are three modifiers supported for v-model directive.
 
      **1. lazy:** By default, v-model syncs the input with the data after each input event. You can add the lazy modifier to instead sync after change events.
-     ```javascript
+     ```vue
      <!-- synced after "change" instead of "input" -->
      <input v-model.lazy="msg" >
      ```
      **2. number:** If you want user input to be automatically typecast as a number, you can add the number modifier to your v-model. Even with type="number", the value of HTML input elements always returns a string. So, this typecast modifier is required.
-     ```javascript
+     ```vue
      <input v-model.number="age" type="number">
      ```
      **3. trim:** If you want whitespace from user input to be trimmed automatically, you can add the trim modifier to your v-model.
-     ```javascript
+     ```vue
      <input v-model.trim="msg">
      ```
 
@@ -922,7 +922,7 @@ List of 300 VueJS Interview Questions
      })
      ```
      Once the props are registered, you can pass them as custom atrtributes.
-     ```javascript
+     ```vue
      <todo-item title="Learn Vue conceptsnfirst"></todo-item>
      ```
 
@@ -930,7 +930,7 @@ List of 300 VueJS Interview Questions
 
 28.  ### When component needs a single root element?
      Every component must have a single root element **when template has more than one element**. In this case, you need to wrap the elements with a parent element.
-     ```javascript
+     ```vue
      <div class="todo-item">
        <h2>{{ title }}</h2>
        <div v-html="content"></div>
@@ -957,13 +957,15 @@ List of 300 VueJS Interview Questions
      })
      ```
      Now you can use this todo-item in parent component to access the count value.
-     ```javascript
+     ```vue
      <ul v-for="todo in todos">
-     <li>
-        <todo-item
+       <li>
+         <todo-item
            v-bind:key="todo.id"
-           v-bind:todo="todo" v-on:increment-count="total += 1"></todo-item>
-     </li>
+           v-bind:todo="todo"
+           v-on:increment-count="total += 1"
+         /></todo-item>
+       </li>
      </ul>
      <span> Total todos count is {{total}}</span>
      ```
@@ -978,19 +980,19 @@ List of 300 VueJS Interview Questions
 
      Let's take a custom-input component as an example,
         ```javascript
-         Vue.component('custom-input', {
-           props: ['value'],
-           template: `
-             <input
-               v-bind:value="value"
-               v-on:input="$emit('input', $event.target.value)"
-             >
-           `
-         })
+        Vue.component('custom-input', {
+          props: ['value'],
+          template: `
+            <input
+              v-bind:value="value"
+              v-on:input="$emit('input', $event.target.value)"
+            />
+          `
+        })
         ```
      Now you can use `v-model` with this component,
-      ```javascript
-        <custom-input v-model="searchInput"></custom-input>
+      ```vue
+      <custom-input v-model="searchInput"></custom-input>
       ```
 
      **[⬆ Back to Top](#table-of-contents)**
@@ -1010,7 +1012,7 @@ List of 300 VueJS Interview Questions
      })
      ```
      Now you can insert dynamic content as below,
-     ```javascript
+     ```vue
      <alert>
        There is an issue with in application.
      </alert>
@@ -1036,7 +1038,7 @@ List of 300 VueJS Interview Questions
      new Vue({ el: '#app' })
      ```
      The above components can be used in the vue instance,
-     ```javascript
+     ```vue
      <div id="app">
        <component-a></component-a>
        <component-b></component-b>
@@ -1185,14 +1187,15 @@ List of 300 VueJS Interview Questions
      A non-prop attribute is an attribute that is passed to a component, but does not have a corresponding prop defined.
 
      For example, If you are using a 3rd-party custom-input component that requires a `data-tooltip` attribute on the input then you can add this attribute to component instance,
-     ```javascript
+     ```vue
      <custom-input data-tooltip="Enter your input" />
      ```
      If you try to pass the props from parent component the child props with the same names will be overridden. But props like `class` and `style` are exception to this, these values will be merged in the child component.
-     ```javascript
-     //Child component
+     ```vue
+     <!-- Child component -->
      <input type="date" class="date-control">
-     //Parent component
+
+     <!-- Parent component -->
      <custom-input class="custom-class" />
      ```
 
@@ -1264,7 +1267,7 @@ List of 300 VueJS Interview Questions
      })
      ```
      Now you can use v-model on this customized component as below,
-     ```javascript
+     ```vue
      <custom-checkbox v-model="selectFramework"></custom-checkbox>
      ```
      The selectFramework property will be passed to the checked prop and same property will be updated when custom checkbox component emits a change event with a new value.
@@ -1303,53 +1306,53 @@ List of 300 VueJS Interview Questions
      Let us see the example with step by step instructions.
 
      **Step 1:** Configure router link and router view in the template
-        ```javascript
-         <script src="https://unpkg.com/vue/dist/vue.js"></script>
-         <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
+        ```vue
+        <script src="https://unpkg.com/vue/dist/vue.js"></script>
+        <script src="https://unpkg.com/vue-router/dist/vue-router.js"></script>
 
-         <div id="app">
-           <h1>Welcome to Vue routing app!</h1>
-           <p>
-             <!-- use router-link component for navigation using `to` prop. It rendered as an `<a>` tag -->
-             <router-link to="/home">Home</router-link>
-             <router-link to="/services">Services</router-link>
-           </p>
-           <!-- route outlet in which component matched by the route will render here -->
-           <router-view></router-view>
-         </div>
+        <div id="app">
+          <h1>Welcome to Vue routing app!</h1>
+          <p>
+            <!-- use router-link component for navigation using `to` prop. It rendered as an `<a>` tag -->
+            <router-link to="/home">Home</router-link>
+            <router-link to="/services">Services</router-link>
+          </p>
+          <!-- route outlet in which component matched by the route will render here -->
+          <router-view></router-view>
+        </div>
         ```
 
      **Step 2:** Import Vue and VueRouter packages and then apply router
 
         ```javascript
-         import Vue from 'vue';
-         import VueRouter from 'vue-router';
+        import Vue from 'vue';
+        import VueRouter from 'vue-router';
 
-         Vue.use(VueRouter)
+        Vue.use(VueRouter)
         ```
      **Step 3:** Define or import route components.
-        ```javacript
-         const Home = { template: '<div>Home</div>' }
-         const Services = { template: '<div>Services</div>' }
+        ```javascript
+        const Home = { template: '<div>Home</div>' }
+        const Services = { template: '<div>Services</div>' }
         ```
      **Step 4:** Define your route where each one maps to a component
         ```javascript
-         const routes = [
-           { path: '/home', component: Home },
-           { path: '/services', component: Services }
-         ]
+        const routes = [
+          { path: '/home', component: Home },
+          { path: '/services', component: Services }
+        ]
         ```
      **Step 5:** Create the router instance and pass the `routes` option
         ```javascript
-         const router = new VueRouter({
-           routes // short for `routes: routes`
-         })
+        const router = new VueRouter({
+          routes // short for `routes: routes`
+        })
         ```
      **Step 6:**  Create and mount the root instance.
-        ```javacript
-         const app = new Vue({
-           router
-         }).$mount('#app')
+        ```javascript
+        const app = new Vue({
+          router
+        }).$mount('#app')
         ```
 
      Now you are able to navigate different pages(Home, Services) with in Vue application.
@@ -1453,28 +1456,28 @@ List of 300 VueJS Interview Questions
      Single File Components are an easy concept to understand. Earlier you might heard about all three parts(HTML, JavaScript and CSS) of your application kept in different components. But Single File Components encapsulate the structure, styling and behaviour into one file. In the beginning, it seems strange to have all three parts in one file, but it actually makes a lot more sense.
 
      Let's take an example of Singile File Components
-     ```javascript
+     ```vue
      <template>
-         <div>
-             <h1>Welcome {{ name }}!</h1>
-         </div>
+       <div>
+         <h1>Welcome {{ name }}!</h1>
+       </div>
      </template>
-
+     
      <script>
-         module.exports = {
-            data: function() {
-                return {
-                    name: 'John'
-                }
-            }
+     module.exports = {
+       data: function() {
+         return {
+           name: 'John'
          }
+       }
+     }
      </script>
-
+     
      <style scoped>
-         h1 {
-             color: #34c779;
-             padding: 3px;
-         }
+     h1 {
+       color: #34c779;
+       padding: 3px;
+     }
      </style>
      ```
 
@@ -1485,7 +1488,7 @@ List of 300 VueJS Interview Questions
      You can also still maintain javascript and CSS files separately with hot-reloading and pre-compilation features.
 
      For example,
-     ```
+     ```vue
      <template>
        <div>This section will be pre-compiled and hot reloaded</div>
      </template>
@@ -1520,7 +1523,7 @@ List of 300 VueJS Interview Questions
      }
      ```
      Now you can use the filter in either mustache interpolation or v-bind expression,
-     ```javascript
+     ```vue
      <!-- in mustaches -->
      {{ username | capitalize }}
 
@@ -1561,13 +1564,13 @@ List of 300 VueJS Interview Questions
 
 52.  ### How do you chain filters?
      You can chain filters one after the other to perform multiple manipulations on the expression. The generic structure of filter chain would be as below,
-     ```javascript
+     ```vue
      {{ message | filterA | filterB | filterB ... }}
      ```
      In the above chain stack, you can observe that message expression applied with three filters, each separated by a pipe(|) symbol. The first filter(filterA) takes the expression as a single argument and the result of the expression becomes an argument for second filter(filterB) and the chain continue for remaining filters.
 
      For example, if you want to transform date expression with a full date format and uppercase then you can apply dateFormat and uppercase filters as below,
-     ```javascript
+     ```vue
      {{ birthday | dateFormat | uppercase }}
      ```
 
@@ -1575,14 +1578,14 @@ List of 300 VueJS Interview Questions
 
 53.  ### Is it possible to pass parameters for filters?
      Yes, you can pass arguments for a filter similar to a javascript function. The generic structure of filter parameters would be as follows,
-     ```javascript
+     ```vue
      {{ message | filterA('arg1', arg2) }}
      ```
      In this case, filterA takes message expression as first argument and the explicit parameters mentioned in the filter as second and third arguments.
 
      For example, you can find the exponential strength of a particular value
-     ```javascript
-     {{ 2 | exponentialStrength(10) }} // prints 2 power 10 = 1024
+     ```vue
+     {{ 2 | exponentialStrength(10) }} <!-- prints 2 power 10 = 1024 -->
      ```
 
      **[⬆ Back to Top](#table-of-contents)**
@@ -1612,7 +1615,7 @@ List of 300 VueJS Interview Questions
           bind (el, binding, vnode, oldVnode) {
             // some logic ...
           }
-          ...
+          // ...
         })
 
         // 3. inject some component options
@@ -1620,7 +1623,7 @@ List of 300 VueJS Interview Questions
           created: function () {
             // some logic ...
           }
-          ...
+          // ...
         })
 
         // 4. add an instance method
@@ -1669,7 +1672,7 @@ List of 300 VueJS Interview Questions
      ```javascript
      Vue.mixin({
        created(){
-       console.log("Write global mixins")
+         console.log("Write global mixins")
        }
      })
 
@@ -1696,7 +1699,7 @@ List of 300 VueJS Interview Questions
                message: 'Hello, this is a Mixin'
              }
            }
-          }
+         }
          new Vue({
            mixins: [mixin],
            data: function () {
@@ -1719,14 +1722,14 @@ List of 300 VueJS Interview Questions
 
          new Vue({
            el: '#root',
-           mixins:[myMixin],
+           mixins: [myMixin],
            created(){
              console.log("Called from Component")
            }
          })
 
-         //Called from Mixin
-         //Called from Component
+         // Called from Mixin
+         // Called from Component
          ```
      3. The options that expect object values(such as methods, components and directives) will be merged into the same object. In this case, the component’s options will take priority when there are conflicting keys in these objects.
          ```javascript
@@ -1800,7 +1803,7 @@ List of 300 VueJS Interview Questions
      })
      ```
      Now you can use v-focus directive on any element as below,
-     ```html
+     ```vue
      <input v-focus>
      ```
 
@@ -1819,7 +1822,7 @@ List of 300 VueJS Interview Questions
      }
      ```
      Now you can use v-focus directive on any element as below,
-     ```html
+     ```vue
      <input v-focus>
      ```
 
@@ -1860,7 +1863,7 @@ List of 300 VueJS Interview Questions
      A directive can take any valid javascript expression. So if you want to pass multiple values then you can pass in a JavaScript object literal.
 
      Let's pass object literal to an avatar directive as below
-     ```html
+     ```vue
      <div v-avatar="{ width: 500, height: 400, url: 'path/logo', text: 'Iron Man' }"></div>
      ```
      Now let us configure avatar directive globally,
@@ -1895,24 +1898,24 @@ List of 300 VueJS Interview Questions
 
      Let's take an example of simple Div markup and corresponding render function.
      The HTML markup can be written in template tag as below,
-     ```javascript
+     ```vue
      <template>
-           <div :class="{'is-rounded': isRounded}">
-            <p>Welcome to Vue render functions</p>
-           </div>
+       <div :class="{'is-rounded': isRounded}">
+         <p>Welcome to Vue render functions</p>
+       </div>
      </template>
      ```
      and the compiled down or explicit render function would appear as below,
      ```javascript
      render: function (createElement) {
-        return createElement('div', {
-          'class': {
-              'is-rounded': this.isRounded
+       return createElement('div', {
+         'class': {
+           'is-rounded': this.isRounded
           }
-        }, [
-          createElement('p', 'Welcome to Vue render functions')
-        ]);
-       },
+       }, [
+         createElement('p', 'Welcome to Vue render functions')
+       ]);
+     }
      ```
      **Note:** The react components are built with render functions in JSX.
 
@@ -1929,40 +1932,40 @@ List of 300 VueJS Interview Questions
        // Type is {String | Object | Function}
        // Required.
        'div',
-
+ 
        // A data object corresponding to the attributes you would use in a template.
-       //Type is {Object}
+       // Type is {Object}
        // Optional.
        {
-           // Normal HTML attributes
-           attrs: {
-             id: 'someId'
-           },
-           // Component props
-           props: {
-             myProp: 'somePropValue'
-           },
-           // DOM properties
-           domProps: {
-             innerHTML: 'This is some text'
-           },
-           // Event handlers are nested under `on`
-           on: {
-               click: this.clickHandler
-             },
-           // Similar to `v-bind:style`, accepting either a string, object, or array of objects.
-            style: {
-               color: 'red',
-               fontSize: '14px'
-            },
-            //Similar to `v-bind:class`, accepting either a string, object, or array of strings and objects.
-             class: {
-                classsName1: true,
-                classsName2: false
-             },
-             ....
+         // Normal HTML attributes
+         attrs: {
+           id: 'someId'
+         },
+         // Component props
+         props: {
+           myProp: 'somePropValue'
+         },
+         // DOM properties
+         domProps: {
+           innerHTML: 'This is some text'
+         },
+         // Event handlers are nested under `on`
+         on: {
+           click: this.clickHandler
+         },
+         // Similar to `v-bind:style`, accepting either a string, object, or array of objects.
+         style: {
+           color: 'red',
+           fontSize: '14px'
+         },
+         // Similar to `v-bind:class`, accepting either a string, object, or array of strings and objects.
+         class: {
+           classsName1: true,
+           classsName2: false
+         }
+         // ....
        },
-
+ 
        // Children VNodes, built using `createElement()`, or using strings to get 'text VNodes'.
        // Type is {String | Array}
        // Optional.
@@ -2462,7 +2465,7 @@ List of 300 VueJS Interview Questions
      When the default render function encounters an error then you can use rennderError as an alternative render output. The error will be passed to renderError as the second argument.
 
      The example usage of renderError is as below,
-     ```javacript
+     ```javascript
      new Vue({
        render (h) {
          throw new Error('An error')
