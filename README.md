@@ -1898,24 +1898,24 @@ List of 300 VueJS Interview Questions
 
      Let's take an example of simple Div markup and corresponding render function.
      The HTML markup can be written in template tag as below,
-     ```javascript
+     ```vue
      <template>
-           <div :class="{'is-rounded': isRounded}">
-            <p>Welcome to Vue render functions</p>
-           </div>
+       <div :class="{'is-rounded': isRounded}">
+         <p>Welcome to Vue render functions</p>
+       </div>
      </template>
      ```
      and the compiled down or explicit render function would appear as below,
      ```javascript
      render: function (createElement) {
-        return createElement('div', {
-          'class': {
-              'is-rounded': this.isRounded
+       return createElement('div', {
+         'class': {
+           'is-rounded': this.isRounded
           }
-        }, [
-          createElement('p', 'Welcome to Vue render functions')
-        ]);
-       },
+       }, [
+         createElement('p', 'Welcome to Vue render functions')
+       ]);
+     }
      ```
      **Note:** The react components are built with render functions in JSX.
 
