@@ -922,7 +922,7 @@ List of 300 VueJS Interview Questions
      })
      ```
      Once the props are registered, you can pass them as custom atrtributes.
-     ```javascript
+     ```vue
      <todo-item title="Learn Vue conceptsnfirst"></todo-item>
      ```
 
