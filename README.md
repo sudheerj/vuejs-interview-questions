@@ -957,13 +957,15 @@ List of 300 VueJS Interview Questions
      })
      ```
      Now you can use this todo-item in parent component to access the count value.
-     ```javascript
+     ```vue
      <ul v-for="todo in todos">
-     <li>
-        <todo-item
+       <li>
+         <todo-item
            v-bind:key="todo.id"
-           v-bind:todo="todo" v-on:increment-count="total += 1"></todo-item>
-     </li>
+           v-bind:todo="todo"
+           v-on:increment-count="total += 1"
+         /></todo-item>
+       </li>
      </ul>
      <span> Total todos count is {{total}}</span>
      ```
