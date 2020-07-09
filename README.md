@@ -1038,7 +1038,7 @@ List of 300 VueJS Interview Questions
      new Vue({ el: '#app' })
      ```
      The above components can be used in the vue instance,
-     ```javascript
+     ```vue
      <div id="app">
        <component-a></component-a>
        <component-b></component-b>
