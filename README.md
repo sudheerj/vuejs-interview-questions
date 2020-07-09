@@ -833,7 +833,7 @@ List of 300 VueJS Interview Questions
      4. .meta
 
      Lets take an example of control modifier with click event,
-     ```javascript
+     ```vue
      <!-- Ctrl + Click -->
      <div @click.ctrl="doSomething">Do something</div>
      ```
