@@ -1863,7 +1863,7 @@ List of 300 VueJS Interview Questions
      A directive can take any valid javascript expression. So if you want to pass multiple values then you can pass in a JavaScript object literal.
 
      Let's pass object literal to an avatar directive as below
-     ```html
+     ```vue
      <div v-avatar="{ width: 500, height: 400, url: 'path/logo', text: 'Iron Man' }"></div>
      ```
      Now let us configure avatar directive globally,
