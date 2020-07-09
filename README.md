@@ -1932,40 +1932,40 @@ List of 300 VueJS Interview Questions
        // Type is {String | Object | Function}
        // Required.
        'div',
-
+ 
        // A data object corresponding to the attributes you would use in a template.
-       //Type is {Object}
+       // Type is {Object}
        // Optional.
        {
-           // Normal HTML attributes
-           attrs: {
-             id: 'someId'
-           },
-           // Component props
-           props: {
-             myProp: 'somePropValue'
-           },
-           // DOM properties
-           domProps: {
-             innerHTML: 'This is some text'
-           },
-           // Event handlers are nested under `on`
-           on: {
-               click: this.clickHandler
-             },
-           // Similar to `v-bind:style`, accepting either a string, object, or array of objects.
-            style: {
-               color: 'red',
-               fontSize: '14px'
-            },
-            //Similar to `v-bind:class`, accepting either a string, object, or array of strings and objects.
-             class: {
-                classsName1: true,
-                classsName2: false
-             },
-             ....
+         // Normal HTML attributes
+         attrs: {
+           id: 'someId'
+         },
+         // Component props
+         props: {
+           myProp: 'somePropValue'
+         },
+         // DOM properties
+         domProps: {
+           innerHTML: 'This is some text'
+         },
+         // Event handlers are nested under `on`
+         on: {
+           click: this.clickHandler
+         },
+         // Similar to `v-bind:style`, accepting either a string, object, or array of objects.
+         style: {
+           color: 'red',
+           fontSize: '14px'
+         },
+         // Similar to `v-bind:class`, accepting either a string, object, or array of strings and objects.
+         class: {
+           classsName1: true,
+           classsName2: false
+         }
+         // ....
        },
-
+ 
        // Children VNodes, built using `createElement()`, or using strings to get 'text VNodes'.
        // Type is {String | Array}
        // Optional.
