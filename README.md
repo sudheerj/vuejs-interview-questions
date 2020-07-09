@@ -860,7 +860,7 @@ List of 300 VueJS Interview Questions
      You can use the `v-model` directive to create two-way data bindings on form input, textarea, and select elements.
 
      Lets take an example of it using input component,
-     ```javascript
+     ```vue
      <input v-model="message" placeholder="Enter input here">
      <p>The message is: {{ message }}</p>
      ```
