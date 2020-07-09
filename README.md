@@ -846,7 +846,7 @@ List of 300 VueJS Interview Questions
      3. .middle
 
      For example, the usage of `.right` modifier as below
-     ```javascript
+     ```vue
       <button
         v-if="button === 'right'"
         v-on:mousedown.right="increment"
