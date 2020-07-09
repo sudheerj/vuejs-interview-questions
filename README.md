@@ -1194,7 +1194,7 @@ List of 300 VueJS Interview Questions
      ```vue
      <!-- Child component -->
      <input type="date" class="date-control">
-     
+
      <!-- Parent component -->
      <custom-input class="custom-class" />
      ```
@@ -1267,7 +1267,7 @@ List of 300 VueJS Interview Questions
      })
      ```
      Now you can use v-model on this customized component as below,
-     ```javascript
+     ```vue
      <custom-checkbox v-model="selectFramework"></custom-checkbox>
      ```
      The selectFramework property will be passed to the checked prop and same property will be updated when custom checkbox component emits a change event with a new value.
