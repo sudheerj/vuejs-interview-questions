@@ -800,11 +800,10 @@ List of 300 VueJS Interview Questions
      9. .right
 
      Now the above keyup code snippet can be written with aliases as follows,
-     ```javascript
-     <input v-on:keyup.enter="submit">
-     // (OR)
-     <!-- with shorthand notation-->
-     <input @keyup.enter="submit">
+     ```vue
+     <input v-on:keyup.enter="submit" />
+     <!-- OR with shorthand notation -->
+     <input @keyup.enter="submit" />
      ```
 
      **Note:** The use of keyCode events is deprecated and may not be supported in new browsers.
