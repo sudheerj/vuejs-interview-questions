@@ -1672,7 +1672,7 @@ List of 300 VueJS Interview Questions
      ```javascript
      Vue.mixin({
        created(){
-       console.log("Write global mixins")
+         console.log("Write global mixins")
        }
      })
 
