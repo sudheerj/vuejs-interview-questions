@@ -1699,7 +1699,7 @@ List of 300 VueJS Interview Questions
                message: 'Hello, this is a Mixin'
              }
            }
-          }
+         }
          new Vue({
            mixins: [mixin],
            data: function () {
@@ -1722,14 +1722,14 @@ List of 300 VueJS Interview Questions
 
          new Vue({
            el: '#root',
-           mixins:[myMixin],
+           mixins: [myMixin],
            created(){
              console.log("Called from Component")
            }
          })
 
-         //Called from Mixin
-         //Called from Component
+         // Called from Mixin
+         // Called from Component
          ```
      3. The options that expect object values(such as methods, components and directives) will be merged into the same object. In this case, the component’s options will take priority when there are conflicting keys in these objects.
          ```javascript
