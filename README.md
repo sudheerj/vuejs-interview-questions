@@ -2465,7 +2465,7 @@ List of 300 VueJS Interview Questions
      When the default render function encounters an error then you can use rennderError as an alternative render output. The error will be passed to renderError as the second argument.
 
      The example usage of renderError is as below,
-     ```javacript
+     ```javascript
      new Vue({
        render (h) {
          throw new Error('An error')
