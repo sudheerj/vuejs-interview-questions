@@ -1523,7 +1523,7 @@ List of 300 VueJS Interview Questions
      }
      ```
      Now you can use the filter in either mustache interpolation or v-bind expression,
-     ```javascript
+     ```vue
      <!-- in mustaches -->
      {{ username | capitalize }}
 
