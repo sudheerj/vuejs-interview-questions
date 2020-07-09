@@ -1488,7 +1488,7 @@ List of 300 VueJS Interview Questions
      You can also still maintain javascript and CSS files separately with hot-reloading and pre-compilation features.
 
      For example,
-     ```
+     ```vue
      <template>
        <div>This section will be pre-compiled and hot reloaded</div>
      </template>
