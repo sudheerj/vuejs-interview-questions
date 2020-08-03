@@ -3861,7 +3861,7 @@ List of 300 VueJS Interview Questions
      })
 
      store.state.one // -> `moduleOne's state
-     store.state.one // -> `moduleTwo's state
+     store.state.two // -> `moduleTwo's state
      ```
 
      **[⬆ Back to Top](#table-of-contents)**
