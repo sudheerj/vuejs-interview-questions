@@ -235,8 +235,8 @@ List of 300 VueJS Interview Questions
 |226| [What happens if you use duplicate field names?](#what-happens-if-you-use-duplicate-field-names)|
 |227| [Why the component data must be a function?](#why-the-component-data-must-be-a-function)|
 |228| [What is the reason for recommendation for multi-word component names?](#what-is-the-reason-for-recommendation-for-multi-word-component-names)|
-|229| [](#)|
-|230| [](#)|
+|229| [How to use composition API in Vue2.0?](#how-to-use-composition-api-in-vue2.0)|
+|230| [What is composition API?](#what-is-composition-api)|
 
 1.  ### What is VueJS?
     **Vue.js** is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the `view layer` only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -4941,10 +4941,36 @@ List of 300 VueJS Interview Questions
 
      **[⬆ Back to Top](#table-of-contents)**
 
-229. ### ?
+229. ### How to use composition API in Vue2.0?
+     Even though the Composition API is a part of Vue 3, it has been made available for Vue 2 as well by installing `@vue/composition-api` as a plugin via `Vue.use()`.
+
+     Let's see the usage in step by step instructions,
+
+     1. Run the below commands to install
+         ```javascript
+         npm install @vue/composition-api
+         # or
+         yarn add @vue/composition-api
+         ```
+
+     2. After that import this API in your main.js file,
+
+         ```js
+         import Vue from 'vue'
+         import VueCompositionAPI from '@vue/composition-api'
+
+         Vue.use(VueCompositionAPI)
+         ```
+     3. Now your project is able to use composition API
+
+         ```js
+         // use the APIs
+         import { ref, reactive } from '@vue/composition-api'
+         ```
 
      **[⬆ Back to Top](#table-of-contents)**
 
-230. ### ?
+230. ### What is composition API?
+     Composition API is a set of additive, function-based APIs that allow flexible composition of component logic.
 
      **[⬆ Back to Top](#table-of-contents)**
