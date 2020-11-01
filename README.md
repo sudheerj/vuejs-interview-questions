@@ -3947,7 +3947,7 @@ List of 300 VueJS Interview Questions
 
      computed: {
        ...mapState({
-         message: state => state.user.username
+         username: state => state.user.username
        })
      },
      methods: {
@@ -3969,7 +3969,7 @@ List of 300 VueJS Interview Questions
      ```javascript
       <input v-model="username">
       computed: {
-       message: {
+       username: {
          get () {
            return this.$store.state.user.username
          },
