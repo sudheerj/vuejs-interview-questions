@@ -4929,7 +4929,7 @@ List of 300 VueJS Interview Questions
      **[⬆ Back to Top](#table-of-contents)**
 
 228. ### What is the reason for recommendation for multi-word component names?
-     Component names should always be multi-word, except for root level or built-in vue components(such as `<transition>` or `<component>` etc). This recommendation is  to prevents conflicts with existing and future HTML elements, since all HTML elements are a single word.
+     Component names should always be multi-word, except for root level or built-in vue components(such as `<transition>` or `<component>` etc). This recommendation is  to prevent conflicts with existing and future HTML elements, since all HTML elements are a single word.
      ```js
      Vue.component('user', { //bad approach
        // ...
