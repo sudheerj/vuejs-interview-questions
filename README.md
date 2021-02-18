@@ -3917,7 +3917,7 @@ List of 300 VueJS Interview Questions
      2. Register the same module multiple times in the same store.
 
      In those cases, you need to assign to a variable and export it for reusability,
-         ```javascript
+        ```javascript
          const MyReusableModule = {
            // state
            // mutations, actions, getters...
