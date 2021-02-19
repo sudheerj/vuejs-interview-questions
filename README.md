@@ -4202,7 +4202,13 @@ List of 300 VueJS Interview Questions
      **[⬆ Back to Top](#table-of-contents)**
 
 197. ### How do you create reactive objects?
-     From 2.6 version onwards, you can create reactive objects with Vue.observable() global API.
+     In version 3.0 you can create a reactive object with the reactive() API.
+     ```javascript
+     const reactiveState = reactive({
+     count: 0
+      })
+      ```
+     In version 2.6, you can create reactive objects with Vue.observable() global API.
      ```javascript
      const reactiveState = Vue.observable({
        count: 0
