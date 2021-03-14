@@ -929,15 +929,25 @@ List of 300 VueJS Interview Questions
      **[⬆ Back to Top](#table-of-contents)**
 
 28.  ### When component needs a single root element?
-     Every component must have a single root element **when template has more than one element**. In this case, you need to wrap the elements with a parent element.
+     In VueJS 2.x, every component must have a single root element **when template has more than one element**. In this case, you need to wrap the elements with a parent element.
      ```vue
-     <div class="todo-item">
-       <h2>{{ title }}</h2>
-       <div v-html="content"></div>
-     </div>
+     <template>
+        <div class="todo-item">
+            <h2>{{ title }}</h2>
+            <div v-html="content"></div>
+        </div>
+     </template>
      ```
      Otherwise there will an error throwing, saying that "Component template should contain exactly one root element...".
 
+     Whereas in 3.x, components now can have multiple root nodes. This way of adding multiple root nodes is called as fragments.
+     ```vue
+     <template>
+          <h2>{{ title }}</h2>
+          <div v-html="content"></div>
+     </template>
+     ```
+     
      **[⬆ Back to Top](#table-of-contents)**
 
 29.  ### How do you communicate from child to parent using events?
