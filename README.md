@@ -953,7 +953,7 @@ List of 300 VueJS Interview Questions
 29.  ### How do you communicate from child to parent using events?
      If you want child wants to communicate back up to the parent, then emit an event from child using `$emit` object to parent,
      ```javascript
-     Vue.component('todo-tem', {
+     Vue.component('todo-item', {
        props: ['todo'],
        template: `
          <div class="todo-item">
