@@ -3429,7 +3429,7 @@ List of 300 VueJS Interview Questions
             template: `<div>{{ greet }}</div>`,
             computed: {
               greet () {
-                return this.\$store.state.msg
+                return this.$store.state.msg
               }
             }
           }
