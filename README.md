@@ -2266,7 +2266,7 @@ List of 300 VueJS Interview Questions
      ```javascript
      //ComponentB
      <div>
-       <component-b >
+       <component-a >
      </div>
      ```
      This can be solved by either registering(or wait until) the child component in `beforeCreate` hook or using webpack's asynchronous import while registering the component,
