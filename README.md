@@ -84,7 +84,7 @@ List of 300 VueJS Interview Questions
 |75 | [What is the difference between VueJS and ReactJS?](#what-is-the-difference-between-vuejs-and-reactjs)|
 |76 | [What are the advantages of VueJS over ReactJS?](#what-are-the-advantages-of-vuejs-over-reactjs)|
 |77 | [What are the advantages of ReactJS over VueJS?](#what-are-the-advantages-of-reactjs-over-vuejs)|
-|78 | [What are the differences between VueJS and AngularJS?](#What-are-the-differences-between-vuejs-and-angularjs)|
+|78 | [What are the differences between VueJS and Angular?](#What-are-the-differences-between-vuejs-and-angular)|
 |79 | [What are dynamic components?](#what-are-dynamic-components)|
 |80 | [What is the purpose of keep alive tag?](#what-is-the-purpose-of-keep-alive-tag)|
 |81 | [What are async components?](#what-are-async-components)|
@@ -2098,12 +2098,12 @@ List of 300 VueJS Interview Questions
 
      **[⬆ Back to Top](#table-of-contents)**
 
-78.  ### What are the differences between VueJS and AngularJS?
+78.  ### What are the differences between VueJS and Angular?
      The  the syntax of Vue and Angular is common at some points because Angular is the basis for VueJS development in the beginning.
 
      But there are many differences between VueJS and Angular as listed,
 
-      | Feature | VueJS | AngularJS |
+      | Feature | VueJS | Angular |
       |---- | --------- | ---- |
       | Complexity | Easy to learn, simple API and design | The framework is bit huge and need some learning curve on typescript etc |
       | Binding of Data  | One-way binding | Two-way binding |
