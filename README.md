@@ -921,7 +921,7 @@ List of 300 VueJS Interview Questions
        template: '<h2>{{ title }}</h2>'
      })
      ```
-     Once the props are registered, you can pass them as custom atrtributes.
+     Once the props are registered, you can pass them as custom attributes.
      ```vue
      <todo-item title="Learn Vue conceptsnfirst"></todo-item>
      ```
