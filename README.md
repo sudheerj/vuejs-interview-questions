@@ -237,6 +237,7 @@ List of 300 VueJS Interview Questions
 |228| [What is the reason for recommendation for multi-word component names?](#what-is-the-reason-for-recommendation-for-multi-word-component-names)|
 |229| [How to use composition API in Vue2.0?](#how-to-use-composition-api-in-vue2.0)|
 |230| [What is composition API?](#what-is-composition-api)|
+|231| [What is the best way to re-render a component?](#what-is-the-best-way-to-re-render-a-component)
 
 1.  ### What is VueJS?
     **Vue.js** is an open-source, progressive Javascript framework for building user interfaces that aim to be incrementally adoptable. The core library of VueJS is focused on the `view layer` only, and is easy to pick up and integrate with other libraries or existing projects.
@@ -4989,4 +4990,8 @@ List of 300 VueJS Interview Questions
 230. ### What is composition API?
      Composition API is a set of additive, function-based APIs that allow flexible composition of component logic.
 
+     **[⬆ Back to Top](#table-of-contents)**
+     
+231. ### What is the best way to re-render a component?
+     The best way to force Vue to re-render a component is to set a `:key` on the component. i.e, Whenever the component to be re-rendered, just change the value of the key then Vue will re-render the component.
      **[⬆ Back to Top](#table-of-contents)**
