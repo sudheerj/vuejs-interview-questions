@@ -1009,7 +1009,7 @@ List of 300 VueJS Interview Questions
      **[⬆ Back to Top](#table-of-contents)**
 
 31.  ### What are slots?
-     Vue implements a content distribution API using the <slot> element to serve as distribution outlets for content created after after the current Web Components spec draft.
+     Vue implements a content distribution API using the <slot> element to serve as distribution outlets for content created after the current Web Components spec draft.
 
      Let's create an alert component with slots for content insertion,
      ```javascript
