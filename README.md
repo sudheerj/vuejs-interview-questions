@@ -447,7 +447,7 @@ List of 300 VueJS Interview Questions
     **[⬆ Back to Top](#table-of-contents)**
 
 5.  ### What is the difference between v-show and v-if directives?
-    Below are some of the main differences between between **v-show** and **v-if** directives,
+    Below are some of the main differences between **v-show** and **v-if** directives,
 
     1. v-if only renders the element to the DOM if the expression passes whereas v-show renders all elements to the DOM and then uses the CSS display property to show/hide elements based on expression.
     2. v-if supports v-else and v-else-if directives whereas v-show doesn't support else directives.
