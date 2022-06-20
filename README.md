@@ -1112,7 +1112,7 @@ List of 300 VueJS Interview Questions
      Let's say you want to register component A and B in component C, the configuration seems as below,
      ```javascript
      import ComponentA from './ComponentA'
-     import ComponentB from './ComponentC'
+     import ComponentB from './ComponentB'
 
      export default {
        components: {
