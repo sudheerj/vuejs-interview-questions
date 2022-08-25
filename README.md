@@ -27,11 +27,11 @@ List of 300 VueJS Interview Questions
 |4  | [What are the conditional directives](#what-are-the-conditional-directives)|
 |5  | [What is the difference between v-show and v-if directives](#what-is-the-difference-between-v-show-and-v-if-directives)|
 |6  | [What is the purpose of v-for directive?](#what-is-the-purpose-of-v-for-directive)|
-|7  | [What is vue instance?](#what-is-vue-instance)|
-|8  | [How do you achieve conditional group of elements?](#how-do-you-achieve-conditional-group-of-elements)|
-|9  | [How do you reuse elements with key attribute?](#how-do-you-reuse-elements-with-key-attribute)|
-|10 | [Why should not use if and for directives together on the same element?](#why-should-not-use-if-and-for-directives-together-on-the-same-element)|
-|11 | [Why do you need to use key attribute on for directive?](#why-do-you-need-to-use-key-attribute-on-for-directive)|
+|7  | [What is a vue instance?](#what-is-vue-instance)|
+|8  | [How do you achieve a conditional group of elements?](#how-do-you-achieve-conditional-group-of-elements)|
+|9  | [How do you reuse elements with a key attribute?](#how-do-you-reuse-elements-with-key-attribute)|
+|10 | [Why should you not use if and for directives together on the same element?](#why-should-not-use-if-and-for-directives-together-on-the-same-element)|
+|11 | [Why do you need to use a key attribute on for directive?](#why-do-you-need-to-use-key-attribute-on-for-directive)|
 |12 | [What are the array detection mutation methods?](#what-are-the-array-detection-mutation-methods)|
 |13 | [What are the array detection non mutation methods?](#what-are-the-array-detection-non-mutation-methods)|
 |14 | [What are the caveats of array changes detection?](#what-are-the-caveats-of-array-changes-detection)|
