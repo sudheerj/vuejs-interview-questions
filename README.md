@@ -2088,7 +2088,7 @@ List of 300 VueJS Interview Questions
 
       | Feature | VueJS | ReactJS |
       |---- | --------- | ---- |
-      | Type |  JavaScript MVC Framework | JavaScript Library |
+      | Type |  JavaScript MVVM Framework | JavaScript Library |
       | Platform  | Primarily focused on web development | Both Web and Native |
       | Learning Curve | Easy to learn the framework  | A steep learning curve and requires deep knowledge |
       | Simplicity | Vue is simpler than React | React is more complex than Vue |
