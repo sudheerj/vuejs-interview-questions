@@ -3070,7 +3070,7 @@ List of 300 VueJS Interview Questions
 
      **[⬆ Back to Top](#table-of-contents)**
 
-133. ### Is Vuex supports hot reloading?
+133. ### Does Vuex support hot reloading?
      Yes, vuex supports hot-reloading for mutations, modules, actions and getters during development. You need to use either webpack's hot module replacement API or browserify's hot module replacement plugin.
 
      **[⬆ Back to Top](#table-of-contents)**
@@ -3444,7 +3444,7 @@ List of 300 VueJS Interview Questions
             template: `<div>{{ greet }}</div>`,
             computed: {
               greet () {
-                return this.\$store.state.msg
+                return this.$store.state.msg
               }
             }
           }
@@ -3793,8 +3793,8 @@ List of 300 VueJS Interview Questions
 
      **[⬆ Back to Top](#table-of-contents)**
 
-170. ### Can I use styled components in vuejs?
-     Styled components is basically used for ReactJS applications. If you want to use for VueJS applications, there is vuejs styled components library available under styled component library. VueJS Styled component is a javascript library for stying vuejs applications.
+170. ### Can I use Styled Components in VueJS?
+     Styled components is a CSS-in-JS library used mainly for ReactJS applications. If you want to use it for VueJS applications, there is a VueJS styled components library port available, however, it is not a common practice.
 
      **[⬆ Back to Top](#table-of-contents)**
 
