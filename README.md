@@ -153,7 +153,7 @@ List of 300 VueJS Interview Questions
 |130| [What are custom blocks?](#what-are-custom-blocks)|
 |131| [What are the features of stylelint?](#what-are-the-features-of-stylelint?)|
 |132| [What are the principles for vuex application structure?](#what-are-the-principles-for-vuex-application-structure)|
-|133| [Is Vuex supports hot reloading?](#is-vuex-supports-hot-reloading)|
+|133| [Does Vuex support hot reloading??](#does-vuex-support-hot-reloading)|
 |134| [What is the purpose of hotUpdate API of vuex store?](#what-is-the-purpose-of-hotupdate-api-of-vuex-store)|
 |135| [How do you test mutations?](#how-do-you-test-mutations)|
 |136| [How do you test your getters?](#how-do-you-test-your-getters)|
