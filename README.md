@@ -2131,9 +2131,9 @@ List of 300 VueJS Interview Questions
      **[⬆ Back to Top](#table-of-contents)**
 
 79.  ### What are dynamic components?
-     The dynamic component is used to dynamically switch beetween multiple components using **<component>** element and pass data to v-bind:is attribute.
+     The dynamic component will allow you to dynamically switch beetween multiple components without updating the route of the application and even retaining the state of the component when switching back to the initial component. It works by using `<component>` tag with `v-bind:is` attribute which accept dynamic component.
 
-     Let's create a dynamic component to switch between different pages of a website,
+     Let's create a dynamic component vue instance to switch between different pages of a website,
      ```javascript
      new Vue({
        el: '#app',
@@ -2162,6 +2162,10 @@ List of 300 VueJS Interview Questions
         </component>
      </div>
      ```
+
+     The component will be unmounted when it is switched away but it is possible to force the inactive component alive using `<keep-alive>` component
+
+     **Note:** The value of `:is` attribute can be either name of the registered component or the actual imported object itself.
 
      **[⬆ Back to Top](#table-of-contents)**
 
