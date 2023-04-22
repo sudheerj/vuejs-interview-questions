@@ -556,7 +556,7 @@ List of 300 VueJS Interview Questions
     **[⬆ Back to Top](#table-of-contents)**
 
 10. ### Why should not use if and for directives together on the same element?
-    It is recommended not to use v-if on the same element as v-for. Because v-for directive has a higher priority than v-if.
+    It is recommended not to use v-if on the same element as v-for. Because v-if directive has a higher priority than v-for.
 
     There are two cases where developers try to use this combination,
 
