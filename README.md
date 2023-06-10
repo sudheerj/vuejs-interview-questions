@@ -37,8 +37,8 @@ List of 300 VueJS Interview Questions
 |13 | [What are the array detection non mutation methods?](#what-are-the-array-detection-non-mutation-methods)|
 |14 | [What are the caveats of array changes detection?](#what-are-the-caveats-of-array-changes-detection)|
 |15 | [What are the caveats of object changes detection?](#what-are-the-caveats-of-object-changes-detection)|
-|16 | [How do you use for directive with a range?](#how-do-you-use-for-directive-with-a-range)|
-|17 | [How do you use for directive on template?](#how-do-you-use-for-directive-on-template)|
+|16 | [How do you use for directive with a range?](#how-do-you-use-v-for-directive-with-a-range)|
+|17 | [How do you use for directive on template?](#how-do-you-use-v-for-directive-on-template)|
 |18 | [How do you use event handlers?](#how-do-you-use-event-handlers)|
 |19 | [What are the event modifiers provided by vue?](#what-are-the-event-modifiers-provided-by-vue)|
 |20 | [What are key modifiers?](#what-are-key-modifiers)|
