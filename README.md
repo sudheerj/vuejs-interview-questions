@@ -2094,6 +2094,7 @@ List of 300 VueJS Interview Questions
       | Learning Curve | Easy to learn the framework  | A steep learning curve and requires deep knowledge |
       | Simplicity | Vue is simpler than React | React is more complex than Vue |
       | Bootstrap Application | Vue-cli | CRA (Create React App) |
+      | Components Extension | (.vue) structure | (.js) structure |
 
       **[⬆ Back to Top](#table-of-contents)**
 
