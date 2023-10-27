@@ -2127,7 +2127,6 @@ List of 300 VueJS Interview Questions
       | Founders | Created by Former Google Employee | Powered by Google |
       | Initial Release | February 2014 | September 2016 |
       | Model | Based on Virtual DOM(Document Object Model) | Based on MVC(Model-View-Controller) |
-      | Written in | JavaScript | TypeScript |
 
      **[⬆ Back to Top](#table-of-contents)**
 
