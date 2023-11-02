@@ -717,7 +717,7 @@ List of 300 VueJS Interview Questions
        }
      })
 
-     // `vm.name` is now reactive
+     // `vm.user.name` is now reactive
 
      vm.user.email = john@email.com // `vm.user.email` is NOT reactive
      ```
