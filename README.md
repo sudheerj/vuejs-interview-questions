@@ -4944,6 +4944,8 @@ List of 300 VueJS Interview Questions
 
 226. ### What happens if you use duplicate field names?
 
+    Using duplicate field names in a component's data, computed, or methods sections might cause unexpected behavior and bugs in Vue 3. The last defined property will override the previous one, which could lead to confusion or logical errors in your component.
+    Overwriting can occur in Vuex when duplicate field names are used in state, mutations, actions, or getters. The last defined field will override the previous ones, which may cause unexpected behavior or bugs in your application's state management.
      **[⬆ Back to Top](#table-of-contents)**
 
 227. ### Why the component data must be a function?
