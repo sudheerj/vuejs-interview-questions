@@ -646,7 +646,6 @@ List of 300 VueJS Interview Questions
      2. pop()
      3. shift()
      4. unshift()
-     5. splice()
      6. sort()
      7. reverse()
      
@@ -664,6 +663,7 @@ List of 300 VueJS Interview Questions
      1. filter()
      2. concat()
      3. slice()
+     4. toReverse()
 
      For example, lets take a todo list where it replaces the old array with new one based on status filter,
      ```javascript
@@ -837,6 +837,8 @@ List of 300 VueJS Interview Questions
        down: [40, 87]
      }
      ```
+
+    Note: this has been depricated https://eslint.vuejs.org/rules/no-deprecated-vue-config-keycodes.html
 
      **[⬆ Back to Top](#table-of-contents)**
 
