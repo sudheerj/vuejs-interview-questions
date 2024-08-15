@@ -233,7 +233,7 @@ List of 300 VueJS Interview Questions
 |209| [How do you handle Pluralization?](#how-do-you-handle-pluralization)|
 |210| [How to implement DateTime localization?](#how-to-implement-date-time-localization)|
 |211| [How do you implement Number localization?](#how-do-you-implement-number-localization)|
-|212| [How do you perform locale changing](#how-do-you-perform-locale-changin)|
+|212| [How do you perform locale changing](#how-do-you-perform-locale-changing)|
 |213| [What is Lazy loading translations?](#what-is-lazy-loading-translations)|
 |214| [What is the main difference between method and computed property?](#what-is-the-main-difference-between-method-and-computed-property)|
 |215| [What is vuetify?](#what-is-vuetify)|
@@ -1992,8 +1992,8 @@ List of 300 VueJS Interview Questions
          },
          // Similar to `v-bind:class`, accepting either a string, object, or array of strings and objects.
          class: {
-           classsName1: true,
-           classsName2: false
+           className1: true,
+           className2: false
          }
          // ....
        },
@@ -2044,7 +2044,7 @@ List of 300 VueJS Interview Questions
 72.  ### List down the template equivalents in render functions?
      VueJS provides proprietary alternatives and plain javascript usage for the template features.
 
-     Let's list down them in a table for comparision,
+     Let's list down them in a table for comparison,
 
         | Templates | Render function |
         |---- | --------- |
@@ -2137,7 +2137,7 @@ List of 300 VueJS Interview Questions
      **[⬆ Back to Top](#table-of-contents)**
 
 79.  ### What are dynamic components?
-     The dynamic component will allow you to dynamically switch beetween multiple components without updating the route of the application and even retaining the state of the component when switching back to the initial component. It works by using `<component>` tag with `v-bind:is` attribute which accept dynamic component.
+     The dynamic component will allow you to dynamically switch between multiple components without updating the route of the application and even retaining the state of the component when switching back to the initial component. It works by using `<component>` tag with `v-bind:is` attribute which accept dynamic component.
 
      Let's create a dynamic component vue instance to switch between different pages of a website,
      ```javascript
@@ -3210,7 +3210,7 @@ List of 300 VueJS Interview Questions
 137. ### What is the procedure to run tests in node?
      By proper mocking, you can bundle tests with webpack and run them on node without having depenceny on Browser API.  It involves 2 steps,
      1. **Create webpack config:** Create webpack config with proper .babelrc
-         ```javscript
+         ```javascript
          // webpack.config.js
          module.exports = {
            entry: './test.js',
@@ -3615,7 +3615,7 @@ List of 300 VueJS Interview Questions
        }
      })
      ```
-     You can't directly invoke mutation instead you need to call `store.commit` with its type. The above mutation would be triggered as folows
+     You can't directly invoke mutation instead you need to call `store.commit` with its type. The above mutation would be triggered as follows
      ```javascript
      store.commit('increment')
      ```
@@ -3854,7 +3854,7 @@ List of 300 VueJS Interview Questions
        }
      }
      ```
-     As per the above example, When you try to dispatch actionTwo it dispatchs actionOne first and then commits respective mutation. You can still simplify with async/await as below,
+     As per the above example, When you try to dispatch actionTwo it dispatches actionOne first and then commits respective mutation. You can still simplify with async/await as below,
      ```javascript
      actions: {
        async actionOne ({ commit }) {
