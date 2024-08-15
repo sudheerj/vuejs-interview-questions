@@ -2492,7 +2492,7 @@ List of 300 VueJS Interview Questions
      7. EuroNews
      8. Laracasts
      9. GitLab
-     10. Laracasts
+     10. BMW
 
      **[⬆ Back to Top](#table-of-contents)**
 
