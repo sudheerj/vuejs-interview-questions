@@ -412,6 +412,12 @@ List of 300 VueJS Interview Questions
 
     **[⬆ Back to Top](#table-of-contents)**
 
+4.  ### What are the different API styles available?
+    The Vue components can be created in two different API styles
+    1. **Options API:** The Options API uses component logic using an object of options such as `data`, `props`, `computed`, `methods` and life cycle methods etc. The properties will be accessible inside functions using component instance(i.e, `this`).
+
+    2. **Composition API:** The Composition API uses component logic using imported API functions. The Single File Components(SFCs) requires `setup` attribute(`<script setup>`) to use imported variables and functions directly inside template section.
+
 4.  ### What are the conditional directives?
     VueJS provides set of directives to show or hide elements based on conditions. The available directives are: **v-if, v-else, v-else-if and v-show**
     
@@ -4976,7 +4982,16 @@ List of 300 VueJS Interview Questions
 
      **[⬆ Back to Top](#table-of-contents)**
 
-229. ### How to use composition API in Vue2.0?
+229. ### What is the best way to re-render a component?
+     The best way to force Vue to re-render a component is to set a `:key` on the component. i.e, Whenever the component to be re-rendered, just change the value of the key then Vue will re-render the component.
+     **[⬆ Back to Top](#table-of-contents)**
+
+230. ### How does reactivity works with ref?
+     VueJS automatically detects the changes to ref's value and updates the DOM with a dependency-tracking based reactivity system. 
+     1. When a component is rendered for the first time, it tracks every ref that was used during the render.
+     2. Whenever a ref is mutated, it will trigger a re-render of the component.
+
+230. ### How to use composition API in Vue2.0?
      Even though the Composition API is a part of Vue 3, it has been made available for Vue 2 as well by installing `@vue/composition-api` as a plugin via `Vue.use()`.
 
      Let's see the usage in step by step instructions,
@@ -5005,11 +5020,40 @@ List of 300 VueJS Interview Questions
 
      **[⬆ Back to Top](#table-of-contents)**
 
-230. ### What is composition API?
+231. ### What is composition API?
      Composition API is a set of additive, function-based APIs that allow flexible composition of component logic.
 
      **[⬆ Back to Top](#table-of-contents)**
-     
-231. ### What is the best way to re-render a component?
-     The best way to force Vue to re-render a component is to set a `:key` on the component. i.e, Whenever the component to be re-rendered, just change the value of the key then Vue will re-render the component.
+
+232. ### What are the benefits of composition API?
+     The composition API provides several benefits over the traditional Options API as listed below.
+     1. Better logic reuse and code organization:
+     2. Better typescript support:
+     3. Easier testing
+     4. Smaller production bundles
+
+     **[⬆ Back to Top](#table-of-contents)**
+
+233. ### What are composition functions?
+     Composition API is a set of additive, function-based APIs that allow flexible composition of component logic.
+
+     **[⬆ Back to Top](#table-of-contents)**
+
+234. ### What is teleport?
+     Composition API is a set of additive, function-based APIs that allow flexible composition of component logic.
+
+     **[⬆ Back to Top](#table-of-contents)**
+
+235. ### What is the purpose of html directive?
+     The `v-html` directive is used to update the inner html of a DOM element with latest data. It is similar to innerHTML property in DOM.
+
+     The example usage of this directive as shown below,
+     ```javascript
+     <div id="app">
+        <div>{{ htmlContent }}</div>
+        <div v-html="htmlContent"></div>
+     </div>
+     ```
+     **Note:** This directive should be used with trused content only but not on user provided content. Otherwise it can leads to XSS vulnerabilities.
+
      **[⬆ Back to Top](#table-of-contents)**
