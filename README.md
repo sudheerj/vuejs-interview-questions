@@ -4951,6 +4951,8 @@ List of 300 VueJS Interview Questions
 
 226. ### What happens if you use duplicate field names?
 
+Using duplicate field names within a component's data, computed properties, or methods may lead to unexpected behaviors and potential bugs in Vue 3 applications. The property defined last will take precedence, potentially leading to confusion or logical errors. Similarly, in Vuex, defining fields with the same name across state, mutations, actions, or getters can cause the last definition to overwrite earlier ones. 
+This might result in unpredictable behavior or errors in managing your application's state.
      **[⬆ Back to Top](#table-of-contents)**
 
 227. ### Why the component data must be a function?
