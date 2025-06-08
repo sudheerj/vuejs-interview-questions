@@ -13,7 +13,7 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
   <p align="center">
     <ol>
     <li>Take this <a href=https://links.zerotomastery.io/vue_sudheer>Vue.js course</a> to go from a complete Vue beginner to confidently building large-scale applications from scratch</li>
-    <li>Take this <a href=https://links.zerotomastery.io/mci_sudheer4>coding interview bootcamp</a> if you’re serious about getting hired and don’t have a CS degree</li>
+    <li>Take this <a href=https://links.zerotomastery.io/mci_sudheer4>coding interview bootcamp</a> if you're serious about getting hired and don't have a CS degree</li>
     </ol>
   </p>
 </p>
@@ -24,239 +24,239 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
 ### Table of Contents
 -------------------------------------------------------------------
 
-| No. | Questions |
-|---- | ---------
-|1  | [What is VueJS](#what-is-vuejs) |
-|2  | [What are the major features of VueJS](#what-are-the-major-features-of-vuejs) |
-|3  | [What are the lifecycle methods of VueJS](#what-are-the-lifecycle-methods-of-vuejs)|
-|4  | [What are the conditional directives](#what-are-the-conditional-directives)|
-|5  | [What is the difference between v-show and v-if directives](#what-is-the-difference-between-v-show-and-v-if-directives)|
-|6  | [What is the purpose of v-for directive?](#what-is-the-purpose-of-v-for-directive)|
-|7  | [What is a vue instance?](#what-is-vue-instance)|
-|8  | [How do you achieve a conditional group of elements?](#how-do-you-achieve-conditional-group-of-elements)|
-|9  | [How do you reuse elements with a key attribute?](#how-do-you-reuse-elements-with-key-attribute)|
-|10 | [Why should you not use if and for directives together on the same element?](#why-should-not-use-if-and-for-directives-together-on-the-same-element)|
-|11 | [Why do you need to use a key attribute on for directive?](#why-do-you-need-to-use-key-attribute-on-for-directive)|
-|12 | [What are the array detection mutation methods?](#what-are-the-array-detection-mutation-methods)|
-|13 | [What are the array detection non mutation methods?](#what-are-the-array-detection-non-mutation-methods)|
-|14 | [What are the caveats of array changes detection?](#what-are-the-caveats-of-array-changes-detection)|
-|15 | [What are the caveats of object changes detection?](#what-are-the-caveats-of-object-changes-detection)|
-|16 | [How do you use for directive with a range?](#how-do-you-use-v-for-directive-with-a-range)|
-|17 | [How do you use for directive on template?](#how-do-you-use-v-for-directive-on-template)|
-|18 | [How do you use event handlers?](#how-do-you-use-event-handlers)|
-|19 | [What are the event modifiers provided by vue?](#what-are-the-event-modifiers-provided-by-vue)|
-|20 | [What are key modifiers?](#what-are-key-modifiers)|
-|21 | [How do you define custom key modifier aliases?](#how-do-you-define-custom-key-modifier-aliases)|
-|22 | [What are the supported System Modifier Keys?](#what-are-the-supported-system-modifier-keys)|
-|23 | [What are the supported Mouse Button Modifiers?](#what-are-the-supported-mouse-button-modifiers)|
-|24 | [How do you implement two way binding?](#how-do-you-implement-two-way-binding)|
-|25 | [What are the supported modifiers on model?](#what-are-the-supported-modifiers-on-model)|
-|26 | [What are components and give an example?](#what-are-components-and-give-an-example)|
-|27 | [What are props?](#what-are-props)|
-|28 | [When component needs a single root element?](#when-component-needs-a-single-root-element)|
-|29 | [How do you communicate from child to parent using events?](#how-do-you-communicate-from-child-to-parent-using-events)|
-|30 | [How do you implement model on custom input components?](#how-do-you-implement-model-on-custom-input-components)|
-|31 | [What are slots?](#what-are-slots)|
-|32 | [What is global registration in components?](#what-is-global-registration-in-components)|
-|33 | [Why do you need local registration?](#why-do-you-need-local-registration)|
-|34 | [What is the difference between local and global registration in module system?](#what-is-the-difference-between-local-and-global-registration-in-module-system)|
-|35 | [What are possible prop types?](#what-are-possible-prop-types)|
-|36 | [What is the data flow followed by props?](#what-is-the-data-flow-followed-by-props)|
-|37 | [What are non prop attributes?](#what-are-non-prop-attributes)|
-|38 | [Describe about validations available for props?](#describe-about-validations-available-for-props)|
-|39 | [How do you customize model directive for a component?](#how-do-you-customize-model-directive-for-a-component)|
-|40 | [What are the possible ways to provide transitions?](#What-are-the-possible-ways-to-provide-transitions)|
-|41 | [What is vue router and their features?](#what-is-vue-router-and-their-features)|
-|42 | [What are the steps to use vue router and give an example?](#what-are-the-steps-to-use-vue-router-and-give-an-example)|
-|43 | [What is dynamic route matching?](#what-is-dynamic-route-matching)|
-|44 | [How to make router param changes as reactive?](#how-to-make-router-param-changes-as-reactive)|
-|45 | [What is route matching priority?](#what-is-route-matching-priority)|
-|46 | [What are nested routes?](#what-are-nested-routes)|
-|47 | [What are single file components?](#what-are-single-file-components)|
-|48 | [Is Single File Components violating separation of concerns?](#is-single-file-components-violating-separation-of-concerns)|
-|49 | [What are the problems solved by Single File Components?](#what-are-the-problems-solved-by-single-file-components)|
-|50 | [What are filters?](#what-are-filters)|
-|51 | [What are the different ways to create filters?](#what-are-the-different-ways-to-create-filters)|
-|52 | [How do you chain filters](#how-do-you-chain-filters)|
-|53 | [Is it possible to pass parameters for filters?](#is-it-possible-to-pass-parameters-for-filters)|
-|54 | [What are plugins and their various services?](#what-are-plugins-and-their-various-services)|
-|55 | [ How to create a plugin?](#how-to-create-a-plugin)|
-|56 | [How to use a plugin?](#how-to-use-a-plugin)|
-|57 | [What are mixins?](#what-are-mixins)|
-|58 | [What are global mixins?](#what-are-global-mixins)|
-|59 | [How do you use mixins in CLI?](#how-do-you-use-mixins-in-cli)|
-|60 | [What are the merging strategies in mixins?](#what-are-the-merging-strategies-in-mixins)|
-|61 | [What are custom options merging strategies?](#what-are-custom-options-merging-strategies)|
-|62 | [What are custom directives?](#what-are-custom-directives)|
-|63 | [How do you register directives locally?](#how-do-you-register-directives-locally)|
-|64 | [What are the hook functions provided by directives?](#what-are-the-hook-functions-provided-by-directives)|
-|65 | [What are the directive Hook Arguments?](#what-are-the-directive-hook-arguments)|
-|66 | [How do you pass multiple values to a directive?](#how-do-you-pass-multiple-values-to-a-directive)|
-|67 | [What is function shorthand in directive hooks?](#what-is-function-shorthand-in-directive-hooks)|
-|68 | [What is the benefit of render functions over templates?](#what-is-the-benefit-of-render-functions-over-templates)|
-|69 | [What is a render function?](#What-is-a-render-function)|
-|70 | [Explain the structure of createElement with arguments](#explain-the-structure-of-createelement-with-arguments)|
-|71 | [How can you write duplicate virtual nodes in a component?](#how-can-you-write-duplicate-virtual-nodes-in-a-component)|
-|72 | [List down the template equivalents in render functions?](#list-down-the-template-equivalents-in-render-functions)|
-|73 | [What are functional components?](#what-are-functional-components)|
-|74 | [What are the similarities between VueJS and ReactJS?](#what-are-the-similarities-between-vuejs-and-reactjs)|
-|75 | [What is the difference between VueJS and ReactJS?](#what-is-the-difference-between-vuejs-and-reactjs)|
-|76 | [What are the advantages of VueJS over ReactJS?](#what-are-the-advantages-of-vuejs-over-reactjs)|
-|77 | [What are the advantages of ReactJS over VueJS?](#what-are-the-advantages-of-reactjs-over-vuejs)|
-|78 | [What are the differences between VueJS and Angular?](#What-are-the-differences-between-vuejs-and-angular)|
-|79 | [What are dynamic components?](#what-are-dynamic-components)|
-|80 | [What is the purpose of keep alive tag?](#what-is-the-purpose-of-keep-alive-tag)|
-|81 | [What are async components?](#what-are-async-components)|
-|82 | [What is the structure of async component factory?](#what-is-the-structure-of-async-component-factory)|
-|83 | [What are inline templates?](#what-are-inline-templates)|
-|84 | [What are X Templates?](#what-are-x-templates)|
-|85 | [What are recursive components?](#what-are-recursive-components)|
-|86 | [How do you resolve circular dependencies between components?](#how-do-you-resolve-circular-dependencies-between-components)|
-|87 | [How do you make sure vue application is CSP complaint?](#how-do-you-make-sure-vue-application-is-csp-complaint)|
-|88 | [What is the difference between full and runtime only builds?](#what-is-the-difference-between-full-and-runtime-only-builds)|
-|89 | [List down different builds of vuejs?](#list-down-different-builds-of-vuejs)|
-|90 | [How do you configure vuejs in webpack?](#how-do-you-configure-vuejs-in-webpack)|
-|91 | [What is the purpose of vuejs compiler?](#what-is-the-purpose-of-vuejs-compiler)|
-|92 | [What is Dev Tools and its purpose?](#what-is-dev-tools-and-its-purpose)|
-|93 | [What is the browser support of VueJS?](#what-is-the-browser-support-of-vuejs)|
-|94 | [How do you use various CDNs?](#how-do-you-use-various-cdns?)|
-|95 | [How do you force update?](#how-do-you-force-update)|
-|96 | [What is the purpose of vuejs once directive?](#what-is-the-purpose-of-vuejs-once-directive)|
-|97 | [How do you access the root instance?](#how-do-you-access-the-root-instance)|
-|98 | [List out top 10 organizations using Vuejs?](#list-out-top-10-organizations-using-vuejs)|
-|99 | [What is the purpose of renderError?](#what-is-the-purpose-of-rendererror)|
-|100| [How do you access parent instance?](#how-do-you-access-parent-instance)|
-|101| [What is vuex?](#what-is-vuex)|
-|102| [What are the major components of State Management Pattern?](#what-are-the-major-components-of-state-management-pattern)|
-|103| [How do you represent one way data flow in vuex?](#how-do-you-represent-one-way-data-flow-in-vuex)|
-|104| [What is a vuejs loader?](#what-is-a-vuejs-loader)|
-|105| [How do you configure vue loader in webpack?](#how-do-you-configure-vue-loader-in-webpack)|
-|106| [What are asset url transform rules?](#what-are-asset-url-transform-rules)|
-|107| [How do you work with preprocessors using vue loader?](#how-do-you-work-with-preprocessors-using-vue-loader)|
-|108| [What is scoped CSS?](#What-is-scoped-CSS)|
-|109| [Is it possible to mix both local and global styles?](#is-it-possible-to-mix-both-local-and-global-styles)|
-|110| [How do you use deep selectors?](#how-do-you-use-deepselectors)|
-|111| [Is parent styles leaked into child components in scoped css?](#is-parent-styles-leaked-into-child-components-in-scoped-css)|
-|112| [How do you style dynamic generated content using scoped css?](#how-do-you-style-dynamic-generated-content-using-scoped-css)|
-|113| [Is CSS modules supported in Vuejs?](#is-css-modules-supported-in-vuejs)|
-|114| [Can I use runtime builds for all templates?](#can-i-use-runtime-builds-for-all-templates)|
-|115| [How to use CSS modules in vuejs?](#how-to-use-css-modules-in-vuejs)|
-|116| [Can I use CSS modules for preprocessors?](#can-i-use-css-modules-for-preprocessors)|
-|117| [Is it possible to use custom inject name for CSS modules?](#is-it-possible-to-use-custom-inject-name-for-css-modules)|
-|118| [What is hot reloading in vue loader?](#what-is-hot-reloading-in-vue-loader)|
-|119| [What is the default behavior of hot reloading?](#what-is-the-default-behavior-of-hot-reloading)|
-|120| [How do you disable hot reloading explicitly?](#how-do-you-disable-hot-reloading-explicitly)|
-|121| [How do you use hot reloading?](#how-do-you-use-hot-reloading)|
-|122| [What are state preservation rules in hot reloading?](#what-are-state-preservation-rules-in-hot-reloading)|
-|123| [How to create functional components using vue loader?](#how-to-create-functional-components-using-vue-loader)|
-|124| [How do you access global properties of functional components?](#how-do-you-access-global-properties-of-functional-components)|
-|125| [How do you perform testing in vuejs?](#how-do-you-perform-testing-in-vuejs)|
-|126| [How do you apply linting for css?](#how-do-you-apply-linting-for-css)|
-|127| [How do you use eslint plugin?](#how-do-you-use-eslint-plugin)|
-|128| [What is the purpose of eslint loader?](#what-is-the-purpose-of-eslint-loader)|
-|129| [What is CSS extraction?](#what-is-css-extraction)|
-|130| [What are custom blocks?](#what-are-custom-blocks)|
-|131| [What are the features of stylelint?](#what-are-the-features-of-stylelint?)|
-|132| [What are the principles for vuex application structure?](#what-are-the-principles-for-vuex-application-structure)|
-|133| [Does Vuex support hot reloading??](#does-vuex-support-hot-reloading)|
-|134| [What is the purpose of hotUpdate API of vuex store?](#what-is-the-purpose-of-hotupdate-api-of-vuex-store)|
-|135| [How do you test mutations?](#how-do-you-test-mutations)|
-|136| [How do you test your getters?](#how-do-you-test-your-getters)|
-|137| [What is the procedure to run tests in node?](#what-is-the-procedure-to-run-tests-in-node)|
-|138| [What is the procedure to run tests in browser?](#what-is-the-procedure-to-run-tests-in-browser)|
-|139| [What is the purpose of strict mode in vuex?](#what-is-the-purpose-of-strict-mode-in-vuex)|
-|140| [Can I use strict mode in production environment?](#can-i-use-strict-mode-in-production-environment)|
-|141| [What is vuex plugin?](#what-is-vuex-plugin)|
-|142| [How do you mutate state in plugins?](#how-do-you-mutate-state-in-plugins)|
-|143| [What is vuex store?](#what-is-vuex-store)|
-|144| [What are the differences of vuex store and plain global object?](#what-are-the-differences-of-vuex-store-and-plain-global-object)|
-|145| [What is the reason not to update the state directly?](#what-is-the-reason-not-to-update-the-state-directly)|
-|146| [What is Single state tree?](#what-is-single-state-tree)|
-|147| [How do you install vuex?](#how-do-you-install-vuex)|
-|148| [Do I need promise for vuex?](#do-i-need-promise-for-vuex)|
-|149| [How do you display store state in vue components?](#how-do-you-display-store-state-in-vue-components)|
-|150| [How do you inject store into child components?](#how-do-you-inject-store-into-child-components)|
-|151| [What is mapState helper?](#what-is-mapstate-helper)|
-|152| [How do you combine local computed properties with mapState helper?](#how-do-you-combine-local-computed-properties-with-mapstate-helper)|
-|153| [Do you need to replace entire local state with vuex?](#do-you-need-to-replace-entire-local-state-with-vuex)|
-|154| [What are vuex getters?](#what-are-vuex-getters?)|
-|155| [What is a property style access?](#what-is-a-property-style-access)|
-|156| [What is a method style access?](#what-is-a-method-style-access)|
-|157| [What is mapGetter helper?](#what-is-mapgetter-helper)|
-|158| [What are mutations?](#what-are-mutations)|
-|159| [How do you commit with payload?](#how-do-you-commit-with-payload)|
-|160| [What is object style commit?](#what-is-object-style-commit)|
-|161| [What are the caveats with vuex mutations?](#what-are-the-caveats-with-vuex-mutations)|
-|162| [Why mutations should be synchronous?](#why-mutations-should-be-synchronous)|
-|163| [How do you perform mutations in components?](#how-do-you-perform-mutations-in-components)|
-|164| [Is it mandatory to use constants for mutation types?](#is-it-mandatory-to-use-constants-for-mutation-types)|
-|165| [How do you perform asynchronous operations?](#how-do-you-perform-asynchronous-operations)|
-|166| [What are differences between mutations and actions?](#what-are-differences-between-mutations-and-actions)|
-|167| [Give an example usage of actions?](#give-an-example-usage-of-actions?)|
-|168| [How do you dispatch actions?](#how-do-you-dispatch-actions)|
-|169| [Can you dispatch an action using payload or object?](#can-you-dispatch-an-action-using-payload-or-object)|
-|170| [Can I use styled components in vuejs?](#can-i-use-styled-components-in-vuejs)|
-|171| [How do you dispatch actions in components?](#how-do-you-dispatch-actions-in-components)|
-|172| [How do you compose actions?](#how-do-you-compose-actions)|
-|173| [What are modules in vuex?](#what-are-modules-in-vuex)|
-|174| [What is module local state?](#what-is-module-local-state)|
-|175| [What is namespacing in vuex](#what-is-namespacing-in-vuex)|
-|176| [What is the default namespace behavior in vuex?](#what-is-the-default-namespace-behavior-in-vuex)|
-|177| [When do you reuse modules?](#when-do-you-reuse-modules)|
-|178| [What are the principles enforced by vuex?](#what-are-the-principles-enforced-by-vuex)|
-|179| [Can I perform mutations directly in strict mode?](#can-i-perform-mutations-directly-in-strict-mode)|
-|180| [How to use model directive with two way computed property?](#how-to-use-model-directive-with-two-way-computed-property)|
-|181| [What is Vue CLI?](#what-is-vue-cli)|
-|182| [What are the features provided by Vue CLI?](#what-are-the-features-provided-by-vue-cli)|
-|183| [What is instant prototyping?](#what-is-instant-prototyping)|
-|184| [How do you create project using Vue CLI?](#how-do-you-create-project-using-vue-cli)|
-|185| [How do you create project using GUI?](#how-do-you-create-project-using-gui)|
-|186| [What are plugins in vue CLI?](#what-are-plugins-in-vue-cli)|
-|187| [How do you install plugins in an existing Vue CLI project?](#how-do-you-install-plugins-in-an-existing-vue-cli-project)|
-|188| [How to access local plugins in a project?](#how-to-access-local-plugins-in-a-project)|
-|189| [How do you create UI plugins kind of behavior?](#how-do-you-create-ui-plugins-kind-of-behavior)|
-|190| [What are presets?](#what-are-presets)|
-|191| [What is the versioning behavior in preset plugins?](#what-is-the-versioning-behavior-in-preset-plugins)|
-|192| [How do you allow plugin prompts?](#how-do-you-allow-plugin-prompts)|
-|193| [What are remote presets?](#what-are-remote-presets)|
-|194| [Can I use local presets?](#can-i-use-local-presets)|
-|195| [What is the purpose of browserslist option?](#what-is-the-purpose-of-browserslist-option)|
-|196| [How do you find VueJS version using API?](#how-do-you-find-vuejs-version-using-api)|
-|197| [How do you create reactive objects](#how-do-you-create-reactive-objects)|
-|198| [What is the purpose new slot directive?](#what-is-the-purpose-new-slot-directive)|
-|199| [What is the use of compile method?](#what-is-the-use-of-compile-method)|
-|200| [What does nextTick do in VueJS?](#what-does-nexttick-do-in-vuejs)|
-|201| [What is async error handling?](#what-is-async-error-handling)|
-|202| [What are Dynamic Directive Arguments?](#what-are-dynamic-directive-arguments)|
-|203| [What are the drawbacks of dynamic directive arguments?](#what-are-the-drawbacks-of-dynamic-directive-arguments)|
-|204| [What is the special handling for null values in dynamic directive arguments?](#what-is-the-special-handling-for-null-values-in-dynamic-directive-arguments)|
-|205| [Can I use dynamic directive null value for slots?](#can-i-use-dynamic-directive-null-value-for-slots)|
-|206| [What is Vue I18n plugin?](#what-is-vue-i-8n--plugin)|
-|207| [#What are the types of formatting?](#what-are-the-types-of-formatting)|
-|208| [What is custom formatting?](#what-is-custom-formatting)|
-|209| [How do you handle Pluralization?](#how-do-you-handle-pluralization)|
-|210| [How to implement DateTime localization?](#how-to-implement-date-time-localization)|
-|211| [How do you implement Number localization?](#how-do-you-implement-number-localization)|
-|212| [How do you perform locale changing](#how-do-you-perform-locale-changing)|
-|213| [What is Lazy loading translations?](#what-is-lazy-loading-translations)|
-|214| [What is the main difference between method and computed property?](#what-is-the-main-difference-between-method-and-computed-property)|
-|215| [What is vuetify?](#what-is-vuetify)|
-|216| [How do you watch for nested data changes?](#how-do-you-watch-for-nested-data-changes)|
-|217| [How to trigger watchers on initialization?](#how-to-trigger-watchers-on-initialization)|
-|218| [What is the purpose of comments option?](#what-is-the-purpose-of-comments-option)|
-|219| [How to identify whether code is running on client or server?](#how-to-identify-whether-code-is-running-on-client-or-server)|
-|220| [How do you watch route object changes?](#how-do-you-watch-route-object-changes)|
-|221| [How do you sync current route in vuex store?](#how-do-you-sync-current-route-in-vuex-store)|
-|222| [What are navigation guards in vue router?](#what-are-navigation-guards-in-vue-router)|
-|223| [Can I use computed property in another computed property?](#can-i-use-computed-property-in-another-computed-property)|
-|224| [How can I use imported constant in template section?](#How-can-i-use-imported-constant-in-template-section)|
-|225| [Is recommended to use async for computed properties?](#is-recommended-to-use-async-for-computed-properties)|
-|226| [What happens if you use duplicate field names?](#what-happens-if-you-use-duplicate-field-names)|
-|227| [Why the component data must be a function?](#why-the-component-data-must-be-a-function)|
-|228| [What is the reason for recommendation for multi-word component names?](#what-is-the-reason-for-recommendation-for-multi-word-component-names)|
-|229| [How to use composition API in Vue2.0?](#how-to-use-composition-api-in-vue2.0)|
-|230| [What is composition API?](#what-is-composition-api)|
-|231| [What is the best way to re-render a component?](#what-is-the-best-way-to-re-render-a-component)
+| No. | Questions                                                                                                                                                        |
+| --- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| 1   | [What is VueJS](#what-is-vuejs)                                                                                                                                  |
+| 2   | [What are the major features of VueJS](#what-are-the-major-features-of-vuejs)                                                                                    |
+| 3   | [What are the lifecycle methods of VueJS](#what-are-the-lifecycle-methods-of-vuejs)                                                                              |
+| 4   | [What are the conditional directives](#what-are-the-conditional-directives)                                                                                      |
+| 5   | [What is the difference between v-show and v-if directives](#what-is-the-difference-between-v-show-and-v-if-directives)                                          |
+| 6   | [What is the purpose of v-for directive?](#what-is-the-purpose-of-v-for-directive)                                                                               |
+| 7   | [What is a vue instance?](#what-is-vue-instance)                                                                                                                 |
+| 8   | [How do you achieve a conditional group of elements?](#how-do-you-achieve-conditional-group-of-elements)                                                         |
+| 9   | [How do you reuse elements with a key attribute?](#how-do-you-reuse-elements-with-key-attribute)                                                                 |
+| 10  | [Why should you not use if and for directives together on the same element?](#why-should-not-use-if-and-for-directives-together-on-the-same-element)             |
+| 11  | [Why do you need to use a key attribute on for directive?](#why-do-you-need-to-use-key-attribute-on-for-directive)                                               |
+| 12  | [What are the array detection mutation methods?](#what-are-the-array-detection-mutation-methods)                                                                 |
+| 13  | [What are the array detection non mutation methods?](#what-are-the-array-detection-non-mutation-methods)                                                         |
+| 14  | [What are the caveats of array changes detection?](#what-are-the-caveats-of-array-changes-detection)                                                             |
+| 15  | [What are the caveats of object changes detection?](#what-are-the-caveats-of-object-changes-detection)                                                           |
+| 16  | [How do you use for directive with a range?](#how-do-you-use-v-for-directive-with-a-range)                                                                       |
+| 17  | [How do you use for directive on template?](#how-do-you-use-v-for-directive-on-template)                                                                         |
+| 18  | [How do you use event handlers?](#how-do-you-use-event-handlers)                                                                                                 |
+| 19  | [What are the event modifiers provided by vue?](#what-are-the-event-modifiers-provided-by-vue)                                                                   |
+| 20  | [What are key modifiers?](#what-are-key-modifiers)                                                                                                               |
+| 21  | [How do you define custom key modifier aliases?](#how-do-you-define-custom-key-modifier-aliases)                                                                 |
+| 22  | [What are the supported System Modifier Keys?](#what-are-the-supported-system-modifier-keys)                                                                     |
+| 23  | [What are the supported Mouse Button Modifiers?](#what-are-the-supported-mouse-button-modifiers)                                                                 |
+| 24  | [How do you implement two way binding?](#how-do-you-implement-two-way-binding)                                                                                   |
+| 25  | [What are the supported modifiers on model?](#what-are-the-supported-modifiers-on-model)                                                                         |
+| 26  | [What are components and give an example?](#what-are-components-and-give-an-example)                                                                             |
+| 27  | [What are props?](#what-are-props)                                                                                                                               |
+| 28  | [When component needs a single root element?](#when-component-needs-a-single-root-element)                                                                       |
+| 29  | [How do you communicate from child to parent using events?](#how-do-you-communicate-from-child-to-parent-using-events)                                           |
+| 30  | [How do you implement model on custom input components?](#how-do-you-implement-model-on-custom-input-components)                                                 |
+| 31  | [What are slots?](#what-are-slots)                                                                                                                               |
+| 32  | [What is global registration in components?](#what-is-global-registration-in-components)                                                                         |
+| 33  | [Why do you need local registration?](#why-do-you-need-local-registration)                                                                                       |
+| 34  | [What is the difference between local and global registration in module system?](#what-is-the-difference-between-local-and-global-registration-in-module-system) |
+| 35  | [What are possible prop types?](#what-are-possible-prop-types)                                                                                                   |
+| 36  | [What is the data flow followed by props?](#what-is-the-data-flow-followed-by-props)                                                                             |
+| 37  | [What are non prop attributes?](#what-are-non-prop-attributes)                                                                                                   |
+| 38  | [Describe about validations available for props?](#describe-about-validations-available-for-props)                                                               |
+| 39  | [How do you customize model directive for a component?](#how-do-you-customize-model-directive-for-a-component)                                                   |
+| 40  | [What are the possible ways to provide transitions?](#What-are-the-possible-ways-to-provide-transitions)                                                         |
+| 41  | [What is vue router and their features?](#what-is-vue-router-and-their-features)                                                                                 |
+| 42  | [What are the steps to use vue router and give an example?](#what-are-the-steps-to-use-vue-router-and-give-an-example)                                           |
+| 43  | [What is dynamic route matching?](#what-is-dynamic-route-matching)                                                                                               |
+| 44  | [How to make router param changes as reactive?](#how-to-make-router-param-changes-as-reactive)                                                                   |
+| 45  | [What is route matching priority?](#what-is-route-matching-priority)                                                                                             |
+| 46  | [What are nested routes?](#what-are-nested-routes)                                                                                                               |
+| 47  | [What are single file components?](#what-are-single-file-components)                                                                                             |
+| 48  | [Is Single File Components violating separation of concerns?](#is-single-file-components-violating-separation-of-concerns)                                       |
+| 49  | [What are the problems solved by Single File Components?](#what-are-the-problems-solved-by-single-file-components)                                               |
+| 50  | [What are filters?](#what-are-filters)                                                                                                                           |
+| 51  | [What are the different ways to create filters?](#what-are-the-different-ways-to-create-filters)                                                                 |
+| 52  | [How do you chain filters](#how-do-you-chain-filters)                                                                                                            |
+| 53  | [Is it possible to pass parameters for filters?](#is-it-possible-to-pass-parameters-for-filters)                                                                 |
+| 54  | [What are plugins and their various services?](#what-are-plugins-and-their-various-services)                                                                     |
+| 55  | [ How to create a plugin?](#how-to-create-a-plugin)                                                                                                              |
+| 56  | [How to use a plugin?](#how-to-use-a-plugin)                                                                                                                     |
+| 57  | [What are mixins?](#what-are-mixins)                                                                                                                             |
+| 58  | [What are global mixins?](#what-are-global-mixins)                                                                                                               |
+| 59  | [How do you use mixins in CLI?](#how-do-you-use-mixins-in-cli)                                                                                                   |
+| 60  | [What are the merging strategies in mixins?](#what-are-the-merging-strategies-in-mixins)                                                                         |
+| 61  | [What are custom options merging strategies?](#what-are-custom-options-merging-strategies)                                                                       |
+| 62  | [What are custom directives?](#what-are-custom-directives)                                                                                                       |
+| 63  | [How do you register directives locally?](#how-do-you-register-directives-locally)                                                                               |
+| 64  | [What are the hook functions provided by directives?](#what-are-the-hook-functions-provided-by-directives)                                                       |
+| 65  | [What are the directive Hook Arguments?](#what-are-the-directive-hook-arguments)                                                                                 |
+| 66  | [How do you pass multiple values to a directive?](#how-do-you-pass-multiple-values-to-a-directive)                                                               |
+| 67  | [What is function shorthand in directive hooks?](#what-is-function-shorthand-in-directive-hooks)                                                                 |
+| 68  | [What is the benefit of render functions over templates?](#what-is-the-benefit-of-render-functions-over-templates)                                               |
+| 69  | [What is a render function?](#What-is-a-render-function)                                                                                                         |
+| 70  | [Explain the structure of createElement with arguments](#explain-the-structure-of-createelement-with-arguments)                                                  |
+| 71  | [How can you write duplicate virtual nodes in a component?](#how-can-you-write-duplicate-virtual-nodes-in-a-component)                                           |
+| 72  | [List down the template equivalents in render functions?](#list-down-the-template-equivalents-in-render-functions)                                               |
+| 73  | [What are functional components?](#what-are-functional-components)                                                                                               |
+| 74  | [What are the similarities between VueJS and ReactJS?](#what-are-the-similarities-between-vuejs-and-reactjs)                                                     |
+| 75  | [What is the difference between VueJS and ReactJS?](#what-is-the-difference-between-vuejs-and-reactjs)                                                           |
+| 76  | [What are the advantages of VueJS over ReactJS?](#what-are-the-advantages-of-vuejs-over-reactjs)                                                                 |
+| 77  | [What are the advantages of ReactJS over VueJS?](#what-are-the-advantages-of-reactjs-over-vuejs)                                                                 |
+| 78  | [What are the differences between VueJS and Angular?](#What-are-the-differences-between-vuejs-and-angular)                                                       |
+| 79  | [What are dynamic components?](#what-are-dynamic-components)                                                                                                     |
+| 80  | [What is the purpose of keep alive tag?](#what-is-the-purpose-of-keep-alive-tag)                                                                                 |
+| 81  | [What are async components?](#what-are-async-components)                                                                                                         |
+| 82  | [What is the structure of async component factory?](#what-is-the-structure-of-async-component-factory)                                                           |
+| 83  | [What are inline templates?](#what-are-inline-templates)                                                                                                         |
+| 84  | [What are X Templates?](#what-are-x-templates)                                                                                                                   |
+| 85  | [What are recursive components?](#what-are-recursive-components)                                                                                                 |
+| 86  | [How do you resolve circular dependencies between components?](#how-do-you-resolve-circular-dependencies-between-components)                                     |
+| 87  | [How do you make sure vue application is CSP complaint?](#how-do-you-make-sure-vue-application-is-csp-complaint)                                                 |
+| 88  | [What is the difference between full and runtime only builds?](#what-is-the-difference-between-full-and-runtime-only-builds)                                     |
+| 89  | [List down different builds of vuejs?](#list-down-different-builds-of-vuejs)                                                                                     |
+| 90  | [How do you configure vuejs in webpack?](#how-do-you-configure-vuejs-in-webpack)                                                                                 |
+| 91  | [What is the purpose of vuejs compiler?](#what-is-the-purpose-of-vuejs-compiler)                                                                                 |
+| 92  | [What is Dev Tools and its purpose?](#what-is-dev-tools-and-its-purpose)                                                                                         |
+| 93  | [What is the browser support of VueJS?](#what-is-the-browser-support-of-vuejs)                                                                                   |
+| 94  | [How do you use various CDNs?](#how-do-you-use-various-cdns?)                                                                                                    |
+| 95  | [How do you force update?](#how-do-you-force-update)                                                                                                             |
+| 96  | [What is the purpose of vuejs once directive?](#what-is-the-purpose-of-vuejs-once-directive)                                                                     |
+| 97  | [How do you access the root instance?](#how-do-you-access-the-root-instance)                                                                                     |
+| 98  | [List out top 10 organizations using Vuejs?](#list-out-top-10-organizations-using-vuejs)                                                                         |
+| 99  | [What is the purpose of renderError?](#what-is-the-purpose-of-rendererror)                                                                                       |
+| 100 | [How do you access parent instance?](#how-do-you-access-parent-instance)                                                                                         |
+| 101 | [What is vuex?](#what-is-vuex)                                                                                                                                   |
+| 102 | [What are the major components of State Management Pattern?](#what-are-the-major-components-of-state-management-pattern)                                         |
+| 103 | [How do you represent one way data flow in vuex?](#how-do-you-represent-one-way-data-flow-in-vuex)                                                               |
+| 104 | [What is a vuejs loader?](#what-is-a-vuejs-loader)                                                                                                               |
+| 105 | [How do you configure vue loader in webpack?](#how-do-you-configure-vue-loader-in-webpack)                                                                       |
+| 106 | [What are asset url transform rules?](#what-are-asset-url-transform-rules)                                                                                       |
+| 107 | [How do you work with preprocessors using vue loader?](#how-do-you-work-with-preprocessors-using-vue-loader)                                                     |
+| 108 | [What is scoped CSS?](#What-is-scoped-CSS)                                                                                                                       |
+| 109 | [Is it possible to mix both local and global styles?](#is-it-possible-to-mix-both-local-and-global-styles)                                                       |
+| 110 | [How do you use deep selectors?](#how-do-you-use-deepselectors)                                                                                                  |
+| 111 | [Is parent styles leaked into child components in scoped css?](#is-parent-styles-leaked-into-child-components-in-scoped-css)                                     |
+| 112 | [How do you style dynamic generated content using scoped css?](#how-do-you-style-dynamic-generated-content-using-scoped-css)                                     |
+| 113 | [Is CSS modules supported in Vuejs?](#is-css-modules-supported-in-vuejs)                                                                                         |
+| 114 | [Can I use runtime builds for all templates?](#can-i-use-runtime-builds-for-all-templates)                                                                       |
+| 115 | [How to use CSS modules in vuejs?](#how-to-use-css-modules-in-vuejs)                                                                                             |
+| 116 | [Can I use CSS modules for preprocessors?](#can-i-use-css-modules-for-preprocessors)                                                                             |
+| 117 | [Is it possible to use custom inject name for CSS modules?](#is-it-possible-to-use-custom-inject-name-for-css-modules)                                           |
+| 118 | [What is hot reloading in vue loader?](#what-is-hot-reloading-in-vue-loader)                                                                                     |
+| 119 | [What is the default behavior of hot reloading?](#what-is-the-default-behavior-of-hot-reloading)                                                                 |
+| 120 | [How do you disable hot reloading explicitly?](#how-do-you-disable-hot-reloading-explicitly)                                                                     |
+| 121 | [How do you use hot reloading?](#how-do-you-use-hot-reloading)                                                                                                   |
+| 122 | [What are state preservation rules in hot reloading?](#what-are-state-preservation-rules-in-hot-reloading)                                                       |
+| 123 | [How to create functional components using vue loader?](#how-to-create-functional-components-using-vue-loader)                                                   |
+| 124 | [How do you access global properties of functional components?](#how-do-you-access-global-properties-of-functional-components)                                   |
+| 125 | [How do you perform testing in vuejs?](#how-do-you-perform-testing-in-vuejs)                                                                                     |
+| 126 | [How do you apply linting for css?](#how-do-you-apply-linting-for-css)                                                                                           |
+| 127 | [How do you use eslint plugin?](#how-do-you-use-eslint-plugin)                                                                                                   |
+| 128 | [What is the purpose of eslint loader?](#what-is-the-purpose-of-eslint-loader)                                                                                   |
+| 129 | [What is CSS extraction?](#what-is-css-extraction)                                                                                                               |
+| 130 | [What are custom blocks?](#what-are-custom-blocks)                                                                                                               |
+| 131 | [What are the features of stylelint?](#what-are-the-features-of-stylelint?)                                                                                      |
+| 132 | [What are the principles for vuex application structure?](#what-are-the-principles-for-vuex-application-structure)                                               |
+| 133 | [Does Vuex support hot reloading??](#does-vuex-support-hot-reloading)                                                                                            |
+| 134 | [What is the purpose of hotUpdate API of vuex store?](#what-is-the-purpose-of-hotupdate-api-of-vuex-store)                                                       |
+| 135 | [How do you test mutations?](#how-do-you-test-mutations)                                                                                                         |
+| 136 | [How do you test your getters?](#how-do-you-test-your-getters)                                                                                                   |
+| 137 | [What is the procedure to run tests in node?](#what-is-the-procedure-to-run-tests-in-node)                                                                       |
+| 138 | [What is the procedure to run tests in browser?](#what-is-the-procedure-to-run-tests-in-browser)                                                                 |
+| 139 | [What is the purpose of strict mode in vuex?](#what-is-the-purpose-of-strict-mode-in-vuex)                                                                       |
+| 140 | [Can I use strict mode in production environment?](#can-i-use-strict-mode-in-production-environment)                                                             |
+| 141 | [What is vuex plugin?](#what-is-vuex-plugin)                                                                                                                     |
+| 142 | [How do you mutate state in plugins?](#how-do-you-mutate-state-in-plugins)                                                                                       |
+| 143 | [What is vuex store?](#what-is-vuex-store)                                                                                                                       |
+| 144 | [What are the differences of vuex store and plain global object?](#what-are-the-differences-of-vuex-store-and-plain-global-object)                               |
+| 145 | [What is the reason not to update the state directly?](#what-is-the-reason-not-to-update-the-state-directly)                                                     |
+| 146 | [What is Single state tree?](#what-is-single-state-tree)                                                                                                         |
+| 147 | [How do you install vuex?](#how-do-you-install-vuex)                                                                                                             |
+| 148 | [Do I need promise for vuex?](#do-i-need-promise-for-vuex)                                                                                                       |
+| 149 | [How do you display store state in vue components?](#how-do-you-display-store-state-in-vue-components)                                                           |
+| 150 | [How do you inject store into child components?](#how-do-you-inject-store-into-child-components)                                                                 |
+| 151 | [What is mapState helper?](#what-is-mapstate-helper)                                                                                                             |
+| 152 | [How do you combine local computed properties with mapState helper?](#how-do-you-combine-local-computed-properties-with-mapstate-helper)                         |
+| 153 | [Do you need to replace entire local state with vuex?](#do-you-need-to-replace-entire-local-state-with-vuex)                                                     |
+| 154 | [What are vuex getters?](#what-are-vuex-getters?)                                                                                                                |
+| 155 | [What is a property style access?](#what-is-a-property-style-access)                                                                                             |
+| 156 | [What is a method style access?](#what-is-a-method-style-access)                                                                                                 |
+| 157 | [What is mapGetter helper?](#what-is-mapgetter-helper)                                                                                                           |
+| 158 | [What are mutations?](#what-are-mutations)                                                                                                                       |
+| 159 | [How do you commit with payload?](#how-do-you-commit-with-payload)                                                                                               |
+| 160 | [What is object style commit?](#what-is-object-style-commit)                                                                                                     |
+| 161 | [What are the caveats with vuex mutations?](#what-are-the-caveats-with-vuex-mutations)                                                                           |
+| 162 | [Why mutations should be synchronous?](#why-mutations-should-be-synchronous)                                                                                     |
+| 163 | [How do you perform mutations in components?](#how-do-you-perform-mutations-in-components)                                                                       |
+| 164 | [Is it mandatory to use constants for mutation types?](#is-it-mandatory-to-use-constants-for-mutation-types)                                                     |
+| 165 | [How do you perform asynchronous operations?](#how-do-you-perform-asynchronous-operations)                                                                       |
+| 166 | [What are differences between mutations and actions?](#what-are-differences-between-mutations-and-actions)                                                       |
+| 167 | [Give an example usage of actions?](#give-an-example-usage-of-actions?)                                                                                          |
+| 168 | [How do you dispatch actions?](#how-do-you-dispatch-actions)                                                                                                     |
+| 169 | [Can you dispatch an action using payload or object?](#can-you-dispatch-an-action-using-payload-or-object)                                                       |
+| 170 | [Can I use styled components in vuejs?](#can-i-use-styled-components-in-vuejs)                                                                                   |
+| 171 | [How do you dispatch actions in components?](#how-do-you-dispatch-actions-in-components)                                                                         |
+| 172 | [How do you compose actions?](#how-do-you-compose-actions)                                                                                                       |
+| 173 | [What are modules in vuex?](#what-are-modules-in-vuex)                                                                                                           |
+| 174 | [What is module local state?](#what-is-module-local-state)                                                                                                       |
+| 175 | [What is namespacing in vuex](#what-is-namespacing-in-vuex)                                                                                                      |
+| 176 | [What is the default namespace behavior in vuex?](#what-is-the-default-namespace-behavior-in-vuex)                                                               |
+| 177 | [When do you reuse modules?](#when-do-you-reuse-modules)                                                                                                         |
+| 178 | [What are the principles enforced by vuex?](#what-are-the-principles-enforced-by-vuex)                                                                           |
+| 179 | [Can I perform mutations directly in strict mode?](#can-i-perform-mutations-directly-in-strict-mode)                                                             |
+| 180 | [How to use model directive with two way computed property?](#how-to-use-model-directive-with-two-way-computed-property)                                         |
+| 181 | [What is Vue CLI?](#what-is-vue-cli)                                                                                                                             |
+| 182 | [What are the features provided by Vue CLI?](#what-are-the-features-provided-by-vue-cli)                                                                         |
+| 183 | [What is instant prototyping?](#what-is-instant-prototyping)                                                                                                     |
+| 184 | [How do you create project using Vue CLI?](#how-do-you-create-project-using-vue-cli)                                                                             |
+| 185 | [How do you create project using GUI?](#how-do-you-create-project-using-gui)                                                                                     |
+| 186 | [What are plugins in vue CLI?](#what-are-plugins-in-vue-cli)                                                                                                     |
+| 187 | [How do you install plugins in an existing Vue CLI project?](#how-do-you-install-plugins-in-an-existing-vue-cli-project)                                         |
+| 188 | [How to access local plugins in a project?](#how-to-access-local-plugins-in-a-project)                                                                           |
+| 189 | [How do you create UI plugins kind of behavior?](#how-do-you-create-ui-plugins-kind-of-behavior)                                                                 |
+| 190 | [What are presets?](#what-are-presets)                                                                                                                           |
+| 191 | [What is the versioning behavior in preset plugins?](#what-is-the-versioning-behavior-in-preset-plugins)                                                         |
+| 192 | [How do you allow plugin prompts?](#how-do-you-allow-plugin-prompts)                                                                                             |
+| 193 | [What are remote presets?](#what-are-remote-presets)                                                                                                             |
+| 194 | [Can I use local presets?](#can-i-use-local-presets)                                                                                                             |
+| 195 | [What is the purpose of browserslist option?](#what-is-the-purpose-of-browserslist-option)                                                                       |
+| 196 | [How do you find VueJS version using API?](#how-do-you-find-vuejs-version-using-api)                                                                             |
+| 197 | [How do you create reactive objects](#how-do-you-create-reactive-objects)                                                                                        |
+| 198 | [What is the purpose new slot directive?](#what-is-the-purpose-new-slot-directive)                                                                               |
+| 199 | [What is the use of compile method?](#what-is-the-use-of-compile-method)                                                                                         |
+| 200 | [What does nextTick do in VueJS?](#what-does-nexttick-do-in-vuejs)                                                                                               |
+| 201 | [What is async error handling?](#what-is-async-error-handling)                                                                                                   |
+| 202 | [What are Dynamic Directive Arguments?](#what-are-dynamic-directive-arguments)                                                                                   |
+| 203 | [What are the drawbacks of dynamic directive arguments?](#what-are-the-drawbacks-of-dynamic-directive-arguments)                                                 |
+| 204 | [What is the special handling for null values in dynamic directive arguments?](#what-is-the-special-handling-for-null-values-in-dynamic-directive-arguments)     |
+| 205 | [Can I use dynamic directive null value for slots?](#can-i-use-dynamic-directive-null-value-for-slots)                                                           |
+| 206 | [What is Vue I18n plugin?](#what-is-vue-i-8n--plugin)                                                                                                            |
+| 207 | [#What are the types of formatting?](#what-are-the-types-of-formatting)                                                                                          |
+| 208 | [What is custom formatting?](#what-is-custom-formatting)                                                                                                         |
+| 209 | [How do you handle Pluralization?](#how-do-you-handle-pluralization)                                                                                             |
+| 210 | [How to implement DateTime localization?](#how-to-implement-date-time-localization)                                                                              |
+| 211 | [How do you implement Number localization?](#how-do-you-implement-number-localization)                                                                           |
+| 212 | [How do you perform locale changing](#how-do-you-perform-locale-changing)                                                                                        |
+| 213 | [What is Lazy loading translations?](#what-is-lazy-loading-translations)                                                                                         |
+| 214 | [What is the main difference between method and computed property?](#what-is-the-main-difference-between-method-and-computed-property)                           |
+| 215 | [What is vuetify?](#what-is-vuetify)                                                                                                                             |
+| 216 | [How do you watch for nested data changes?](#how-do-you-watch-for-nested-data-changes)                                                                           |
+| 217 | [How to trigger watchers on initialization?](#how-to-trigger-watchers-on-initialization)                                                                         |
+| 218 | [What is the purpose of comments option?](#what-is-the-purpose-of-comments-option)                                                                               |
+| 219 | [How to identify whether code is running on client or server?](#how-to-identify-whether-code-is-running-on-client-or-server)                                     |
+| 220 | [How do you watch route object changes?](#how-do-you-watch-route-object-changes)                                                                                 |
+| 221 | [How do you sync current route in vuex store?](#how-do-you-sync-current-route-in-vuex-store)                                                                     |
+| 222 | [What are navigation guards in vue router?](#what-are-navigation-guards-in-vue-router)                                                                           |
+| 223 | [Can I use computed property in another computed property?](#can-i-use-computed-property-in-another-computed-property)                                           |
+| 224 | [How can I use imported constant in template section?](#How-can-i-use-imported-constant-in-template-section)                                                     |
+| 225 | [Is recommended to use async for computed properties?](#is-recommended-to-use-async-for-computed-properties)                                                     |
+| 226 | [What happens if you use duplicate field names?](#what-happens-if-you-use-duplicate-field-names)                                                                 |
+| 227 | [Why the component data must be a function?](#why-the-component-data-must-be-a-function)                                                                         |
+| 228 | [What is the reason for recommendation for multi-word component names?](#what-is-the-reason-for-recommendation-for-multi-word-component-names)                   |
+| 229 | [How to use composition API in Vue2.0?](#how-to-use-composition-api-in-vue2.0)                                                                                   |
+| 230 | [What is composition API?](#what-is-composition-api)                                                                                                             |
+| 231 | [What is the best way to re-render a component?](#what-is-the-best-way-to-re-render-a-component)                                                                 |
 
 1.  ### What is VueJS?
     **Vue.js** is an open-source, progressive Javascript framework for building user interfaces that aim to be
@@ -278,7 +278,7 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
     **[⬆ Back to Top](#table-of-contents)**
 
 3.  ### What are the lifecycle methods of VueJS?
-    Lifecycle hooks are a window into how the library you’re using works behind-the-scenes. By using these hooks, you
+    Lifecycle hooks are a window into how the library you're using works behind-the-scenes. By using these hooks, you
     will know when your component is created, added to the DOM, updated, or destroyed. Let's look at lifecycle diagram
     before going to each lifecycle hook in detail,
 
@@ -290,7 +290,7 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
        Unlike other hooks, creation hooks are also run during server-side rendering.
         1. beforeCreate:
            This hook runs at the very initialization of your component. hook observes data and initialization events in
-           your component. Here, data is still not reactive and events that occur during the component’s lifecycle have
+           your component. Here, data is still not reactive and events that occur during the component's lifecycle have
            not been set up yet.
         ```javascript
             new Vue({
@@ -340,10 +340,10 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
            DOM (via. this.$el). The most frequently used patterns are fetching data for your component.
         ```javascript
         <div id="app">
-            <p>I’m text inside the component.</p>
+            <p>I'm text inside the component.</p>
         </div>
           new Vue({
-            el: ‘#app’,
+            el: '#app',
             mounted: function() {
               console.log(this.$el.textContent); // I'm text inside the component.
             }
@@ -676,7 +676,7 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
     **[⬆ Back to Top](#table-of-contents)**
 
 11.  ### Why do you need to use key attribute on for directive?
-     In order to track each node’s identity, and thus reuse and reorder existing elements, you need to provide a unique
+     In order to track each node's identity, and thus reuse and reorder existing elements, you need to provide a unique
      `key` attribute for each item with in `v-for` iteration. An ideal value for key would be the unique id of each
      item.
 
@@ -689,7 +689,7 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
      Hence, It is always recommended to provide a key with v-for whenever possible, unless the iterated DOM content is
      simple.
 
-     **Note:** You shouldn’t use non-primitive values like objects and arrays as v-for keys. Use string or numeric
+     **Note:** You shouldn't use non-primitive values like objects and arrays as v-for keys. Use string or numeric
      values instead.
 
      **[⬆ Back to Top](#table-of-contents)**
@@ -698,13 +698,13 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
      As the name suggests, mutation methods modifies the original array.
 
      Below are the list of array mutation methods which trigger view updates.
-    1. push()
-    2. pop()
-    3. shift()
-    4. unshift()
-    5. splice()
-    6. sort()
-    7. reverse()
+     1. push()
+     2. pop()
+     3. shift()
+     4. unshift()
+     5. splice()
+     6. sort()
+     7. reverse()
 
      If you perform any of the above mutation method on the list then it triggers view update. For example, push method
      on array named 'items' trigger a view update,
@@ -718,9 +718,9 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
      The methods which do not mutate the original array but always return a new array are called non-mutation methods.
 
      Below are the list of non-mutation methods,
-    1. filter()
-    2. concat()
-    3. slice()
+     1. filter()
+     2. concat()
+     3. slice()
 
      For example, lets take a todo list where it replaces the old array with new one based on status filter,
      ```javascript
@@ -735,31 +735,31 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
 14.  ### What are the caveats of array changes detection?
      Vue cannot detect changes for the array in the below two cases,
 
-    1. When you directly set an item with the index,For example,
-       ```javascript
-       vm.todos[indexOfTodo] = newTodo
-       ```
-    2. When you modify the length of the array, For example,
-         ```javascript
-         vm.todos.length = todosLength
-         ```
-
-     You can overcome both the caveats using `set` and `splice` methods, Let's see the solutions with an examples,
-
-     **First use case solution**
+1. When you directly set an item with the index,For example,
+   ```javascript
+   vm.todos[indexOfTodo] = newTodo
+   ```
+2. When you modify the length of the array, For example,
      ```javascript
-     // Vue.set
-     Vue.set(vm.todos, indexOfTodo, newTodoValue)
-     (or)
-     // Array.prototype.splice
-     vm.todos.splice(indexOfTodo, 1, newTodoValue)
-     ```
-     **Second use case solution**
-     ```javascript
-     vm.todos.splice(todosLength)
+     vm.todos.length = todosLength
      ```
 
-     **[⬆ Back to Top](#table-of-contents)**
+You can overcome both the caveats using `set` and `splice` methods, Let's see the solutions with an examples,
+
+**First use case solution**
+ ```javascript
+ // Vue.set
+ Vue.set(vm.todos, indexOfTodo, newTodoValue)
+ (or)
+ // Array.prototype.splice
+ vm.todos.splice(indexOfTodo, 1, newTodoValue)
+ ```
+**Second use case solution**
+ ```javascript
+ vm.todos.splice(todosLength)
+ ```
+
+**[⬆ Back to Top](#table-of-contents)**
 
 15.  ### What are the caveats of object changes detection?
      Vue cannot detect changes for the object in property addition or deletion.
@@ -839,12 +839,12 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
      Normally, javascript provides `event.preventDefault() or event.stopPropagation()` inside event handlers. You can
      use methods provided by vue, but these methods are meant for data logic instead of dealing with DOM events. Vue
      provides below event modifiers for v-on and these modifiers are directive postfixes denoted by a dot.
-    1. .stop
-    2. .prevent
-    3. .capture
-    4. .self
-    5. .once
-    6. .passive
+     1. .stop
+     2. .prevent
+     3. .capture
+     4. .self
+     5. .once
+     6. .passive
 
      Let's take an example of stop modifier,
      ```html
@@ -867,15 +867,15 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
      <input v-on:keyup.13="show">
      ```
      Remembering all the key codes is really difficult. It supports the full list of key codes aliases
-    1. .enter
-    2. .tab
-    3. .delete (captures both “Delete” and “Backspace” keys)
-    4. .esc
-    5. .space
-    6. .up
-    7. .down
-    8. .left
-    9. .right
+     1. .enter
+     2. .tab
+     3. .delete (captures both "Delete" and "Backspace" keys)
+     4. .esc
+     5. .space
+     6. .up
+     7. .down
+     8. .left
+     9. .right
 
      Now the above keyup code snippet can be written with aliases as follows,
      ```vue
@@ -891,8 +891,8 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
 21.  ### How do you define custom key modifier aliases?
      You can define custom key modifier aliases via the global `config.keyCodes`. There are few guidelines for the
      properties
-    1. You can't use camelCase. Instead you can use kebab-case with double quotation marks
-    2. You can define multiple values in an array format
+     1. You can't use camelCase. Instead you can use kebab-case with double quotation marks
+     2. You can define multiple values in an array format
      ```javascript
      Vue.config.keyCodes = {
        f1: 112,
@@ -905,10 +905,10 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
 
 22.  ### What are the supported System Modifier Keys?
      Vue supports below modifiers to trigger mouse or keyboard event listeners when the corresponding key is pressed,
-    1. .ctrl
-    2. .alt
-    3. .shift
-    4. .meta
+     1. .ctrl
+     2. .alt
+     3. .shift
+     4. .meta
 
      Lets take an example of control modifier with click event,
      ```vue
@@ -920,9 +920,9 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
 
 23.  ### What are the supported Mouse Button Modifiers?
      Vue supports below mouse button modifiers
-    1. .left
-    2. .right
-    3. .middle
+     1. .left
+     2. .right
+     3. .middle
 
      For example, the usage of `.right` modifier as below
      ```vue
@@ -1077,27 +1077,27 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
      The custom events can also be used to create custom inputs that work with v-model. The `<input>` inside the
      component must follow below rules,
 
-    1. Bind the value attribute to a value prop
-    2. On input, emit its own custom input event with the new value.
+1. Bind the value attribute to a value prop
+2. On input, emit its own custom input event with the new value.
 
-     Let's take a custom-input component as an example,
-        ```javascript
-        Vue.component('custom-input', {
-          props: ['value'],
-          template: `
-            <input
-              v-bind:value="value"
-              v-on:input="$emit('input', $event.target.value)"
-            />
-          `
-        })
-        ```
-     Now you can use `v-model` with this component,
-      ```vue
-      <custom-input v-model="searchInput"></custom-input>
-      ```
+Let's take a custom-input component as an example,
+```javascript
+Vue.component('custom-input', {
+  props: ['value'],
+  template: `
+    <input
+      v-bind:value="value"
+      v-on:input="$emit('input', $event.target.value)"
+    />
+  `
+})
+```
+Now you can use `v-model` with this component,
+  ```vue
+  <custom-input v-model="searchInput"></custom-input>
+  ```
 
-     **[⬆ Back to Top](#table-of-contents)**
+**[⬆ Back to Top](#table-of-contents)**
 
 31.  ### What are slots?
      Vue implements a content distribution API using the <slot> element to serve as distribution outlets for content
@@ -1157,14 +1157,14 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
      Due to global registration, even if you don't use the component it could still be included in your final build. So
      it will create unnecessary javascript in the application. This can be avoided using local registration with the
      below steps,
-    1. First you need to define your components as plain JavaScript objects
+     1. First you need to define your components as plain JavaScript objects
         ```javascript
         var ComponentA = { /* ... */ }
         var ComponentB = { /* ... */ }
         var ComponentC = { /* ... */ }
         ```
-       Locally registered components will not be available in sub components. In this case, you need to add them in
-       components section
+     Locally registered components will not be available in sub components. In this case, you need to add them in
+     components section
         ```javascript
         var ComponentA = { /* ... */ }
 
@@ -1205,7 +1205,7 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
        // ...
      }
      ```
-     Now both ComponentA and ComponentB can be used inside ComponentC‘s template.
+     Now both ComponentA and ComponentB can be used inside ComponentC's template.
 
      In **global registration**, you need to export all common or base components in a separate file. But some of the
      popular bundlers like `webpack` make this process simpler by using `require.context` to globally register base
@@ -1262,7 +1262,7 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
        address: Object
      }
      ```
-     As mentioned in the above code snippet, you can list props as an object, where the properties’ names and values
+     As mentioned in the above code snippet, you can list props as an object, where the properties' names and values
      contain the prop names and types, respectively.
 
      **[⬆ Back to Top](#table-of-contents)**
@@ -1272,9 +1272,9 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
      property is updated then that latest prop value will be passed down to the child, but not the otherway(child to
      parent) around. The child component should not mutate the prop otherwise it throws a warning in the console.
      The possible mutation cases can be solved as below,
-    1. When you try to use parent prop as initial value for child property:
+     1. When you try to use parent prop as initial value for child property:
 
-       In this case you can define a local property in child component and assign parent value as initial value
+     In this case you can define a local property in child component and assign parent value as initial value
         ```javascript
         props: ['defaultUser'],
         data: function () {
@@ -1283,9 +1283,9 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
           }
         }
         ```
-    2. When you try to transform the parent prop:
+     2. When you try to transform the parent prop:
 
-       You can define a computed property using the prop’s value,
+       You can define a computed property using the prop's value,
         ```javascript
         props: ['environment'],
         computed: {
@@ -1398,10 +1398,10 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
      There are many ways Vue provides transition effects when items are inserted, updated, or removed from the DOM.
 
      Below are the possible ways,
-    1. Automatically apply classes for CSS transitions and animations
-    2. Integrate 3rd-party CSS animation libraries. For example, Animate.css
-    3. Use JavaScript to directly manipulate the DOM during transition hooks
-    4. Integrate 3rd-party JavaScript animation libraries. For example, Velocity.js
+     1. Automatically apply classes for CSS transitions and animations
+     2. Integrate 3rd-party CSS animation libraries. For example, Animate.css
+     3. Use JavaScript to directly manipulate the DOM during transition hooks
+     4. Integrate 3rd-party JavaScript animation libraries. For example, Velocity.js
 
      **[⬆ Back to Top](#table-of-contents)**
 
@@ -1409,14 +1409,14 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
      Vue Router is a official routing library for single-page applications designed for use with the Vue.js framework.
 
      Below are their features,
-    1. Nested route/view mapping
-    2. Modular, component-based router configuration
-    3. Route params, query, wildcards
-    4. View transition effects powered by Vue.js' transition system
-    5. Fine-grained navigation control
-    6. Links with automatic active CSS classes
-    7. HTML5 history mode or hash mode, with auto-fallback in IE9
-    8. Restore scroll position when going back in history mode
+     1. Nested route/view mapping
+     2. Modular, component-based router configuration
+     3. Route params, query, wildcards
+     4. View transition effects powered by Vue.js' transition system
+     5. Fine-grained navigation control
+     6. Links with automatic active CSS classes
+     7. HTML5 history mode or hash mode, with auto-fallback in IE9
+     8. Restore scroll position when going back in history mode
 
      **[⬆ Back to Top](#table-of-contents)**
 
@@ -1506,30 +1506,30 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
 
      This problem can be solved using either of the below approaches,
 
-    1. **Watch the $route object:**
-        ```javascript
-        const User = {
-          template: '<div>User {{ $route.params.name }} </div>',
-          watch: {
-            '$route' (to, from) {
-              // react to route changes...
-            }
-          }
+1. **Watch the $route object:**
+    ```javascript
+    const User = {
+      template: '<div>User {{ $route.params.name }} </div>',
+      watch: {
+        '$route' (to, from) {
+          // react to route changes...
         }
-        ```
-    2. **Use beforeRouteUpdate navigation guard:** This is only available since 2.2 version.
-        ```javascript
-        const User = {
-          template: '<div>User {{ $route.params.name }} </div>',
-          beforeRouteUpdate (to, from, next) {
-            // react to route changes and then call next()
-          }
-        }
-        ```
-     Note that the beforeRouteEnter guard does NOT have access to `this`. Instead you can pass a callback to `next` to
-     access the vm instance.
+      }
+    }
+    ```
+2. **Use beforeRouteUpdate navigation guard:** This is only available since 2.2 version.
+    ```javascript
+    const User = {
+      template: '<div>User {{ $route.params.name }} </div>',
+      beforeRouteUpdate (to, from, next) {
+        // react to route changes and then call next()
+      }
+    }
+    ```
+Note that the beforeRouteEnter guard does NOT have access to `this`. Instead you can pass a callback to `next` to
+access the vm instance.
 
-     **[⬆ Back to Top](#table-of-contents)**
+**[⬆ Back to Top](#table-of-contents)**
 
 45.  ### What is route matching priority?
      Sometimes the URL might be matched by multiple routes and the confusion of which route need to be mapped is
@@ -1636,22 +1636,22 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
 49.  ### What are the problems solved by Single File Components?
      The Single File Components solve the common problems occurred in a javascript driven application with a .vue
      extension. The list of issues are,
-    1. Global definitions force unique names for every component
-    2. String templates lack syntax highlighting and require ugly slashes for multiline HTML
-    3. No CSS support means that while HTML and JavaScript are modularized into components, CSS is conspicuously left
-       out
-    4. No build step restricts us to HTML and ES5 JavaScript, rather than preprocessors like Pug (formerly Jade) and
-       Babel.
+     1. Global definitions force unique names for every component
+     2. String templates lack syntax highlighting and require ugly slashes for multiline HTML
+     3. No CSS support means that while HTML and JavaScript are modularized into components, CSS is conspicuously left
+     out
+     4. No build step restricts us to HTML and ES5 JavaScript, rather than preprocessors like Pug (formerly Jade) and
+     Babel.
 
      **[⬆ Back to Top](#table-of-contents)**
 
 50.  ### What are filters?
      Filters can be used to apply common text formatting. These Filters should be appended to the end of the JavaScript
-     expression, denoted by the “pipe” symbol. You can use them in two specific cases:
-    1. mustache interpolations
-    2. v-bind expressions
+     expression, denoted by the "pipe" symbol. You can use them in two specific cases:
+     1. mustache interpolations
+     2. v-bind expressions
 
-     For example, Let's define a local filter named capitalize in a component’s options
+     For example, Let's define a local filter named capitalize in a component's options
      ```javascript
      filters: {
        capitalize: function (value) {
@@ -1674,9 +1674,9 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
 
 51.  ### What are the different ways to create filters?
      You can define filters in two ways,
-    1. **Local filters:**
-       You can define local filters in a component’s options. In this case, filter is applicable to that specific
-       component.
+     1. **Local filters:**
+     You can define local filters in a component's options. In this case, filter is applicable to that specific
+     component.
      ```javascript
      filters: {
        capitalize: function (value) {
@@ -1740,12 +1740,12 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
 54.  ### What are plugins and their various services?
 
      Plugins provides global-level functionality to Vue application. The plugins provide various services,
-    1. Add some global methods or properties. For example, vue-custom-element
-    2. Add one or more global assets (directives, filters and transitions). For example, vue-touch
-    3. Add some component options by global mixin. For example, vue-router
-    4. Add some Vue instance methods by attaching them to Vue.prototype.
-    5. A library that provides an API of its own, while at the same time injecting some combination of the above. For
-       example, vue-router
+     1. Add some global methods or properties. For example, vue-custom-element
+     2. Add one or more global assets (directives, filters and transitions). For example, vue-touch
+     3. Add some component options by global mixin. For example, vue-router
+     4. Add some Vue instance methods by attaching them to Vue.prototype.
+     5. A library that provides an API of its own, while at the same time injecting some combination of the above. For
+     example, vue-router
 
      **[⬆ Back to Top](#table-of-contents)**
 
@@ -1851,8 +1851,8 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
 60.  ### What are the merging strategies in mixins?
      When a mixin and the component itself contain overlapping options, the options will be merged based on some
      strategies.
-    1. The data objects undergo a recursive merge, with the component’s data taking priority over mixins in cases of
-       overlapping or conflicts.
+     1. The data objects undergo a recursive merge, with the component's data taking priority over mixins in cases of
+     overlapping or conflicts.
         ```javascript
         var mixin = {
           data: function () {
@@ -1874,7 +1874,7 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
         })
         ```
     2. The Hook functions which are overlapping merged into an array so that all of them will be called. Mixin hooks
-       will be called before the component’s own hooks.
+       will be called before the component's own hooks.
         ```javascript
         const myMixin = {
           created(){
@@ -1894,7 +1894,7 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
         // Called from Component
         ```
     3. The options that expect object values(such as methods, components and directives) will be merged into the same
-       object. In this case, the component’s options will take priority when there are conflicting keys in these
+       object. In this case, the component's options will take priority when there are conflicting keys in these
        objects.
         ```javascript
         var mixin = {
@@ -1997,11 +1997,11 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
 
 64.  ### What are the hook functions provided by directives?
      A directive object can provide several hook functions,
-    1. bind: This occurs once the directive is attached to the element.
-    2. inserted: This hook occurs once the element is inserted into the parent DOM.
-    3. update: This hook is called when the element updates, but children haven't been updated yet.
-    4. componentUpdated: This hook is called once the component and the children have been updated.
-    5. unbind: This hook is called only once when the directive is removed.
+     1. bind: This occurs once the directive is attached to the element.
+     2. inserted: This hook occurs once the element is inserted into the parent DOM.
+     3. update: This hook is called when the element updates, but children haven't been updated yet.
+     4. componentUpdated: This hook is called once the component and the children have been updated.
+     5. unbind: This hook is called only once when the directive is removed.
 
      **Note:** There are several arguments that can be passed to the above hooks.
 
@@ -2011,20 +2011,20 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
      All the hooks have `el`, `binding`, and `vnode` as arguments. Along with that, **update** and **componentUpdated**
      hooks expose `oldVnode`, to differentiate between the older value passed and the newer value. Below are the
      arguments passed to the hooks,
-    1. `el`: The element the directive is bound to and it can be used to directly manipulate the DOM.
-    2. `binding`: An object containing the following properties.
-        1. `name`: The name of the directive, without the `v-` prefix.
-        2. `value`: The value passed to the directive. For example in `v-my-directive="1 + 1"`, the value would be 2.
-        3. `oldValue`: The previous value, only available in update and componentUpdated. It is available whether or not
-           the value has changed.
-        4. `expression`: The expression of the binding as a string. For example in `v-my-directive="1 + 1"`, the
-           expression would be "1 + 1".
-        5. `arg`: The argument passed to the directive, if any. For example in v-my-directive:foo, the arg would be "
-           foo".
-        6. `modifiers`: An object containing modifiers, if any. For example in v-my-directive.foo.bar, the modifiers
-           object would be `{ foo: true, bar: true }`.
-    3. `vnode`: The virtual node produced by Vue’s compiler.
-    4. `oldVnode`: The previous virtual node, only available in the update and componentUpdated hooks.
+     1. `el`: The element the directive is bound to and it can be used to directly manipulate the DOM.
+     2. `binding`: An object containing the following properties.
+    1. `name`: The name of the directive, without the `v-` prefix.
+    2. `value`: The value passed to the directive. For example in `v-my-directive="1 + 1"`, the value would be 2.
+    3. `oldValue`: The previous value, only available in update and componentUpdated. It is available whether or not
+       the value has changed.
+    4. `expression`: The expression of the binding as a string. For example in `v-my-directive="1 + 1"`, the
+       expression would be "1 + 1".
+    5. `arg`: The argument passed to the directive, if any. For example in v-my-directive:foo, the arg would be "
+       foo".
+    6. `modifiers`: An object containing modifiers, if any. For example in v-my-directive.foo.bar, the modifiers
+       object would be `{ foo: true, bar: true }`.
+       3. `vnode`: The virtual node produced by Vue's compiler.
+       4. `oldVnode`: The previous virtual node, only available in the update and componentUpdated hooks.
 
      The arguments can be represented diagrammatically across the hooks as below,
 
@@ -2071,7 +2071,7 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
      **[⬆ Back to Top](#table-of-contents)**
 
 69.  ### What is a render function?
-     Render function is a normal function which receives a `createElement` method as it’s first argument used to create
+     Render function is a normal function which receives a `createElement` method as it's first argument used to create
      virtual nodes. Internally Vue.js' templates actually compile down to render functions at build time. Hence
      templates are just syntactic sugar of render functions.
 
@@ -2196,21 +2196,21 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
 
      Let's list down them in a table for comparison,
 
-     | Templates | Render function |
-             |---- | --------- |
-     | Conditional and looping directives: v-if and v-for  | Use JavaScript’s if/else and map concepts|
-     | Two-way binding: v-model  | Apply own JS logic with value binding and event binding |
-     | Capture Event modifiers: .passive, .capture, .once and .capture.once or .once.capture| &, !, ~ and ~! |
+     | Templates                                                                                                         | Render function                                                                                                                                                                              |
+     | ----------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+     | Conditional and looping directives: v-if and v-for                                                                | Use JavaScript's if/else and map concepts                                                                                                                                                    |
+     | Two-way binding: v-model                                                                                          | Apply own JS logic with value binding and event binding                                                                                                                                      |
+     | Capture Event modifiers: .passive, .capture, .once and .capture.once or .once.capture                             | &, !, ~ and ~!                                                                                                                                                                               |
      | Event and key modifiers: .stop, .prevent, .self, keys(.enter, .13) and Modifiers Keys(.ctrl, .alt, .shift, .meta) | Use javascript solutions: event.stopPropagation(), event.preventDefault(), if (event.target !== event.currentTarget) return, if (event.keyCode !== 13) return and if (!event.ctrlKey) return |
-     | Slots: slot attributes | Render functions provide this.$slots and this.$scopedSlots instance properties|
+     | Slots: slot attributes                                                                                            | Render functions provide this.$slots and this.$scopedSlots instance properties                                                                                                               |
 
      **[⬆ Back to Top](#table-of-contents)**
 
 73.  ### What are functional components?
      The functional components are just simple functions to create simple components just by passing a context. Every
      functional component follows two rules,
-    1. **Stateless:** It doesn’t keep any state by itself
-    2. **Instanceless:** It has no instance, thus no this
+     1. **Stateless:** It doesn't keep any state by itself
+     2. **Instanceless:** It has no instance, thus no this
 
      You need to define `functional: true` to make it functional. Let's take an example of functional components,
      ```javascript
@@ -2234,10 +2234,10 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
 74.  ### What are the similarities between VueJS and ReactJS?
      Even though ReactJS and VueJS are two different frameworks there are few similarities(apart from the common goal of
      utilized in interface design) between them.
-    1. Both frameworks are based on the **Virtual DOM** model
-    2. They provide features such Component-based structure and reactivity
-    3. They are intended for working with the root library, while all the additional tasks are transferred to other
-       libraries(routing, state management etc).
+     1. Both frameworks are based on the **Virtual DOM** model
+     2. They provide features such Component-based structure and reactivity
+     3. They are intended for working with the root library, while all the additional tasks are transferred to other
+     libraries(routing, state management etc).
 
      **[⬆ Back to Top](#table-of-contents)**
 
@@ -2246,30 +2246,30 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
 
      Let's list down them in a table format.
 
-     | Feature | VueJS | ReactJS |
-           |---- | --------- | ---- |
-     | Type |  JavaScript MVVM Framework | JavaScript Library |
-     | Platform  | Primarily focused on web development | Both Web and Native |
-     | Learning Curve | Easy to learn the framework  | A steep learning curve and requires deep knowledge |
-     | Simplicity | Vue is simpler than React | React is more complex than Vue |
-     | Bootstrap Application | Vue-cli | CRA (Create React App) |
+     | Feature               | VueJS                                | ReactJS                                            |
+     | --------------------- | ------------------------------------ | -------------------------------------------------- |
+     | Type                  | JavaScript MVVM Framework            | JavaScript Library                                 |
+     | Platform              | Primarily focused on web development | Both Web and Native                                |
+     | Learning Curve        | Easy to learn the framework          | A steep learning curve and requires deep knowledge |
+     | Simplicity            | Vue is simpler than React            | React is more complex than Vue                     |
+     | Bootstrap Application | Vue-cli                              | CRA (Create React App)                             |
 
      **[⬆ Back to Top](#table-of-contents)**
 
 76.  ### What are the advantages of VueJS over ReactJS?
      Vue has the following advantages over React
-    1. Vue is smaller and faster
-    2. The convenient templates ease the process of developing
-    3. It has simpler javascript syntax without learning JSX
+     1. Vue is smaller and faster
+     2. The convenient templates ease the process of developing
+     3. It has simpler javascript syntax without learning JSX
 
      **[⬆ Back to Top](#table-of-contents)**
 
 77.  ### What are the advantages of ReactJS over VueJS?
      React has the following advantages over Vue
-    1. ReactJS gives more flexibility in large apps developing
-    2. Easy to test
-    3. Well-suited for mobile apps creation
-    4. The eco system is quite big and well matured.
+     1. ReactJS gives more flexibility in large apps developing
+     2. Easy to test
+     3. Well-suited for mobile apps creation
+     4. The eco system is quite big and well matured.
 
      **[⬆ Back to Top](#table-of-contents)**
 
@@ -2279,14 +2279,14 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
 
      But there are many differences between VueJS and Angular as listed,
 
-     | Feature | VueJS | Angular |
-           |---- | --------- | ---- |
-     | Complexity | Easy to learn, simple API and design | The framework is bit huge and need some learning curve on typescript etc |
-     | Binding of Data  | One-way binding | Two-way binding |
-     | Learning Curve | Easy to learn the framework | A steep learning curve and requires deep knowledge |
-     | Founders | Created by Former Google Employee | Powered by Google |
-     | Initial Release | February 2014 | September 2016 |
-     | Model | Based on Virtual DOM(Document Object Model) | Based on MVC(Model-View-Controller) |
+     | Feature         | VueJS                                       | Angular                                                                  |
+     | --------------- | ------------------------------------------- | ------------------------------------------------------------------------ |
+     | Complexity      | Easy to learn, simple API and design        | The framework is bit huge and need some learning curve on typescript etc |
+     | Binding of Data | One-way binding                             | Two-way binding                                                          |
+     | Learning Curve  | Easy to learn the framework                 | A steep learning curve and requires deep knowledge                       |
+     | Founders        | Created by Former Google Employee           | Powered by Google                                                        |
+     | Initial Release | February 2014                               | September 2016                                                           |
+     | Model           | Based on Virtual DOM(Document Object Model) | Based on MVC(Model-View-Controller)                                      |
 
      **[⬆ Back to Top](#table-of-contents)**
 
@@ -2353,14 +2353,14 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
        <comp-b v-else></comp-b>
      </keep-alive>
      ```
-     **Note:** Remember that keep-alive tag doesn’t render a DOM element itself, and doesn’t show up in the component
+     **Note:** Remember that keep-alive tag doesn't render a DOM element itself, and doesn't show up in the component
      parent chain.
 
      **[⬆ Back to Top](#table-of-contents)**
 
 81.  ### What are async components?
      In large applications, we may need to divide the app into smaller chunks and only load a component from the server
-     when it’s needed. To make this happen, Vue allows you to define your component as a factory function that
+     when it's needed. To make this happen, Vue allows you to define your component as a factory function that
      asynchronously resolves your component definition. These components are known as async component.
 
      Let's see an example of async component using webpack code-splitting feature,
@@ -2448,7 +2448,7 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
      **[⬆ Back to Top](#table-of-contents)**
 
 86.  ### How do you resolve circular dependencies between components?
-     In complex applications, vue components will actually be each other’s descendent and ancestor in the render tree.
+     In complex applications, vue components will actually be each other's descendent and ancestor in the render tree.
 
      Let's say componentA and componentB included in their respective templates which makes circular dependency,
      ```javascript
@@ -2507,12 +2507,12 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
 89.  ### List down different builds of vuejs?
      Below are the list of different builds of VueJS based on type of build,
 
-     | Type | UMD | CommonJS | ES Module (for bundlers) | ES Module (for browsers) |
-             |---- | --------- | ---- | ---- | --- |
-     | Full | vue.js | vue.common.js | vue.esm.js | vue.esm.browser.js |
-     | Runtime only  | vue.runtime.js | vue.runtime.common.js | vue.runtime.esm.js | NA |
-     | Full (production) | vue.min.js | NA | NA | vue.esm.browser.min.js |
-     | Runtime-only (production) | vue.runtime.min.js | NA | NA | NA |
+     | Type                      | UMD                | CommonJS              | ES Module (for bundlers) | ES Module (for browsers) |
+     | ------------------------- | ------------------ | --------------------- | ------------------------ | ------------------------ |
+     | Full                      | vue.js             | vue.common.js         | vue.esm.js               | vue.esm.browser.js       |
+     | Runtime only              | vue.runtime.js     | vue.runtime.common.js | vue.runtime.esm.js       | NA                       |
+     | Full (production)         | vue.min.js         | NA                    | NA                       | vue.esm.browser.min.js   |
+     | Runtime-only (production) | vue.runtime.min.js | NA                    | NA                       | NA                       |
 
      **[⬆ Back to Top](#table-of-contents)**
 
@@ -2555,19 +2555,19 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
 92.  ### What is Dev Tools and its purpose?
      DevTools is a browser extension allowing you to inspect and debug your Vue applications in a more user-friendly
      interface. You can find the below extensions for different browsers or environments,
-    1. Chrome Extension
-    2. Firefox Addon
-    3. Standalone Electron app (works with any environment)
+     1. Chrome Extension
+     2. Firefox Addon
+     3. Standalone Electron app (works with any environment)
 
      The DevTools plugins can be used as shown in the below snapshot,
 
      <img src="https://github.com/sudheerj/vuejs-interview-questions/blob/master/images/DevTools.png" width="700" height="500">
 
      **Note:**
-    1. If the page uses a production/minified build of Vue.js, devtools inspection is disabled by default so the Vue
-       pane won't show up.
-    2. To make it work for pages opened via `file://` protocol, you need to check "Allow access to file URLs" for this
-       extension in Chrome's extension management panel.
+     1. If the page uses a production/minified build of Vue.js, devtools inspection is disabled by default so the Vue
+     pane won't show up.
+     2. To make it work for pages opened via `file://` protocol, you need to check "Allow access to file URLs" for this
+     extension in Chrome's extension management panel.
 
      **[⬆ Back to Top](#table-of-contents)**
 
@@ -2668,16 +2668,16 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
 98.  ### List out top 10 organizations using Vuejs?
      Below are the top 10 organizations using VueJS for their applications or products,
 
-    1. Facebook - Used on marketing side of its Newsfeed
-    2. Netflix - Used in two internal apps for building movie streaming interfaces
-    3. Adobe - Used for Portfolio, a custom website builder designed to help users showcase their creative work
-    4. Xiaomi - Used for products where it sells from consumer electronics to software
-    5. Alibaba - Provide their apps an excellent experience to its customers
-    6. WizzAir - A budget airline WizzAir used for their customers user interface
-    7. EuroNews
-    8. Laracasts
-    9. GitLab
-    10. BMW
+     1. Facebook - Used on marketing side of its Newsfeed
+     2. Netflix - Used in two internal apps for building movie streaming interfaces
+     3. Adobe - Used for Portfolio, a custom website builder designed to help users showcase their creative work
+     4. Xiaomi - Used for products where it sells from consumer electronics to software
+     5. Alibaba - Provide their apps an excellent experience to its customers
+     6. WizzAir - A budget airline WizzAir used for their customers user interface
+     7. EuroNews
+     8. Laracasts
+     9. GitLab
+     10. BMW
 
      **[⬆ Back to Top](#table-of-contents)**
 
@@ -2701,7 +2701,7 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
 
 100. ### How do you access parent instance?
      The $parent object refers to the **immediate outer scope**. The parent will be accessible as
-     `this.$parent` for the child, and the child will be pushed into the parent’s $children array. It establishes a
+     `this.$parent` for the child, and the child will be pushed into the parent's $children array. It establishes a
      parent-child relationship between the two instances(parent and child). You can access parent data and properties
      similar to $root.
 
@@ -2717,9 +2717,9 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
 102. ### What are the major components of State Management Pattern?
      The state management has state, view and actions as major components. The pattern followed by these components in a
      application is known as State Management Pattern. Below are the components in a detail,
-    1. The **state**, which is the source of truth that drives our app
-    2. The **view**, which is just a declarative mapping of the state
-    3. The **actions**, which are the possible ways the state could change in reaction to user inputs from the view.
+     1. The **state**, which is the source of truth that drives our app
+     2. The **view**, which is just a declarative mapping of the state
+     3. The **actions**, which are the possible ways the state could change in reaction to user inputs from the view.
 
      Let us take a counter example which follows state management pattern with the above 3 components,
         ```javascript
@@ -2826,14 +2826,14 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
 
 106. ### What are asset url transform rules?
      Below are the list of Asset URL transform rules
-    1. **Absolute path**: If the URL is an absolute path (for example, /images/loader.png)then it will be preserved
-       as-is.
-    2. **Relative path**: If the URL starts with `.` (for example, ./images/loader.png) then it will be interpreted as a
-       relative module request and resolved based on the folder structure on your file system.
-    3. **URLs starts with ~ symbol**: If the URL starts with `~` symbol(for example, ./some-node-package/loader.png)
-       then it is interpreted as a module request. This way it can reference assets inside node modules too.
-    4. **URLs starts with @ symbol**: If the URL starts with `@` symbol then it is interpreted as a module request. This
-       is useful if your webpack config has an alias for @, which by default points to `/src` path.
+     1. **Absolute path**: If the URL is an absolute path (for example, /images/loader.png)then it will be preserved
+     as-is.
+     2. **Relative path**: If the URL starts with `.` (for example, ./images/loader.png) then it will be interpreted as
+     a relative module request and resolved based on the folder structure on your file system.
+     3. **URLs starts with ~ symbol**: If the URL starts with `~` symbol(for example, ./some-node-package/loader.png)
+     then it is interpreted as a module request. This way it can reference assets inside node modules too.
+     4. **URLs starts with @ symbol**: If the URL starts with `@` symbol then it is interpreted as a module request.
+     This is useful if your webpack config has an alias for @, which by default points to `/src` path.
 
      **[⬆ Back to Top](#table-of-contents)**
 
@@ -2986,7 +2986,7 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
 
 115. ### How to use CSS modules in vuejs?
      Below are the steps to use css modules in VueJS,
-    1. **Enable CSS modules:**  CSS Modules must be enabled by passing modules: true option to css-loader
+        1. **Enable CSS modules:**  CSS Modules must be enabled by passing modules: true option to css-loader
         ```javascript
         // webpack.config.js
         {
@@ -3012,7 +3012,7 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
           }
         }
         ```
-    2. **Add module attribute:** Add the module attribute to your `<style>`
+        2. **Add module attribute:** Add the module attribute to your `<style>`
         ```javascript
         <style module>
         .customStyle {
@@ -3020,7 +3020,7 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
         }
         </style>
         ```
-    3. **Inject CSS modules:** You can inject CSS modules object with computed property $style
+        3. **Inject CSS modules:** You can inject CSS modules object with computed property $style
         ```javascript
         <template>
           <div :class="$style.blue">
@@ -3083,11 +3083,11 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
 119. ### What is the default behavior of hot reloading?
      Hot Reload is always enabled except below situations:
 
-    1. webpack target is node (SSR)
-    2. webpack minifies the code
-    3. process.env.NODE_ENV === 'production'
+     1. webpack target is node (SSR)
+     2. webpack minifies the code
+     3. process.env.NODE_ENV === 'production'
 
-     **[⬆ Back to Top](#table-of-contents)**
+**[⬆ Back to Top](#table-of-contents)**
 
 120. ### How do you disable hot reloading explicitly?
      You can use `hotReload: false` option to disable the Hot Reload explicitly.
@@ -3119,12 +3119,12 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
 122. ### What are state preservation rules in hot reloading?
      Below are the state preservation rules in hot reloading,
 
-    1. When editing the `<template>` of a component, instances of the edited component will re-render in place,
-       preserving all current private state.
-    2. When editing the `<script>` part of a component, instances of the edited component will be destroyed and
-       re-created in place.
-    3. When editing the `<style>` hot reload operates on its own via vue-style-loader without affecting application
-       state.
+     1. When editing the `<template>` of a component, instances of the edited component will re-render in place,
+        preserving all current private state.
+     2. When editing the `<script>` part of a component, instances of the edited component will be destroyed and
+        re-created in place.
+     3. When editing the `<style>` hot reload operates on its own via vue-style-loader without affecting application
+        state.
 
      **[⬆ Back to Top](#table-of-contents)**
 
@@ -3153,8 +3153,8 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
 125. ### How do you perform testing in vuejs?
      You can perform testing in two ways,
 
-    1. **Using vue-cli:** It offers pre-configured unit testing and e2e testing setups
-    2. **Manual setup:** You can manually setting up unit tests for *.vue files using either mocha-webpack or jest
+     1. **Using vue-cli:** It offers pre-configured unit testing and e2e testing setups
+     2. **Manual setup:** You can manually setting up unit tests for *.vue files using either mocha-webpack or jest
 
      **[⬆ Back to Top](#table-of-contents)**
 
@@ -3287,19 +3287,19 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
 
 131. ### What are the features of stylelint?
      Below are the list of major stylelint features
-    1. It has more than **160 built-in rules** to catch errors, apply limits and enforce stylistic conventions
-    2. Understands **latest CSS syntax** including custom properties and level 4 selectors
-    3. It **extracts embedded styles** from HTML, markdown and CSS-in-JS object & template literals
-    4. Parses **CSS-like syntaxes** like SCSS, Sass, Less and SugarSS
-    5. Supports **Plugins** for reusing community plugins and creating own plugins
+     1. It has more than **160 built-in rules** to catch errors, apply limits and enforce stylistic conventions
+     2. Understands **latest CSS syntax** including custom properties and level 4 selectors
+     3. It **extracts embedded styles** from HTML, markdown and CSS-in-JS object & template literals
+     4. Parses **CSS-like syntaxes** like SCSS, Sass, Less and SugarSS
+     5. Supports **Plugins** for reusing community plugins and creating own plugins
 
      **[⬆ Back to Top](#table-of-contents)**
 
 132. ### What are the principles for vuex application structure?
      Vuex enforces below rules to structure any application.
-    1. Application-level state is centralized in the store.
-    2. The only way to mutate the state is by committing mutations, which are synchronous transactions.
-    3. Asynchronous logic should be encapsulated in, and can be composed with actions.
+     1. Application-level state is centralized in the store.
+     2. The only way to mutate the state is by committing mutations, which are synchronous transactions.
+     3. Asynchronous logic should be encapsulated in, and can be composed with actions.
 
      The project structure for any non-trivial application would be as below,
      <img src="https://github.com/sudheerj/vuejs-interview-questions/blob/master/images/vuex-app-structure.png" width="700" height="500">
@@ -3440,7 +3440,7 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
 137. ### What is the procedure to run tests in node?
      By proper mocking, you can bundle tests with webpack and run them on node without having depenceny on Browser API.
      It involves 2 steps,
-    1. **Create webpack config:** Create webpack config with proper .babelrc
+     1. **Create webpack config:** Create webpack config with proper .babelrc
         ```javascript
         // webpack.config.js
         module.exports = {
@@ -3460,20 +3460,22 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
           }
         }
         ```
-    2. **Run testcases:** First you need to bundle and then run them using mocha as below,
-        ```javascript
-        webpack
-        mocha test-bundle.js
-        ```
+        
+     2. **Run testcases:** First you need to bundle and then run them using mocha as below,
 
-     **[⬆ Back to Top](#table-of-contents)**
+         ```javascript
+         webpack
+         mocha test-bundle.js
+         ```
+
+         **[⬆ Back to Top](#table-of-contents)**
 
 138. ### What is the procedure to run tests in browser?
      Below are the steps to run tests in real browser,
-    1. Install `mocha-loader`.
-    2. Configure webpack config entry point to 'mocha-loader!babel-loader!./test.js'.
-    3. Start webpack-dev-server using the config.
-    4. Go to `localhost:8080/webpack-dev-server/test-bundle` to see the test result
+     1. Install `mocha-loader`.
+     2. Configure webpack config entry point to 'mocha-loader!babel-loader!./test.js'.
+     3. Start webpack-dev-server using the config.
+     4. Go to `localhost:8080/webpack-dev-server/test-bundle` to see the test result
 
      **[⬆ Back to Top](#table-of-contents)**
 
@@ -3494,7 +3496,7 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
      No, it is not recommended to use strict mode in production environment. Strict mode runs a synchronous deep watcher
      on the state tree for detecting inappropriate mutations and it can be quite expensive when you perform large amount
      of mutations. i.e, It can impact performance if you enable in production mode.
-     Hence it should be handled through build tools,
+     Hence, it should be handled through build tools,
      ```javascript
      const store = new Vuex.Store({
        // ...
@@ -3564,12 +3566,12 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
      straightforward.
 
      Below are the list of instructions to use vuex in an increment application,
-    1. Configure vuex in vuejs ecosystem
+     1. Configure vuex in vuejs ecosystem
         ```javascript
         import Vuex from "vuex";
         Vue.use(Vuex)
         ```
-    2. Provide an initial state object and some mutations
+     2. Provide an initial state object and some mutations
         ```javascript
         // Make sure to call Vue.use(Vuex) first if using a module system
 
@@ -3584,7 +3586,7 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
           }
         })
         ```
-    3. Trigger state change with commit and access state variables,
+     3. Trigger state change with commit and access state variables,
         ```javascript
         store.commit('increment')
 
@@ -3596,10 +3598,10 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
 144. ### What are the differences of vuex store and plain global object?
      Below are the two major differences between vuex store and plain global object,
 
-    1. **Vuex stores are reactive:** If the store's state changes then vue components will reactively and efficiently
-       get updated
-    2. **Cannot directly mutate the store's state:** The store's state is changed by explicitly committing mutations to
-       ensure that every state change leaves a track-able record for tooling purpose
+     1. **Vuex stores are reactive:** If the store's state changes then vue components will reactively and efficiently
+        get updated
+     2. **Cannot directly mutate the store's state:** The store's state is changed by explicitly committing mutations to
+        ensure that every state change leaves a track-able record for tooling purpose
 
      **[⬆ Back to Top](#table-of-contents)**
 
@@ -3929,12 +3931,12 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
 161. ### What are the caveats with vuex mutations?
      Since a Vuex store's state is made reactive by Vue, the same reactivity caveats of vue will apply to vuex
      mutations. These are the rules should be followed for vuex mutations,
-    1. It is recommended to initialize store's initial state with all desired fields upfront
-    2. Add new properties to state Object either by set method or object spread syntax
+     1. It is recommended to initialize store's initial state with all desired fields upfront
+     2. Add new properties to state Object either by set method or object spread syntax
         ```javascript
         Vue.set(stateObject, 'newProperty', 'John')
         ```
-       (OR)
+     (OR)
         ```javascript
         state.stateObject = { ...state.stateObject, newProperty: 'John' }
         ```
@@ -4020,8 +4022,8 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
 
 166. ### What are differences between mutations and actions?
      Actions are similar to mutations, but there are two main differences,
-    1. Mutations perform mutations on the state, actions commit mutations.
-    2. Actions can contain arbitrary asynchronous operations unlike mutations.
+     1. Mutations perform mutations on the state, actions commit mutations.
+     2. Actions can contain arbitrary asynchronous operations unlike mutations.
 
      **[⬆ Back to Top](#table-of-contents)**
 
@@ -4183,7 +4185,7 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
 
 174. ### What is module local state?
      When you use modules the local state will be available to mutations, getters and actions in different ways.
-    1. Both mutations and getters will receive module local state as first argument.
+     1. Both mutations and getters will receive module local state as first argument.
         ```javascript
         const moduleOne = {
           state: { count: 0 },
@@ -4200,7 +4202,7 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
           }
         }
         ```
-    2. In actions, local state will be available as first argument.
+     2. In actions, local state will be available as first argument.
         ```javascript
         const moduleOne = {
           actions: {
@@ -4229,8 +4231,8 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
      Sometime you may need to create multiple instances of a module.
 
      For example, it is needed in the below cases,
-    1. If multiple stores that use the same module
-    2. Register the same module multiple times in the same store.
+     1. If multiple stores that use the same module
+     2. Register the same module multiple times in the same store.
 
      In those cases, you need to assign to a variable and export it for reusability,
      ```javascript
@@ -4244,9 +4246,9 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
 
 178. ### What are the principles enforced by vuex?
      Vuex enforces below high-level principles,
-    1. The Application-level state need to be centralized in the store
-    2. The state should be mutated by committing mutations only(i.e, for synchronous transactions)
-    3. The actions should be used for asynchronous transactions.
+     1. The Application-level state need to be centralized in the store
+     2. The state should be mutated by committing mutations only(i.e, for synchronous transactions)
+     3. The actions should be used for asynchronous transactions.
 
      **[⬆ Back to Top](#table-of-contents)**
 
@@ -4319,11 +4321,11 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
 
 182. ### What are the features provided by Vue CLI?
      VueCLI provides below major features,
-    1. Interactive project scaffolding via @vue/cli
-    2. A rich collection of official plugins integrating the best tools in the frontend ecosystem.
-    3. A full graphical user interface to create and manage Vue.js projects.
-    4. Zero config rapid prototyping via combination of @vue/cli and @vue/cli-service-global
-    5. A runtime dependency (@vue/cli-service) built on top of webpack and extensible via plugins
+     1. Interactive project scaffolding via @vue/cli
+     2. A rich collection of official plugins integrating the best tools in the frontend ecosystem.
+     3. A full graphical user interface to create and manage Vue.js projects.
+     4. Zero config rapid prototyping via combination of @vue/cli and @vue/cli-service-global
+     5. A runtime dependency (@vue/cli-service) built on top of webpack and extensible via plugins
 183. ### What is instant prototyping?
      In Vue CLI, Instant prototyping is known as rapid prototyping with just a single *.vue file with the `vue serve`(
      similar to vue create) and `vue build` commands. But you need to install below global addon for this.
@@ -4475,10 +4477,10 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
      You can share a preset with other developers by publishing it in a git repo. The repo can be published in either
      github, GitLab or BitBucket.
      The repo will contain below files,
-    1. **preset.json:** The main file containing the preset data and it is required.
-    2. **generator.js:** A generator that can inject or modify files in the project.
-    3. **prompts.js:** A prompts file that can collect options for the generator.
-       You can apply `--preset` option to use remote presets while creating the project
+     1. **preset.json:** The main file containing the preset data and it is required.
+     2. **generator.js:** A generator that can inject or modify files in the project.
+     3. **prompts.js:** A prompts file that can collect options for the generator.
+     You can apply `--preset` option to use remote presets while creating the project
         ```javascript
         # use preset from GitHub repo
         vue create --preset username/repo my-project
@@ -4654,17 +4656,17 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
 
 203. ### What are the drawbacks of dynamic directive arguments?
      Apart from the benefits of dynamic directives arguments, it brings two drawbacks or considerations on the usage
-    1. **Constraints on expressions:** When you perform complex JavaScript expressions, make sure that html attribute
-       names cannot contain spaces and quotes.
-       The below expression doesn't work as expected
+     1. **Constraints on expressions:** When you perform complex JavaScript expressions, make sure that html attribute
+     names cannot contain spaces and quotes.
+     The below expression doesn't work as expected
        ```javascript
        <div :[key + 'unique']="value"></div>
        ```
-       Instead you may need to use string template syntax
+     Instead you may need to use string template syntax
        ```javascript
        <div :[`${key}unique`]="value"></div>
        ```
-    2. **Custom Directives:** The custom directive implementations need to have potential argument changes in addition
+     2. **Custom Directives:** The custom directive implementations need to have potential argument changes in addition
        to value changes.
 
      **[⬆ Back to Top](#table-of-contents)**
@@ -4731,7 +4733,7 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
 
 207. ### What are the types of formatting?
      Basically there are 4 types of formatting available in i18n plugin,
-    1. **Named formatting:** First You need to define the message keys in curly braces({})
+     1. **Named formatting:** First You need to define the message keys in curly braces({})
         ```javascript
         const messages = {
           en: {
@@ -4741,15 +4743,15 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
           }
         }
         ```
-       After that pass argument value along with key in the template
+      After that pass argument value along with key in the template
         ```javascript
         <p>{{ $t('message.greeting', { msg: 'Good' }) }}</p>
         ```
-       It outputs the result as below,
+      It outputs the result as below,
         ```javascript
         <p>Good Morning</p>
         ```
-    2. **List formatting:** First you need to define zero index based keys in the messages,
+     2. **List formatting:** First you need to define zero index based keys in the messages,
         ```javascript
         const messages = {
           en: {
@@ -4771,7 +4773,7 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
         ```javascript
         <p>{{ $t('message.greeting', {'0': 'Good'}) }}</p>
         ```
-    3. **HTML formatting:** This formatting is required when want to render your translation as an HTML message and not
+     3. **HTML formatting:** This formatting is required when want to render your translation as an HTML message and not
        a static string.
         ```javascript
         const messages = {
@@ -4792,7 +4794,7 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
         <!--<br> exists but is rendered as html and not a string-->
         Morning</p>
         ```
-    4. **Ruby on rails format:** First you need to define with percentile and curly braces as below,
+     4. **Ruby on rails format:** First you need to define with percentile and curly braces as below,
         ```javascript
         const messages = {
           en: {
@@ -4885,100 +4887,101 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
 
      Lets follow below steps to localize date and time,
 
-    1. For example, you can add definition formats for English and Jappan locale as below
-        ```javascript
-        const dateTimeFormats = {
-          'en-US': {
-            short: {
-              year: 'numeric', month: 'short', day: 'numeric'
-            },
-            long: {
-              year: 'numeric', month: 'short', day: 'numeric',
-              weekday: 'short', hour: 'numeric', minute: 'numeric'
-            }
-          },
-          'ja-JP': {
-            short: {
-              year: 'numeric', month: 'short', day: 'numeric'
-            },
-            long: {
-              year: 'numeric', month: 'short', day: 'numeric',
-              weekday: 'short', hour: 'numeric', minute: 'numeric', hour12: true
-            }
-          }
+1. For example, you can add definition formats for English and Jappan locale as below
+    ```javascript
+    const dateTimeFormats = {
+      'en-US': {
+        short: {
+          year: 'numeric', month: 'short', day: 'numeric'
+        },
+        long: {
+          year: 'numeric', month: 'short', day: 'numeric',
+          weekday: 'short', hour: 'numeric', minute: 'numeric'
         }
-        ```
-    2. After that You need to specify the dateTimeFormats option of VueI18n constructor
-        ```javascript
-        const i18n = new VueI18n({
-          dateTimeFormats
-        })
+      },
+      'ja-JP': {
+        short: {
+          year: 'numeric', month: 'short', day: 'numeric'
+        },
+        long: {
+          year: 'numeric', month: 'short', day: 'numeric',
+          weekday: 'short', hour: 'numeric', minute: 'numeric', hour12: true
+        }
+      }
+    }
+    ```
+2. After that You need to specify the dateTimeFormats option of VueI18n constructor
+    ```javascript
+    const i18n = new VueI18n({
+      dateTimeFormats
+    })
 
-        new Vue({
-          i18n
-        }).$mount('#app')
-        ```
-    3. And then add them to the template
-        ```javascript
-        <div id="app">
-          <p>{{ $d(new Date(), 'short') }}</p>
-          <p>{{ $d(new Date(), 'long', 'ja-JP') }}</p>
-        </div>
-        ```
-    4. Finally it outputs the result
-        ```javascript
-        <div id="app">
-          <p>May 20, 2019</p>
-          <p>2019年5月20日</p>
-        </div>
-        ```
+    new Vue({
+      i18n
+    }).$mount('#app')
+    ```
+3. And then add them to the template
+    ```javascript
+    <div id="app">
+      <p>{{ $d(new Date(), 'short') }}</p>
+      <p>{{ $d(new Date(), 'long', 'ja-JP') }}</p>
+    </div>
+    ```
+4. Finally it outputs the result
+    ```javascript
+    <div id="app">
+      <p>May 20, 2019</p>
+      <p>2019年5月20日</p>
+    </div>
+    ```
 
-     **[⬆ Back to Top](#table-of-contents)**
+**[⬆ Back to Top](#table-of-contents)**
 
 211. ### How do you implement Number localization?
      You can localize the number with definition formats(e.g. currency, etc)
 
      Lets follow below steps to localize numbers,
 
-    1. You need to add definition formats. For example, lets add it for English and Japanese locales
-        ```javascrippt
-        const numberFormats = {
-          'en-US': {
-            currency: {
-              style: 'currency', currency: 'USD'
-            }
-          },
-          'ja-JP': {
-            currency: {
-              style: 'currency', currency: 'JPY', currencyDisplay: 'symbol'
-            }
-          }
-        }
-        ```
-    2. After that specify the numberFormats option of VueI18n constructor
-        ```javascript
-        const i18n = new VueI18n({
-          numberFormats
-        })
+     1. You need to add definition formats. For example, lets add it for English and Japanese locales
+     
+       ```javascript
+          const numberFormats = {
+           'en-US': {
+             currency: {
+               style: 'currency', currency: 'USD'
+             }
+           },
+           'ja-JP': {
+             currency: {
+               style: 'currency', currency: 'JPY', currencyDisplay: 'symbol'
+             }
+           }
+         }
+       ```
+     2. After that specify the numberFormats option of VueI18n constructor
+         ```javascript
+         const i18n = new VueI18n({
+           numberFormats
+         })
 
-        new Vue({
-          i18n
-        }).$mount('#app')
-        ```
-    3. Now let's configure them in template
-        ```javascript
-        <div id="app">
-          <p>{{ $n(10, 'currency') }}</p>
-          <p>{{ $n(50, 'currency', 'ja-JP') }}</p>
-        </div>
-        ```
-    4. Finally it outputs the result
-        ```javascript
-        <div id="app">
-          <p>$10.00</p>
-          <p>￥50</p>
-        </div>
-        ```
+         new Vue({
+           i18n
+         }).$mount('#app')
+         ```
+     3. Now let's configure them in template
+         ```javascript
+         <div id="app">
+           <p>{{ $n(10, 'currency') }}</p>
+           <p>{{ $n(50, 'currency', 'ja-JP') }}</p>
+         </div>
+         ```
+     4. Finally it outputs the result
+         ```javascript
+         <div id="app">
+           <p>$10.00</p>
+           <p>￥50</p>
+         </div>
+         ```
 
      **[⬆ Back to Top](#table-of-contents)**
 
@@ -5183,11 +5186,11 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
      You can use `vue-router-sync` library to sync current $route object in vuex store's state.
 
      The usage is quite straight forward with two steps
-    1. **Installation:**
+     1. **Installation:**
         ```bash
         npm install vuex-router-sync
         ```
-    2. **Sync router and store:**
+     2. **Sync router and store:**
         ```javascript
         import { sync } from 'vuex-router-sync'
         import store from './vuex/store' // vuex store instance
@@ -5203,9 +5206,9 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
      The navigation guards of vue-router are used to protect navigations either by redirecting it or canceling it.
 
      Below are the 3 different ways to hook into router navigations
-    1. Global:
-    2. Per-route:
-    3. In-component:
+     1. Global:
+     2. Per-route:
+     3. In-component:
 
      **[⬆ Back to Top](#table-of-contents)**
 
@@ -5321,8 +5324,8 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
 230. ### How does reactivity works with ref?
      VueJS automatically detects the changes to ref's value and updates the DOM with a dependency-tracking based
      reactivity system.
-    1. When a component is rendered for the first time, it tracks every ref that was used during the render.
-    2. Whenever a ref is mutated, it will trigger a re-render of the component.
+     1. When a component is rendered for the first time, it tracks every ref that was used during the render.
+     2. Whenever a ref is mutated, it will trigger a re-render of the component.
 
 231. ### How to use composition API in Vue2.0?
      Vue 2.0 does not have native support for the Composition API, but you can use it via the official plugin:
@@ -5330,62 +5333,62 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
 
      Let's see the usage in step-by-step instructions,
 
-    1. Install the Plugin
-        ```javascript
-        npm install @vue/composition-api
-        # or
-        yarn add @vue/composition-api
-        ```
-
-    2. Register the plugin in your `main.js` file,
-
-       ```javascript
-         import Vue from 'vue';
-         import VueCompositionAPI from '@vue/composition-api';
-
-         Vue.use(VueCompositionAPI);
-
-         new Vue({
-           render: h => h(App),
-         }).$mount('#app');
-       ```
-    3. Using Composition API in Components
-       You can now use `ref`, `reactive`, `computed`, `watch`, `onMounted`, etc., in your Vue 2 components.
-
-       #### Example: Counter Component
-
+     1. Install the Plugin
          ```javascript
-         <template>
-           <div>
-             <p>Count: {{ count }}</p>
-             <button @click="increment">Increment</button>
-           </div>
-         </template>
-
-         <script>
-         import { ref } from '@vue/composition-api';
-
-         export default {
-           setup() {
-             const count = ref(0);
-
-             const increment = () => {
-               count.value++;
-             };
-
-             return {
-               count,
-               increment,
-             };
-           },
-         };
-         </script>
+         npm install @vue/composition-api
+         # or
+         yarn add @vue/composition-api
          ```
-     **Note:**
-    - The `@vue/composition-api` plugin is compatible with **Vue 2.6+**.
-    - It does **not include all Vue 3 features** (e.g., `<script setup>`, Suspense, Fragments).
-    - Great for **gradual migration** or using modern Vue patterns in Vue 2.
-    -
+
+     2. Register the plugin in your `main.js` file,
+
+        ```javascript
+          import Vue from 'vue';
+          import VueCompositionAPI from '@vue/composition-api';
+
+          Vue.use(VueCompositionAPI);
+
+          new Vue({
+            render: h => h(App),
+          }).$mount('#app');
+        ```
+     3. Using Composition API in Components
+        You can now use `ref`, `reactive`, `computed`, `watch`, `onMounted`, etc., in your Vue 2 components.
+
+        #### Example: Counter Component
+
+          ```javascript
+          <template>
+            <div>
+              <p>Count: {{ count }}</p>
+              <button @click="increment">Increment</button>
+            </div>
+          </template>
+
+          <script>
+          import { ref } from '@vue/composition-api';
+
+          export default {
+            setup() {
+              const count = ref(0);
+
+              const increment = () => {
+                count.value++;
+              };
+
+              return {
+                count,
+                increment,
+              };
+            },
+          };
+          </script>
+          ```
+        **Note:**
+         - The `@vue/composition-api` plugin is compatible with **Vue 2.6+**.
+         - It does **not include all Vue 3 features** (e.g., `<script setup>`, Suspense, Fragments).
+         - Great for **gradual migration** or using modern Vue patterns in Vue 2.
+
      **[⬆ Back to Top](#table-of-contents)**
 
 232. ### What is composition API?
@@ -5399,134 +5402,134 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
 
      ##### Key Concepts
 
-    1. **The** `**setup()**` **function**
-
-     The heart of the Composition API. It's called **before the component is created**, and it's the place where you
-     declare **reactive state, computed properties, methods, and lifecycle hooks**.
-
-     ```js
-        <template>
-          <button @click="increment">Count is: {{ count }}</button>
-        </template>
-        <script setup>
-        import { ref } from 'vue'
-
-        const count = ref(0)
-        function increment() {
-          count.value++
-        }
-        </script>
-     ```
-    * `ref()` creates a **reactive reference** to a primitive value.
-    * `count.value` is how you access/update the value inside a `ref`.
-
-    2. **Reactive State:** `**ref()**` **and** `**reactive()**`
-
-      ##### `ref()`
-
-      * Used for **primitive values**.
-      * Wraps a value in a reactive object.
-
+     1. **The** `**setup()**` **function**
+    
+         The heart of the Composition API. It's called **before the component is created**, and it's the place where you
+         declare **reactive state, computed properties, methods, and lifecycle hooks**.
+    
           ```js
-          const message = ref('Hello');
-          message.value = 'Hi';
+             <template>
+               <button @click="increment">Count is: {{ count }}</button>
+             </template>
+             <script setup>
+             import { ref } from 'vue'
+    
+             const count = ref(0)
+             function increment() {
+               count.value++
+             }
+             </script>
           ```
-
-          ##### `reactive()`
-
-          *   Used for **objects**.
-          *   Deeply reactive, making every property reactive.
-
-          ```js
-          const user = reactive({  name: 'Alice',  age: 25 });
-          user.age++;
-          ```
-
-    3. **Computed Properties**
-       Creates values that automatically update when dependencies change.
-
-      ```js
-      import { ref, computed } from 'vue';
-
-      setup() {
-        const firstName = ref('John');
-        const lastName = ref('Doe');
-        const fullName = computed(() => `${firstName.value} ${lastName.value}`);
+        * `ref()` creates a **reactive reference** to a primitive value.
+        * `count.value` is how you access/update the value inside a `ref`.
+    
+     2. **Reactive State:** `**ref()**` **and** `**reactive()**`
+    
+        ##### `ref()`
+    
+        * Used for **primitive values**.
+          * Wraps a value in a reactive object.
+    
+              ```js
+              const message = ref('Hello');
+              message.value = 'Hi';
+              ```
+    
+            ##### `reactive()`
+    
+              * Used for **objects**.
+              * Deeply reactive, making every property reactive.
+    
+              ```js
+              const user = reactive({  name: 'Alice',  age: 25 });
+              user.age++;
+              ```
+    
+     3. **Computed Properties**
+        Creates values that automatically update when dependencies change.
+    
+        ```js
+        import { ref, computed } from 'vue';
+    
+        setup() {
+          const firstName = ref('John');
+          const lastName = ref('Doe');
+          const fullName = computed(() => `${firstName.value} ${lastName.value}`);
      
-        return { fullName };
-      }
-      ```
-
-    4. **Watchers**
-
-     Both `watch()` and `watchEffect()` are used to run side effects when data changes:
-
-      ```js
-        watch(count, (newVal, oldVal) => {
-        console.log('Count changed:', newVal);
-        });
-        
-        watchEffect(() => {
-        console.log('Count is now', count.value);
-        });
-      ```
-
-    5. **Lifecycle Hooks**
-
-     Composition API uses new lifecycle hooks imported from Vue.
-       ```js
-        import { onMounted, onUnmounted } from 'vue';
-     
-        onMounted(() => { 
-            console.log('Component is mounted'); 
-        });
-     
-        onUnmounted(() => {
-            console.log('Component is unmounted');
-        });
-       ```
-
-    6. **Reusable Logic with Composables**
-
-     You can encapsulate logic in **composable functions** and reuse across components:
-
-     Example: Reuse logic of counter using `useCounter.js`
-      ```js
-        import { ref } from 'vue';
-        export function useCounter(initialValue = 0) { 
-          const count = ref(initialValue);
-          const increment = () => count.value++;
-          const decrement = () => count.value--;
-          const reset = () => count.value = initialValue;
-          return { count, increment, decrement, reset }; 
+          return { fullName };
         }
-      ```
-     Using it in a component
-      ```js
-      <script setup>
-       import { useCounter } from '@/composables/useCounter';
+        ```
+    
+     4. **Watchers**
+    
+        Both `watch()` and `watchEffect()` are used to run side effects when data changes:
+    
+          ```js
+            watch(count, (newVal, oldVal) => {
+            console.log('Count changed:', newVal);
+            });
         
-        const { count, increment, decrement, reset } = useCounter(5);
-        </script>
+            watchEffect(() => {
+            console.log('Count is now', count.value);
+            });
+          ```
+    
+     5. **Lifecycle Hooks**
+    
+        Composition API uses new lifecycle hooks imported from Vue.
+           ```js
+            import { onMounted, onUnmounted } from 'vue';
+     
+            onMounted(() => { 
+                console.log('Component is mounted'); 
+            });
+     
+            onUnmounted(() => {
+                console.log('Component is unmounted');
+            });
+           ```
+    
+     6. **Reusable Logic with Composables**
+    
+        You can encapsulate logic in **composable functions** and reuse across components:
+    
+        Example: Reuse logic of counter using `useCounter.js`
+          ```js
+            import { ref } from 'vue';
+            export function useCounter(initialValue = 0) { 
+              const count = ref(initialValue);
+              const increment = () => count.value++;
+              const decrement = () => count.value--;
+              const reset = () => count.value = initialValue;
+              return { count, increment, decrement, reset }; 
+            }
+          ```
+        Using it in a component
+          ```js
+          <script setup>
+           import { useCounter } from '@/composables/useCounter';
         
-        <template>
-          <div>
-            <p>Count: {{ count }}</p>
-            <button @click="increment">+</button>
-            <button @click="decrement">-</button>
-            <button @click="reset">Reset</button>
-          </div>
-        </template>
-      ```
+            const { count, increment, decrement, reset } = useCounter(5);
+            </script>
+        
+            <template>
+              <div>
+                <p>Count: {{ count }}</p>
+                <button @click="increment">+</button>
+                <button @click="decrement">-</button>
+                <button @click="reset">Reset</button>
+              </div>
+            </template>
+          ```
 
      **[⬆ Back to Top](#table-of-contents)**
 
 233. ### What are the benefits of composition API?
      The composition API provides several benefits over the traditional Options API as listed below.
-    1. Better logic reuse and code organization:
-    2. Better typescript support:
-    3. Easier testing
-    4. Smaller production bundles
+     1. Better logic reuse and code organization:
+     2. Better typescript support:
+     3. Easier testing
+     4. Smaller production bundles
 
      **[⬆ Back to Top](#table-of-contents)**
 
@@ -5537,7 +5540,7 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
 
 235. ### What is teleport?
      The `<Teleport>` component allows you to render a part of your component's template into a different location in
-     the DOM — outside the current component’s hierarchy.
+     the DOM — outside the current component's hierarchy.
 
      #### Example:
      1. Wrap teleport component around the modal template inside `app.vue` file
@@ -5564,7 +5567,7 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
      ```
      In Vue 2, this functionality was possible via the community plugin `portal-vue`
 
-     #### Usecases
+     #### Use cases
         1. Modals
         2. Toasts
         3. Tooltips
@@ -5593,7 +5596,7 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
 237. ### What are the key differences between Vue 2 and Vue 3?
 
      | Feature            | Vue 2                     | Vue 3                                |
-          |--------------------|---------------------------|--------------------------------------|
+     | ------------------ | ------------------------- | ------------------------------------ |
      | API Style          | Options API               | Composition API + Options API        |
      | Reactivity System  | `Object.defineProperty()` | Proxy-based (faster & more reliable) |
      | Performance        | Moderate                  | Improved (~2x faster in some cases)  |
@@ -5607,91 +5610,92 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
 
 238. ### What is watch() and how is it used?
 
-    The `watch()` function observes a **reactive source**((like `ref`, `reactive`, getter functions or computed values)) and
-    runs a **callback function** whenever that source changes.
+     The `watch()` function observes a **reactive source**((like `ref`, `reactive`, getter functions or computed values)) and
+     runs a **callback function** whenever that source changes.
     
-    **Syntax:**
-    ```js
+     **Syntax:**
+     ```js
       watch(source, callback, options ?) 
-    ```
+     ```
     
-    - **source:** a ref, reactive property, getter function, or array of them.
-    - **callback(newValue, oldValue):** function to run when the value changes.
-    - **options (optional):** object to control behavior (e.g., immediate, deep).
+      - **source:** a ref, reactive property, getter function, or array of them.
+      - **callback(newValue, oldValue):** function to run when the value changes.
+      - **options (optional):** object to control behavior (e.g., immediate, deep).
     
-    #### Example 1: Watching a `ref`
+     #### Example 1: Watching a `ref`
     
-    ```js
-    import {ref, watch} from 'vue';
+     ```js
+     import {ref, watch} from 'vue';
     
-    const count = ref(0);
+     const count = ref(0);
     
-    watch(count, (newVal, oldVal) => {
+     watch(count, (newVal, oldVal) => {
         console.log(`Count changed from ${oldVal} to ${newVal}`);
-    });
-    count.value = 5; // triggers the watch callback
-    ```
+     });
+     count.value = 5; // triggers the watch callback
+     ```
     
-    #### Example 2: Watching a function (getter)
+     #### Example 2: Watching a function (getter)
     
-    ```js
-    const firstName = ref('Sudheer');
-    const lastName = ref('Jonna');
+     ```js
+     const firstName = ref('Sudheer');
+     const lastName = ref('Jonna');
     
-    watch(
+     watch(
         () => `${firstName.value} ${lastName.value}`,
         (newFullName, oldFullName) => {
             console.log(`Full name changed from ${oldFullName} to ${newFullName}`);
         }
-    );
-    ```
+     );
+     ```
     
-    #### Example 3: Watching a `reactive` object deeply
+     #### Example 3: Watching a `reactive` object deeply
     
-    ```js
-    import {reactive, watch} from 'vue';
+     ```javascript
+         import {reactive, watch} from 'vue';
+        
+         const user = reactive({name: 'Sudheer', age: 38});
+        
+         watch(
+            () => user,
+            (newUser, oldUser) => {
+                console.log('User object changed:', newUser);
+            },
+            {deep: true}
+         );
+     ```
     
-    const user = reactive({name: 'Sudheer', age: 38});
+        The main uses of `watch()` are:
     
-    watch(
-        () => user,
-        (newUser, oldUser) => {
-            console.log('User object changed:', newUser);
-        },
-        {deep: true}
-    );
-    ```
-
-    The main uses of `watch()` are:
+        1. Watching route changes
+        2. Triggering API calls
+        3. Responding to complex data changes
+        4. Manually reacting to specific state updates
     
-    1. Watching route changes
-    2. Triggering API calls
-    3. Responding to complex data changes
-    4. Manually reacting to specific state updates
-
-    **[⬆ Back to Top](#table-of-contents)**
+     **[⬆ Back to Top](#table-of-contents)**
 
 239. ### What is watch() and how is it used?
 
-    In **Composition API**, lifecycle hooks are functions you call **inside the `setup()` function** to hook into different
-    stages of a component’s lifecycle. These hooks replace the traditional options API lifecycle methods (like `created()`,
-    `mounted()`, etc.) with function-based hooks that are imported from Vue.
-
-    #### Main Lifecycle Hooks
-
-    | Lifecycle Stage           | Composition API Hook | Description                                             |
-    |---------------------------|----------------------|------------------------------------------------------- --|| Before component creation | `onBeforeMount()`    | Called right before the component is mounted            |
-    | Component mounted         | `onMounted()`        | Called after the component has been mounted             |
-    | Before update             | `onBeforeUpdate()`   | Called before the component updates the DOM             |
-    | After update              | `onUpdated()`        | Called after the component updates the DOM              |
-    | Before unmount            | `onBeforeUnmount()`  | Called right before the component is unmounted          |
-    | Component unmounted       | `onUnmounted()`      | Called after the component is unmounted                 |
-    | Error captured            | `onErrorCaptured()`  | Called when an error from a child component is captured |
-    | Activated (keep-alive)    | `onActivated()`      | Called when a kept-alive component is activated         |
-    | Deactivated (keep-alive)  | `onDeactivated()`    | Called when a kept-alive component is deactivated       |
+     In **Composition API**, lifecycle hooks are functions you call **inside the `setup()` function** to hook into different
+     stages of a component's lifecycle. These hooks replace the traditional options API lifecycle methods (like `created()`,
+    `mounted()`, etc.) with function-based hooks that are imported from  Vue.
     
-    The above hooks can be imported from `vue` and used inside `setup()` function. For example, the usage of hooks will be
-    as follows,
+     #### Main Lifecycle Hooks
+    
+     | Lifecycle Stage           | Composition API Hook | Description                                             |
+     |---------------------------|----------------------|---------------------------------------------------------|
+     | Before component creation | `onBeforeMount()`    | Called right before the component is mounted            |
+     | Component mounted         | `onMounted()`        | Called after the component has been mounted             |
+     | Before update             | `onBeforeUpdate()`   | Called before the component updates the DOM             |
+     | After update              | `onUpdated()`        | Called after the component updates the DOM              |
+     | Before unmount            | `onBeforeUnmount()`  | Called right before the component is unmounted          |
+     | Component unmounted       | `onUnmounted()`      | Called after the component is unmounted                 |
+     | Error captured            | `onErrorCaptured()`  | Called when an error from a child component is captured |
+     | Activated (keep-alive)    | `onActivated()`      | Called when a kept-alive component is activated         |
+     | Deactivated (keep-alive)  | `onDeactivated()`    | Called when a kept-alive component is deactivated       |
+    
+     The above hooks can be imported from `vue` and used inside `setup()` function. For example, the usage of hooks will be
+     as follows,
     
        ```js
        import {onMounted, onBeforeUnmount} from 'vue'
@@ -5709,7 +5713,7 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
         }
        ```
     
-    **[⬆ Back to Top](#table-of-contents)**
+     **[⬆ Back to Top](#table-of-contents)**
 
 240. ### Whats the difference between `watch()` and `watchEffect()`?
 
