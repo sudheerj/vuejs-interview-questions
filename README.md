@@ -707,7 +707,7 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
      7. reverse()
 
      If you perform any of the above mutation method on the list then it triggers view update. For example, push method
-     on array named 'items' trigger a view update,
+     on array named 'todos' trigger a view update,
      ```javascript
      vm.todos.push({ message: 'Baz' })
      ```
@@ -721,6 +721,14 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
      1. filter()
      2. concat()
      3. slice()
+     4. map()
+     5. reduce()
+     6. find()
+     7. includes()
+     8. every()
+     9. some()
+     10. indexOf()
+     11. join()
 
      For example, lets take a todo list where it replaces the old array with new one based on status filter,
      ```javascript
@@ -5683,7 +5691,7 @@ access the vm instance.
      #### Main Lifecycle Hooks
     
      | Lifecycle Stage           | Composition API Hook | Description                                             |
-     |---------------------------|----------------------|---------------------------------------------------------|
+     | ------------------------- | -------------------- | ------------------------------------------------------- |
      | Before component creation | `onBeforeMount()`    | Called right before the component is mounted            |
      | Component mounted         | `onMounted()`        | Called after the component has been mounted             |
      | Before update             | `onBeforeUpdate()`   | Called before the component updates the DOM             |
