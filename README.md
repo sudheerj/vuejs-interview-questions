@@ -8,8 +8,14 @@ me [@SudheerJonna](https://twitter.com/SudheerJonna) for technical updates.
 ---
 <p align="center">
   <a href=https://zerotomastery.io/?utm_source=github&utm_medium=sponsor&utm_campaign=vue-interview-questions>
-     <img src="/images/collab/BFCM2025.gif" alt="ZTM Logo" width="100%">
+    <img src=https://images.ctfassets.net/aq13lwl6616q/16U1iCKYMvT2KK1TA5gDfi/2885ffc1c274f493942fb29d338d63d3/ztm-logo-academy.svg alt="ZTM Logo">
   </a>
+  <p align="center">
+    <ol>
+    <li>Take this <a href=https://links.zerotomastery.io/vue_sudheer>Vue.js course</a> to go from a complete Vue beginner to confidently building large-scale applications from scratch</li>
+    <li>Take this <a href=https://links.zerotomastery.io/mci_sudheer4>coding interview bootcamp</a> if you're serious about getting hired and don't have a CS degree</li>
+    </ol>
+  </p>
 </p>
 
 ---
